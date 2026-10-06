@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Software and projects · Juan A. Fraire</title>
+  <meta name="description" content="Open-source tools and funded projects of Juan A. Fraire: contact-graph routing in NASA's ION and HDTN, DTN and satellite-IoT simulators, the Contact Plan Designer, and research projects with ANR, ESA and the EU.">
+  <link rel="canonical" href="https://juanfraire.space/software/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Software and projects · Juan A. Fraire">
+  <meta property="og:description" content="Tools for space networks, from routing code running in NASA's DTN stacks to simulators and planners, and the projects behind them.">
+  <meta property="og:url" content="https://juanfraire.space/software/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <a class="role" href="https://datatracker.ietf.org/rg/space/about/"><img src="/assets/img/logos/irtf-mark.png" alt="" width="37" height="20"><span><em>Chair</em>IRTF SPACE Research Group</span></a>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/">Publications</a>
+      <a href="/software/" aria-current="page">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="wrap page-head">
+      <h1>Software and projects</h1>
+      <p class="lead">The tools my students, colleagues and I have built to plan, simulate and run networks in space, and the funded projects they came from. Most of the code is open source.</p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="orbit-title">
+      <h2 id="orbit-title">In orbit and in use</h2>
+      <div class="cols">
+        <div class="box">
+          <h3>Flight and operations</h3>
+          <ul>
+            <li>My contact-graph routing modules run in NASA's DTN stacks, <a href="https://github.com/nasa-jpl/ION-DTN">ION</a> and <a href="https://github.com/nasa/HDTN">HDTN</a>, including the routing-experiment payload on the International Space Station and Deep Space Network stations.</li>
+            <li>Battery-aware routing and autonomous scheduling of inter-satellite links were demonstrated on GomSpace's GomX-4 satellites in low Earth orbit.</li>
+            <li>The Bundle Protocol version 7 and Ring Road networks were validated on ESA's <a href="https://www.esa.int/Enabling_Support/Operations/OPS-SAT">OPS-SAT</a> mission.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Companies</h3>
+          <ul>
+            <li><a href="https://gitlab.com/d3tn/ud3tn">µD3TN</a>, the lightweight DTN protocol stack of <a href="https://d3tn.com/">D3TN</a> for constrained spacecraft, used in space and underwater. I took part in its development.</li>
+            <li>Technology transfer to <a href="https://www.skyloom.co/">Skyloom</a> (an all-optical geostationary relay), D3TN (the ColdSun, Orbitare and DARKSOL projects) and <a href="https://www.cloudandheat.com/en/">Cloud&amp;Heat</a> (Aocloud).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section group t1" aria-labelledby="g1-title">
+      <div class="group-head">
+        <p class="num">01</p>
+        <h2 id="g1-title">Delay-tolerant networks</h2>
+        <a href="/publications/#dtn">Papers</a>
+      </div>
+      <ul class="tool-list">
+        <li>
+          <p class="meta">Tool</p>
+          <h3><a href="https://ipnv.net/">IPN-V</a></h3>
+          <p>The Interplanetary Network Visualiser: a 3D view of orbiters, landers and ground stations across the Solar System, with their contacts and light-time delays. The Mars network on the home page comes from one of its scenarios. Demo on request.</p>
+        </li>
+        <li>
+          <p class="meta">Tool · MIT licence</p>
+          <h3><a href="https://contact-plan-designer.space/">Contact Plan Designer</a></h3>
+          <p>Works out when spacecraft and ground stations can talk to each other and turns it into the contact plans that DTN routing needs. Runs in the browser and as a plug-in for STK.</p>
+        </li>
+        <li>
+          <p class="meta">Tool · open source</p>
+          <h3><a href="https://gitlab.inria.fr/jfraire/dtnsim">DtnSim</a></h3>
+          <p>A simulator for studying delay-tolerant networks: routing, forwarding, scheduling and contact planning.</p>
+        </li>
+        <li>
+          <p class="meta">Library · open source</p>
+          <h3><a href="https://bitbucket.org/juanfraire/pycgr">pyCGR</a></h3>
+          <p>Contact graph routing in Python, adopted in NASA's HDTN.</p>
+        </li>
+        <li>
+          <p class="meta">Library · open source</p>
+          <h3><a href="https://github.com/DTN-MTP/A-SABR">A-SABR</a></h3>
+          <p>An adaptive library for schedule-aware bundle routing, the family of algorithms behind contact graph routing.</p>
+        </li>
+        <li>
+          <p class="meta">Project · EU MSCA RISE · 2021–2026</p>
+          <h3><a href="https://mission-project.eu/">MISSION</a></h3>
+          <p>Models in Space Systems: formal models and uncertainty-aware routing for space networks, with U. Twente, RWTH Aachen, Saarland University, UNC, UNRC, D3TN, Ascentio and INVAP.</p>
+          <p class="duty">Responsible researcher</p>
+        </li>
+        <li>
+          <p class="meta">Project · ANR JCJC · 2026–2030</p>
+          <h3>VISTA</h3>
+          <p>Viable and Scalable Interplanetary and Terrestrial Architectures, coordinated by Olivier De Jonckère at LIRMM.</p>
+          <p class="duty">Collaborator</p>
+        </li>
+        <li>
+          <p class="meta">Project · ESA OSIP · 2026–2029</p>
+          <h3>A digital twin for the Solar System Internet</h3>
+          <p>A doctoral project co-funded by ESA, on a digital twin to optimise and operate networks across the Solar System, building on IPN-V.</p>
+          <p class="duty">Co-supervisor, with Pierre François</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap section group t2" aria-labelledby="g2-title">
+      <div class="group-head">
+        <p class="num">02</p>
+        <h2 id="g2-title">Direct-to-satellite IoT</h2>
+        <a href="/publications/#iot">Papers</a>
+      </div>
+      <ul class="tool-list">
+        <li>
+          <p class="meta">Tool · open source</p>
+          <h3><a href="https://gitlab.inria.fr/jfraire/florasat">FLoRaSat</a></h3>
+          <p>An OMNeT++ simulator for end-to-end satellite IoT, with LoRa and LoRaWAN adapted to links with satellites. Now in its second version.</p>
+        </li>
+        <li>
+          <p class="meta">Project · ANR PRCE · 2023–2027</p>
+          <h3><a href="https://stereo-project.space/">STEREO</a></h3>
+          <p>Space-Terrestrial Integrated IoT: protocols that let low-cost devices reach satellites directly, with Inria, IRIT, LAAS, LIG and Kinéis.</p>
+          <p class="duty">Coordinator</p>
+        </li>
+        <li>
+          <p class="meta">Project · STIC-AmSud · 2025–2027</p>
+          <h3><a href="https://dorsaliot.space/">DORSAL-IoT</a></h3>
+          <p>Downlink optimisation for robust direct-to-satellite IoT, with Universidad de Chile, UDP, UTEM and UFSC in Brazil.</p>
+          <p class="duty">Coordinating group member</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap section group t3" aria-labelledby="g3-title">
+      <div class="group-head">
+        <p class="num">03</p>
+        <h2 id="g3-title">Mega-constellations</h2>
+        <a href="/publications/#mega">Papers</a>
+      </div>
+      <ul class="tool-list">
+        <li>
+          <p class="meta">Project · Inria associate team · 2025–2027</p>
+          <h3><a href="https://d3-connect.space/">D3-CONNECT</a></h3>
+          <p>Direct-to-device satellite connectivity for everyone, with Sylvia Ratnasamy's NetSys Lab at UC Berkeley.</p>
+          <p class="duty">Principal investigator</p>
+        </li>
+        <li>
+          <p class="meta">Project · ESA · 2026–</p>
+          <h3>ConOpsCon</h3>
+          <p>Constellation operations with continuous communication, with Saarland University as prime contractor and VisionSpace Technologies.</p>
+          <p class="duty">Coordinator</p>
+        </li>
+        <li>
+          <p class="meta">Project · PEPR, France 2030 · 2025–2029</p>
+          <h3><a href="https://donuts-project.space/">DONUTS</a></h3>
+          <p>Design of multiscale, multitechnology networks: a seamless continuum of space, air and ground networks for 5G and 6G.</p>
+          <p class="duty">Contributor</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap section group t4" aria-labelledby="g4-title">
+      <div class="group-head">
+        <p class="num">04</p>
+        <h2 id="g4-title">Orbital computing</h2>
+        <a href="/orbital-computing/">Topic page</a>
+        <a href="/publications/#orbital">Papers</a>
+      </div>
+      <ul class="tool-list">
+        <li>
+          <p class="meta">Tool · MIT and Apache-2.0</p>
+          <h3><a href="https://gitlab.com/sustainable-computing-systems/espas">ESpaS</a></h3>
+          <p>Open-source estimator of the carbon footprint of computing in orbit, from manufacturing through launch to re-entry, built at Saarland University.</p>
+        </li>
+        <li>
+          <p class="meta">Tool · open source</p>
+          <h3><a href="https://gitlab.com/camilo.rojas/meteornet">MeteorNet</a></h3>
+          <p>A continuous-time emulator for edge computing on low-Earth-orbit constellations, used to test where servers should sit and how tasks should move between orbit and ground.</p>
+        </li>
+        <li>
+          <p class="meta">Video</p>
+          <h3><a href="https://youtu.be/QxZvYLTl7Bs">FOUNDATION</a></h3>
+          <p>Computing without repair: what it takes to keep hardware dependable for years when no one can reach it. A 30-second teaser.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap section" id="projects" aria-labelledby="past-title">
+      <h2 id="past-title">Concluded projects</h2>
+      <ul class="compact">
+        <li><strong><a href="https://arxiv.org/abs/2507.15574">AI4LFNM</a></strong>, ESA, 2023–2025. Lead researcher. AI for managing large satellite fleets, with GMV, Saarland University, Thales Alenia Space, Eutelsat and Planet Labs.</li>
+        <li><strong><a href="https://resilience.esa.int/archives/projects/ml4mocs">ML4OISL</a></strong>, ESA, 2024–2025. Contributor. Machine learning for optical inter-satellite links, with GMV, Saarland University and Eutelsat.</li>
+        <li><strong><a href="https://resilience.esa.int/archives/projects/handingover">HANDING-OVER</a></strong>, ESA, 2023–2025. Contributor. Handover, routing and resource management in very low Earth orbit, with Thales Alenia Space and Politecnico di Torino.</li>
+        <li><strong><a href="https://leopowver.space/">LEOPowVer</a></strong>, ERC Proof of Concept, 2021–2022. Adjunct PI, with Holger Hermanns as PI. In-orbit validation on GomX-4.</li>
+        <li><strong>STARS</strong>, STIC-AmSud, 2021–2023. Responsible researcher. Protocols for satellite networks.</li>
+        <li><strong>NEON</strong>, Erasmus+, 2021–2024. Collaborator. A network of competences on the Internet of Things.</li>
+        <li><strong>i2CAT contract</strong>, 2023. Optical inter-satellite links and network management.</li>
+        <li><strong>MAPS-Net</strong>, ANPCyT, 2019–2021. Director. Segmented satellite networks.</li>
+        <li><strong>ContactAR</strong>, ANPCyT, 2020–2021. Responsible researcher. Digital contact tracing.</li>
+      </ul>
+      <p class="note">Also active: MOBIDEC, a targeted project of the PEPR programme (France 2030), as a contributor. In all, more than 15 funded projects worth over €7M.</p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

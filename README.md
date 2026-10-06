@@ -30,6 +30,7 @@ Bibliography keywords that the site reads (the CV ignores the extra ones):
 - type: `book`, `journal`, `conference`, `preprint` (`arxiv` and `thesis` are not shown);
 - topic: `dtn`, `iot`, `mega`, `orbital` (zero, one or two per entry);
 - `selected` (the CV's flagship list) or `featured` (website only): shown on the topic page;
+  `selected` alone also fills "Selected papers" on the publications page (`<!-- gen:pubs selected -->`);
 - optional field `weburl`: the link the website uses instead of the DOI (the CV ignores it).
 
 A news item is `{"date": "2026-10", "html": "…", "link": "…", "link_text": "Paper"}`;
@@ -40,7 +41,7 @@ A news item is `{"date": "2026-10", "html": "…", "link": "…", "link_text": "
 One HTML page, two layouts. An inline script in `<head>` adds `class="scene"` to
 `<html>` when the device can run the 3D tour (WebGL2, at least 4 cores and 4 GB, no
 data saver, no reduced-motion preference). Otherwise, and until the tour has
-loaded, the page is the intro slide: four topic panels and the institution bars.
+loaded, the page is the intro slide: the four topic panels.
 `assets/js/home.js` loads `assets/js/scene/scene.js` and three.js after first
 paint, and falls back to the slide if they fail or run below about 22 fps.
 
@@ -48,7 +49,11 @@ paint, and falls back to the slide if they fail or run below about 22 fps.
 
 ```
 index.html                  landing page
-orbital-computing/          topic page 04
+dtn/, satellite-iot/, mega-constellations/, orbital-computing/   topic pages 01 to 04
+publications/               full list from the bib, with topic/type/text filters (assets/js/pubs.js)
+software/                   tools and projects, grouped by topic
+press/, es/prensa/, fr/presse/   press kit in English, Spanish and French (assets/js/press.js)
+about/                      positions, education, students, service, teaching
 404.html                    shown by GitHub Pages for missing pages
 assets/css/site.css         all styles; palette from the intro slide
 assets/js/home.js           landing behaviour (live Mars light-time, tour, fallback)

@@ -16,7 +16,7 @@ import random
 import shutil
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 SITE = Path(__file__).resolve().parent.parent
 DRIVE = Path("/Users/jfraire/My Drive")
@@ -34,9 +34,21 @@ PANELS = {
     "p4-orbital": SLIDE / "p4-orbital.jpg",
 }
 
-# Wide topic-page heroes: (source, output name, crop box as fractions or None).
+# Wide topic-page heroes: name -> (source, layout or None). With a layout, the source is
+# placed on a 16:9 canvas so its subject sits on the right, clear of the title:
+# cx, cy = subject centre (fractions of the source), at = where it lands (fraction of the
+# canvas width), scale = canvas height / source height, blackout = boxes to erase (source px),
+# mirror = fill the margins with a starfield patch from the source corner instead of black.
 HEROES = {
     "orbital-hero": (CODE / "tessera/video/odc-constellation-background/out/deck/jpg/a1-ring-right.jpg", None),
+    # the same sources as the intro-slide panels 1 to 3
+    "dtn-hero": (CODE / "ipn-v/documentation/mars-earth-network.png",
+                 dict(cx=0.497, cy=0.47, at=0.68, scale=1.0,
+                      blackout=[(1300, 1020, 1560, 1105), (0, 400, 280, 520), (850, 455, 935, 505)])),  # HUD, "Mercury", "Earth"
+    "iot-hero": (DRIVE / "inria/0000-oo-old/0000-00-phd-insa-diego/g21985.png",
+                 dict(cx=0.5, cy=0.5, at=0.75, scale=1.5, blackout=[], mirror=False)),
+    "mega-hero": (CODE / "tessera/video/odc-constellation-v1/out/still_f0120_hero.png",
+                  dict(cx=0.5, cy=0.5, at=0.72, scale=1.3, blackout=[])),
 }
 
 PHOTO = CV / "jfraire-profile-2-byn.jpg"          # 2023 portrait, black and white
@@ -75,11 +87,43 @@ def panels():
         print("panel ", name, "<-", src.name)
 
 
+def place_on_canvas(src, cx, cy, at, scale, blackout, mirror=True):
+    """Put the subject of `src` at `at` across a 16:9 canvas, filling the margins."""
+    im = Image.open(src)
+    if im.mode in ("RGBA", "LA", "P"):
+        im = im.convert("RGBA")
+        flat = Image.new("RGB", im.size, (0, 0, 0))
+        flat.paste(im, mask=im.split()[-1])
+        im = flat
+    im = im.convert("RGB")
+    draw = ImageDraw.Draw(im)
+    for box in blackout:
+        draw.rectangle(box, fill=(0, 0, 0))
+    src_arr = np.asarray(im)
+    w, h = im.size
+    ch = round(h * scale)
+    cw = round(ch * 16 / 9)
+    x0, y0 = round(at * cw - cx * w), round(ch / 2 - cy * h)    # where the source lands
+    if mirror:
+        # Fill the canvas with the empty top-left corner of the source (a patch of stars),
+        # tiled with alternating flips so it does not repeat visibly.
+        patch = src_arr[: h * 3 // 10, : w // 4]
+        row = np.concatenate([patch, patch[:, ::-1]] * (cw // (2 * patch.shape[1]) + 1), axis=1)
+        canvas = np.concatenate([row, row[::-1]] * (ch // (2 * patch.shape[0]) + 1), axis=0)[:ch, :cw].copy()
+    else:
+        canvas = np.zeros((ch, cw, 3), dtype=np.uint8)
+    sx0, sy0 = max(-x0, 0), max(-y0, 0)
+    sx1, sy1 = min(w, cw - x0), min(h, ch - y0)
+    canvas[sy0 + y0:sy1 + y0, sx0 + x0:sx1 + x0] = src_arr[sy0:sy1, sx0:sx1]
+    return Image.fromarray(canvas).resize((1600, 900), Image.LANCZOS)
+
+
 def heroes():
     out = IMG / "topics"
     out.mkdir(parents=True, exist_ok=True)
-    for name, (src, _) in HEROES.items():
-        save_pair(fit_width(Image.open(src), 1600), out / name, quality=80, webp_quality=74)
+    for name, (src, layout) in HEROES.items():
+        im = place_on_canvas(src, **layout) if layout else fit_width(Image.open(src), 1600)
+        save_pair(im, out / name, quality=80, webp_quality=74)
         print("hero  ", name, "<-", src.name)
 
 

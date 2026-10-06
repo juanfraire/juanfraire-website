@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delay-tolerant networks: routing data across space · Juan A. Fraire</title>
+  <meta name="description" content="Delay-tolerant networks store data on board and forward it when the next link opens, from satellites in low orbit to Mars. Contact plans, contact graph routing in NASA's ION and HDTN, and results with sources. Research by Juan A. Fraire and colleagues.">
+  <link rel="canonical" href="https://juanfraire.space/dtn/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Delay-tolerant networks: routing data across space">
+  <meta property="og:description" content="Store the data, wait for the next contact, forward it: networking from low orbit to Mars, with results and sources.">
+  <meta property="og:url" content="https://juanfraire.space/dtn/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/topics/dtn-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Delay-tolerant networks: routing data across space",
+    "url": "https://juanfraire.space/dtn/",
+    "about": "Delay-tolerant networking and space networks",
+    "author": {"@id": "https://juanfraire.space/#person", "@type": "Person", "name": "Juan A. Fraire", "url": "https://juanfraire.space/"}
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module">
+    import { marsLightMinutes } from '/assets/js/astro.js';
+    const line = document.getElementById('mars-now');
+    if (line) {
+      const minutes = marsLightMinutes(new Date()).toFixed(1);
+      line.innerHTML = `Right now a signal from Earth needs <b>${minutes} minutes</b> to reach Mars, and any reply needs as long again.`;
+    }
+  </script>
+</head>
+<body style="--accent: var(--t1)">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <a class="role" href="https://datatracker.ietf.org/rg/space/about/"><img src="/assets/img/logos/irtf-mark.png" alt="" width="37" height="20"><span><em>Chair</em>IRTF SPACE Research Group</span></a>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics" aria-current="page">Research</a>
+      <a href="/publications/">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="topic-hero">
+      <picture>
+        <source srcset="/assets/img/topics/dtn-hero.webp" type="image/webp">
+        <img src="/assets/img/topics/dtn-hero.jpg" width="1600" height="900" alt="Mars ringed by the orbits of relay satellites, with links between them and back to Earth">
+      </picture>
+      <div class="wrap">
+        <p class="num">01 · RESEARCH TOPIC</p>
+        <h1>Delay-Tolerant Networks</h1>
+        <p class="lead">Spacecraft drift in and out of reach, so a path from sender to receiver is often missing. Delay-tolerant networks keep the data on board and pass it on when the next link opens. I design the plans and the routing that decide where it goes next.</p>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <div class="prose">
+        <p>A signal from Earth takes between 3 and 22 minutes to reach Mars, depending on where the two planets are. Orbiters, landers and ground stations see each other only now and then, as they move and the planets turn. The internet's protocols expect a live path from sender to receiver, and they give up when there is none.</p>
+        <p>Delay-tolerant networks work another way: each node keeps the data and hands it on at the next contact. Spacecraft follow known orbits, so most contacts can be predicted and listed in advance in a contact plan. Contact graph routing uses that plan to choose the next hop, and my routing modules run in NASA's ION and HDTN software. With students and colleagues, I also study what to do when the plan turns out wrong, how to schedule laser links at Mars, and how to see a whole interplanetary network at a glance.</p>
+      </div>
+      <p class="live-line" id="mars-now">A signal takes 3 to 22 minutes to reach Mars, depending on where the two planets are.</p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="results-title">
+      <h2 id="results-title">Results, with sources</h2>
+      <ul class="results">
+        <li><strong>Tested in orbit.</strong> In December 2020 and May 2021, ESA's OPS-SAT satellite stored and forwarded a web request and its reply between a simulated offline site and a site with internet access. The paper reports it as the first successful test in space of version&nbsp;7 of the Bundle Protocol, the standard for this kind of networking. <span class="cite"><a href="https://doi.org/10.1109/mcom.001.2100835">Ring Road Networks, IEEE Comm. Magazine 2022, In-Orbit Validation</a></span> In simulations of ten remote ground stations, the average delivery time fell from 7.7&nbsp;hours with one small satellite to 1.3&nbsp;hours with 20. <span class="cite"><a href="https://doi.org/10.1109/mcom.001.2100835">Ring Road Networks, Fig.&nbsp;2b</a></span></li>
+        <li><strong>Laser links at Mars.</strong> In 24-hour simulations of Mars orbiters with one laser each, relaying science data to Earth, a scheduler that plans every link around the flow of data toward Earth could send back 1.5 to 2 times as much data as an earlier automatic method. <span class="cite"><a href="https://doi.org/10.1109/wisee61249.2024.10850428">Mars laser scheduling, IEEE WiSEE 2024, Fig.&nbsp;4a</a></span></li>
+        <li><strong>A network to another star.</strong> As a thought experiment, a chain of relay spacecraft could span the 39.5 light-years to the TRAPPIST-1 planetary system, each relay keeping a copy and resending whatever its hop loses. A message would arrive after 39.58 years if 1 packet in 1,000 is lost on each hop, and after 59.25 years if 1 in 5 is. With very clean links, about 15,000 small relays about a light-day apart look like a reasonable first estimate. The paper assumes hardware that does not exist yet. <span class="cite"><a href="https://doi.org/10.1109/taes.2018.2874149">Networking in Interstellar Dimensions, IEEE TAES 2019, Table&nbsp;III and §V</a></span></li>
+      </ul>
+    </section>
+
+    <section class="wrap section" aria-labelledby="tools-title">
+      <h2 id="tools-title">Tools and projects</h2>
+      <ul class="tool-list">
+        <li>
+          <p class="meta">Tool</p>
+          <h3><a href="https://ipnv.net/">IPN-V</a></h3>
+          <p>The Interplanetary Network Visualiser: a 3D view of orbiters, landers and ground stations across the Solar System, with their contacts and light-time delays. The Mars network on the home page comes from one of its scenarios. Demo on request.</p>
+        </li>
+        <li>
+          <p class="meta">Tool · MIT licence</p>
+          <h3><a href="https://contact-plan-designer.space/">Contact Plan Designer</a></h3>
+          <p>Works out when spacecraft and ground stations can talk to each other and turns it into the contact plans that DTN routing needs. Runs in the browser and as a plug-in for STK.</p>
+        </li>
+        <li>
+          <p class="meta">Tool · open source</p>
+          <h3><a href="https://gitlab.inria.fr/jfraire/dtnsim">DtnSim</a></h3>
+          <p>A simulator for studying delay-tolerant networks: routing, forwarding, scheduling and contact planning.</p>
+        </li>
+        <li>
+          <p class="meta">Library · open source</p>
+          <h3><a href="https://bitbucket.org/juanfraire/pycgr">pyCGR</a> and <a href="https://github.com/DTN-MTP/A-SABR">A-SABR</a></h3>
+          <p>Contact graph routing in Python, adopted in NASA's HDTN, and an adaptive library for the wider family of schedule-aware bundle routing.</p>
+        </li>
+        <li>
+          <p class="meta">Project · EU MSCA RISE · 2021–2026</p>
+          <h3><a href="https://mission-project.eu/">MISSION</a></h3>
+          <p>Models in Space Systems: formal models and uncertainty-aware routing for space networks, with U. Twente, RWTH Aachen, Saarland University, UNC, UNRC, D3TN, Ascentio and INVAP.</p>
+          <p class="duty">Responsible researcher</p>
+        </li>
+        <li>
+          <p class="meta">Project · ANR JCJC and ESA OSIP · 2026–</p>
+          <h3>VISTA and a Solar System Internet twin</h3>
+          <p>Viable and scalable interplanetary architectures, coordinated by Olivier De Jonckère at LIRMM, and a doctoral project co-funded by ESA on a digital twin to plan and operate networks across the Solar System.</p>
+          <p class="duty">Collaborator · co-supervisor</p>
+        </li>
+      </ul>
+      <p class="note">My routing code also runs in <a href="https://github.com/nasa-jpl/ION-DTN">ION</a> and <a href="https://github.com/nasa/HDTN">HDTN</a>, and I took part in developing <a href="https://gitlab.com/d3tn/ud3tn">µD3TN</a>. More on the <a href="/software/">software page</a>.</p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="papers-title">
+      <h2 id="papers-title">Selected papers</h2>
+      <!-- gen:pubs topic=dtn limit=5 -->
+      <ol class="pubs">
+        <li class="pub" data-type="journal" data-topics="dtn">
+          <span class="pub-title"><a href="https://doi.org/10.1145/3665927">Comparing Statistical, Analytical, and Learning-Based Routing Approaches for Delay-Tolerant Networks</a></span>
+          <span class="pub-authors">Pedro R. D&#x27;Argenio, <strong>Juan A. Fraire</strong>, Arnd Hartmanns, and Fernando D. Raverta</span>
+          <span class="pub-venue">ACM Transactions on Modeling and Computer Simulation, 2025</span>
+        </li>
+        <li class="pub" data-type="conference" data-topics="dtn">
+          <span class="pub-title"><a href="https://doi.org/10.1109/wisee61249.2024.10850428">Autonomous Max-Flow Interplanetary Laser Link Scheduling for Martian Exploration</a></span>
+          <span class="pub-authors">Jason Gerard, Andre Ibrahim, <strong>Juan A. Fraire</strong>, and Sandra Céspedes</span>
+          <span class="pub-venue">IEEE International Conference on Wireless for Space and Extreme Environments (WiSEE), 2024</span>
+        </li>
+        <li class="pub" data-type="journal" data-topics="dtn">
+          <span class="pub-title"><a href="https://doi.org/10.1109/mcom.001.2100835">Ring Road Networks: Access for Anyone</a></span>
+          <span class="pub-authors">Marius Feldmann, <strong>Juan A. Fraire</strong>, Felix Walter, and Scott C. Burleigh</span>
+          <span class="pub-venue">IEEE Communications Magazine, 2022</span>
+        </li>
+        <li class="pub" data-type="journal" data-topics="dtn">
+          <span class="pub-title"><a href="https://doi.org/10.1016/j.jnca.2020.102884">Routing in the Space Internet: A contact graph routing tutorial</a></span>
+          <span class="pub-authors"><strong>Juan A. Fraire</strong>, Olivier De Jonckère, and Scott C. Burleigh</span>
+          <span class="pub-venue">Elsevier Journal of Network and Computer Applications, 2021</span>
+        </li>
+        <li class="pub" data-type="journal" data-topics="dtn">
+          <span class="pub-title"><a href="https://doi.org/10.1155/2017/2830542">Assessing Contact Graph Routing Performance and Reliability in Distributed Satellite Constellations</a></span>
+          <span class="pub-authors"><strong>Juan A. Fraire</strong>, Pablo G. Madoery, Scott C. Burleigh, Marius Feldmann, Jorge M. Finochietto, Amir Charif, Nacer-Eddine Zergainoh, and Raoul Velazco</span>
+          <span class="pub-venue">Journal of Computer Networks and Communications, 2017</span>
+        </li>
+      </ol>
+      <!-- /gen -->
+      <p class="note"><a href="/publications/#dtn">All papers on delay-tolerant networks</a></p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="people-title">
+      <h2 id="people-title">People and partners</h2>
+      <ul class="people">
+        <li><strong>Fernando Raverta</strong>, PhD at UNC (2024), co-supervised with Jorge M. Finochietto: routing when the contact plan is uncertain.</li>
+        <li><strong>Jason Gerard</strong>, PhD at Concordia University (2026, with distinction), co-supervised with Sandra Céspedes: laser links and contact plans for Mars and beyond.</li>
+        <li><strong>Alice Le Bihan</strong>, PhD student at INSA Lyon and Inria, co-supervised with Pierre François: IPN-V and a digital twin for the Solar System Internet.</li>
+        <li><strong>Oriol Fusté</strong>, PhD student at i2CAT and UPC, co-supervised with Joan A. Ruiz-de-Azua: transport protocols such as QUIC for challenged networks.</li>
+      </ul>
+      <div class="partners">
+        <span class="label">With</span>
+        <img src="/assets/img/logos/d3tn.svg" alt="D3TN" width="57" height="30">
+        <img src="/assets/img/logos/ipnsig.png" alt="IPNSIG" width="31" height="30">
+        <span class="label">Saarland University · Nanjing University · LIRMM · Concordia University · UNC</span>
+        <span class="label">Funding</span>
+        <img src="/assets/img/logos/eu-flag.png" alt="European Union" width="30" height="30">
+        <img src="/assets/img/logos/mission.svg" alt="MISSION (Marie Skłodowska-Curie RISE)" width="49" height="30">
+        <img src="/assets/img/logos/anr.png" alt="ANR" width="97" height="30">
+        <img src="/assets/img/logos/esa.svg" alt="ESA" width="83" height="30">
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>Hero image: the <i>dsn-network</i> scenario in IPN-V. This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

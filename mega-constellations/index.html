@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mega-constellations: networks of thousands of satellites · Juan A. Fraire</title>
+  <meta name="description" content="Thousands of satellites linked by lasers form a network that reshapes itself every second. Routing through the mesh, pointing laser links, running fleets, and who these networks serve, with results and sources. Research by Juan A. Fraire and colleagues.">
+  <link rel="canonical" href="https://juanfraire.space/mega-constellations/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Mega-constellations: networks of thousands of satellites">
+  <meta property="og:description" content="Routing through a moving laser mesh, pointing the lasers, and who these networks reach and at what price. With results and sources.">
+  <meta property="og:url" content="https://juanfraire.space/mega-constellations/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/topics/mega-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Mega-constellations: networks of thousands of satellites",
+    "url": "https://juanfraire.space/mega-constellations/",
+    "about": "Satellite mega-constellations and inter-satellite networks",
+    "author": {"@id": "https://juanfraire.space/#person", "@type": "Person", "name": "Juan A. Fraire", "url": "https://juanfraire.space/"}
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body style="--accent: var(--t3)">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <a class="role" href="https://datatracker.ietf.org/rg/space/about/"><img src="/assets/img/logos/irtf-mark.png" alt="" width="37" height="20"><span><em>Chair</em>IRTF SPACE Research Group</span></a>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics" aria-current="page">Research</a>
+      <a href="/publications/">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="topic-hero">
+      <picture>
+        <source srcset="/assets/img/topics/mega-hero.webp" type="image/webp">
+        <img src="/assets/img/topics/mega-hero.jpg" width="1600" height="900" alt="Earth half in night, wrapped in a dense mesh of links between satellites">
+      </picture>
+      <div class="wrap">
+        <p class="num">03 · RESEARCH TOPIC</p>
+        <h1>Mega-Constellations</h1>
+        <p class="lead">Thousands of satellites linked by lasers form a network that reshapes itself every second. I work on routing through that mesh, on pointing and holding the lasers, and on who these networks actually serve.</p>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <div class="prose">
+        <p>Constellations such as Starlink now fly thousands of satellites a few hundred kilometres up. Each one crosses the sky in minutes, and many are linked to their neighbours by lasers, so the network behind the service changes shape all the time.</p>
+        <p>With students and colleagues, I work on routing data through that moving mesh, on getting laser terminals to find each other and hold the link, and on how operators can run fleets of this size, including with the help of AI. With UC Berkeley, I also look at who these networks reach, and at what price.</p>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="results-title">
+      <h2 id="results-title">Results, with sources</h2>
+      <ul class="results two">
+        <li><strong>Satellites to reach every under-served address.</strong> About 4.7&nbsp;million US addresses have no provider offering broadband at 100&nbsp;Mbps down and 20&nbsp;Mbps up. Serving all of them without overselling capacity beyond the 20-to-1 ratio that US regulators allow fixed wireless providers would take Starlink over 40,000 satellites, more than five times the roughly 8,000 it had at the time of the study. The authors present this as a lower bound. <span class="cite"><a href="https://doi.org/10.1145/3772356.3772383">Anyone, Anywhere, HotNets 2025, §3, Table&nbsp;2</a></span></li>
+        <li><strong>Who can pay for it.</strong> At $120 a month, Starlink's residential plan would cost more than 2% of household income, a common affordability threshold, at about 3.5&nbsp;million of those 4.7&nbsp;million addresses, and at nearly 3&nbsp;million even with the federal Lifeline discount. Comparable cable plans at $40 to $50 a month are affordable at more than 99.99% of them. The study uses each county's median income. <span class="cite"><a href="https://doi.org/10.1145/3772356.3772383">Anyone, Anywhere, HotNets 2025, §4, Fig.&nbsp;4</a></span></li>
+        <li><strong>Getting lasers to lock on.</strong> Before a laser link between two satellites can carry data, both must turn to face each other and find the beam. In simulations of two 12&nbsp;kg satellites, that left only 72% of a contact for data on the harder of two passes. Turning early and exchanging satellite-navigation positions over a radio link raised the share to over 99%, and cut the memory needed to hold waiting data at 100&nbsp;Mbps from 4&nbsp;GB to 75&nbsp;MB. <span class="cite"><a href="https://doi.org/10.1109/ojcoms.2026.3688693">RF-Assisted Compensation, IEEE OJ-COMS 2026, §IV-B, Tables&nbsp;8 and&nbsp;9</a></span></li>
+        <li><strong>Finding a path through the mesh.</strong> On a model of Starlink's first shell of 1,584 satellites, each linked to its four neighbours, a routing method that first works out the fewest satellite-to-satellite hops found paths on average 158 times faster than the textbook shortest-path algorithm, and the routes it finds are nearly as short. The speed-up is in the time a computer takes to work out a route. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing, ASMS/SPSC 2022, §VI-B, Fig.&nbsp;5</a></span></li>
+      </ul>
+      <p class="note">The last two are simulation results, under the assumptions set out in each paper. The first two come from a model built on public data from the US regulator (FCC).</p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="tools-title">
+      <h2 id="tools-title">Tools and projects</h2>
+      <ul class="tool-list">
+        <li>
+          <p class="meta">Project · Inria associate team · 2025–2027</p>
+          <h3><a href="https://d3-connect.space/">D3-CONNECT</a></h3>
+          <p>Direct-to-device satellite connectivity for everyone, with Sylvia Ratnasamy's NetSys Lab at UC Berkeley.</p>
+          <p class="duty">Principal investigator</p>
+        </li>
+        <li>
+          <p class="meta">Project · ESA · 2026–</p>
+          <h3>ConOpsCon</h3>
+          <p>Constellation operations with continuous communication, with Saarland University as prime contractor and VisionSpace Technologies.</p>
+          <p class="duty">Coordinator</p>
+        </li>
+        <li>
+          <p class="meta">Project · PEPR, France 2030 · 2025–2029</p>
+          <h3><a href="https://donuts-project.space/">DONUTS</a></h3>
+          <p>Design of multiscale, multitechnology networks: a seamless continuum of space, air and ground networks for 5G and 6G.</p>
+          <p class="duty">Contributor</p>
+        </li>
+        <li>
+          <p class="meta">ESA studies · 2023–2025</p>
+          <h3><a href="https://arxiv.org/abs/2507.15574">AI4LFNM</a>, <a href="https://resilience.esa.int/archives/projects/ml4mocs">ML4OISL</a> and <a href="https://resilience.esa.int/archives/projects/handingover">HANDING-OVER</a></h3>
+          <p>AI for managing large satellite fleets, machine learning for optical links between satellites, and handover and routing in very low Earth orbit, with GMV, Thales Alenia Space, Eutelsat, Planet Labs and Politecnico di Torino.</p>
+          <p class="duty">Lead researcher (AI4LFNM) · contributor</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap section" aria-labelledby="papers-title">
+      <h2 id="papers-title">Selected papers</h2>
+      <!-- gen:pubs topic=mega limit=5 -->
+      <ol class="pubs">
+        <li class="pub" data-type="conference" data-topics="mega">
+          <span class="pub-title"><a href="https://doi.org/10.1145/3772356.3772383">Anyone, Anywhere, not Everyone, Everywhere: Starlink Doesn&#x27;t End the Digital Divide</a></span>
+          <span class="pub-authors">Wesley Woo, <strong>Juan A. Fraire</strong>, Sylvia Ratnasamy, Scott Shenker, and Shaddi Hasan</span>
+          <span class="pub-venue">ACM Workshop on Hot Topics in Networks (HotNets), 2025</span>
+        </li>
+        <li class="pub" data-type="journal" data-topics="mega">
+          <span class="pub-title"><a href="https://doi.org/10.1109/jsac.2024.3459078">On the Use of Mega Constellation Services in Space: Integrating LEO Platforms Into 6G Non-Terrestrial Networks</a></span>
+          <span class="pub-authors">Gabriel Maiolini Capez, Mauricio A. Cáceres, Roberto Armellin, Christopher P. Bridges, <strong>Juan A. Fraire</strong>, Stefan Frey, and Roberto Garello</span>
+          <span class="pub-venue">IEEE Journal on Selected Areas in Communications, 2024</span>
+        </li>
+        <li class="pub" data-type="journal" data-topics="mega">
+          <span class="pub-title"><a href="https://doi.org/10.1109/ojcoms.2024.3507555">RF-Assisted Uncertainty Cone Reduction in Free-Space Optical Inter-Satellite Links</a></span>
+          <span class="pub-authors">Elena Fernández-Niño, <strong>Juan A. Fraire</strong>, Adriano Camps, and Joan Adrià Ruiz-de-Azua</span>
+          <span class="pub-venue">IEEE Open Journal of the Communications Society, 2024</span>
+        </li>
+        <li class="pub" data-type="conference" data-topics="mega">
+          <span class="pub-title"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing for LEO Mega-Constellations: A Starlink Case Study</a></span>
+          <span class="pub-authors">Gregory Stock, <strong>Juan A. Fraire</strong>, and Holger Hermanns</span>
+          <span class="pub-venue">Advanced Satellite Multimedia Systems Conference and Signal Processing for Space Communications Workshop (ASMS/SPSC), 2022</span>
+        </li>
+        <li class="pub" data-type="journal" data-topics="mega">
+          <span class="pub-title"><a href="https://doi.org/10.1109/tcad.2020.3012751">Managing Fleets of LEO Satellites: Nonlinear, Optimal, Efficient, Scalable, Usable, and Robust</a></span>
+          <span class="pub-authors">Gregory Stock, <strong>Juan A. Fraire</strong>, Tobias Mömke, Holger Hermanns, Fakhri Babayev, and Eduardo Cruz</span>
+          <span class="pub-venue">IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, 2020</span>
+        </li>
+      </ol>
+      <!-- /gen -->
+      <p class="note"><a href="/publications/#mega">All papers on mega-constellations</a></p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="people-title">
+      <h2 id="people-title">People and partners</h2>
+      <ul class="people">
+        <li><strong>Gregory F. Stock</strong>, PhD student at Saarland University, co-supervised with Holger Hermanns: routing in mega-constellations and operating satellite fleets.</li>
+        <li><strong>Elena F. Niño</strong>, PhD student at i2CAT and UPC, co-supervised with Joan A. Ruiz-de-Azua: pointing and acquisition for laser links between satellites.</li>
+        <li><strong>Arnau Singla</strong>, PhD student at i2CAT and UPC, co-supervised with Joan A. Ruiz-de-Azua: scheduling constellations together with mobile networks on the ground.</li>
+        <li><strong>Santiago Henn</strong>, PhD at UNC (2026): coverage computation, segmented satellite architectures and TCP over Starlink.</li>
+        <li><strong>Gabriel Maiolini Capez</strong>, PhD at Politecnico di Torino (2026), co-supervised with Roberto Garello: routing in low and very low orbits, and satellites that use mega-constellations as a service.</li>
+      </ul>
+      <div class="partners">
+        <span class="label">With</span>
+        <img src="/assets/img/logos/ucb.svg" alt="UC Berkeley" width="95" height="30">
+        <img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30">
+        <span class="label">i2CAT · UPC · Politecnico di Torino · UNC</span>
+        <span class="label">Funding</span>
+        <img src="/assets/img/logos/esa.svg" alt="ESA" width="83" height="30">
+        <span class="label">Inria associate team · PEPR (France 2030)</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>Hero image: a laser mesh over Earth, rendered in Blender with NASA Blue Marble and Black Marble imagery. This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

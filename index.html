@@ -89,7 +89,6 @@
       <a href="#topics">Research</a>
       <a href="/publications/">Publications</a>
       <a href="/software/">Software</a>
-      <a href="/talks/">Talks</a>
       <a href="/press/">Press</a>
       <a href="/about/">About</a>
     </nav>
@@ -122,10 +121,6 @@
                 <img src="/assets/img/panels/p1-dtn.jpg" width="600" height="920" alt="Relay satellites around Mars linked to rovers on the surface, from the IPN-V visualiser" decoding="async">
               </picture>
               <p class="tags"><a href="https://ipnv.net/">IPN-V</a> · <a href="https://contact-plan-designer.space/">CPD</a></p>
-              <div class="marks">
-                <img class="tall" src="/assets/img/logos/ipnsig.png" alt="IPNSIG" width="43" height="42">
-                <img src="/assets/img/logos/d3tn.svg" alt="D3TN" width="50" height="26">
-              </div>
             </figure>
             <p class="lede">A signal to Mars takes minutes, and spacecraft see each other only now and then. Delay-tolerant networks keep data on board and forward it when the next link opens. I design the contact plans and routing behind them; my routing code runs in NASA's ION and HDTN.</p>
             <p class="live" data-live="mars">A signal takes 3 to 22 minutes to reach Mars, depending on where the two planets are.</p>
@@ -143,9 +138,6 @@
                 <img src="/assets/img/panels/p2-iot.jpg" width="600" height="920" alt="Earth with the orbits of a sparse satellite constellation and one satellite's coverage beam" loading="lazy" decoding="async">
               </picture>
               <p class="tags"><a href="https://gitlab.inria.fr/jfraire/florasat">FLoRaSat</a> · <a href="https://stereo-project.space/">STEREO</a></p>
-              <div class="marks">
-                <img src="/assets/img/logos/kineis.png" alt="Kinéis" width="66" height="26">
-              </div>
             </figure>
             <p class="lede">A sensor on a farm or a buoy can talk to a satellite directly. A handful of small satellites can then cover the whole planet, if devices wait for the next pass. I design these sparse constellations and the radio access that lets cheap, battery-powered devices use them.</p>
             <p class="live" data-live="iot" hidden></p>
@@ -163,10 +155,6 @@
                 <img src="/assets/img/panels/p3-mega.jpg" width="600" height="920" alt="A mesh of inter-satellite laser links wrapped around Earth" loading="lazy" decoding="async">
               </picture>
               <p class="tags"><a href="https://resilience.esa.int/archives/projects/ml4mocs">ML4OISL</a> · <a href="https://d3-connect.space/">D3-CONNECT</a></p>
-              <div class="marks">
-                <img class="short" src="/assets/img/logos/esa.svg" alt="ESA" width="58" height="21">
-                <img class="xshort" src="/assets/img/logos/ucb.svg" alt="UC Berkeley" width="51" height="16">
-              </div>
             </figure>
             <p class="lede">Thousands of satellites linked by lasers form a network that reshapes itself every second. I work on routing through that mesh, on pointing and holding optical links, and on how AI can help operators run fleets of this size.</p>
             <p class="live" data-live="mega" hidden></p>
@@ -193,20 +181,6 @@
       </ol>
     </section>
 
-    <section class="wrap insts" aria-label="Institutions and funding">
-      <div class="bar inria">
-        <a href="https://www.inria.fr/en"><img class="inst" src="/assets/img/logos/inria.svg" alt="Inria" width="89" height="26"></a>
-        <span class="fund">Core funding <img src="/assets/img/logos/anr.png" alt="ANR" width="62" height="19"></span>
-      </div>
-      <div class="bar conicet">
-        <a href="https://www.conicet.gov.ar/"><img class="inst" src="/assets/img/logos/conicet.svg" alt="CONICET" width="48" height="26"></a>
-        <span class="fund"><img src="/assets/img/logos/eu-flag.png" alt="European Union" width="19" height="19"><img src="/assets/img/logos/mission.svg" alt="MISSION" width="31" height="19"></span>
-      </div>
-      <div class="bar saarland">
-        <a href="https://www.uni-saarland.de/"><img class="inst" src="/assets/img/logos/saarland.svg" alt="Saarland University" width="78" height="34"></a>
-        <span class="fund">Core funding <img src="/assets/img/logos/esa.svg" alt="ESA" width="52" height="19"></span>
-      </div>
-    </section>
 
     <section class="wrap section hello" aria-labelledby="hello-title">
       <picture class="portrait">
@@ -225,6 +199,7 @@
           <a href="https://team.inria.fr/agora/juan-fraire/">Inria page</a>
           <a href="/assets/cv/juan-a-fraire-cv.pdf">Full CV (PDF)</a>
         </p>
+        <p><a class="button" href="/press/">Press kit <span aria-hidden="true">→</span></a></p>
       </div>
     </section>
 
@@ -248,19 +223,15 @@
       <!-- /gen -->
     </section>
 
-    <section class="wrap section" aria-label="For journalists">
-      <div class="press-strip">
-        <div>
-          <h2>For journalists</h2>
-          <p>Bios in two lengths, a photo you can use, key results with their sources, and how to reach me. Also in Spanish and French.</p>
-        </div>
-        <a class="button" href="/press/">Press kit <span aria-hidden="true">→</span></a>
-      </div>
-    </section>
   </main>
 
   <footer class="site-foot">
     <div class="wrap">
+      <div class="inst-logos" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
       <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
       <p>Planet textures by <a href="https://www.solarsystemscope.com/textures/">Solar System Scope</a> (CC BY 4.0). Mars network from the IPN-V scenario <i>dsn-network</i>. Made with <a href="https://threejs.org/">three.js</a> and Inria Sans. This site sets no cookies and does not track you.</p>
     </div>

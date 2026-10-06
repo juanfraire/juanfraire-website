@@ -9,6 +9,7 @@ A generated block is everything between a start marker and its end marker:
 
     <!-- gen:pubs topic=orbital limit=5 -->  ...  <!-- /gen -->   featured papers of one topic
     <!-- gen:pubs all -->                   ...  <!-- /gen -->   the full list, grouped by year
+    <!-- gen:pubs selected -->              ...  <!-- /gen -->   the CV's selected papers
     <!-- gen:news limit=3 -->               ...  <!-- /gen -->   latest news items
 
 Run after editing the bib or the news file, then commit the changed HTML:
@@ -135,6 +136,7 @@ def to_pub(entry):
         "year": int(re.sub(r"\D", "", f.get("year", "0")) or 0),
         "link": link,
         "topics": [t for t in TOPICS if t in kws],
+        "selected": "selected" in kws,
         "flagged": "selected" in kws or "featured" in kws,
     }
 
@@ -175,6 +177,9 @@ def block_pubs(args, pubs, indent):
             out.append(render_pub(p, indent + 2))
         out.append(" " * indent + "</ol>")
         return "\n".join(out)
+    if "selected" in args:                    # the CV's flagship list, newest first
+        lines = [" " * indent + '<ol class="pubs">'] + [render_pub(p, indent + 2) for p in pubs if p["selected"]]
+        return "\n".join(lines + [" " * indent + "</ol>"])
     topic, limit = args.get("topic"), int(args.get("limit", 5))
     chosen = [p for p in pubs if topic in p["topics"] and p["flagged"]][:limit]
     if not chosen:
