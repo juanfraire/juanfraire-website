@@ -1,0 +1,60 @@
+{
+ "source": "Sample modelled on a public FCC filing for orbital data centres (SAT-LOA-20260108-00016); five dawn-dusk sun-synchronous shells.",
+ "shells": [
+  {
+   "name": "DD-550",
+   "altitude_km": 550.0,
+   "ltan_hours": 6.0,
+   "n_planes": 28,
+   "sats_per_plane": 140,
+   "raan_band_deg": 36.0,
+   "raan_center_offset_deg": 0.0,
+   "walker_phase_f": 1,
+   "color_hex": "#0e7c7b"
+  },
+  {
+   "name": "DD-800",
+   "altitude_km": 800.0,
+   "ltan_hours": 6.0,
+   "n_planes": 24,
+   "sats_per_plane": 130,
+   "raan_band_deg": 30.0,
+   "raan_center_offset_deg": 2.5,
+   "walker_phase_f": 3,
+   "color_hex": "#1d8a78"
+  },
+  {
+   "name": "DD-1100",
+   "altitude_km": 1100.0,
+   "ltan_hours": 6.0,
+   "n_planes": 20,
+   "sats_per_plane": 120,
+   "raan_band_deg": 25.0,
+   "raan_center_offset_deg": -2.5,
+   "walker_phase_f": 5,
+   "color_hex": "#2d9775"
+  },
+  {
+   "name": "DD-1400",
+   "altitude_km": 1400.0,
+   "ltan_hours": 6.0,
+   "n_planes": 18,
+   "sats_per_plane": 110,
+   "raan_band_deg": 20.0,
+   "raan_center_offset_deg": 5.0,
+   "walker_phase_f": 7,
+   "color_hex": "#3d9d70"
+  },
+  {
+   "name": "DD-2000",
+   "altitude_km": 2000.0,
+   "ltan_hours": 6.0,
+   "n_planes": 16,
+   "sats_per_plane": 100,
+   "raan_band_deg": 16.0,
+   "raan_center_offset_deg": -5.0,
+   "walker_phase_f": 11,
+   "color_hex": "#4b8f6a"
+  }
+ ]
+}

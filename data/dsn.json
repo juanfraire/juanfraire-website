@@ -1,0 +1,89 @@
+{
+ "source": "IPN-V scenario dsn-network (Interplanetary Network Visualiser)",
+ "nodes": [
+  {
+   "id": 301,
+   "name": "DSN-Goldstone",
+   "type": "lander",
+   "body": "Earth",
+   "lat": 35.2,
+   "lon": -116.7
+  },
+  {
+   "id": 302,
+   "name": "DSN-Madrid",
+   "type": "lander",
+   "body": "Earth",
+   "lat": 40.4,
+   "lon": -4.2
+  },
+  {
+   "id": 303,
+   "name": "DSN-Canberra",
+   "type": "lander",
+   "body": "Earth",
+   "lat": -35.4,
+   "lon": 148.9
+  },
+  {
+   "id": 401,
+   "name": "Opportunity (MER-B)",
+   "type": "lander",
+   "body": "Mars",
+   "lat": -1.9462,
+   "lon": 354.4734
+  },
+  {
+   "id": 402,
+   "name": "Curiosity (MSL)",
+   "type": "lander",
+   "body": "Mars",
+   "lat": -4.5895,
+   "lon": 137.4417
+  },
+  {
+   "id": 403,
+   "name": "Perseverance (Mars 2020)",
+   "type": "lander",
+   "body": "Mars",
+   "lat": 18.4447,
+   "lon": 77.4508
+  },
+  {
+   "id": 451,
+   "name": "Mars Odyssey (ODY)",
+   "type": "orbiter",
+   "body": "Mars",
+   "alt": 400.0,
+   "inc": 93.1,
+   "ecc": 0.0151,
+   "raan": 0.0,
+   "argp": 0.0,
+   "ma": 0.0
+  },
+  {
+   "id": 452,
+   "name": "Mars Express (MEX)",
+   "type": "orbiter",
+   "body": "Mars",
+   "alt": 10100.0,
+   "inc": 86.3,
+   "ecc": 0.569,
+   "raan": 90.0,
+   "argp": 90.0,
+   "ma": 90.0
+  },
+  {
+   "id": 454,
+   "name": "MAVEN (MVN)",
+   "type": "orbiter",
+   "body": "Mars",
+   "alt": 6200.0,
+   "inc": 75.0,
+   "ecc": 0.35,
+   "raan": 270.0,
+   "argp": 270.0,
+   "ma": 270.0
+  }
+ ]
+}

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orbital computing: where it works and what it costs · Juan A. Fraire</title>
+  <meta name="description" content="Computing and data centres in orbit, with numbers: radiator mass, launch and re-entry carbon, spares, and when an orbital node beats a data centre on Earth. Research by Juan A. Fraire and colleagues.">
+  <link rel="canonical" href="https://juanfraire.space/orbital-computing/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Orbital computing: where it works and what it costs">
+  <meta property="og:description" content="Radiators, launch carbon, spares, and when an orbital node beats a data centre on Earth. With sources.">
+  <meta property="og:url" content="https://juanfraire.space/orbital-computing/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/topics/orbital-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Orbital computing: where it works and what it costs",
+    "url": "https://juanfraire.space/orbital-computing/",
+    "about": "Orbital computing and orbital data centres",
+    "author": {"@id": "https://juanfraire.space/#person", "@type": "Person", "name": "Juan A. Fraire", "url": "https://juanfraire.space/"}
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/node-sizer.js"></script>
+</head>
+<body style="--accent: var(--t4)">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <a class="role" href="https://datatracker.ietf.org/rg/space/about/"><img src="/assets/img/logos/irtf-mark.png" alt="" width="37" height="20"><span><em>Chair</em>IRTF SPACE Research Group</span></a>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics" aria-current="page">Research</a>
+      <a href="/publications/">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/talks/">Talks</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="topic-hero">
+      <picture>
+        <source srcset="/assets/img/topics/orbital-hero.webp" type="image/webp">
+        <img src="/assets/img/topics/orbital-hero.jpg" width="1600" height="900" alt="Earth at night ringed by thousands of satellites in dawn-dusk orbits">
+      </picture>
+      <div class="wrap">
+        <p class="num">04 · RESEARCH TOPIC</p>
+        <h1>Orbital Computing</h1>
+        <p class="lead">Computers in orbit can process data where it is collected and serve people far from any ground station. They also cannot be repaired, every kilogram has to be launched, and all their heat must be radiated into space. I measure where orbital computing pays off and what it costs.</p>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <div class="prose">
+        <p>Satellites have carried computers for decades. What is new is the scale: in 2026, companies filed plans for constellations of data centres in orbit, from tens of thousands of satellites to as many as a million, powered by sunlight around the clock. The image above shows 13,020 of them, a sample I modelled on one of those filings.</p>
+        <p>The idea has real strengths, and some costs that are easy to leave out of a pitch. With colleagues at Saarland University, Nanjing University and the University of Genoa, I put numbers on both: latency, energy, mass and carbon over the whole life of the hardware, from the factory to re-entry.</p>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="results-title">
+      <h2 id="results-title">Where it can work, and what it costs</h2>
+      <div class="cols">
+        <div class="box">
+          <h3>Where it can work</h3>
+          <ul>
+            <li><strong>Distance to the ground.</strong> A cloud in orbit answers faster than one on the ground when the user is more than about 5,000&nbsp;km from the nearest gateway. Under 2,000&nbsp;km, the ground wins. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc64465.2025.10946050">ASMS/SPSC 2025, §V-A</a></span></li>
+            <li><strong>Shrinking data before sending it.</strong> Processing in orbit saves carbon when it cuts the data enough: with one inter-satellite hop, down to 50% of the raw size on Falcon&nbsp;9, or 70% on Starship. <span class="cite"><a href="https://arxiv.org/abs/2508.06250v3">Dirty Bits, §4.3</a></span></li>
+            <li><strong>Against an average data centre.</strong> Within its first one or two years in orbit, a node emits less carbon per GPU-hour than the global-average data centre on Earth (about 477&nbsp;g of CO₂e). <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, LEO-NET 2026, Fig.&nbsp;1</a></span></li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>What it costs</h3>
+          <ul>
+            <li><strong>Heat.</strong> Every watt a computer draws ends up as heat, and in vacuum it can only be radiated away. For a 1&nbsp;kW node, the radiator weighs 30.5&nbsp;kg of the 44.3&nbsp;kg modelled; the computer itself, 3.2&nbsp;kg. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, §4</a></span> Scaled to the 250&nbsp;kW that <a href="https://x.com/elonmusk/status/2105718806769512812">SpaceX quotes</a> for each of its Star Mind spacecraft, the same ISS-based density gives about 760&nbsp;m² and 7.6&nbsp;tonnes of radiator, the heat load of some 18 ISS radiator panels. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, §3</a></span></li>
+            <li><strong>Launch and re-entry.</strong> Each kilogram costs about 52&nbsp;kg of CO₂e on Falcon&nbsp;9 and 34 on Starship. Re-entry adds about half again on top of the launch. <span class="cite"><a href="https://arxiv.org/abs/2508.06250v3">Dirty Bits, §3.1</a></span></li>
+            <li><strong>No repair.</strong> Spares have to fly from day one. One cold spare of the computer adds 40% to the carbon per GPU-hour on Starship, and 34% on Falcon&nbsp;9, for a three-year mission. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, abstract</a></span></li>
+            <li><strong>Against a clean data centre.</strong> Matching a data centre on a clean grid (about 107&nbsp;g per GPU-hour) takes at least six years in orbit with one spare on Starship, or nine years with two spares on Falcon&nbsp;9. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, §4</a></span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Carbon figures count manufacturing, launch and re-entry of the modelled components; once in orbit the node runs on sunlight. The satellite bus (structure, attitude control, avionics) is left out, as in the papers; including it would add mass.</p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="sizer-title">
+      <h2 id="sizer-title">Size a computing node</h2>
+      <p class="prose">One node: an H100-class GPU with its controller, storage and laser link, 1&nbsp;kW in all, in a dawn-dusk orbit at 510&nbsp;km. Choose how long it flies, how many copies of the computer it carries, and which rocket launches it.</p>
+
+      <div class="sizer" id="sizer" hidden>
+        <figure class="sizer-figure">
+          <svg viewBox="0 0 420 330" role="img" aria-labelledby="node-svg-title">
+            <title id="node-svg-title">Diagram of the node: solar wings, two radiator panels and the computer copies in the bus</title>
+            <defs>
+              <pattern id="cells" width="14" height="11" patternUnits="userSpaceOnUse">
+                <rect width="14" height="11" fill="#17325f"/>
+                <path d="M14 0V11M0 11H14" stroke="#6f8fc4" stroke-width="0.8"/>
+              </pattern>
+              <linearGradient id="rad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#f4f6f9"/><stop offset="1" stop-color="#cfd7e2"/>
+              </linearGradient>
+              <filter id="heat" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="7"/>
+              </filter>
+            </defs>
+            <g class="heat-glow" filter="url(#heat)" opacity="0.55">
+              <rect x="180" y="22" width="60" height="108" fill="#ff8a50"/>
+              <rect x="180" y="200" width="60" height="108" fill="#ff8a50"/>
+            </g>
+            <rect x="180" y="22" width="60" height="108" rx="2" fill="url(#rad)"/>
+            <rect x="180" y="200" width="60" height="108" rx="2" fill="url(#rad)"/>
+            <line x1="170" y1="165" x2="250" y2="165" stroke="#9aa3b2" stroke-width="3"/>
+            <rect x="24" y="143" width="140" height="44" fill="url(#cells)" stroke="#6f8fc4"/>
+            <rect x="256" y="143" width="140" height="44" fill="url(#cells)" stroke="#6f8fc4"/>
+            <rect x="182" y="137" width="56" height="56" rx="3" fill="#b8913f" stroke="#e1c47e"/>
+            <g id="copies"></g>
+            <text x="250" y="40" class="svg-label">Radiator</text>
+            <text x="250" y="56" class="svg-label dim">3.0 m² · 30.5 kg</text>
+            <text x="24" y="132" class="svg-label">Solar array</text>
+            <text x="24" y="208" class="svg-label dim">2.7 m²</text>
+            <text x="256" y="208" class="svg-label" id="copies-label">Computer × 1</text>
+          </svg>
+        </figure>
+        <div>
+          <fieldset>
+            <label for="years">Mission length <output id="years-out">3 years</output></label>
+            <input id="years" type="range" min="1" max="9" step="1" value="3">
+          </fieldset>
+          <fieldset>
+            <label for="copies-in">Copies of the computer <output id="copies-out">1 (no spare)</output></label>
+            <input id="copies-in" type="range" min="1" max="5" step="1" value="1">
+          </fieldset>
+          <fieldset class="launcher">
+            <legend class="kicker">Launched on</legend>
+            <label class="radio"><input type="radio" name="rocket" value="starship" checked> Starship</label>
+            <label class="radio"><input type="radio" name="rocket" value="falcon9"> Falcon 9</label>
+          </fieldset>
+          <ul class="readout">
+            <li class="wide">
+              <span class="k">Carbon per GPU-hour</span>
+              <span class="v" id="carbon">147 <small>g CO₂e</small></span>
+              <div class="meter" aria-hidden="true"><i id="meter-fill"></i><b class="mark" id="mark-green"></b><b class="mark" id="mark-avg"></b></div>
+              <div class="meter-labels" aria-hidden="true"><span id="lab-green">clean-grid DC 107</span><span id="lab-avg">average DC 477</span></div>
+            </li>
+            <li><span class="k">Modelled mass</span><span class="v" id="mass">44.3 <small>kg</small></span></li>
+            <li><span class="k">Radiator share</span><span class="v" id="share">69 <small>%</small></span></li>
+          </ul>
+          <p class="verdict" id="verdict" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <details class="numbers">
+        <summary>The numbers behind this: carbon per GPU-hour (g CO₂e)</summary>
+        <p class="note">From Fig. 1 of <a href="https://doi.org/10.1145/3789240.3827598"><i>Dark Clouds Rising in Low-Earth Orbit</i></a> (LEO-NET 2026), computed with the open-source <a href="https://gitlab.com/sustainable-computing-systems/espas">ESpaS-ODC</a> model. Rows: years in orbit. Columns: copies of the computer (1 = no spare). For comparison, a global-average data centre emits about 477&nbsp;g per GPU-hour and one on a clean grid about 107&nbsp;g.</p>
+        <div class="table-pair">
+          <table>
+            <caption>Starship</caption>
+            <thead><tr><th scope="col">Years</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1</th><td>441</td><td>616</td><td>791</td><td>966</td><td>1141</td></tr>
+              <tr><th scope="row">2</th><td>221</td><td>308</td><td>396</td><td>484</td><td>571</td></tr>
+              <tr><th scope="row">3</th><td>147</td><td>206</td><td>264</td><td>323</td><td>381</td></tr>
+              <tr><th scope="row">4</th><td>111</td><td>155</td><td>198</td><td>242</td><td>286</td></tr>
+              <tr><th scope="row">5</th><td>89</td><td>124</td><td>159</td><td>194</td><td>229</td></tr>
+              <tr><th scope="row">6</th><td>74</td><td>103</td><td>132</td><td>162</td><td>191</td></tr>
+              <tr><th scope="row">7</th><td>64</td><td>89</td><td>114</td><td>139</td><td>164</td></tr>
+              <tr><th scope="row">8</th><td>56</td><td>78</td><td>100</td><td>121</td><td>143</td></tr>
+              <tr><th scope="row">9</th><td>50</td><td>69</td><td>89</td><td>108</td><td>127</td></tr>
+            </tbody>
+          </table>
+          <table>
+            <caption>Falcon 9</caption>
+            <thead><tr><th scope="col">Years</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1</th><td>529</td><td>710</td><td>892</td><td>1073</td><td>1255</td></tr>
+              <tr><th scope="row">2</th><td>265</td><td>355</td><td>446</td><td>537</td><td>628</td></tr>
+              <tr><th scope="row">3</th><td>177</td><td>237</td><td>298</td><td>358</td><td>419</td></tr>
+              <tr><th scope="row">4</th><td>133</td><td>178</td><td>223</td><td>269</td><td>314</td></tr>
+              <tr><th scope="row">5</th><td>106</td><td>143</td><td>179</td><td>215</td><td>252</td></tr>
+              <tr><th scope="row">6</th><td>89</td><td>119</td><td>149</td><td>180</td><td>210</td></tr>
+              <tr><th scope="row">7</th><td>76</td><td>102</td><td>128</td><td>154</td><td>180</td></tr>
+              <tr><th scope="row">8</th><td>67</td><td>89</td><td>112</td><td>135</td><td>158</td></tr>
+              <tr><th scope="row">9</th><td>59</td><td>80</td><td>100</td><td>120</td><td>140</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">The radiator is sized by power, at 3.03&nbsp;m² per kilowatt (calibrated on the International Space Station), so mission length and spares leave it unchanged. A GPU in orbit is expected to last about three years, so a mission of <i>T</i> years needs at least ⌈<i>T</i>/3⌉ copies. A fuller calculator built on ESpaS is planned.</p>
+      </details>
+    </section>
+
+    <section class="wrap section" aria-labelledby="tools-title">
+      <h2 id="tools-title">Tools and projects</h2>
+      <ul class="tool-list">
+        <li>
+          <h3><a href="https://gitlab.com/sustainable-computing-systems/espas">ESpaS</a></h3>
+          <p>Open-source estimator of the carbon footprint of computing in orbit, from manufacturing through launch to re-entry, built at Saarland University. MIT and Apache-2.0.</p>
+        </li>
+        <li>
+          <h3>MeteorNet</h3>
+          <p>A continuous-time emulator for edge computing on low-Earth-orbit constellations, used to test where servers should sit and how tasks should move between orbit and ground.</p>
+        </li>
+        <li>
+          <h3><a href="https://youtu.be/QxZvYLTl7Bs">FOUNDATION</a></h3>
+          <p>Computing without repair: what it takes to keep hardware dependable for years when no one can reach it. A 30-second teaser.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap section" aria-labelledby="papers-title">
+      <h2 id="papers-title">Selected papers</h2>
+      <!-- gen:pubs topic=orbital limit=5 -->
+      <ol class="pubs">
+        <li class="pub" data-type="conference" data-topics="orbital">
+          <span class="pub-title"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds Rising in Low-Earth Orbit: On Environmental Limits to Massive Orbital AI</a></span>
+          <span class="pub-authors">Robin Ohs, Gregory F. Stock, Andreas Schmidt, <strong>Juan A. Fraire</strong>, Jörg Ott, and Holger Hermanns</span>
+          <span class="pub-venue">ACM Workshop on LEO Networking and Communication (LEO-NET), co-located with ACM SIGCOMM, 2026</span>
+        </li>
+        <li class="pub" data-type="journal" data-topics="orbital">
+          <span class="pub-title"><a href="https://doi.org/10.1109/lcomm.2026.3688042">Optimal Design of Space-Based Data Center Constellations for In-Orbit Computing Services</a></span>
+          <span class="pub-authors">Wenxiao Ge, <strong>Juan A. Fraire</strong>, and Kanglian Zhao</span>
+          <span class="pub-venue">IEEE Communications Letters, 2026</span>
+        </li>
+        <li class="pub" data-type="journal" data-topics="orbital">
+          <span class="pub-title"><a href="https://doi.org/10.1109/mcom.001.2500427">Space Cloud Networks: Technologies, Architectures, and Key Enablers</a></span>
+          <span class="pub-authors">Wenxiao Ge, <strong>Juan A. Fraire</strong>, Xinxin Shen, and Kanglian Zhao</span>
+          <span class="pub-venue">IEEE Communications Magazine, 2026</span>
+        </li>
+        <li class="pub" data-type="conference" data-topics="orbital">
+          <span class="pub-title"><a href="https://arxiv.org/abs/2508.06250v3">Dirty Bits in Low-Earth Orbit: The Carbon Footprint of Launching Computers</a></span>
+          <span class="pub-authors">Robin Ohs, Gregory F Stock, Andreas Schmidt, <strong>Juan A. Fraire</strong>, and Holger Hermanns</span>
+          <span class="pub-venue">ACM SIGENERGY Energy Informatics Review, 2025</span>
+        </li>
+        <li class="pub" data-type="conference" data-topics="orbital">
+          <span class="pub-title"><a href="https://doi.org/10.1109/asms/spsc64465.2025.10946050">On the Latency Trade-off Between Space and Terrestrial Clouds in Non-Terrestrial Networks</a></span>
+          <span class="pub-authors">Camilo Rojas, <strong>Juan A. Fraire</strong>, Fabio Patrone, and Mario Marchese</span>
+          <span class="pub-venue">Advanced Satellite Multimedia Systems Conference and Signal Processing for Space Communications Workshop (ASMS/SPSC), 2025</span>
+        </li>
+      </ol>
+      <!-- /gen -->
+      <p class="note"><a href="/publications/#orbital">All papers on orbital computing</a></p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="people-title">
+      <h2 id="people-title">People and partners</h2>
+      <ul class="people">
+        <li><strong>Robin Ohs</strong>, PhD student at Saarland University, co-supervised with Holger Hermanns: the lifecycle sustainability of computing in orbit.</li>
+        <li><strong>Gregory F. Stock</strong>, PhD student at Saarland University, co-supervised with Holger Hermanns.</li>
+        <li><strong>Wenxiao Ge</strong>, PhD student at Nanjing University, co-supervised with Kanglian Zhao: the architecture and design of space clouds.</li>
+        <li><strong>Camilo Rojas Milla</strong>, PhD at the University of Genoa (2026), co-supervised with Fabio Patrone: space and ground clouds compared.</li>
+      </ul>
+      <div class="partners">
+        <span class="label">With</span>
+        <img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30">
+        <span class="label">Nanjing University · University of Genoa · TU Munich</span>
+        <span class="label">Funding</span>
+        <img src="/assets/img/logos/eu-flag.png" alt="European Union" width="30" height="30">
+        <img src="/assets/img/logos/mission.svg" alt="MISSION (Marie Skłodowska-Curie RISE)" width="49" height="30">
+        <span class="label">DFG (TRR 248 CPEC)</span>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-label="For journalists">
+      <div class="press-strip">
+        <div>
+          <h2>Writing about orbital data centres?</h2>
+          <p>I can explain the trade-offs, check numbers, or point you to the right people. The press kit has bios, a photo and these results with their sources.</p>
+        </div>
+        <a class="button" href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>Hero image: a 13,020-satellite sample rendered in Blender with NASA Blue Marble and Black Marble imagery. This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

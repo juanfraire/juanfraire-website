@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juan A. Fraire · Space networking and orbital computing researcher</title>
+  <meta name="description" content="Juan A. Fraire, researcher at Inria, CONICET and Saarland University: delay-tolerant networks, satellite IoT, mega-constellations and orbital computing.">
+  <link rel="canonical" href="https://juanfraire.space/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Juan A. Fraire · Space networking and orbital computing">
+  <meta property="og:description" content="Delay-tolerant networks, direct-to-satellite IoT, mega-constellations and orbital computing. Researcher at Inria, CONICET and Saarland University; chair of the IRTF SPACE Research Group.">
+  <meta property="og:url" content="https://juanfraire.space/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="profile:first_name" content="Juan">
+  <meta property="profile:last_name" content="Fraire">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="me" href="https://orcid.org/0000-0001-9816-6989">
+  <link rel="me" href="https://github.com/juanfraire">
+  <link rel="me" href="https://www.linkedin.com/in/juanfraire">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://juanfraire.space/#person",
+    "name": "Juan A. Fraire",
+    "alternateName": "Juan Fraire",
+    "givenName": "Juan",
+    "familyName": "Fraire",
+    "url": "https://juanfraire.space/",
+    "image": "https://juanfraire.space/assets/img/photo/juan-a-fraire.jpg",
+    "email": "mailto:juan.fraire@inria.fr",
+    "jobTitle": "Researcher in space networking and informatics",
+    "worksFor": [
+      {"@type": "ResearchOrganization", "name": "Inria", "url": "https://www.inria.fr/en"},
+      {"@type": "ResearchOrganization", "name": "CONICET", "url": "https://www.conicet.gov.ar/"},
+      {"@type": "CollegeOrUniversity", "name": "Saarland University", "url": "https://www.uni-saarland.de/"}
+    ],
+    "alumniOf": {"@type": "CollegeOrUniversity", "name": "Universidad Nacional de Córdoba"},
+    "knowsAbout": ["Delay-tolerant networking", "Direct-to-satellite IoT", "Satellite mega-constellations", "Orbital computing", "Space networking"],
+    "sameAs": [
+      "https://orcid.org/0000-0001-9816-6989",
+      "https://dblp.org/pid/162/7860.html",
+      "https://scholar.google.com/citations?user=YXq56tgAAAAJ",
+      "https://team.inria.fr/agora/juan-fraire/",
+      "https://github.com/juanfraire",
+      "https://www.linkedin.com/in/juanfraire"
+    ]
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>
+    /* Choose the layout before first paint: the 3D tour only when the device can run it
+       and the visitor has not asked for reduced motion. ?static forces the plain layout. */
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      try {
+        if (/[?&]static\b/.test(location.search)) return;
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var c = navigator.connection || {};
+        if (c.saveData || /(^|-)2g$/.test(c.effectiveType || '')) return;
+        if (navigator.deviceMemory && navigator.deviceMemory < 4) return;
+        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) return;
+        if (!document.createElement('canvas').getContext('webgl2')) return;
+        d.classList.add('scene');
+      } catch (e) {}
+    })();
+  </script>
+  <script type="importmap">{"imports": {"three": "/vendor/three/three.module.min.js"}}</script>
+  <script type="module" src="/assets/js/home.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <h1 class="brand"><a href="/">Juan A. Fraire</a></h1>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <a class="role" href="https://datatracker.ietf.org/rg/space/about/"><img src="/assets/img/logos/irtf-mark.png" alt="" width="37" height="20"><span><em>Chair</em>IRTF SPACE Research Group</span></a>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="#topics">Research</a>
+      <a href="/publications/">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/talks/">Talks</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="journey" id="topics" aria-label="Research topics">
+      <div class="stage">
+        <img class="poster" src="/assets/img/panels/p1-dtn.webp" alt="" aria-hidden="true">
+        <canvas aria-hidden="true"></canvas>
+        <p class="scroll-hint" aria-hidden="true">Scroll: from Mars to a single node ↓</p>
+      </div>
+
+
+      <ol class="rail" aria-label="Research topics">
+        <li><a href="#dtn"><span>01</span><b class="long">Delay-Tolerant Networks</b><b class="short">DTN</b></a></li>
+        <li><a href="#iot"><span>02</span><b class="long">Direct-to-Satellite IoT</b><b class="short">IoT</b></a></li>
+        <li><a href="#mega"><span>03</span><b class="long">Mega-Constellations</b><b class="short">Mesh</b></a></li>
+        <li><a href="#orbital"><span>04</span><b class="long">Orbital Computing</b><b class="short">Compute</b></a></li>
+      </ol>
+
+      <ol class="stops">
+        <li class="stop" id="dtn" data-stop="0">
+          <article class="card">
+            <p class="num">01</p>
+            <h2><a href="/dtn/">Delay-Tolerant Networks</a></h2>
+            <figure class="panel">
+              <picture>
+                <source srcset="/assets/img/panels/p1-dtn.webp" type="image/webp">
+                <img src="/assets/img/panels/p1-dtn.jpg" width="600" height="920" alt="Relay satellites around Mars linked to rovers on the surface, from the IPN-V visualiser" decoding="async">
+              </picture>
+              <p class="tags"><a href="https://ipnv.net/">IPN-V</a> · <a href="https://contact-plan-designer.space/">CPD</a></p>
+              <div class="marks">
+                <img class="tall" src="/assets/img/logos/ipnsig.png" alt="IPNSIG" width="43" height="42">
+                <img src="/assets/img/logos/d3tn.svg" alt="D3TN" width="50" height="26">
+              </div>
+            </figure>
+            <p class="lede">A signal to Mars takes minutes, and spacecraft see each other only now and then. Delay-tolerant networks keep data on board and forward it when the next link opens. I design the contact plans and routing behind them; my routing code runs in NASA's ION and HDTN.</p>
+            <p class="live" data-live="mars">A signal takes 3 to 22 minutes to reach Mars, depending on where the two planets are.</p>
+            <a class="more" href="/dtn/">Explore delay-tolerant networks <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+
+        <li class="stop" id="iot" data-stop="1">
+          <article class="card">
+            <p class="num">02</p>
+            <h2><a href="/satellite-iot/">Direct-to-Satellite IoT</a></h2>
+            <figure class="panel">
+              <picture>
+                <source srcset="/assets/img/panels/p2-iot.webp" type="image/webp">
+                <img src="/assets/img/panels/p2-iot.jpg" width="600" height="920" alt="Earth with the orbits of a sparse satellite constellation and one satellite's coverage beam" loading="lazy" decoding="async">
+              </picture>
+              <p class="tags"><a href="https://gitlab.inria.fr/jfraire/florasat">FLoRaSat</a> · <a href="https://stereo-project.space/">STEREO</a></p>
+              <div class="marks">
+                <img src="/assets/img/logos/kineis.png" alt="Kinéis" width="66" height="26">
+              </div>
+            </figure>
+            <p class="lede">A sensor on a farm or a buoy can talk to a satellite directly. A handful of small satellites can then cover the whole planet, if devices wait for the next pass. I design these sparse constellations and the radio access that lets cheap, battery-powered devices use them.</p>
+            <p class="live" data-live="iot" hidden></p>
+            <a class="more" href="/satellite-iot/">Explore satellite IoT <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+
+        <li class="stop" id="mega" data-stop="2">
+          <article class="card">
+            <p class="num">03</p>
+            <h2><a href="/mega-constellations/">Mega-Constellations</a></h2>
+            <figure class="panel">
+              <picture>
+                <source srcset="/assets/img/panels/p3-mega.webp" type="image/webp">
+                <img src="/assets/img/panels/p3-mega.jpg" width="600" height="920" alt="A mesh of inter-satellite laser links wrapped around Earth" loading="lazy" decoding="async">
+              </picture>
+              <p class="tags"><a href="https://resilience.esa.int/archives/projects/ml4mocs">ML4OISL</a> · <a href="https://d3-connect.space/">D3-CONNECT</a></p>
+              <div class="marks">
+                <img class="short" src="/assets/img/logos/esa.svg" alt="ESA" width="58" height="21">
+                <img class="xshort" src="/assets/img/logos/ucb.svg" alt="UC Berkeley" width="51" height="16">
+              </div>
+            </figure>
+            <p class="lede">Thousands of satellites linked by lasers form a network that reshapes itself every second. I work on routing through that mesh, on pointing and holding optical links, and on how AI can help operators run fleets of this size.</p>
+            <p class="live" data-live="mega" hidden></p>
+            <a class="more" href="/mega-constellations/">Explore mega-constellations <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+
+        <li class="stop" id="orbital" data-stop="3">
+          <article class="card">
+            <p class="num">04</p>
+            <h2><a href="/orbital-computing/">Orbital Computing</a></h2>
+            <figure class="panel">
+              <picture>
+                <source srcset="/assets/img/panels/p4-orbital.webp" type="image/webp">
+                <img src="/assets/img/panels/p4-orbital.jpg" width="600" height="920" alt="A computing satellite with solar wings above the night side of Earth" loading="lazy" decoding="async">
+              </picture>
+              <p class="tags"><a href="https://gitlab.com/sustainable-computing-systems/espas">Sustainability</a> · <a href="https://youtu.be/QxZvYLTl7Bs">FOUNDATION</a></p>
+            </figure>
+            <p class="lede">Computers in orbit can process data where it is collected, and whole data centres in space are now being proposed. Up there nothing can be repaired, every kilogram is launched, and all heat must be radiated away. I measure where it pays off and what it costs.</p>
+            <p class="live"><a href="https://x.com/elonmusk/status/2105718806769512812">SpaceX says</a> each of its Star Mind AI spacecraft will carry over 250&nbsp;kW of solar power. All of it ends up as heat: at the ISS-based density we use, about <b>760&nbsp;m² of radiator, some 7.6&nbsp;tonnes</b>.</p>
+            <a class="more" href="/orbital-computing/">Explore orbital computing <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wrap insts" aria-label="Institutions and funding">
+      <div class="bar inria">
+        <a href="https://www.inria.fr/en"><img class="inst" src="/assets/img/logos/inria.svg" alt="Inria" width="89" height="26"></a>
+        <span class="fund">Core funding <img src="/assets/img/logos/anr.png" alt="ANR" width="62" height="19"></span>
+      </div>
+      <div class="bar conicet">
+        <a href="https://www.conicet.gov.ar/"><img class="inst" src="/assets/img/logos/conicet.svg" alt="CONICET" width="48" height="26"></a>
+        <span class="fund"><img src="/assets/img/logos/eu-flag.png" alt="European Union" width="19" height="19"><img src="/assets/img/logos/mission.svg" alt="MISSION" width="31" height="19"></span>
+      </div>
+      <div class="bar saarland">
+        <a href="https://www.uni-saarland.de/"><img class="inst" src="/assets/img/logos/saarland.svg" alt="Saarland University" width="78" height="34"></a>
+        <span class="fund">Core funding <img src="/assets/img/logos/esa.svg" alt="ESA" width="52" height="19"></span>
+      </div>
+    </section>
+
+    <section class="wrap section hello" aria-labelledby="hello-title">
+      <picture class="portrait">
+        <source srcset="/assets/img/photo/juan-a-fraire.webp" type="image/webp">
+        <img src="/assets/img/photo/juan-a-fraire.jpg" width="560" height="700" alt="Portrait of Juan A. Fraire" loading="lazy" decoding="async">
+      </picture>
+      <div>
+        <h2 id="hello-title">About me</h2>
+        <p>I'm a researcher at Inria in Lyon, France, and a guest researcher and professor at CONICET–UNC in Córdoba, Argentina, and at Saarland University in Germany. I chair the SPACE Research Group of the IRTF, where the Internet community works on networking beyond Earth, and the STINT workshop, which I co-founded in 2014. I have written more than 160 papers on space networking.</p>
+        <p class="links">
+          <a href="https://orcid.org/0000-0001-9816-6989">ORCID</a>
+          <a href="https://scholar.google.com/citations?user=YXq56tgAAAAJ">Google Scholar</a>
+          <a href="https://dblp.org/pid/162/7860.html">DBLP</a>
+          <a href="https://github.com/juanfraire">GitHub</a>
+          <a href="https://www.linkedin.com/in/juanfraire">LinkedIn</a>
+          <a href="https://team.inria.fr/agora/juan-fraire/">Inria page</a>
+          <a href="/assets/cv/juan-a-fraire-cv.pdf">Full CV (PDF)</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="news-title">
+      <h2 id="news-title">Latest</h2>
+      <!-- gen:news limit=3 -->
+      <ol class="news-list">
+        <li>
+          <time datetime="2026-10">October 2026</time>
+          <p>Paris, at Cnam: NTN Days 2026 on 13–14 October, which I co-organise with V. Conan and P. Gu and where I also give a talk. Then, on Thursday 15 October at 4 pm, a Cnam seminar: <em>AI for Space, Space for AI: the rise and limits of the space cloud</em>. <a href="https://ntndays.space/">NTN Days</a></p>
+        </li>
+        <li>
+          <time datetime="2026-08">August 2026</time>
+          <p><em>Dark Clouds Rising in Low-Earth Orbit</em>, on the environmental limits of orbital AI, at the LEO-NET workshop of ACM SIGCOMM in Denver. <a href="https://doi.org/10.1145/3789240.3827598">Paper</a></p>
+        </li>
+        <li>
+          <time datetime="2026-06">June 2026</time>
+          <p>Two more PhD defences: Santiago Henn at UNC (19 June) and Jason Gerard at Concordia University, with distinction (29 June).</p>
+        </li>
+      </ol>
+      <!-- /gen -->
+    </section>
+
+    <section class="wrap section" aria-label="For journalists">
+      <div class="press-strip">
+        <div>
+          <h2>For journalists</h2>
+          <p>Bios in two lengths, a photo you can use, key results with their sources, and how to reach me. Also in Spanish and French.</p>
+        </div>
+        <a class="button" href="/press/">Press kit <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>Planet textures by <a href="https://www.solarsystemscope.com/textures/">Solar System Scope</a> (CC BY 4.0). Mars network from the IPN-V scenario <i>dsn-network</i>. Made with <a href="https://threejs.org/">three.js</a> and Inria Sans. This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>
