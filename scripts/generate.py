@@ -13,7 +13,7 @@ A generated block is everything between a start marker and its end marker:
     <!-- gen:pubs topic=orbital limit=5 -->  ...  <!-- /gen -->   featured papers of one topic
     <!-- gen:pubs all -->                   ...  <!-- /gen -->   the full list, grouped by year
     <!-- gen:pubs selected -->              ...  <!-- /gen -->   the CV's selected papers
-    <!-- gen:news limit=3 -->               ...  <!-- /gen -->   the latest posts, as cards
+    <!-- gen:news limit=10 -->              ...  <!-- /gen -->   the latest posts, as a row of cards
     <!-- gen:news all -->                   ...  <!-- /gen -->   every post, as a feed
 
 A news post is a few header lines between `---` lines, then the text as written on LinkedIn:
@@ -25,6 +25,7 @@ A news post is a few header lines between `---` lines, then the text as written 
     alt: What the image shows        (follows its image)
     video: 2026-07-03-cpd.mp4        (in assets/video/news/), poster: 2026-07-03-cpd-poster.jpg
     preview: https://…               preview-title: …   preview-image: … (a link card)
+                                     preview-site: D3TN on LinkedIn   (instead of the domain)
     link: https://…                  link-text: Paper   (an extra link under the post)
     lang: es                         (for a post not in English)
     ---
@@ -328,7 +329,7 @@ def render_post(p, pad, card):
         img = picture(p["preview-image"], "") if p.get("preview-image") else ""
         title = escape(p.get("preview-title", shown(p["preview"])))
         out.append(f'{pad}  <a class="post-preview" href="{escape(p["preview"])}">{img}'
-                   f'<span><b>{title}</b><small>{escape(shown(p["preview"]).split("/")[0])}</small></span></a>')
+                   f'<span><b>{title}</b><small>{escape(p.get("preview-site", shown(p["preview"]).split("/")[0]))}</small></span></a>')
     links = []
     if p.get("link"):
         links.append(f'<a href="{escape(p["link"])}">{escape(p.get("link-text", "More"))}</a>')
@@ -343,10 +344,14 @@ def block_news(args, news, indent):
     pad = " " * indent
     card = "all" not in args
     items = news[: int(args.get("limit", 3))] if card else news
-    out = [pad + f'<ol class="posts {"cards" if card else "feed"}">']
+    out = [pad + ('<ol class="posts cards" id="latest-posts">' if card else '<ol class="posts feed">')]
     for p in items:
         li = "<li>" if card else f'<li id="post-{p["id"]}">'     # the feed's posts are the cards' targets
         out += [f"{pad}  {li}", render_post(p, pad + "    ", card), f"{pad}  </li>"]
+    if card:                                                     # the row of cards ends on a tile to the feed
+        first = news[-1]["date"][:4] if news else ""
+        out.append(f'{pad}  <li class="post-end"><a href="/news/">All news'
+                   f'<small>{len(news)} posts since {first}</small></a></li>')
     return "\n".join(out + [pad + "</ol>"])
 
 

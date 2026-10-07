@@ -44,8 +44,9 @@ Bibliography keywords that the site reads (the CV ignores the extra ones):
 
 Each post is one file, `data/news/YYYY-MM-DD-slug.md`: a few header lines between `---`
 lines, then the text exactly as written on LinkedIn (emoji, line breaks, hashtags, and the
-Unicode "bold" letters, which the site turns into real bold). The home page shows the three
-newest as cards under "Latest"; `/news/` shows them all.
+Unicode "bold" letters, which the site turns into real bold). The home page shows the ten
+newest as a row of cards under "Latest" that scrolls sideways (`limit=10` in its `gen:news`
+marker); `/news/` shows them all.
 
 To copy a LinkedIn post, give its URL to `add_post.py` (any form: the share link, the
 `feed/update/urn:li:activity:…` link, or the post's address in the browser):
@@ -60,6 +61,9 @@ file, downloads its images (and video, with a poster) into `assets/img/news/` an
 `assets/video/news/`, so visitors never load anything from LinkedIn. Then:
 
 - fill in the `alt:` line under each image (LinkedIn rarely has alt text; `generate.py` warns);
+- a post that shares someone else's post keeps your comment and gets a card linking to the
+  original, whose media stay on LinkedIn; a YouTube video becomes a link card with its
+  thumbnail (the site embeds nothing); a post already copied is skipped unless `--force`;
 - delete the file to drop a post, or edit its text: the site never rereads LinkedIn;
 - a post without a `source:` line is a news item written for the site only.
 
@@ -89,14 +93,14 @@ publications/               full list from the bib, with topic/type/text filters
 software/                   tools and projects, grouped by topic
 press/, es/prensa/, fr/presse/   press kit in English, Spanish and French (assets/js/press.js)
 about/                      positions, education, students, service, teaching
-news/                       every news post, newest first (the home page shows three)
+news/                       every news post, newest first (the home page shows ten)
 404.html                    shown by GitHub Pages for missing pages
 assets/css/site.css         all styles; palette from the intro slide
 assets/js/home.js           landing behaviour (live Mars light-time, tour, fallback)
 assets/js/astro.js          low-precision ephemerides (Sun, Earth, Mars, sidereal time)
 assets/js/scene/            the three.js tour and its orbit helpers
 assets/js/node-sizer.js     the node sizer on the orbital-computing page
-assets/js/news.js           "Show more" on long news cards
+assets/js/news.js           "Show more" on long news cards, arrows for the row of cards
 assets/img/news/, assets/video/news/   media of the news posts (from add_post.py)
 data/                       IPN-V Mars network, ODC shells, sensor sites
 data/news/                  one file per news post

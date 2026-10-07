@@ -299,12 +299,32 @@ html.scene { scroll-behavior: smooth; }
 
 /* News posts, as on LinkedIn: date, text, then images, video or a link card running edge to edge. */
 .posts { list-style: none; margin: 0; padding: 0; }
-.posts.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
-@media (max-width: 1020px) { .posts.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 680px) { .posts.cards { grid-template-columns: 1fr; } }
+/* The landing page's cards sit in one row that scrolls sideways; the next card peeks in at the edge. */
+.posts.cards {
+  --gap: 14px;
+  display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3 * var(--gap)) / 3.2);
+  gap: var(--gap); align-items: start;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  padding-bottom: 14px; scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+}
+.posts.cards > li { scroll-snap-align: start; }
+@media (max-width: 1020px) { .posts.cards { grid-auto-columns: calc((100% - 2 * var(--gap)) / 2.2); } }
+@media (max-width: 680px) { .posts.cards { grid-auto-columns: 86%; } }
+.post-end { align-self: stretch; }
+.post-end a { display: grid; place-content: center; gap: 4px; height: 100%; min-height: 220px; padding: 20px; text-align: center;
+  border-radius: var(--radius); border: 1px dashed var(--line); font-size: 18px; text-decoration: none; }
+.post-end a:hover { background: var(--bar); }
+.post-end small { font-size: 14px; color: var(--muted); }
+.row-nav { display: flex; gap: 8px; margin-left: auto; align-self: center; }
+.row-nav button { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--bar); color: var(--ink-strong); cursor: pointer; }
+.row-nav button:hover { border-color: var(--link); }
+.row-nav button[aria-disabled="true"] { opacity: 0.35; cursor: default; border-color: var(--line); }
+.row-nav[hidden] { display: none; }
+@media (hover: none) { .row-nav { display: none; } }   /* touch screens swipe */
 .posts.feed { display: grid; gap: 22px; max-width: 680px; }
-.post { --pad: 18px; padding: 14px var(--pad); border-radius: var(--radius); background: var(--bar); border: 1px solid var(--line-soft); overflow: hidden; }
-.posts.feed .post { --pad: 22px; padding-top: 18px; padding-bottom: 18px; }
+.post { --pad: 18px; --pad-y: 14px; padding: var(--pad-y) var(--pad); border-radius: var(--radius); background: var(--bar); border: 1px solid var(--line-soft); overflow: hidden; }
+.posts.feed .post { --pad: 22px; --pad-y: 18px; }
 .post-date { margin: 0 0 6px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
 .post-date a { color: inherit; text-decoration: none; }
 .post-date a:hover { color: var(--ink-strong); }
@@ -315,6 +335,7 @@ html.scene { scroll-behavior: smooth; }
 .post-text.clamped { max-height: calc(1.55em * 7); overflow: hidden; -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
 .post-toggle { margin: 2px 0 0; padding: 4px 0; border: 0; background: none; font: inherit; font-size: 15px; color: var(--link); cursor: pointer; }
 .post-media, .post-preview, .post-video { margin: 12px calc(-1 * var(--pad)) 0; }
+.post > :is(.post-media, .post-preview, .post-video):last-child { margin-bottom: calc(-1 * var(--pad-y)); border-bottom: 0; }
 .post-media { display: grid; gap: 3px; }
 .post-media a { position: relative; display: block; background: #000; }
 .post-media picture { display: contents; }
