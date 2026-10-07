@@ -297,11 +297,44 @@ html.scene { scroll-behavior: smooth; }
   .portrait img { width: 140px; height: 175px; }
 }
 
-.news-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.news-list li { padding: 16px 18px; border-radius: var(--radius); background: var(--bar); border: 1px solid var(--line-soft); }
-.news-list time { display: block; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.news-list p { margin: 0; font-size: 16px; }
-@media (max-width: 860px) { .news-list { grid-template-columns: 1fr; } }
+/* News posts, as on LinkedIn: date, text, then images, video or a link card running edge to edge. */
+.posts { list-style: none; margin: 0; padding: 0; }
+.posts.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+@media (max-width: 1020px) { .posts.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .posts.cards { grid-template-columns: 1fr; } }
+.posts.feed { display: grid; gap: 22px; max-width: 680px; }
+.post { --pad: 18px; padding: 14px var(--pad); border-radius: var(--radius); background: var(--bar); border: 1px solid var(--line-soft); overflow: hidden; }
+.posts.feed .post { --pad: 22px; padding-top: 18px; padding-bottom: 18px; }
+.post-date { margin: 0 0 6px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+.post-date a { color: inherit; text-decoration: none; }
+.post-date a:hover { color: var(--ink-strong); }
+.post-text { font-size: 16px; line-height: 1.55; overflow-wrap: anywhere; }
+.post-text p { margin: 0 0 0.75em; }
+.post-text p:last-child { margin-bottom: 0; }
+.post-text .hashtag { color: var(--muted); }
+.post-text.clamped { max-height: calc(1.55em * 7); overflow: hidden; -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
+.post-toggle { margin: 2px 0 0; padding: 4px 0; border: 0; background: none; font: inherit; font-size: 15px; color: var(--link); cursor: pointer; }
+.post-media, .post-preview, .post-video { margin: 12px calc(-1 * var(--pad)) 0; }
+.post-media { display: grid; gap: 3px; }
+.post-media a { position: relative; display: block; background: #000; }
+.post-media picture { display: contents; }
+.post-media img { width: 100%; height: 100%; object-fit: cover; }
+.post-media.n1 img { height: auto; max-height: var(--one-max, 640px); object-position: 50% 20%; }
+.posts.cards .post-media.n1 { --one-max: 380px; }
+.post-media.n2, .post-media.n3, .post-media.many { grid-template-columns: 1fr 1fr; }
+.post-media.n4 { grid-template-columns: repeat(3, 1fr); }
+.post-media:is(.n2, .n3, .n4, .many) a { aspect-ratio: 1; }
+.post-media:is(.n3, .n4, .many) a:first-child,
+.post-media.many a:last-child:nth-child(even) { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+.post-media .more { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(7, 11, 22, 0.6); color: var(--ink-strong); font-size: 24px; font-weight: 700; }
+.post-video { display: block; width: calc(100% + 2 * var(--pad)); max-height: 520px; background: #000; }
+.post-preview { display: block; background: var(--bg-raised); color: var(--ink); text-decoration: none; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.post-preview img { width: 100%; height: auto; aspect-ratio: 1200 / 628; object-fit: cover; }
+.post-preview span { display: block; padding: 10px var(--pad); }
+.post-preview b { display: block; font-size: 15px; line-height: 1.35; color: var(--ink-strong); }
+.post-preview small { font-size: 13px; color: var(--muted); }
+.post-preview:hover b { text-decoration: underline; }
+.post-foot { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 12px 0 0; font-size: 14px; }
 
 .press-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 22px 24px; border-radius: 12px; border: 1px solid var(--line); background: linear-gradient(90deg, rgba(91, 155, 213, 0.1), rgba(255, 255, 255, 0.03)); }
 .press-strip h2 { font-size: 22px; margin: 0 0 4px; }
