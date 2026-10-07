@@ -51,6 +51,7 @@
   <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/photos.js"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -76,15 +77,27 @@
 
   <main id="main">
     <section class="wrap page-head hello" aria-labelledby="about-title">
-      <picture class="portrait">
-        <source srcset="/assets/img/photo/juan-a-fraire.webp" type="image/webp">
-        <img src="/assets/img/photo/juan-a-fraire.jpg" width="560" height="700" alt="Portrait of Juan A. Fraire">
-      </picture>
+      <section class="photos" aria-roledescription="carousel" aria-label="Photos of Juan A. Fraire">
+        <ul id="photo-list">
+          <li><picture><source srcset="/assets/img/photo/about/balcony.webp" type="image/webp"><img src="/assets/img/photo/about/balcony.jpg" width="480" height="600" alt="Juan and Pau cheek to cheek at an open window above a city street" loading="lazy" decoding="async"></picture></li>
+          <li hidden><picture><source srcset="/assets/img/photo/about/yellow-glasses.webp" type="image/webp"><img src="/assets/img/photo/about/yellow-glasses.jpg" width="480" height="600" alt="Juan in yellow glasses, taking a selfie on a tree-lined road" loading="lazy" decoding="async"></picture></li>
+          <li hidden><picture><source srcset="/assets/img/photo/about/kitchen.webp" type="image/webp"><img src="/assets/img/photo/about/kitchen.jpg" width="480" height="600" alt="Juan crouching to hug a smiling Beni, who wears a NASA top" loading="lazy" decoding="async"></picture></li>
+          <li hidden><picture><source srcset="/assets/img/photo/about/ietf-126.webp" type="image/webp"><img src="/assets/img/photo/about/ietf-126.jpg" width="480" height="600" alt="Juan taking a mirror selfie, wearing his IETF 126 Vienna badge" loading="lazy" decoding="async"></picture></li>
+          <li hidden><picture><source srcset="/assets/img/photo/about/pool.webp" type="image/webp"><img src="/assets/img/photo/about/pool.jpg" width="480" height="600" alt="Juan, a towel on his head, pulling a fierce face beside a smiling Fran by a pool with palm trees" loading="lazy" decoding="async"></picture></li>
+          <li hidden><picture><source srcset="/assets/img/photo/about/polito.webp" type="image/webp"><img src="/assets/img/photo/about/polito.jpg" width="480" height="600" alt="Juan taking a selfie in front of the Politecnico di Torino" loading="lazy" decoding="async"></picture></li>
+          <li hidden><picture><source srcset="/assets/img/photo/about/astronaut.webp" type="image/webp"><img src="/assets/img/photo/about/astronaut.jpg" width="480" height="600" alt="Juan making a peace sign next to an astronaut statue in a NASA suit" loading="lazy" decoding="async"></picture></li>
+          <li hidden><picture><source srcset="/assets/img/photo/about/bucket-hat.webp" type="image/webp"><img src="/assets/img/photo/about/bucket-hat.jpg" width="480" height="600" alt="Juan laughing cheek to cheek with Beni, who wears a colourful bucket hat" loading="lazy" decoding="async"></picture></li>
+          <li hidden><picture><source srcset="/assets/img/photo/about/blaster.webp" type="image/webp"><img src="/assets/img/photo/about/blaster.jpg" width="480" height="600" alt="Juan striking an action-hero pose with a toy blaster" loading="lazy" decoding="async"></picture></li>
+          <li hidden><picture><source srcset="/assets/img/photo/about/vader.webp" type="image/webp"><img src="/assets/img/photo/about/vader.jpg" width="480" height="600" alt="Juan holding a toy Darth Vader head with glowing red eyes next to his face" loading="lazy" decoding="async"></picture></li>
+        </ul>
+        <!-- a random photo first, before the page paints; assets/js/photos.js turns them -->
+        <script>{const s = document.querySelectorAll('#photo-list > li'), i = Math.floor(Math.random() * s.length); s[0].hidden = true; s[i].hidden = false;}</script>
+      </section>
       <div>
         <h1 id="about-title">About me</h1>
         <p>I'm a researcher at Inria, in the Agora team in Lyon, France. I am also a guest researcher and professor at CONICET and the National University of Córdoba (UNC) in Argentina, where I did my PhD, and at Saarland University in Germany, where I belong to Holger Hermanns's Dependable Systems and Software group.</p>
         <p>I study networks that reach beyond Earth. How do you route data when links come and go, and a signal to Mars takes minutes? How can a cheap sensor on a farm talk straight to a satellite? How do you run a constellation of thousands of spacecraft joined by lasers? And what does it cost, in mass, energy and carbon, to put computers in orbit? These questions are my <a href="/#topics">four research topics</a>.</p>
-        <p>It started with a real system. During my PhD I was the network architect of SARE, a satellite constellation of CONAE, the Argentine space agency, and I have stayed close to flight since. My routing code runs in NASA's ION and HDTN, our work was demonstrated on GomSpace's GomX-4 satellites and ESA's OPS-SAT, and I spent three months at NASA's Jet Propulsion Laboratory as a Fulbright visiting scholar.</p>
+        <p>It started with a real system. During my PhD I was the network architect of SARE, a satellite constellation of CONAE, the Argentine space agency, and I have stayed close to flight since. My routing code runs in NASA's ION and HDTN, our work was demonstrated on GomSpace's GomX-4 satellites and ESA's OPS-SAT, and I have carried out research stays at NASA's Jet Propulsion Laboratory.</p>
         <p>I chair the SPACE Research Group of the IRTF, where the Internet community works on networking beyond Earth. I co-founded the STINT workshop in 2014 and have chaired all 13 editions. With students and colleagues on four continents, I have published more than 160 papers.</p>
         <p class="links">
           <a href="https://orcid.org/0000-0001-9816-6989">ORCID</a>
@@ -109,7 +122,7 @@
         <li><span class="when">Since 2017</span><div><p><strong>Assistant researcher</strong>, CONICET, Córdoba, Argentina</p><p class="sub">On detachment while at Inria.</p></div></li>
         <li><span class="when">2020–2021</span><div><p><strong>Postdoctoral researcher</strong>, Politecnico di Torino, Italy</p></div></li>
         <li><span class="when">2016–2017</span><div><p><strong>Postdoctoral researcher</strong>, TIMA Laboratory, Université Grenoble Alpes, France</p></div></li>
-        <li><span class="when">Visits</span><div><p>NASA's Jet Propulsion Laboratory (Fulbright, three months), Nanjing University (three months) and Saarland University (two months)</p></div></li>
+        <li><span class="when">Visits</span><div><p>NASA's Jet Propulsion Laboratory, Nanjing University (three months) and Saarland University (two months)</p></div></li>
       </ul>
     </section>
 

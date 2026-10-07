@@ -11,17 +11,19 @@ Needs Pillow and numpy. Saving through Pillow drops EXIF and other metadata.
 
 Sources that must not be named in this public repo are read from
 scripts/sources.local.json (git-ignored), which maps a key to a local path:
-"orbital-hero", "mega-hero" and "odc-shells".
+"orbital-hero", "mega-hero", "odc-shells", and "about-photos" (the folder of
+originals for the photo carousel).
 """
 from pathlib import Path
 import csv
+import io
 import json
 import math
 import random
 import shutil
 
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageCms, ImageDraw, ImageOps
 
 SITE = Path(__file__).resolve().parent.parent
 DRIVE = Path("/Users/jfraire/My Drive")
@@ -65,8 +67,27 @@ HEROES = {
     "mega-hero": ("mega-hero", dict(cx=0.5, cy=0.5, at=0.72, scale=1.3, blackout=[])),
 }
 
-PHOTO = CV / "profile/jfraire-profile-2-byn.jpg"          # 2023 portrait, black and white
+PHOTO = CV / "profile/jfraire-profile-2-byn.jpg"          # portrait, black and white (2023 edit)
+PHOTO_COLOUR = CV / "profile/jfraire-profile-full.jpg"    # the same shot in colour, uncropped
+PHOTO_IN_COLOUR = (1222.5, 196, 1766)                     # where PHOTO sits in it: x, y, width (px)
 ASTRONAUT = CV / "profile/jfraire-profile-fun-1.jpeg"     # cartoon, used on the 404 page
+
+# The photo carousel next to "About me" (home and about pages): output name -> (file in the
+# "about-photos" folder, crop box x, y, width in source pixels; the height is width * 5/4).
+# Each crop keeps some of the scene around the face, and both people when there are two.
+# The list of photos, with their alt text, is written out in index.html and about/index.html.
+ABOUT_PHOTOS = {
+    "balcony": ("pic-1-pau.jpg", (478, 0, 1324)),
+    "yellow-glasses": ("pic-2-glasses.jpg", (650, 0, 1324)),
+    "kitchen": ("pic-3-beni.jpg", (0, 0, 1242)),
+    "ietf-126": ("pic-4.jpg", (0, 0, 1192)),
+    "pool": ("pic-5-fran.jpg", (55, 110, 1067)),
+    "polito": ("pic-6-polito.jpg", (810, 147, 1079)),
+    "astronaut": ("pic-7-astro.jpg", (74, 92, 1168)),
+    "bucket-hat": ("pic-8-beni.jpg", (630, 0, 1324)),
+    "blaster": ("pic-9-gun.jpg", (0, 0, 1242)),
+    "vader": ("pic-10-vader.jpg", (810, 0, 1324)),
+}
 OG_SOURCE = CV / "presentation-slide/intro-slide.png"
 FAVICON_BG = (7, 11, 22)                                  # --bg, also the favicon's tile
 
@@ -151,17 +172,51 @@ def logos():
     print("logos  <-", SLIDE / "logos")
 
 
+SRGB = ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB"))
+
+
+def open_srgb(path):
+    """Open a photo upright and in sRGB. The portraits are Adobe RGB and phone photos Display P3;
+    the web copies carry no profile, so browsers read them as sRGB and the colours would fade."""
+    im = Image.open(path)
+    icc = im.info.get("icc_profile")
+    im = ImageOps.exif_transpose(im)
+    if icc:
+        im = ImageCms.profileToProfile(im, ImageCms.ImageCmsProfile(io.BytesIO(icc)), SRGB, outputMode="RGB")
+    return im.convert("RGB")
+
+
 def photos():
+    """The portrait in black and white and in colour, framed the same, for the press kit."""
     out = IMG / "photo"
     out.mkdir(parents=True, exist_ok=True)
-    im = Image.open(PHOTO).convert("RGB")
-    # 4:5 head-and-shoulders crop for the site; the full file is the press download.
-    w = im.width
-    save_pair(im.crop((0, 0, w, round(w * 5 / 4))).resize((560, 700), Image.LANCZOS),
-              out / "juan-a-fraire")
-    im.save(out / "juan-a-fraire-press.jpg", quality=90, optimize=True, progressive=True)
+    bw = open_srgb(PHOTO)
+    x, y, w = PHOTO_IN_COLOUR
+    colour = open_srgb(PHOTO_COLOUR).resize(bw.size, Image.LANCZOS, box=(x, y, x + w, y + w * bw.height / bw.width))
+    for im, suffix in ((bw, ""), (colour, "-colour")):
+        # 4:5 head-and-shoulders crop for the site; the full file is the press download.
+        save_pair(im.crop((0, 0, im.width, round(im.width * 5 / 4))).resize((560, 700), Image.LANCZOS),
+                  out / f"juan-a-fraire{suffix}")
+        im.save(out / f"juan-a-fraire-press{suffix}.jpg", quality=90, optimize=True, progressive=True,
+                icc_profile=SRGB.tobytes())
     save_pair(Image.open(ASTRONAUT).resize((480, 480), Image.LANCZOS), out / "astronaut")
-    print("photo  <-", PHOTO.name, "+", ASTRONAUT.name)
+    print("photo  <-", PHOTO.name, "+", PHOTO_COLOUR.name, "+", ASTRONAUT.name)
+
+
+def about_photos():
+    """4:5 crops for the carousel, at twice the 240 x 300 px they are shown at."""
+    src = private("about-photos")
+    if not src.is_dir():                     # the crops are committed; nothing to redo
+        print("about  skipped,", src, "not found")
+        return
+    out = IMG / "photo/about"
+    out.mkdir(parents=True, exist_ok=True)
+    for name, (file, (x, y, w)) in ABOUT_PHOTOS.items():
+        im = open_srgb(src / file)                             # boxes are in upright pixels
+        h = round(w * 5 / 4)
+        assert x + w <= im.width and y + h <= im.height, f"{file}: crop box outside the photo"
+        save_pair(im.crop((x, y, x + w, y + h)).resize((480, 600), Image.LANCZOS), out / name)
+    print("about  <-", len(ABOUT_PHOTOS), "photos from", src)
 
 
 def og_image():
@@ -284,6 +339,7 @@ def main():
     heroes()
     logos()
     photos()
+    about_photos()
     og_image()
     icons()
     textures()

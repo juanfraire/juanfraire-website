@@ -49,6 +49,7 @@
   <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <script type="module" src="/assets/js/press.js"></script>
+  <script type="module" src="/assets/js/photos.js"></script>
 </head>
 <body>
   <a class="skip" href="#main">Saltar al contenido</a>
@@ -87,11 +88,13 @@
 
     <section class="wrap section press-grid" aria-labelledby="contact-title">
       <figure>
-        <picture>
-          <source srcset="/assets/img/photo/juan-a-fraire.webp" type="image/webp">
-          <img src="/assets/img/photo/juan-a-fraire.jpg" width="560" height="700" alt="Retrato de Juan A. Fraire">
-        </picture>
-        <figcaption><a href="/assets/img/photo/juan-a-fraire-press.jpg" download>Descargar la foto</a><br>JPG, 1506 × 2148 px, 650 KB</figcaption>
+        <section class="photos" aria-roledescription="carousel" aria-label="Foto de prensa, en color y en blanco y negro">
+          <ul id="press-photo-list">
+            <li><picture><source srcset="/assets/img/photo/juan-a-fraire-colour.webp" type="image/webp"><img src="/assets/img/photo/juan-a-fraire-colour.jpg" width="560" height="700" alt="Retrato de Juan A. Fraire, en color" decoding="async"></picture></li>
+            <li hidden><picture><source srcset="/assets/img/photo/juan-a-fraire.webp" type="image/webp"><img src="/assets/img/photo/juan-a-fraire.jpg" width="560" height="700" alt="Retrato de Juan A. Fraire, en blanco y negro" decoding="async"></picture></li>
+          </ul>
+        </section>
+        <figcaption><a href="/assets/img/photo/juan-a-fraire-press-colour.jpg" download>Descargar en color</a> (510 KB)<br><a href="/assets/img/photo/juan-a-fraire-press.jpg" download>Descargar en blanco y negro</a> (650 KB)<br>JPG, 1506 × 2148 px</figcaption>
       </figure>
       <div>
         <h2 id="contact-title">Contacto</h2>

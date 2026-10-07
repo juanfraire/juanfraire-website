@@ -288,13 +288,25 @@ html.scene { scroll-behavior: smooth; }
 
 /* ---------- landing: about, news, press ---------- */
 .section { padding-top: 64px; }
-.hello { display: grid; grid-template-columns: 200px 1fr; gap: 36px; align-items: start; }
-.portrait img { width: 200px; height: 250px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line-soft); }
+.hello { display: grid; grid-template-columns: 240px 1fr; gap: 36px; align-items: start; }
 .hello p { max-width: 68ch; }
 .links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; }
+/* Photos stacked in one cell; assets/js/photos.js fades the next one in over the last. */
+.photos { position: relative; width: max-content; }
+.photos ul { display: grid; margin: 0; padding: 0; list-style: none; }
+.photos li { grid-area: 1 / 1; }
+.photos.ready li { opacity: 0; transition: opacity 0.9s ease; }
+.photos.ready li.on { opacity: 1; z-index: 1; }
+.photos.ready li.was { opacity: 1; transition: none; }
+.photos img { display: block; width: 240px; height: 300px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line-soft); }
+.photo-nav { position: absolute; z-index: 2; right: 8px; bottom: 8px; display: flex; gap: 2px; padding: 3px;
+  border-radius: 999px; background: rgba(7, 11, 22, 0.62); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.photo-nav button { display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 0; border-radius: 50%;
+  background: none; color: #fff; cursor: pointer; }
+.photo-nav button:hover { background: rgba(255, 255, 255, 0.16); }
 @media (max-width: 620px) {
   .hello { grid-template-columns: 1fr; gap: 20px; }
-  .portrait img { width: 140px; height: 175px; }
+  .photos img { width: 200px; height: 250px; }
 }
 
 /* News posts, as on LinkedIn: date, text, then images, video or a link card running edge to edge. */
@@ -546,13 +558,11 @@ html.scene { scroll-behavior: smooth; }
 .lang-switch a[aria-current="true"] { color: var(--ink-strong); border-color: var(--line); background: var(--bar); }
 .press-grid { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 32px; align-items: start; }
 .press-grid figure { margin: 0; }
-.press-grid figure img { width: 240px; height: 300px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line-soft); }
 .press-grid figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); }
 .facts { list-style: none; margin: 0 0 18px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; max-width: 640px; }
 .facts .k { display: block; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
 @media (max-width: 620px) {
   .press-grid { grid-template-columns: 1fr; gap: 20px; }
-  .press-grid figure img { width: 160px; height: 200px; }
   .facts { grid-template-columns: 1fr; }
 }
 .bio-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }

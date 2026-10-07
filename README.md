@@ -21,6 +21,7 @@ visitors, low-power phones and browsers without WebGL get.
 | News from LinkedIn | the post's URL | `python3 scripts/add_post.py <URL>`, then `generate.py` |
 | Other news | a file in `data/news/` (see below) | `python3 scripts/generate.py` |
 | Images, textures, data from other projects | sources listed in `scripts/make_assets.py` | `python3 scripts/make_assets.py` |
+| Photos next to "About me" | crop boxes in `ABOUT_PHOTOS` (`make_assets.py`), originals in the folder `about-photos` of `sources.local.json` | `make_assets.py`, then the photo list in `index.html` and `about/index.html` (alt text) |
 | Everything else | the HTML pages directly | nothing |
 
 `generate.py` rewrites only the blocks between `<!-- gen:… -->` and `<!-- /gen -->`
@@ -101,6 +102,8 @@ assets/js/astro.js          low-precision ephemerides (Sun, Earth, Mars, siderea
 assets/js/scene/            the three.js tour and its orbit helpers
 assets/js/node-sizer.js     the node sizer on the orbital-computing page
 assets/js/news.js           "Show more" on long news cards, arrows for the row of cards
+assets/js/photos.js         photo carousels: About (random order) and the press photo (colour, black and white)
+assets/img/photo/           portrait and press downloads (colour and black and white), about/ for the carousel
 assets/img/news/, assets/video/news/   media of the news posts (from add_post.py)
 data/                       IPN-V Mars network, ODC shells, sensor sites
 data/news/                  one file per news post
