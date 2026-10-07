@@ -41,7 +41,14 @@ function tour() {
   const seen = new IntersectionObserver(([e]) => journey.classList.toggle('in-view', e.isIntersecting), { rootMargin: '-30% 0px -30% 0px' });
   seen.observe(journey);
 
-  const onScroll = () => hint && hint.classList.toggle('is-gone', scrollY > 40);
+  // The last stop is taller than the screen; scrolling through it pulls the camera back.
+  const tall = document.querySelector('.stop.tall');
+  const progress = () => {
+    if (!scene || !tall) return;
+    const r = tall.getBoundingClientRect(), span = r.height - innerHeight;
+    scene.setProgress(span > 0 ? -r.top / span : 0);
+  };
+  const onScroll = () => { if (hint) hint.classList.toggle('is-gone', scrollY > 40); progress(); };
   addEventListener('scroll', onScroll, { passive: true });
 
   const fallback = (reason) => {
@@ -64,6 +71,7 @@ function tour() {
         onLive: (key, html) => { const el = live(key); if (el) { el.innerHTML = html; el.hidden = false; } },
         onSlow: () => fallback('too slow on this device'),
       });
+      progress();
       scene.goTo(active, true);
       root.classList.add('scene-ready');
     } catch (err) {

@@ -44,6 +44,11 @@ data saver, no reduced-motion preference). Otherwise, and until the tour has
 loaded, the page is the intro slide: the four topic panels.
 `assets/js/home.js` loads `assets/js/scene/scene.js` and three.js after first
 paint, and falls back to the slide if they fail or run below about 22 fps.
+The last stop (`.stop.tall`) is about two screens long: its card stays pinned
+while further scrolling pulls the camera back from the node to the dawn-dusk shells.
+Each stop has one live callout over the canvas (a Mars rover, an IoT sensor, the
+satellite above Lyon, the compute node). They are created by `scene.js` and do not
+exist in the slide layout, which `?static` forces (e.g. `http://localhost:8765/?static`).
 
 ## Files
 

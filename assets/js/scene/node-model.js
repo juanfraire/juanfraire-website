@@ -112,6 +112,7 @@ export function buildNode(envMap) {
     }
   }
   // four laser terminals: short barrels with a glass dome
+  const terminals = [];
   for (const sx of [-1, 1]) {
     for (const sy of [-1, 1]) {
       const base = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.48, 0.4, 20), hull);
@@ -121,6 +122,7 @@ export function buildNode(envMap) {
       dome.rotation.z = -sx * Math.PI / 2;
       dome.position.set(sx * 2.1, sy * 1.25, 0);
       bus.add(base, dome);
+      terminals.push(new THREE.Vector3(sx * 2.5, sy * 1.25, 0));    // the dome's tip
     }
   }
   const ring = new THREE.Mesh(new THREE.TorusGeometry(0.85, 0.09, 8, 32), strut);   // launch adapter
@@ -128,6 +130,7 @@ export function buildNode(envMap) {
   bus.add(ring);
   bus.scale.setScalar(1.5);
   g.add(bus);
+  g.userData.terminals = terminals.map((v) => v.multiplyScalar(1.5));   // in model axes, where links start
 
   // ---- two wings, each three panels, on a diamond truss from a rotary drive
   const WING_W = 11.5, WING_H = 30, ROOT = 8.6;
