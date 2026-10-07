@@ -117,8 +117,10 @@ export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}
   leaders.classList.add('leaders');
   overlay.append(leaders);
   canvas.after(overlay);
-  const view = { w: 1, h: 1, top: 16 };            // top: below the page header while it is on screen
+  const view = { w: 1, h: 1, top: 16, avoid: [] };  // top: below the page header; avoid: card and rail boxes
   const siteHead = document.querySelector('.site-head');
+  const journey = document.querySelector('.journey'), rail = document.querySelector('.rail');
+  const activeCard = () => document.querySelector('.stop.is-active .card');
   const projected = new THREE.Vector3();
 
   function callout(kind) {
@@ -130,21 +132,36 @@ export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}
     line.classList.add(kind); dot.classList.add(kind);
     leaders.append(line, dot);
     overlay.append(box);
-    let html = '', bw = 0, bh = 0, shown = true;
+    let html = '', bw = 0, bh = 0, shown = true, side = 0;
     const hide = () => { if (shown) { shown = false; box.style.opacity = line.style.opacity = dot.style.opacity = '0'; } };
     hide();
+    // Area of a box at (bx, by) that would cover the text card or the topic rail.
+    const clash = (bx, by) => view.avoid.reduce((s, o) => s
+      + Math.max(0, Math.min(bx + bw, o.r) - Math.max(bx, o.x)) * Math.max(0, Math.min(by + bh, o.b) - Math.max(by, o.y)), 0);
     return {
       set(h) { if (h !== html) { html = h; box.innerHTML = h; bw = box.offsetWidth; bh = box.offsetHeight; } },
-      // Pin the box above and beside a world point; flip to whichever side stays on screen.
+      // Pin the box beside a world point: above right if it fits, else the side that covers least of
+      // the card and the rail. The last side is kept unless another is clearly better, so the box
+      // does not hop between sides.
       place(world, opacity) {
         projected.copy(world).project(camera);
         if (opacity < 0.02 || projected.z > 1) return hide();
         const x = (projected.x + 1) / 2 * view.w, y = (1 - projected.y) / 2 * view.h;
         const gap = small ? 26 : 40, rise = small ? 46 : 70, edge = 12;
-        let bx = x + gap, by = y - rise - bh;
-        if (bx + bw > view.w - (small ? edge : 270)) bx = x - gap - bw;
-        if (by < view.top) by = y + rise;
-        bx = Math.max(edge, Math.min(bx, view.w - bw - edge));
+        // Each spot is kept on screen sideways, as before; how far it had to move breaks ties.
+        const spots = [[x + gap, y - rise - bh], [x - gap - bw, y - rise - bh], [x + gap, y + rise], [x - gap - bw, y + rise]]
+          .map(([sx, sy]) => { const cx = Math.max(edge, Math.min(sx, view.w - bw - edge)); return [cx, sy, Math.abs(cx - sx)]; });
+        const costs = spots.map(([sx, sy, moved]) => (sy >= view.top && sy + bh <= view.h - edge ? clash(sx, sy) + moved : Infinity));
+        const best = costs.indexOf(Math.min(...costs));
+        if (!(costs[side] <= costs[best] * 1.2)) side = best;
+        let bx, by;
+        if (isFinite(costs[side])) [bx, by] = spots[side];
+        else {                                          // no side fits on screen: the original rule
+          bx = x + gap; by = y - rise - bh;
+          if (bx + bw > view.w - (small ? edge : 270)) bx = x - gap - bw;
+          if (by < view.top) by = y + rise;
+          bx = Math.max(edge, Math.min(bx, view.w - bw - edge));
+        }
         const ax = bx > x ? bx : bx + bw, ay = by > y ? by : by + bh;
         box.style.transform = `translate(${bx.toFixed(1)}px, ${by.toFixed(1)}px)`;
         line.setAttribute('x1', x.toFixed(1)); line.setAttribute('y1', y.toFixed(1));
@@ -684,7 +701,7 @@ export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}
     if (hop.sat < 0 || f < 0.01) return megaCallout.hide();
     hopWorld.fromArray(megaPos, hop.sat * 3);
     megaCallout.set(`<p class="c-head">${ICONS.mega}Satellite above Lyon</p><p class="c-sub">550 km up, ${MEGA_KMS.toFixed(1)} km/s</p>`
-      + `<p class="c-state"><b>${adj[hop.sat].length}</b> laser links, hop 1 of ${hop.count} to Córdoba</p>`
+      + `<p class="c-state"><b>${adj[hop.sat].length}</b> laser links, satellite 1 of ${hop.count} to Córdoba</p>`
       + `<p class="c-next">Leaves Lyon's sky in <b>${duration(hop.until - simSeconds)}</b></p>`);
     megaCallout.place(hopWorld, smooth(0.5, 1, f));
   }
@@ -995,7 +1012,14 @@ export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}
     camera.near = Math.min(0.05, Math.max(0.0001, dist * 0.02));
     camera.updateProjectionMatrix();
     camera.updateMatrixWorld();
-    view.top = Math.max(16, (siteHead ? siteHead.getBoundingClientRect().bottom : 0) - canvas.getBoundingClientRect().top + 8);
+    const stage = canvas.getBoundingClientRect();
+    view.top = Math.max(16, (siteHead ? siteHead.getBoundingClientRect().bottom : 0) - stage.top + 8);
+    view.avoid.length = 0;
+    for (const el of [activeCard(), journey.classList.contains('in-view') ? rail : null]) {
+      if (!el) continue;
+      const r = el.getBoundingClientRect(), pad = 10;
+      if (r.width) view.avoid.push({ x: r.left - stage.left - pad, y: r.top - stage.top - pad, r: r.right - stage.left + pad, b: r.bottom - stage.top + pad });
+    }
     dtnOverlays();
     iotOverlays();
     megaOverlays();

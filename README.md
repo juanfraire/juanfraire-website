@@ -17,13 +17,19 @@ visitors, low-power phones and browsers without WebGL get.
 
 | What | Where | Then |
 |---|---|---|
-| Publications | `../cv-juan-fraire.bib` (the CV bibliography) | `python3 scripts/generate.py` |
+| Publications | `../cv/cv-juan-fraire.bib` (the CV bibliography) | `python3 scripts/generate.py` |
 | News | `data/news.json` (newest first is not required) | `python3 scripts/generate.py` |
 | Images, textures, data from other projects | sources listed in `scripts/make_assets.py` | `python3 scripts/make_assets.py` |
 | Everything else | the HTML pages directly | nothing |
 
 `generate.py` rewrites only the blocks between `<!-- gen:… -->` and `<!-- /gen -->`
-markers; everything else in the pages is hand-written.
+markers; everything else in the pages is hand-written. It also rewrites `sitemap.xml`,
+with each page's last commit date as `lastmod`, so run it once more just before committing.
+
+`make_assets.py` also builds the social cards (`assets/img/og.jpg`, `assets/img/og/og-*.jpg`,
+1200 × 630) and the touch icons (`apple-touch-icon.png`, `favicon.ico`). A few of its sources
+are kept out of this public repo: their paths live in `scripts/sources.local.json`, which git
+ignores. Keep it that way; never name those sources in a committed file.
 
 Bibliography keywords that the site reads (the CV ignores the extra ones):
 
@@ -68,7 +74,8 @@ assets/js/node-sizer.js     the node sizer on the orbital-computing page
 data/                       IPN-V Mars network, ODC shells, sensor sites, news
 vendor/three/               three.js r170 (MIT)
 assets/fonts/               Inria Sans (SIL Open Font Licence)
-scripts/                    serve.py, generate.py, make_assets.py
+scripts/                    serve.py, generate.py, make_assets.py (+ git-ignored sources.local.json)
+sitemap.xml, robots.txt     written by generate.py / by hand
 CNAME                       juanfraire.space
 ```
 

@@ -4,16 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Orbital computing: where it works and what it costs · Juan A. Fraire</title>
-  <meta name="description" content="Computing and data centres in orbit, with numbers: radiator mass, launch and re-entry carbon, spares, and when an orbital node beats a data centre on Earth. Research by Juan A. Fraire and colleagues.">
+  <meta name="description" content="Computing and data centres in orbit, with numbers: radiator mass, launch and re-entry carbon, spares, and when an orbital node beats a data centre on Earth.">
   <link rel="canonical" href="https://juanfraire.space/orbital-computing/">
   <meta name="author" content="Juan A. Fraire">
   <meta name="theme-color" content="#070b16">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Orbital computing: where it works and what it costs">
   <meta property="og:description" content="Radiators, launch carbon, spares, and when an orbital node beats a data centre on Earth. With sources.">
+  <meta property="og:locale" content="en_GB">
   <meta property="og:url" content="https://juanfraire.space/orbital-computing/">
-  <meta property="og:image" content="https://juanfraire.space/assets/img/topics/orbital-hero.jpg">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-orbital.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Earth at night ringed by thousands of satellites in dawn-dusk orbits">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
@@ -37,14 +43,14 @@
     <div class="wrap head-row">
       <p class="brand"><a href="/">Juan A. Fraire</a></p>
       <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
-      <div class="head-logos" aria-label="Institutions">
+      <div class="head-logos" role="group" aria-label="Institutions">
         <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
         <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
         <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
       </div>
     </div>
     <nav class="wrap site-nav" aria-label="Main">
-      <a href="/#topics" aria-current="page">Research</a>
+      <a href="/#topics" aria-current="true">Research</a>
       <a href="/publications/">Publications</a>
       <a href="/software/">Software</a>
       <a href="/press/">Press</a>
@@ -135,14 +141,14 @@
           </svg>
         </figure>
         <div>
-          <fieldset>
-            <label for="years">Mission length <output id="years-out">3 years</output></label>
+          <div class="field">
+            <p class="field-row"><label for="years">Mission length</label> <output id="years-out" for="years">3 years</output></p>
             <input id="years" type="range" min="1" max="9" step="1" value="3">
-          </fieldset>
-          <fieldset>
-            <label for="copies-in">Copies of the computer <output id="copies-out">1 (no spare)</output></label>
+          </div>
+          <div class="field">
+            <p class="field-row"><label for="copies-in">Copies of the computer</label> <output id="copies-out" for="copies-in">1 (no spare)</output></p>
             <input id="copies-in" type="range" min="1" max="5" step="1" value="1">
-          </fieldset>
+          </div>
           <fieldset class="launcher">
             <legend class="kicker">Launched on</legend>
             <label class="radio"><input type="radio" name="rocket" value="starship" checked> Starship</label>
@@ -209,7 +215,7 @@
           <p>Open-source estimator of the carbon footprint of computing in orbit, from manufacturing through launch to re-entry, built at Saarland University. MIT and Apache-2.0.</p>
         </li>
         <li>
-          <h3>MeteorNet</h3>
+          <h3><a href="https://gitlab.com/camilo.rojas/meteornet">MeteorNet</a></h3>
           <p>A continuous-time emulator for edge computing on low-Earth-orbit constellations, used to test where servers should sit and how tasks should move between orbit and ground.</p>
         </li>
         <li>
@@ -285,7 +291,7 @@
 
   <footer class="site-foot">
     <div class="wrap">
-      <div class="inst-logos" aria-label="Institutions">
+      <div class="inst-logos" role="group" aria-label="Institutions">
         <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
         <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
         <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>

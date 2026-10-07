@@ -4,16 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mega-constellations: networks of thousands of satellites · Juan A. Fraire</title>
-  <meta name="description" content="Thousands of satellites linked by lasers form a network that reshapes itself every second. Routing through the mesh, pointing laser links, running fleets, and who these networks serve, with results and sources. Research by Juan A. Fraire and colleagues.">
+  <meta name="description" content="Thousands of satellites linked by lasers: routing through the moving mesh, pointing laser links, running fleets, and who these networks serve, with sources.">
   <link rel="canonical" href="https://juanfraire.space/mega-constellations/">
   <meta name="author" content="Juan A. Fraire">
   <meta name="theme-color" content="#070b16">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Mega-constellations: networks of thousands of satellites">
   <meta property="og:description" content="Routing through a moving laser mesh, pointing the lasers, and who these networks reach and at what price. With results and sources.">
+  <meta property="og:locale" content="en_GB">
   <meta property="og:url" content="https://juanfraire.space/mega-constellations/">
-  <meta property="og:image" content="https://juanfraire.space/assets/img/topics/mega-hero.jpg">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-mega.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Earth half in night, wrapped in a dense mesh of links between satellites">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
@@ -36,14 +42,14 @@
     <div class="wrap head-row">
       <p class="brand"><a href="/">Juan A. Fraire</a></p>
       <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
-      <div class="head-logos" aria-label="Institutions">
+      <div class="head-logos" role="group" aria-label="Institutions">
         <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
         <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
         <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
       </div>
     </div>
     <nav class="wrap site-nav" aria-label="Main">
-      <a href="/#topics" aria-current="page">Research</a>
+      <a href="/#topics" aria-current="true">Research</a>
       <a href="/publications/">Publications</a>
       <a href="/software/">Software</a>
       <a href="/press/">Press</a>
@@ -77,7 +83,7 @@
         <li><strong>Satellites to reach every under-served address.</strong> About 4.7&nbsp;million US addresses have no provider offering broadband at 100&nbsp;Mbps down and 20&nbsp;Mbps up. Serving all of them without overselling capacity beyond the 20-to-1 ratio that US regulators allow fixed wireless providers would take Starlink over 40,000 satellites, more than five times the roughly 8,000 it had at the time of the study. The authors present this as a lower bound. <span class="cite"><a href="https://doi.org/10.1145/3772356.3772383">Anyone, Anywhere, HotNets 2025, §3, Table&nbsp;2</a></span></li>
         <li><strong>Who can pay for it.</strong> At $120 a month, Starlink's residential plan would cost more than 2% of household income, a common affordability threshold, at about 3.5&nbsp;million of those 4.7&nbsp;million addresses, and at nearly 3&nbsp;million even with the federal Lifeline discount. Comparable cable plans at $40 to $50 a month are affordable at more than 99.99% of them. The study uses each county's median income. <span class="cite"><a href="https://doi.org/10.1145/3772356.3772383">Anyone, Anywhere, HotNets 2025, §4, Fig.&nbsp;4</a></span></li>
         <li><strong>Getting lasers to lock on.</strong> Before a laser link between two satellites can carry data, both must turn to face each other and find the beam. In simulations of two 12&nbsp;kg satellites, that left only 72% of a contact for data on the harder of two passes. Turning early and exchanging satellite-navigation positions over a radio link raised the share to over 99%, and cut the memory needed to hold waiting data at 100&nbsp;Mbps from 4&nbsp;GB to 75&nbsp;MB. <span class="cite"><a href="https://doi.org/10.1109/ojcoms.2026.3688693">RF-Assisted Compensation, IEEE OJ-COMS 2026, §IV-B, Tables&nbsp;8 and&nbsp;9</a></span></li>
-        <li><strong>Finding a path through the mesh.</strong> On a model of Starlink's first shell of 1,584 satellites, each linked to its four neighbours, a routing method that first works out the fewest satellite-to-satellite hops found paths on average 158 times faster than the textbook shortest-path algorithm, and the routes it finds are nearly as short. The speed-up is in the time a computer takes to work out a route. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing, ASMS/SPSC 2022, §VI-B, Fig.&nbsp;5</a></span></li>
+        <li><strong>Finding a path through the mesh.</strong> On a model of Starlink's first shell of 1,584 satellites, each linked to its four neighbours, a routing method that first works out the fewest satellite-to-satellite hops found paths on average 158 times faster than the textbook shortest-path algorithm, and the routes it finds are nearly as short. The speed-up is in the time a computer takes to work out a route. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing, ASMS/SPSC 2022, §VI-B and §VI-C, Figs.&nbsp;5 and&nbsp;6</a></span></li>
       </ul>
       <p class="note">The last two are simulation results, under the assumptions set out in each paper. The first two come from a model built on public data from the US regulator (FCC).</p>
     </section>
@@ -169,7 +175,7 @@
 
   <footer class="site-foot">
     <div class="wrap">
-      <div class="inst-logos" aria-label="Institutions">
+      <div class="inst-logos" role="group" aria-label="Institutions">
         <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
         <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
         <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>

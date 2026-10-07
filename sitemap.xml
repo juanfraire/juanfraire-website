@@ -1,29 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url><loc>https://juanfraire.space/</loc></url>
-  <url><loc>https://juanfraire.space/dtn/</loc></url>
-  <url><loc>https://juanfraire.space/satellite-iot/</loc></url>
-  <url><loc>https://juanfraire.space/mega-constellations/</loc></url>
-  <url><loc>https://juanfraire.space/orbital-computing/</loc></url>
-  <url><loc>https://juanfraire.space/publications/</loc></url>
-  <url><loc>https://juanfraire.space/software/</loc></url>
-  <url><loc>https://juanfraire.space/about/</loc></url>
   <url>
-    <loc>https://juanfraire.space/press/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
+    <loc>https://juanfraire.space/</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/about/</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/dtn/</loc>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/es/prensa/</loc>
+    <lastmod>2026-10-07</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juanfraire.space/press/"/>
   </url>
   <url>
     <loc>https://juanfraire.space/fr/presse/</loc>
+    <lastmod>2026-10-07</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juanfraire.space/press/"/>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/mega-constellations/</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/orbital-computing/</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/press/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://juanfraire.space/press/"/>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/publications/</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/satellite-iot/</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/software/</loc>
+    <lastmod>2026-10-07</lastmod>
   </url>
 </urlset>

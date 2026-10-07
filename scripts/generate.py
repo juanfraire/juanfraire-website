@@ -2,8 +2,11 @@
 """Rewrite the generated blocks in the site's HTML.
 
 Sources of truth:
-- publications: ../cv-juan-fraire.bib (the CV bibliography, one folder up)
+- publications: ../cv/cv-juan-fraire.bib (the CV bibliography)
 - news:         data/news.json
+
+It also rewrites sitemap.xml: every page except 404.html, with the date of the page's
+last commit as lastmod (today for a page with uncommitted changes).
 
 A generated block is everything between a start marker and its end marker:
 
@@ -23,17 +26,21 @@ topics (dtn, iot, mega, orbital), and the flags `selected` (CV flagship list) an
 that topic flagged selected or featured, newest first. An optional `weburl` field
 overrides the link on the website only (biber ignores it, so the CV keeps the DOI).
 """
+from datetime import date
 from html import escape
 from pathlib import Path
 import json
 import re
+import subprocess
 import sys
 import unicodedata
 
 SITE = Path(__file__).resolve().parent.parent
-BIB = SITE.parent / "cv-juan-fraire.bib"
+BIB = SITE.parent / "cv/cv-juan-fraire.bib"
 NEWS = SITE / "data/news.json"
 PAGES = sorted(p for p in SITE.rglob("*.html") if "vendor" not in p.parts)
+ORIGIN = "https://juanfraire.space"
+PRESS = {"en": "/press/", "es": "/es/prensa/", "fr": "/fr/presse/"}   # one page in three languages
 
 PRINTED = ("book", "journal", "conference", "preprint")
 TOPICS = ("dtn", "iot", "mega", "orbital")
@@ -212,6 +219,38 @@ MARK = re.compile(r"(?P<indent>[ \t]*)<!-- gen:(?P<name>\w+)(?P<args>[^>]*?)-->\
                   re.S)
 
 
+def lastmod(page):
+    """Date of the page's last commit, or today if it has uncommitted changes (or no git)."""
+    rel = str(page.relative_to(SITE))
+    git = lambda *a: subprocess.run(["git", *a, "--", rel], cwd=SITE, capture_output=True, text=True).stdout.strip()
+    try:
+        if not git("status", "--porcelain"):
+            return git("log", "-1", "--format=%cs") or date.today().isoformat()
+    except OSError:
+        pass
+    return date.today().isoformat()
+
+
+def write_sitemap():
+    pages = [p for p in PAGES if p.name == "index.html"]
+    urls = sorted(("/" + str(p.parent.relative_to(SITE)) + "/").replace("/./", "/") for p in pages)
+    urls.sort(key=lambda u: u != "/")                    # home first
+    out = ['<?xml version="1.0" encoding="UTF-8"?>',
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
+    for u in urls:
+        page = SITE / u.lstrip("/") / "index.html"
+        out += ["  <url>", f"    <loc>{ORIGIN}{u}</loc>", f"    <lastmod>{lastmod(page)}</lastmod>"]
+        if u in PRESS.values():
+            alts = [*PRESS.items(), ("x-default", PRESS["en"])]
+            out += [f'    <xhtml:link rel="alternate" hreflang="{lang}" href="{ORIGIN}{href}"/>' for lang, href in alts]
+        out.append("  </url>")
+    text = "\n".join(out + ["</urlset>"]) + "\n"
+    target = SITE / "sitemap.xml"
+    if not target.exists() or target.read_text(encoding="utf-8") != text:
+        target.write_text(text, encoding="utf-8")
+        print("updated sitemap.xml")
+
+
 def parse_args(s):
     args = {}
     for tok in s.split():
@@ -240,7 +279,8 @@ def main():
         if new != html:
             page.write_text(new, encoding="utf-8")
             print("updated", page.relative_to(SITE))
-    counts = {t: sum(t in p["topics"] for p in pubs) for t in TOPICS}
+    write_sitemap()
+    counts ={t: sum(t in p["topics"] for p in pubs) for t in TOPICS}
     print(f"{len(pubs)} printed publications;", ", ".join(f"{t} {n}" for t, n in counts.items()))
 
 

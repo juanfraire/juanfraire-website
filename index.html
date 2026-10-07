@@ -9,13 +9,17 @@
   <meta name="author" content="Juan A. Fraire">
   <meta name="theme-color" content="#070b16">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Juan A. Fraire · Space networking and orbital computing">
   <meta property="og:description" content="Delay-tolerant networks, direct-to-satellite IoT, mega-constellations and orbital computing. Researcher at Inria, CONICET and Saarland University; chair of the IRTF SPACE Research Group.">
+  <meta property="og:locale" content="en_GB">
   <meta property="og:url" content="https://juanfraire.space/">
   <meta property="og:image" content="https://juanfraire.space/assets/img/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The four research topics of Juan A. Fraire: delay-tolerant networks, direct-to-satellite IoT, mega-constellations and orbital computing">
   <meta property="profile:first_name" content="Juan">
   <meta property="profile:last_name" content="Fraire">
   <meta name="twitter:card" content="summary_large_image">
@@ -25,30 +29,52 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": "https://juanfraire.space/#person",
-    "name": "Juan A. Fraire",
-    "alternateName": "Juan Fraire",
-    "givenName": "Juan",
-    "familyName": "Fraire",
-    "url": "https://juanfraire.space/",
-    "image": "https://juanfraire.space/assets/img/photo/juan-a-fraire.jpg",
-    "email": "mailto:juan.fraire@inria.fr",
-    "jobTitle": "Researcher in space networking and informatics",
-    "worksFor": [
-      {"@type": "ResearchOrganization", "name": "Inria", "url": "https://www.inria.fr/en"},
-      {"@type": "ResearchOrganization", "name": "CONICET", "url": "https://www.conicet.gov.ar/"},
-      {"@type": "CollegeOrUniversity", "name": "Saarland University", "url": "https://www.uni-saarland.de/"}
-    ],
-    "alumniOf": {"@type": "CollegeOrUniversity", "name": "Universidad Nacional de Córdoba"},
-    "knowsAbout": ["Delay-tolerant networking", "Direct-to-satellite IoT", "Satellite mega-constellations", "Orbital computing", "Space networking"],
-    "sameAs": [
-      "https://orcid.org/0000-0001-9816-6989",
-      "https://dblp.org/pid/162/7860.html",
-      "https://scholar.google.com/citations?user=YXq56tgAAAAJ",
-      "https://team.inria.fr/agora/juan-fraire/",
-      "https://github.com/juanfraire",
-      "https://www.linkedin.com/in/juanfraire"
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://juanfraire.space/#website",
+        "url": "https://juanfraire.space/",
+        "name": "Juan A. Fraire",
+        "inLanguage": "en",
+        "publisher": {"@id": "https://juanfraire.space/#person"}
+      },
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire",
+        "alternateName": "Juan Fraire",
+        "givenName": "Juan",
+        "familyName": "Fraire",
+        "url": "https://juanfraire.space/",
+        "image": "https://juanfraire.space/assets/img/photo/juan-a-fraire.jpg",
+        "email": "mailto:juan.fraire@inria.fr",
+        "jobTitle": "Researcher in space networking and informatics",
+        "worksFor": [
+          {"@type": "ResearchOrganization", "name": "Inria", "url": "https://www.inria.fr/en"},
+          {"@type": "ResearchOrganization", "name": "CONICET", "url": "https://www.conicet.gov.ar/"},
+          {"@type": "CollegeOrUniversity", "name": "Saarland University", "url": "https://www.uni-saarland.de/"}
+        ],
+        "alumniOf": {"@type": "CollegeOrUniversity", "name": "Universidad Nacional de Córdoba"},
+        "knowsAbout": [
+          "Delay-tolerant networking",
+          "Direct-to-satellite IoT",
+          "Satellite mega-constellations",
+          "Orbital computing",
+          "Orbital data centres",
+          "Space networking",
+          "Interplanetary internet"
+        ],
+        "sameAs": [
+          "https://orcid.org/0000-0001-9816-6989",
+          "https://dblp.org/pid/162/7860.html",
+          "https://scholar.google.com/citations?user=YXq56tgAAAAJ",
+          "https://team.inria.fr/agora/juan-fraire/",
+          "https://github.com/juanfraire",
+          "https://www.linkedin.com/in/juanfraire"
+        ],
+        "disambiguatingDescription": "Researcher in space networking and orbital computing at Inria in Lyon, France",
+        "knowsLanguage": ["es", "en", "fr"]
+      }
     ]
   }
   </script>
@@ -83,7 +109,7 @@
     <div class="wrap head-row">
       <h1 class="brand"><a href="/">Juan A. Fraire</a></h1>
       <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
-      <div class="head-logos" aria-label="Institutions">
+      <div class="head-logos" role="group" aria-label="Institutions">
         <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
         <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
         <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
@@ -233,7 +259,7 @@
 
   <footer class="site-foot">
     <div class="wrap">
-      <div class="inst-logos" aria-label="Institutions">
+      <div class="inst-logos" role="group" aria-label="Institutions">
         <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
         <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
         <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>

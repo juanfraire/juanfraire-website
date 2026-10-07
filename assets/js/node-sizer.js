@@ -56,6 +56,8 @@ if (box) {
     const mass = BASE_KG + COMPUTER_KG * (r - 1);
     $('years-out').textContent = T === 1 ? '1 year' : `${T} years`;
     $('copies-out').textContent = r === 1 ? '1 (no spare)' : `${r} (${r - 1} spare${r > 2 ? 's' : ''})`;
+    years.setAttribute('aria-valuetext', $('years-out').textContent);      // read "3 years", not "3"
+    copies.setAttribute('aria-valuetext', $('copies-out').textContent);
     $('carbon').innerHTML = `${g} <small>g CO₂e</small>`;
     $('meter-fill').style.width = at(g);
     $('mass').innerHTML = `${mass.toFixed(1)} <small>kg</small>`;
