@@ -12,7 +12,9 @@ A generated block is everything between a start marker and its end marker:
 
     <!-- gen:pubs topic=orbital limit=5 -->  ...  <!-- /gen -->   featured papers of one topic
     <!-- gen:pubs all -->                   ...  <!-- /gen -->   the full list, grouped by year
-    <!-- gen:pubs selected -->              ...  <!-- /gen -->   the CV's selected papers
+    <!-- gen:pubs selected -->              ...  <!-- /gen -->   the CV's selected papers, as cards with a figure
+                                                                 (data/pub-figures.json, from make_assets.py)
+    <!-- gen:ld selected -->                ...  <!-- /gen -->   the same papers as JSON-LD (in <head>)
     <!-- gen:news limit=10 -->              ...  <!-- /gen -->   the latest posts, as a row of cards
     <!-- gen:news all -->                   ...  <!-- /gen -->   every post, as a feed
 
@@ -46,6 +48,7 @@ overrides the link on the website only (biber ignores it, so the CV keeps the DO
 from datetime import date
 from html import escape, unescape
 from pathlib import Path
+import json
 import re
 import struct
 import subprocess
@@ -63,6 +66,10 @@ PRESS = {"en": "/press/", "es": "/es/prensa/", "fr": "/fr/presse/"}   # one page
 PRINTED = ("book", "journal", "conference", "preprint")
 TOPICS = ("dtn", "iot", "mega", "orbital")
 TYPE_LABEL = {"book": "Book or chapter", "journal": "Journal", "conference": "Conference", "preprint": "Preprint"}
+TOPIC_TILE = {"dtn": ("01", "t1", "Delay-tolerant networks"), "iot": ("02", "t2", "Satellite IoT"),
+              "mega": ("03", "t3", "Mega-constellations"), "orbital": ("04", "t4", "Orbital computing")}
+FIGURES_JSON = SITE / "data/pub-figures.json"          # written by make_assets.py: bib key -> figure
+FIGURES = json.loads(FIGURES_JSON.read_text(encoding="utf-8")) if FIGURES_JSON.exists() else {}
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
 
@@ -154,6 +161,9 @@ def to_pub(entry):
         link = "https://arxiv.org/abs/" + f["eprint"]
     return {
         "key": entry["key"],
+        "bibtype": entry["type"],
+        "doi": f.get("doi", "").replace(r"\_", "_"),
+        "isbn": f.get("isbn", ""),
         "kind": kind,
         "title": detex(f.get("title", "")),
         "authors": authors(f.get("author", f.get("editor", ""))),
@@ -173,12 +183,18 @@ def load_pubs():
 
 # ---------------------------------------------------------------- rendering
 
-def render_pub(p, indent):
+def by_line(p):
     names = [f"<strong>{escape(n)}</strong>" if n.endswith("Fraire") else escape(n) for n in p["authors"]]
-    who = ", ".join(names[:-1]) + (", and " if len(names) > 2 else " and ") + names[-1] if len(names) > 1 else "".join(names)
+    return ", ".join(names[:-1]) + (", and " if len(names) > 2 else " and ") + names[-1] if len(names) > 1 else "".join(names)
+
+
+def linked_title(p):
     title = escape(p["title"])
-    if p["link"]:
-        title = f'<a href="{escape(p["link"])}">{title}</a>'
+    return f'<a href="{escape(p["link"])}">{title}</a>' if p["link"] else title
+
+
+def render_pub(p, indent):
+    who, title = by_line(p), linked_title(p)
     venue = escape(p["venue"]) + (", " if p["venue"] else "") + str(p["year"])
     attrs = f'data-type="{p["kind"]}" data-topics="{" ".join(p["topics"])}"'
     pad = " " * indent
@@ -186,6 +202,27 @@ def render_pub(p, indent):
             f'{pad}  <span class="pub-title">{title}</span>\n'
             f'{pad}  <span class="pub-authors">{who}</span>\n'
             f'{pad}  <span class="pub-venue">{venue}</span>\n'
+            f'{pad}</li>')
+
+
+def render_card(p, indent):
+    """A selected paper as a card: its figure (from make_assets.py), or a topic tile without one."""
+    num, cls, label = TOPIC_TILE.get(p["topics"][0] if p["topics"] else "", ("", "", TYPE_LABEL[p["kind"]]))
+    f, pad = FIGURES.get(p["key"]), " " * indent
+    if f:
+        fig = (f'<figure class="fig"><picture><source srcset="{f["img"]}.webp" type="image/webp">'
+               f'<img src="{f["img"]}.jpg" width="{f["width"]}" height="{f["height"]}" alt="{escape(f["alt"])}" '
+               f'loading="lazy" decoding="async"></picture><figcaption>Figure {escape(f["credit"])}</figcaption></figure>')
+    else:
+        fig = f'<div class="fig nofig" aria-hidden="true"><b>{num}</b><small>{label}</small></div>'
+    return (f'{pad}<li class="paper-card {cls}">\n'
+            f'{pad}  {fig}\n'
+            f'{pad}  <div class="body">\n'
+            f'{pad}    <p class="meta">{label} · {p["year"]}</p>\n'
+            f'{pad}    <h3>{linked_title(p)}</h3>\n'
+            f'{pad}    <p class="pub-authors">{by_line(p)}</p>\n'
+            f'{pad}    <p class="pub-venue">{escape(p["venue"])}</p>\n'
+            f'{pad}  </div>\n'
             f'{pad}</li>')
 
 
@@ -202,8 +239,8 @@ def block_pubs(args, pubs, indent):
             out.append(render_pub(p, indent + 2))
         out.append(" " * indent + "</ol>")
         return "\n".join(out)
-    if "selected" in args:                    # the CV's flagship list, newest first
-        lines = [" " * indent + '<ol class="pubs">'] + [render_pub(p, indent + 2) for p in pubs if p["selected"]]
+    if "selected" in args:                    # the CV's flagship list, newest first, as cards
+        lines = [" " * indent + '<ol class="paper-cards">'] + [render_card(p, indent + 2) for p in pubs if p["selected"]]
         return "\n".join(lines + [" " * indent + "</ol>"])
     topic, limit = args.get("topic"), int(args.get("limit", 5))
     chosen = [p for p in pubs if topic in p["topics"] and p["flagged"]][:limit]
@@ -211,6 +248,51 @@ def block_pubs(args, pubs, indent):
         sys.exit(f"no selected/featured papers for topic {topic!r}")
     lines = [" " * indent + '<ol class="pubs">'] + [render_pub(p, indent + 2) for p in chosen]
     return "\n".join(lines + [" " * indent + "</ol>"])
+
+
+def ld_work(p):
+    """One paper as schema.org: a ScholarlyArticle, a Book or a Chapter, with what the bib gives."""
+    me = {"@type": "Person", "@id": ORIGIN + "/#person", "name": "Juan A. Fraire"}
+    work = {"@type": {"book": "Book", "incollection": "Chapter", "inbook": "Chapter"}.get(p["bibtype"], "ScholarlyArticle"),
+            "name": p["title"],
+            "author": [me if n.endswith("Fraire") else {"@type": "Person", "name": n} for n in p["authors"]],
+            "datePublished": str(p["year"])}
+    if work["@type"] == "Book":
+        work["publisher"] = {"@type": "Organization", "name": p["venue"]}
+        if p["isbn"]:
+            work["isbn"] = p["isbn"]
+    elif p["kind"] == "journal":
+        work["isPartOf"] = {"@type": "Periodical", "name": p["venue"]}
+    if p["link"]:
+        work["url"] = p["link"]
+    if p["doi"] and "https://doi.org/" + p["doi"] != p["link"]:   # e.g. weburl points elsewhere
+        work["sameAs"] = "https://doi.org/" + p["doi"]
+    return work
+
+
+def block_ld(args, pubs, indent):
+    """JSON-LD for the publications page: a collection whose main entity is the list of selected papers."""
+    pad = " " * indent
+    items = [json.dumps({"@type": "ListItem", "position": k, "item": ld_work(p)}, ensure_ascii=False)
+             for k, p in enumerate((p for p in pubs if p["selected"]), 1)]
+    page = ORIGIN + "/publications/"
+    head = [pad + '<script type="application/ld+json">', pad + "{",
+            f'{pad}  "@context": "https://schema.org",',
+            f'{pad}  "@type": "CollectionPage",',
+            f'{pad}  "@id": "{page}#webpage",',
+            f'{pad}  "url": "{page}",',
+            f'{pad}  "name": "Publications of Juan A. Fraire",',
+            f'{pad}  "inLanguage": "en",',
+            f'{pad}  "isPartOf": {{"@id": "{ORIGIN}/#website"}},',
+            f'{pad}  "about": {{"@id": "{ORIGIN}/#person"}},',
+            f'{pad}  "mainEntity": {{',
+            f'{pad}    "@type": "ItemList",',
+            f'{pad}    "name": "Selected papers",',
+            f'{pad}    "numberOfItems": {len(items)},',
+            f'{pad}    "itemListElement": [']
+    body = [pad + "      " + item.replace("</", "<\\/") + ("," if k < len(items) - 1 else "")
+            for k, item in enumerate(items)]
+    return "\n".join(head + body + [pad + "    ]", pad + "  }", pad + "}", pad + "</script>"])
 
 
 # ---------------------------------------------------------------- news
@@ -409,6 +491,8 @@ def main():
             indent, args = len(m.group("indent").expandtabs()), parse_args(m.group("args"))
             if m.group("name") == "pubs":
                 body = block_pubs(args, pubs, indent)
+            elif m.group("name") == "ld":
+                body = block_ld(args, pubs, indent)
             elif m.group("name") == "news":
                 body = block_news(args, news, indent)
             else:

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Software and projects · Juan A. Fraire</title>
+  <title>Software and projects for space networks · Juan A. Fraire</title>
   <meta name="description" content="Tools and projects of Juan A. Fraire: contact graph routing in NASA's ION and HDTN, DTN and satellite-IoT simulators, the Contact Plan Designer, and more.">
   <link rel="canonical" href="https://juanfraire.space/software/">
   <meta name="author" content="Juan A. Fraire">
@@ -21,6 +21,31 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="The four research topics of Juan A. Fraire: delay-tolerant networks, direct-to-satellite IoT, mega-constellations and orbital computing">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://juanfraire.space/software/#webpage",
+    "url": "https://juanfraire.space/software/",
+    "name": "Software and projects",
+    "inLanguage": "en",
+    "isPartOf": {"@id": "https://juanfraire.space/#website"},
+    "about": {"@id": "https://juanfraire.space/#person"},
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Open-source tools for space networks",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "item": {"@type": "SoftwareSourceCode", "name": "Contact Plan Designer", "description": "Works out when spacecraft and ground stations can talk to each other and turns it into the contact plans that DTN routing needs.", "url": "https://contact-plan-designer.space/", "codeRepository": "https://gitlab.inria.fr/jfraire/contact-plan-designer", "license": "https://spdx.org/licenses/MIT.html"}},
+        {"@type": "ListItem", "position": 2, "item": {"@type": "SoftwareSourceCode", "name": "DtnSim", "description": "A simulator for studying delay-tolerant networks: routing, forwarding, scheduling and contact planning.", "codeRepository": "https://gitlab.inria.fr/jfraire/dtnsim"}},
+        {"@type": "ListItem", "position": 3, "item": {"@type": "SoftwareSourceCode", "name": "pyCGR", "description": "Contact graph routing in Python, adopted in NASA's HDTN.", "codeRepository": "https://bitbucket.org/juanfraire/pycgr", "programmingLanguage": "Python"}},
+        {"@type": "ListItem", "position": 4, "item": {"@type": "SoftwareSourceCode", "name": "A-SABR", "description": "An adaptive library for schedule-aware bundle routing, the family of algorithms behind contact graph routing.", "codeRepository": "https://github.com/DTN-MTP/A-SABR"}},
+        {"@type": "ListItem", "position": 5, "item": {"@type": "SoftwareSourceCode", "name": "FLoRaSat", "description": "An OMNeT++ simulator for end-to-end satellite IoT, with LoRa and LoRaWAN adapted to links with satellites.", "codeRepository": "https://gitlab.inria.fr/jfraire/florasat", "runtimePlatform": "OMNeT++"}},
+        {"@type": "ListItem", "position": 6, "item": {"@type": "SoftwareSourceCode", "name": "ESpaS", "description": "Open-source estimator of the carbon footprint of computing in orbit, from manufacturing through launch to re-entry.", "codeRepository": "https://gitlab.com/sustainable-computing-systems/espas", "license": ["https://spdx.org/licenses/MIT.html", "https://spdx.org/licenses/Apache-2.0.html"]}},
+        {"@type": "ListItem", "position": 7, "item": {"@type": "SoftwareSourceCode", "name": "MeteorNet", "description": "A continuous-time emulator for edge computing on low-Earth-orbit constellations.", "codeRepository": "https://gitlab.com/camilo.rojas/meteornet"}}
+      ]
+    }
+  }
+  </script>
   <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
@@ -83,30 +108,37 @@
       </div>
       <ul class="tool-list">
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/ipn-v.webp" type="image/webp"><img src="/assets/img/software/ipn-v.jpg" width="720" height="450" alt="IPN-V view: a cratered planet in the foreground and Earth behind it, crossed by glowing links between spacecraft" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Tool</p>
           <h3><a href="https://ipnv.net/">IPN-V</a></h3>
           <p>The Interplanetary Network Visualiser: a 3D view of orbiters, landers and ground stations across the Solar System, with their contacts and light-time delays. The Mars network on the home page comes from one of its scenarios. Demo on request.</p>
         </li>
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/contact-plan-designer.webp" type="image/webp"><img src="/assets/img/software/contact-plan-designer.jpg" width="720" height="450" alt="Contact Plan Designer: Earth and the tracks of two orbiters in the 3D view, above a timeline of scheduled contacts" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Tool · MIT licence</p>
           <h3><a href="https://contact-plan-designer.space/">Contact Plan Designer</a></h3>
           <p>Works out when spacecraft and ground stations can talk to each other and turns it into the contact plans that DTN routing needs. Runs in the browser and as a plug-in for STK.</p>
         </li>
         <li>
+          <div class="fig nofig" aria-hidden="true"><b>DtnSim</b><small>01 · Delay-tolerant networks</small></div>
           <p class="meta">Tool · open source</p>
           <h3><a href="https://gitlab.inria.fr/jfraire/dtnsim">DtnSim</a></h3>
           <p>A simulator for studying delay-tolerant networks: routing, forwarding, scheduling and contact planning.</p>
         </li>
         <li>
+          <div class="fig nofig" aria-hidden="true"><b>pyCGR</b><small>01 · Delay-tolerant networks</small></div>
           <p class="meta">Library · open source</p>
           <h3><a href="https://bitbucket.org/juanfraire/pycgr">pyCGR</a></h3>
           <p>Contact graph routing in Python, adopted in NASA's HDTN.</p>
         </li>
         <li>
+          <figure class="fig"><picture><source srcset="/assets/img/software/a-sabr.webp" type="image/webp"><img src="/assets/img/software/a-sabr.jpg" width="720" height="336" alt="A-SABR example: a contact plan spanning a home region and two neighbouring regions, with the links between their nodes" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Library · open source</p>
           <h3><a href="https://github.com/DTN-MTP/A-SABR">A-SABR</a></h3>
           <p>An adaptive library for schedule-aware bundle routing, the family of algorithms behind contact graph routing.</p>
         </li>
+      </ul>
+      <ul class="tool-list">
         <li>
           <p class="meta">Project · EU MSCA RISE · 2021–2026</p>
           <h3><a href="https://mission-project.eu/">MISSION</a></h3>
@@ -137,10 +169,13 @@
       </div>
       <ul class="tool-list">
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/florasat.webp" type="image/webp"><img src="/assets/img/software/florasat.jpg" width="720" height="450" alt="FLoRaSat in OMNeT++: a grid of LoRa gateway satellites over a world map, with a ground station and a network server" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Tool · open source</p>
           <h3><a href="https://gitlab.inria.fr/jfraire/florasat">FLoRaSat</a></h3>
           <p>An OMNeT++ simulator for end-to-end satellite IoT, with LoRa and LoRaWAN adapted to links with satellites. Now in its second version.</p>
         </li>
+      </ul>
+      <ul class="tool-list">
         <li>
           <p class="meta">Project · ANR PRCE · 2023–2027</p>
           <h3><a href="https://stereo-project.space/">STEREO</a></h3>
@@ -194,16 +229,19 @@
       </div>
       <ul class="tool-list">
         <li>
+          <figure class="fig"><picture><source srcset="/assets/img/software/espas.webp" type="image/webp"><img src="/assets/img/software/espas.jpg" width="720" height="282" alt="ESpaS logo: a rocket and a leaf" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Tool · MIT and Apache-2.0</p>
           <h3><a href="https://gitlab.com/sustainable-computing-systems/espas">ESpaS</a></h3>
           <p>Open-source estimator of the carbon footprint of computing in orbit, from manufacturing through launch to re-entry, built at Saarland University.</p>
         </li>
         <li>
+          <figure class="fig"><picture><source srcset="/assets/img/software/meteornet.webp" type="image/webp"><img src="/assets/img/software/meteornet.jpg" width="720" height="290" alt="MeteorNet cloud models: ground devices reach a satellite, whose traffic goes either to a cloud in space or to a cloud on the ground" loading="lazy" decoding="async"></picture><figcaption>Figure © 2025 IEEE</figcaption></figure>
           <p class="meta">Tool · open source</p>
           <h3><a href="https://gitlab.com/camilo.rojas/meteornet">MeteorNet</a></h3>
           <p>A continuous-time emulator for edge computing on low-Earth-orbit constellations, used to test where servers should sit and how tasks should move between orbit and ground.</p>
         </li>
         <li>
+          <div class="fig nofig" aria-hidden="true"><b>FOUNDATION</b><small>04 · Orbital computing</small></div>
           <p class="meta">Video</p>
           <h3><a href="https://youtu.be/QxZvYLTl7Bs">FOUNDATION</a></h3>
           <p>Computing without repair: what it takes to keep hardware dependable for years when no one can reach it. A 30-second teaser.</p>
@@ -237,7 +275,7 @@
       </div>
       <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
       <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
-      <p>This site sets no cookies and does not track you.</p>
+      <p>Planet textures in the IPN-V picture by <a href="https://www.solarsystemscope.com/textures/">Solar System Scope</a> (CC BY 4.0). This site sets no cookies and does not track you.</p>
     </div>
   </footer>
 </body>

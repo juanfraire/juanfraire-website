@@ -22,7 +22,14 @@ visitors, low-power phones and browsers without WebGL get.
 | Other news | a file in `data/news/` (see below) | `python3 scripts/generate.py` |
 | Images, textures, data from other projects | sources listed in `scripts/make_assets.py` | `python3 scripts/make_assets.py` |
 | Photos next to "About me" | crop boxes in `ABOUT_PHOTOS` (`make_assets.py`), originals in the folder `about-photos` of `sources.local.json` | `make_assets.py`, then the photo list in `index.html` and `about/index.html` (alt text) |
+| Figure on a selected paper's card | `PAPER_FIGURES` in `make_assets.py` (bib key, source, crop, alt text, credit line) | `make_assets.py`, then `generate.py` |
+| Picture on a tool card (software page) | `SOFTWARE_SHOTS` in `make_assets.py` | `make_assets.py`, then the alt text in `software/index.html` |
 | Everything else | the HTML pages directly | nothing |
+
+The selected papers are cards with one figure each, taken from the authors' own source files and
+carrying the credit line each publisher's reuse terms ask for ("© 2022 IEEE", "CC BY 4.0"). A selected
+paper with no entry in `PAPER_FIGURES` shows its topic number instead, so the bib can change freely.
+Rendering PDF and SVG figures needs `pdftoppm` and `rsvg-convert` (`brew install poppler librsvg`).
 
 `generate.py` rewrites only the blocks between `<!-- gen:… -->` and `<!-- /gen -->`
 markers; everything else in the pages is hand-written. It also rewrites `sitemap.xml`,
@@ -38,7 +45,8 @@ Bibliography keywords that the site reads (the CV ignores the extra ones):
 - type: `book`, `journal`, `conference`, `preprint` (`arxiv` and `thesis` are not shown);
 - topic: `dtn`, `iot`, `mega`, `orbital` (zero, one or two per entry);
 - `selected` (the CV's flagship list) or `featured` (website only): shown on the topic page;
-  `selected` alone also fills "Selected papers" on the publications page (`<!-- gen:pubs selected -->`);
+  `selected` alone also fills "Selected papers" on the publications page (`<!-- gen:pubs selected -->`)
+  and its JSON-LD in `<head>` (`<!-- gen:ld selected -->`);
 - optional field `weburl`: the link the website uses instead of the DOI (the CV ignores it).
 
 ### News
@@ -105,7 +113,8 @@ assets/js/news.js           "Show more" on long news cards, arrows for the row o
 assets/js/photos.js         photo carousels: About (random order) and the press photo (colour, black and white)
 assets/img/photo/           portrait and press downloads (colour and black and white), about/ for the carousel
 assets/img/news/, assets/video/news/   media of the news posts (from add_post.py)
-data/                       IPN-V Mars network, ODC shells, sensor sites
+assets/img/pubs/, assets/img/software/   figures on the selected-paper cards, pictures on the tool cards
+data/                       IPN-V Mars network, ODC shells, sensor sites; pub-figures.json (from make_assets.py)
 data/news/                  one file per news post
 vendor/three/               three.js r170 (MIT)
 assets/fonts/               Inria Sans (SIL Open Font Licence)

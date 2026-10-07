@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+# build scripts and the raw text of the news posts (the posts themselves are on /news/)
+Disallow: /scripts/
+Disallow: /data/news/
 
 Sitemap: https://juanfraire.space/sitemap.xml

@@ -1,0 +1,65 @@
+{
+ "DBLP:journals/cn/FlorezFPR25": {
+  "img": "/assets/img/pubs/ml-satellite-iot-survey",
+  "width": 720,
+  "height": 244,
+  "alt": "Tree of the survey's topics: radio access, resource and network management, and applications and services, each split into the techniques reviewed",
+  "credit": "© 2025 Elsevier"
+ },
+ "DBLP:journals/jsac/CapezCABFFG24": {
+  "img": "/assets/img/pubs/mega-constellation-services",
+  "width": 720,
+  "height": 369,
+  "alt": "Four use cases side by side, from ground terminals using a mega-constellation today to satellites in low orbit using it as a 6G network in space",
+  "credit": "© 2024 IEEE"
+ },
+ "DBLP:journals/cm/FraireIV22": {
+  "img": "/assets/img/pubs/space-terrestrial-iot",
+  "width": 720,
+  "height": 312,
+  "alt": "Space-terrestrial integrated IoT: devices on the ground reach low-orbit and geostationary satellites directly or through gateways, up to the network server",
+  "credit": "© 2022 IEEE"
+ },
+ "DBLP:journals/taes/CapezHFG22": {
+  "img": "/assets/img/pubs/sparse-constellations",
+  "width": 720,
+  "height": 537,
+  "alt": "Bandwidth against range for sensor, LPWA, cellular and satellite networks, above a sketch of indirect and direct-to-satellite IoT",
+  "credit": "CC BY 4.0"
+ },
+ "DBLP:journals/jnca/FraireJB21": {
+  "img": "/assets/img/pubs/cgr-tutorial",
+  "width": 720,
+  "height": 199,
+  "alt": "Store, carry and forward across space: data moves from Earth to a Moon satellite and on to Mars, waiting at each node for the next contact",
+  "credit": "© 2020 Elsevier"
+ },
+ "DBLP:journals/jcnc/FraireMBFFCZV17": {
+  "img": "/assets/img/pubs/cgr-reliability",
+  "width": 720,
+  "height": 183,
+  "alt": "Contact plans are generated from orbits and radio models, distributed to the satellites, and used by contact graph routing to build route tables",
+  "credit": "CC BY 4.0"
+ },
+ "DBLP:journals/cm/FraireF15": {
+  "img": "/assets/img/pubs/contact-plan-design-challenges",
+  "width": 720,
+  "height": 259,
+  "alt": "Four ways a satellite can serve several nodes: one transponder, a power switch, two antennas, or a steerable antenna",
+  "credit": "© 2015 IEEE"
+ },
+ "DBLP:journals/adhoc/FraireF15": {
+  "img": "/assets/img/pubs/fair-contact-plans",
+  "width": 720,
+  "height": 233,
+  "alt": "Flow of the method: a contact topology becomes a fair contact plan, which three heuristics then refine into a route-improved plan",
+  "credit": "© 2014 Elsevier"
+ },
+ "ohs2026darkclouds": {
+  "img": "/assets/img/pubs/dark-clouds",
+  "width": 720,
+  "height": 293,
+  "alt": "Two heatmaps of carbon per GPU-hour against mission years and number of spares, for Starship and for Falcon 9",
+  "credit": "CC BY 4.0"
+ }
+}
