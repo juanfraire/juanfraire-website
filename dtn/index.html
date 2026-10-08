@@ -45,6 +45,7 @@
       line.innerHTML = `Right now a signal from Earth needs <b>${minutes} minutes</b> to reach Mars, and any reply needs as long again.`;
     }
   </script>
+  <script type="module" src="/assets/js/route-bundle.js"></script>
 </head>
 <body style="--accent: var(--t1)">
   <a class="skip" href="#main">Skip to content</a>
@@ -96,6 +97,82 @@
         <li><strong>Laser links at Mars.</strong> In 24-hour simulations of Mars orbiters with one laser each, relaying science data to Earth, a scheduler that plans every link around the flow of data toward Earth could send back 1.5 to 2 times as much data as an earlier automatic method. <span class="cite"><a href="https://doi.org/10.1109/wisee61249.2024.10850428">Mars laser scheduling, IEEE WiSEE 2024, Fig.&nbsp;4a</a></span></li>
         <li><strong>A network to another star.</strong> As a thought experiment, a chain of relay spacecraft could span the 39.5 light-years to the TRAPPIST-1 planetary system, each relay keeping a copy and resending whatever its hop loses. A message would arrive after 39.58 years if 1 packet in 1,000 is lost on each hop, and after 59.25 years if 1 in 5 is. With very clean links, about 15,000 small relays about a light-day apart look like a reasonable first estimate. The paper assumes hardware that does not exist yet. <span class="cite"><a href="https://doi.org/10.1109/taes.2018.2874149">Networking in Interstellar Dimensions, IEEE TAES 2019, Table&nbsp;III and §V</a></span></li>
       </ul>
+    </section>
+
+    <section class="wrap section" aria-labelledby="route-title">
+      <h2 id="route-title">Route a bundle</h2>
+      <p class="prose">My <a href="https://doi.org/10.1016/j.jnca.2020.102884">tutorial on contact graph routing</a>, written with Olivier De Jonckère and Scott Burleigh, works through one small network by hand: two ground stations, a mission control centre and two satellites, linked by contacts that open and close within one minute. Pick when a bundle of data is created, where it starts and where it should go. The tool searches the contact plan for the earliest delivery, as the tutorial does.</p>
+
+      <div class="sizer router" id="router" hidden>
+        <div class="route-controls">
+          <div class="field">
+            <p class="field-row"><label for="route-t">Bundle created at</label> <output id="route-t-out" for="route-t">t = 0 s</output></p>
+            <input id="route-t" type="range" min="0" max="59" step="1" value="0">
+          </div>
+          <div class="route-ends">
+            <label>From
+              <select id="route-from">
+                <option value="A" selected>A (ground station)</option>
+                <option value="B">B (mission control)</option>
+                <option value="C">C (ground station)</option>
+                <option value="D">D (satellite)</option>
+                <option value="E">E (satellite)</option>
+              </select>
+            </label>
+            <label>To
+              <select id="route-to">
+                <option value="A">A (ground station)</option>
+                <option value="B">B (mission control)</option>
+                <option value="C">C (ground station)</option>
+                <option value="D">D (satellite)</option>
+                <option value="E" selected>E (satellite)</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <figure class="route-figure">
+          <svg id="route-svg" viewBox="0 0 640 296" role="img" aria-labelledby="route-svg-title">
+            <title id="route-svg-title">The contact plan as a time line from 0 to 60 seconds, one row per pair of nodes, with the bundle's route drawn over it</title>
+            <g id="route-draw"></g>
+          </svg>
+          <figcaption>
+            <ul class="route-legend">
+              <li><i class="key-start" aria-hidden="true"></i>created</li>
+              <li><i class="key-fly" aria-hidden="true"></i>in flight, 1&nbsp;s per hop</li>
+              <li><i class="key-wait" aria-hidden="true"></i>stored, waiting for a contact</li>
+              <li><i class="key-done" aria-hidden="true"></i>delivered</li>
+              <li><i class="key-used" aria-hidden="true"></i>contact used</li>
+            </ul>
+          </figcaption>
+        </figure>
+        <div class="route-result">
+          <ul class="readout route-readout">
+            <li><span class="k">Delivered at</span><span class="v" id="route-arr">3 <small>s</small></span></li>
+            <li><span class="k">Waiting</span><span class="v" id="route-wait">0 <small>s</small></span></li>
+          </ul>
+          <p class="verdict" id="route-summary" aria-live="polite"></p>
+        </div>
+        <p class="note">Contacts and light times as in the tutorial's example (Fig.&nbsp;3a), with 1&nbsp;s of light time on every hop. The search returns the earliest arrival, as in its Algorithms 1 to 3; bundle size, queues and contact capacity are left out.</p>
+      </div>
+
+      <details class="numbers" id="route-plan" open>
+        <summary>The contact plan behind this</summary>
+        <p class="note">From Fig.&nbsp;3a of <a href="https://doi.org/10.1016/j.jnca.2020.102884"><i>Routing in the Space Internet: A contact graph routing tutorial</i></a> (Journal of Network and Computer Applications, 2021). A and C are ground stations, B is mission control, D and E are satellites. Each link works both ways as two one-way contacts: #1/2 is contact 1 from A to B and contact 2 from B to A. Every contact has rate 1 and a range of 1 light-second.</p>
+        <table class="route-table">
+          <thead><tr><th scope="col">Contacts</th><th scope="col">Between</th><th scope="col">Start (s)</th><th scope="col">End (s)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">#1/2</th><td>A and B</td><td>0</td><td>60</td></tr>
+            <tr><th scope="row">#3/4</th><td>B and C</td><td>0</td><td>60</td></tr>
+            <tr><th scope="row">#5/6</th><td>A and C</td><td>0</td><td>60</td></tr>
+            <tr><th scope="row">#7/8</th><td>C and D</td><td>0</td><td>30</td></tr>
+            <tr><th scope="row">#9/10</th><td>A and E</td><td>10</td><td>20</td></tr>
+            <tr><th scope="row">#11/12</th><td>D and E</td><td>0</td><td>10</td></tr>
+            <tr><th scope="row">#13/14</th><td>D and E</td><td>30</td><td>40</td></tr>
+            <tr><th scope="row">#15/16</th><td>D and E</td><td>50</td><td>60</td></tr>
+          </tbody>
+        </table>
+        <p class="note">The paper's worked example sends a bundle from A to E at t&nbsp;=&nbsp;0. Its route search (Fig.&nbsp;8) finds Route&nbsp;1, from A to C, C to D and D to E, delivered at t&nbsp;=&nbsp;3&nbsp;s with no waiting: each of the three hops adds 1&nbsp;s of light time. The direct contact from A to E opens at t&nbsp;=&nbsp;10 and would deliver at t&nbsp;=&nbsp;11&nbsp;s. Its Route&nbsp;3 keeps the bundle stored at D until the next contact to E at t&nbsp;=&nbsp;30 and delivers at t&nbsp;=&nbsp;31&nbsp;s.</p>
+      </details>
     </section>
 
     <section class="wrap section" aria-labelledby="tools-title">

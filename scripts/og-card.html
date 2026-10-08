@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Social card · Juan A. Fraire</title>
+  <!--
+    The social card (assets/img/og.jpg) and its talk-slide version, drawn live from the home
+    page's 3D tour: each panel is its own copy of assets/js/scene/scene.js, sent to one stop.
+    Open it from the preview server and capture the page at its own size (see README.md):
+
+      http://localhost:8765/scripts/og-card.html               1200 x 630, the social card
+      http://localhost:8765/scripts/og-card.html?size=slide    1920 x 1080, the talk slide
+      ?v=a|b|c    layout variant (b, the default, is the one installed as og.jpg)
+
+    For a picture that comes out the same every time, the page runs the scenes on a clock of
+    its own: each scene starts at its moment in MOMENTS below and runs for its RUN minutes, its
+    frames are stepped here instead of by the browser, and the stars are seeded. When every
+    panel has drawn, <html> gets data-ready="1" and the page stops: it is a still.
+  -->
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="importmap">{"imports": {"three": "/vendor/three/three.module.min.js"}}</script>
+  <style>
+    /* Every length is in rem: 1rem = 10px on the 1200 x 630 card, 16px on the 1920 x 1080 slide. */
+    html { font-size: 10px; background: var(--bg); }
+    html.slide { font-size: 16px; }
+    body { margin: 0; overflow: hidden; font-size: 1.7rem; line-height: 1.3; }
+    .og {
+      position: relative; width: 120rem; height: 63rem; overflow: hidden;
+      display: grid; grid-template-columns: minmax(0, 1fr) auto;
+      background: radial-gradient(90% 70% at 60% 45%, #0d1630 0%, var(--bg) 70%);
+    }
+    .slide .og { height: 67.5rem; }
+    .og canvas { max-width: none; position: absolute; }
+    .og .callouts { display: none; }               /* the tour's live labels: too small for a card */
+    .og h1, .og h2, .og p { margin: 0; }
+
+    .og-who { grid-area: who; }
+    .og-role { grid-area: role; }
+    .og-inst { grid-area: inst; }
+    .og-topics { grid-area: topics; }
+    .og-name { font-size: 4.4rem; font-weight: 700; line-height: 1.05; letter-spacing: 0.02rem; color: var(--ink-strong); }
+    .og-tagline { font-size: 2.2rem; color: var(--muted); }
+    .og-tagline strong { color: var(--ink); }
+    .og-role {
+      display: inline-flex; align-items: center; gap: 1rem; justify-self: start; align-self: center;
+      padding: 0.6rem 1.8rem 0.6rem 1.3rem; border-radius: 99rem;
+      border: 1px solid var(--line); background: var(--bar);
+      font-size: 1.9rem; color: var(--ink); white-space: nowrap;
+    }
+    .og-role img { height: 2.4rem; width: auto; }
+    .og-role em { font-style: normal; font-size: 1.35rem; letter-spacing: 0.15rem; text-transform: uppercase; color: var(--muted); margin-right: 0.3rem; }
+    .og-inst { display: flex; align-items: center; gap: 4rem; }
+    .og-inst img { width: auto; filter: brightness(0) invert(1); opacity: 0.85; }
+    .og-inst img.inria { height: 2.9rem; }
+    .og-inst img.conicet { height: 3.7rem; }
+    .og-inst img.saarland { height: 4rem; }
+
+    .og-topics { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); min-height: 0; }
+    .og-topic { position: relative; display: flex; flex-direction: column; min-height: 0; }
+    .og-view { position: relative; overflow: hidden; flex: 1; min-height: 0; background: var(--bg); }
+    .og-num { font-size: 1.5rem; letter-spacing: 0.2rem; color: var(--accent); }
+    .og-title { font-size: 2.6rem; font-weight: 700; line-height: 1.08; color: var(--accent); }
+    .og-tags {
+      align-self: flex-start; padding: 0.35rem 1.2rem; border-radius: 99rem;
+      background: rgba(7, 11, 22, 0.66); border: 1px solid var(--line);
+      font-size: 1.5rem; letter-spacing: 0.04rem; color: #dfe5f0; white-space: nowrap;
+    }
+
+    /* ---- a: the intro slide, redrawn. Titles above the panels, institutions in a row below. */
+    .og.a { padding: 3rem 4rem 2.6rem; grid-template-rows: auto minmax(0, 1fr) auto;
+      grid-template-areas: "who who" "topics topics" "inst role"; }
+    .og.a .og-who { display: flex; align-items: baseline; gap: 1.8rem; padding-bottom: 2rem; }
+    .og.a .og-role { justify-self: end; margin-top: 2rem; }
+    .og.a .og-topics { column-gap: 1.6rem; }
+    .og.a .og-label { order: -1; padding: 0 0.2rem 1rem; }
+    .og.a .og-title { min-height: 2.16em; display: flex; align-items: flex-end; }
+    .og.a .og-view { border-radius: var(--radius); border: 1px solid var(--line-soft); }
+    .og.a .og-tags { position: absolute; left: 1.1rem; bottom: 1.1rem; z-index: 1; }
+    .og.a .og-inst { padding: 2rem 0.2rem 0; }
+
+    /* ---- b: the panels run to the edges; the name sits on a band above, titles over the pictures. */
+    .og.b { grid-template-rows: auto auto minmax(0, 1fr); grid-template-areas: "who inst" "who role" "topics topics"; }
+    .og.b .og-who { display: flex; flex-direction: column; justify-content: center; gap: 0.6rem; padding: 2.6rem 4rem 2.4rem; }
+    .og.b .og-name { font-size: 4.8rem; }
+    .og.b .og-tagline { font-size: 2.3rem; }
+    .og.b .og-inst { justify-self: end; padding: 2.6rem 4rem 0 0; }
+    .og.b .og-role { justify-self: end; margin: 1.2rem 4rem 2.4rem 0; }
+    .og.b .og-topics { column-gap: 0.3rem; }
+    .og.b .og-label {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+      display: flex; flex-direction: column; gap: 0.4rem; padding: 6rem 2rem 2rem;
+      background: linear-gradient(rgba(7, 11, 22, 0), rgba(7, 11, 22, 0.8) 50%, rgba(7, 11, 22, 0.94));
+    }
+    .og.b .og-title { font-size: 2.8rem; min-height: 2.16em; margin-bottom: 0.6rem; }
+    .og.b .og-topic::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 0.3rem; background: var(--accent); z-index: 1; }
+
+    /* ---- c: name block on the left, the four topics in a 2 x 2 grid on the right. */
+    .og.c { padding: 3rem; column-gap: 3rem; grid-template-columns: 38rem minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto auto;
+      grid-template-areas: "who topics" "role topics" "inst topics"; }
+    .og.c .og-who { display: flex; flex-direction: column; gap: 1.6rem; padding: 1.4rem 0 0 1rem; }
+    .og.c .og-name { font-size: 6.4rem; }
+    .og.c .og-tagline { font-size: 2.6rem; line-height: 1.3; }
+    .og.c .og-tagline strong { display: block; }
+    .og.c .og-role { margin: 0 0 3.4rem 1rem; }
+    .og.c .og-inst { gap: 3.6rem; padding: 0 0 0.6rem 1rem; }
+    .og.c .og-topics { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+    .og.c .og-topic { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line-soft); }
+    .og.c .og-label {
+      position: absolute; left: 0; top: 0; z-index: 1; display: flex; flex-direction: column; gap: 0.3rem;
+      padding: 1.5rem 1.8rem 4rem 1.8rem; width: 100%;
+      background: linear-gradient(rgba(7, 11, 22, 0.86), rgba(7, 11, 22, 0.5) 60%, rgba(7, 11, 22, 0));
+    }
+    .og.c .og-title { font-size: 2.8rem; margin-bottom: 0.6rem; }
+  </style>
+</head>
+<body>
+  <!-- scene.js reads this element of the home page -->
+  <div class="journey" hidden></div>
+
+  <main class="og" id="card">
+    <div class="og-who">
+      <h1 class="og-name">Juan A. Fraire</h1>
+      <p class="og-tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+    </div>
+    <p class="og-role"><img src="/assets/img/logos/irtf-mark.png" alt="" width="200" height="109"><span><em>Chair</em> IRTF SPACE Research Group</span></p>
+    <p class="og-inst">
+      <img class="inria" src="/assets/img/logos/inria.svg" alt="Inria">
+      <img class="conicet" src="/assets/img/logos/conicet.svg" alt="CONICET">
+      <img class="saarland" src="/assets/img/logos/saarland.svg" alt="Saarland University">
+    </p>
+    <ol class="og-topics">
+      <li class="og-topic t1" data-stop="0">
+        <div class="og-view"><canvas></canvas></div>
+        <div class="og-label"><p class="og-num">01</p><h2 class="og-title">Delay-Tolerant Networks</h2><p class="og-tags">IPN-V · CPD</p></div>
+      </li>
+      <li class="og-topic t2" data-stop="1">
+        <div class="og-view"><canvas></canvas></div>
+        <div class="og-label"><p class="og-num">02</p><h2 class="og-title">Direct-to-Satellite IoT</h2><p class="og-tags">FLoRaSat · STEREO</p></div>
+      </li>
+      <li class="og-topic t3" data-stop="2">
+        <div class="og-view"><canvas></canvas></div>
+        <div class="og-label"><p class="og-num">03</p><h2 class="og-title">Mega-Constellations</h2><p class="og-tags">ML4OISL · D3-CONNECT</p></div>
+      </li>
+      <li class="og-topic t4" data-stop="3">
+        <div class="og-view"><canvas></canvas></div>
+        <div class="og-label"><p class="og-num">04</p><h2 class="og-title">Orbital Computing</h2><p class="og-tags">Sustainability · FOUNDATION</p></div>
+      </li>
+    </ol>
+  </main>
+
+  <script type="module">
+    const q = new URLSearchParams(location.search);
+    const VARIANT = q.get('v') || 'b';
+    const SLIDE = q.get('size') === 'slide';
+
+    // Each panel's scene starts at a moment (UTC) and then runs for some simulated minutes: the
+    // Sun, Earth's turn and Mars's direction follow the moment, while the satellites, the rovers
+    // and the node are placed by the time run since the start, as on the home page.
+    const MOMENTS = ['2026-10-08T10:00:00Z', '2026-10-08T10:00:00Z', '2026-10-08T10:00:00Z', '2026-10-08T10:00:00Z'];
+    const RUN = [60, 0, 0, 12];
+    // How far the last stop has pulled back from the node (the page's scroll through stop 04), 0 to 1.
+    let PULL = 0;
+    // Framing per panel: where the camera's target lands (fractions of the panel) and a zoom,
+    // 1 being what a canvas of the panel's own size would show on the home page.
+    const FRAMES = {
+      a: [{ x: 0.6, y: 0.44, z: 2.4 }, { x: 0.5, y: 0.5, z: 1.1 }, { x: 0.5, y: 0.5, z: 1.05 }, { x: 0.5, y: 0.61, z: 1.3 }],
+      b: [{ x: 0.62, y: 0.34, z: 2.2 }, { x: 0.5, y: 0.4, z: 1 }, { x: 0.5, y: 0.4, z: 1 }, { x: 0.5, y: 0.52, z: 1.15 }],
+      c: [{ x: 0.68, y: 0.56, z: 2.4 }, { x: 0.62, y: 0.62, z: 1.25 }, { x: 0.6, y: 0.6, z: 1.25 }, { x: 0.8, y: 0.62, z: 1.3 }],
+    }[VARIANT];
+    // For trying things out: ?t=ISO (every panel's moment), ?t0=ISO and ?r0=minutes (one panel's
+    // moment and run), ?f2=x,y,z (one panel's framing), ?pull=0.3.
+    if (q.has('pull')) PULL = Number(q.get('pull'));
+    for (let i = 0; i < 4; i++) {
+      if (q.has(`t${i}`)) MOMENTS[i] = q.get(`t${i}`);
+      if (q.has(`r${i}`)) RUN[i] = Number(q.get(`r${i}`));
+      if (q.has(`f${i}`)) { const [x, y, z] = q.get(`f${i}`).split(',').map(Number); FRAMES[i] = { x, y, z }; }
+    }
+
+    const root = document.documentElement;
+    if (SLIDE) root.classList.add('slide');
+    document.getElementById('card').classList.add(VARIANT);
+
+    // ---- a clock of our own: performance.now, requestAnimationFrame, Date.now and Math.random
+    const nativeRaf = requestAnimationFrame.bind(window);
+    const nativeDateNow = Date.now, nativeRandom = Math.random;
+    let now = 20000;                                   // ms; past the scene's 500 ms throttles
+    const queues = [0, 1, 2, 3].map(() => new Map());  // one per scene, so each can run on its own
+    let owner = 0, ids = 0;
+    performance.now = () => now;
+    window.requestAnimationFrame = (cb) => { queues[owner].set(++ids, cb); return ids; };
+    window.cancelAnimationFrame = (id) => queues.forEach((m) => m.delete(id));
+    const step = (i, n, ms = 1000 / 60) => {           // a scene frame lasts at most 0.1 s: 6 s simulated
+      owner = i;
+      for (let k = 0; k < n; k++) {
+        now += ms;
+        const due = [...queues[i].values()];
+        queues[i].clear();
+        for (const cb of due) cb(now);
+      }
+    };
+    const seeded = (seed) => () => {                   // mulberry32
+      seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const frames = (n = 1) => new Promise((r) => { const go = () => (n-- > 0 ? nativeRaf(go) : r()); go(); });
+
+    // The scene puts its camera target at the middle of a wide canvas, shifted right by a tenth,
+    // and at 29% of the height on a narrow one (760 px or less), sizing the picture by the height,
+    // or by the width over 0.72 on a tall canvas. Size the canvas and offset it in its panel so
+    // the target lands at (x, y) and the picture has the zoom asked for.
+    function frame(canvas, view, { x, y, z }) {
+      const pw = view.clientWidth, ph = view.clientHeight;
+      const size = z * Math.min(ph, pw / 0.72);
+      const fits = [false, true].map((wide) => {
+        const [tx, ty] = wide ? [0.6, 0.5] : [0.5, 0.29];
+        const wMin = Math.max(x * pw / tx, (1 - x) * pw / (1 - tx), wide ? 761 : 0);
+        const hMin = Math.max(y * ph / ty, (1 - y) * ph / (1 - ty));
+        let w, h;
+        if (hMin <= size) { h = size; w = Math.max(wMin, 0.72 * size); }    // sized by the height
+        else if (wMin <= 0.72 * size) { w = 0.72 * size; h = hMin; }         // a tall canvas, sized by the width
+        else { w = wMin; h = hMin; }                                         // as far out as it goes
+        return { w, h, tx, ty, off: Math.abs(Math.log(Math.min(h, w / 0.72) / size)), ok: wide === w > 760 };
+      }).filter((f) => f.ok).sort((a, b) => a.off - b.off);
+      const { w, h, tx, ty, off } = fits[0];
+      if (off > 0.05) console.warn('og-card: panel', canvas.closest('li').dataset.stop, 'cannot zoom out to', z);
+      Object.assign(canvas.style, { width: `${w.toFixed(1)}px`, height: `${h.toFixed(1)}px`,
+        left: `${(x * pw - tx * w).toFixed(1)}px`, top: `${(y * ph - ty * h).toFixed(1)}px` });
+    }
+
+    // The 3D is drawn at one pixel per CSS pixel whatever the screen (?pr=1.75 for finer lines), so its
+    // 1-pixel orbits and laser links keep the weight they have on the home page once a 2x capture is shrunk.
+    const PR = q.has('pr') ? Number(q.get('pr')) : 1;
+    Object.defineProperty(window, 'devicePixelRatio', { get: () => PR, configurable: true });
+
+    await document.fonts.ready;
+    const { createScene } = await import('/assets/js/scene/scene.js');
+    const topics = [...document.querySelectorAll('.og-topic')];
+    for (const [i, li] of topics.entries()) {
+      const canvas = li.querySelector('canvas');
+      frame(canvas, li.querySelector('.og-view'), FRAMES[i]);
+      const at = Date.parse(q.get('t') || MOMENTS[i]);
+      owner = i;
+      Date.now = () => at;
+      Math.random = seeded(7);
+      try {
+        const scene = await createScene(canvas, { onSlow() {} });
+        if (i === 3) scene.setProgress(PULL);
+        scene.goTo(i, true);
+        step(i, Math.round(RUN[i] * 10), 100);
+      } finally {
+        Date.now = nativeDateNow;
+        Math.random = nativeRandom;
+      }
+    }
+    await frames(2);                                   // let the scenes' resize observers run first
+    for (let i = 0; i < 4; i++) step(i, 2);
+    await Promise.all([...document.images].map((im) => im.decode().catch(() => {})));
+    await frames(2);
+    root.dataset.ready = '1';
+  </script>
+</body>
+</html>

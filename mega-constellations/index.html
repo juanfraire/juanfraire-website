@@ -37,6 +37,7 @@
   <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/mesh-route.js"></script>
 </head>
 <body style="--accent: var(--t3)">
   <a class="skip" href="#main">Skip to content</a>
@@ -89,6 +90,74 @@
         <li><strong>Finding a path through the mesh.</strong> On a model of Starlink's first shell of 1,584 satellites, each linked to its four neighbours, a routing method that first works out the fewest satellite-to-satellite hops found paths on average 158 times faster than the textbook shortest-path algorithm, and the routes it finds are nearly as short. The speed-up is in the time a computer takes to work out a route. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing, ASMS/SPSC 2022, §VI-B and §VI-C, Figs.&nbsp;5 and&nbsp;6</a></span></li>
       </ul>
       <p class="note">The last two are simulation results, under the assumptions set out in each paper. The first two come from a model built on public data from the US regulator (FCC).</p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="mesh-title">
+      <h2 id="mesh-title">Across the mesh</h2>
+      <p class="prose">A route between two cities through a model of Starlink's first shell, with the size, height and tilt used in the routing study above: 1,584 satellites in 72 planes of 22, 550&nbsp;km up and inclined 53°, each with laser links to the satellites ahead of and behind it and to one in each neighbouring plane. The route climbs to a satellite over the first city, crosses the mesh and comes down over the second. Its delay is set against a fibre laid straight along the ground between them; in glass, light travels at about two thirds of its speed in vacuum. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing, ASMS/SPSC 2022, §II-C and §VI-A</a></span></p>
+
+      <div class="sizer mesh" id="mesh" hidden>
+        <div class="mesh-controls">
+          <div class="field">
+            <label for="mesh-from">From</label>
+            <select id="mesh-from">
+              <option value="cape-town" data-ll="-33.92,18.42">Cape Town</option>
+              <option value="cordoba" data-ll="-31.42,-64.18">Córdoba</option>
+              <option value="los-angeles" data-ll="34.05,-118.24">Los Angeles</option>
+              <option value="lyon" data-ll="45.76,4.84" selected>Lyon</option>
+              <option value="nairobi" data-ll="-1.29,36.82">Nairobi</option>
+              <option value="new-york" data-ll="40.71,-74.01">New York</option>
+              <option value="reykjavik" data-ll="64.15,-21.94">Reykjavík</option>
+              <option value="singapore" data-ll="1.35,103.82">Singapore</option>
+              <option value="sydney" data-ll="-33.87,151.21">Sydney</option>
+              <option value="tokyo" data-ll="35.68,139.69">Tokyo</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="mesh-to">To</label>
+            <select id="mesh-to">
+              <option value="cape-town" data-ll="-33.92,18.42">Cape Town</option>
+              <option value="cordoba" data-ll="-31.42,-64.18" selected>Córdoba</option>
+              <option value="los-angeles" data-ll="34.05,-118.24">Los Angeles</option>
+              <option value="lyon" data-ll="45.76,4.84">Lyon</option>
+              <option value="nairobi" data-ll="-1.29,36.82">Nairobi</option>
+              <option value="new-york" data-ll="40.71,-74.01">New York</option>
+              <option value="reykjavik" data-ll="64.15,-21.94">Reykjavík</option>
+              <option value="singapore" data-ll="1.35,103.82">Singapore</option>
+              <option value="sydney" data-ll="-33.87,151.21">Sydney</option>
+              <option value="tokyo" data-ll="35.68,139.69">Tokyo</option>
+            </select>
+          </div>
+          <div class="field mesh-when">
+            <p class="field-row"><label for="mesh-time">Time</label> <output id="mesh-time-out" for="mesh-time">now</output></p>
+            <div class="mesh-clock">
+              <button type="button" class="mesh-play" id="mesh-play">Play</button>
+              <input id="mesh-time" type="range" min="0" max="5730" step="30" value="0">
+            </div>
+          </div>
+        </div>
+        <figure class="mesh-map">
+          <canvas id="mesh-map" width="1080" height="420" role="img" aria-label="World map of the route"></canvas>
+          <figcaption class="mesh-legend">
+            <span><i class="sw route" aria-hidden="true"></i>Route through the mesh</span>
+            <span><i class="sw gc" aria-hidden="true"></i>Great circle, where a straight fibre would run</span>
+            <span><i class="sw sat" aria-hidden="true"></i>The shell's 1,584 satellites</span>
+          </figcaption>
+        </figure>
+        <ul class="readout mesh-readout">
+          <li><span class="k">Laser hops</span><span class="v" id="mesh-hops">–</span></li>
+          <li><span class="k">Path length</span><span class="v" id="mesh-km">–</span></li>
+          <li class="wide">
+            <span class="k">One-way delay, light only</span>
+            <p class="mesh-row"><span>Through the mesh</span> <b id="mesh-ms">–</b></p>
+            <div class="mesh-meter" aria-hidden="true"><i id="mesh-fill-space"></i></div>
+            <p class="mesh-row"><span>Straight fibre</span> <b id="mesh-fibre">–</b></p>
+            <div class="mesh-meter fibre" aria-hidden="true"><i id="mesh-fill-fibre"></i></div>
+          </li>
+        </ul>
+        <p class="verdict" id="mesh-verdict" aria-live="polite"></p>
+      </div>
+      <p class="note">Model: one shell of circular orbits; four laser links per satellite (three on the first and last planes, which are not linked to each other); each city reaches any satellite at least 25° above its horizon, and the route is the shortest by length. Light only: no queues, no ground network and no processing on board, which the routing study compares to about 1,000&nbsp;km of light travel, 3.3&nbsp;ms, per hop (§IV-B). Real cables run longer than the great circle.</p>
     </section>
 
     <section class="wrap section" aria-labelledby="tools-title">

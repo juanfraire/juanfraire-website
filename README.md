@@ -23,22 +23,37 @@ visitors, low-power phones and browsers without WebGL get.
 | Images, textures, data from other projects | sources listed in `scripts/make_assets.py` | `python3 scripts/make_assets.py` |
 | Photos next to "About me" | crop boxes in `ABOUT_PHOTOS` (`make_assets.py`), originals in the folder `about-photos` of `sources.local.json` | `make_assets.py`, then the photo list in `index.html` and `about/index.html` (alt text) |
 | Figure on a selected paper's card | `PAPER_FIGURES` in `make_assets.py` (bib key, source, crop, alt text, credit line) | `make_assets.py`, then `generate.py` |
-| Picture on a tool card (software page) | `SOFTWARE_SHOTS` in `make_assets.py` | `make_assets.py`, then the alt text in `software/index.html` |
+| Picture or logo on a tool or project card (software page) | `SOFTWARE_SHOTS` in `make_assets.py` | `make_assets.py`, then the alt text in `software/index.html` |
 | Everything else | the HTML pages directly | nothing |
 
-The selected papers are cards with one figure each, taken from the authors' own source files and
-carrying the credit line each publisher's reuse terms ask for ("© 2022 IEEE", "CC BY 4.0"). A selected
-paper with no entry in `PAPER_FIGURES` shows its topic number instead, so the bib can change freely.
-Rendering PDF and SVG figures needs `pdftoppm` and `rsvg-convert` (`brew install poppler librsvg`).
+The selected papers are cards with one figure each (the book shows its cover), taken from the
+authors' own source files and carrying the credit line each publisher's reuse terms ask for
+("© 2022 IEEE", "CC BY 4.0"). A selected paper with no entry in `PAPER_FIGURES` shows its topic
+number instead, so the bib can change freely. Rendering PDF and SVG figures needs `pdftoppm` and
+`rsvg-convert` (`brew install poppler librsvg`); the ADHOC-NOW 2019 figure is read from the authors'
+version on HAL, so that one entry needs a network connection.
 
 `generate.py` rewrites only the blocks between `<!-- gen:… -->` and `<!-- /gen -->`
 markers; everything else in the pages is hand-written. It also rewrites `sitemap.xml`,
 with each page's last commit date as `lastmod`, so run it once more just before committing.
 
-`make_assets.py` also builds the social cards (`assets/img/og.jpg`, `assets/img/og/og-*.jpg`,
+`make_assets.py` also builds the topic pages' social cards (`assets/img/og/og-*.jpg`,
 1200 × 630) and the touch icons (`apple-touch-icon.png`, `favicon.ico`). A few of its sources
 are kept out of this public repo: their paths live in `scripts/sources.local.json`, which git
 ignores. Keep it that way; never name those sources in a committed file.
+
+The home page's social card, `assets/img/og.jpg`, is drawn from the 3D tour by
+`scripts/og-card.html`: one copy of the scene per stop, on a clock of its own, so it comes out
+the same every time (moments and framing are at the top of its script). Open it in the preview
+server to look at it; `?size=slide` gives the same design at 1920 × 1080 for talks (capture it
+with `--window-size=1920,1080`). To remake the card:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
+  --window-size=1200,630 --force-device-scale-factor=2 --virtual-time-budget=60000 \
+  --screenshot=/tmp/og-card.png "http://localhost:8765/scripts/og-card.html"
+python3 -c "from PIL import Image; Image.open('/tmp/og-card.png').convert('RGB').resize((1200, 630), Image.LANCZOS).save('assets/img/og.jpg', quality=84, optimize=True)"
+```
 
 Bibliography keywords that the site reads (the CV ignores the extra ones):
 
@@ -92,6 +107,9 @@ while further scrolling pulls the camera back from the node to the dawn-dusk she
 Each stop has one live callout over the canvas (a Mars rover, an IoT sensor, the
 satellite above Lyon, the compute node). They are created by `scene.js` and do not
 exist in the slide layout, which `?static` forces (e.g. `http://localhost:8765/?static`).
+During the tour the header slides away; past it, the header comes back as a slim bar with the
+menu whenever the visitor scrolls up or reaches the end of the page (`home.js`, classes
+`is-hidden` and `is-docked`).
 
 ## Files
 
@@ -109,16 +127,20 @@ assets/js/home.js           landing behaviour (live Mars light-time, tour, fallb
 assets/js/astro.js          low-precision ephemerides (Sun, Earth, Mars, sidereal time)
 assets/js/scene/            the three.js tour and its orbit helpers
 assets/js/node-sizer.js     the node sizer on the orbital-computing page
+assets/js/route-bundle.js   "Route a bundle" on the DTN page (the CGR tutorial's contact plan)
+assets/js/next-pass.js      "Wait for the next pass" on the satellite-IoT page (TAES 2022 designs)
+assets/js/mesh-route.js     "Across the mesh" on the mega-constellations page (the tour's laser shell)
 assets/js/news.js           "Show more" on long news cards, arrows for the row of cards
 assets/js/photos.js         photo carousels: About (random order) and the press photo (colour, black and white)
 assets/img/photo/           portrait and press downloads (colour and black and white), about/ for the carousel
 assets/img/news/, assets/video/news/   media of the news posts (from add_post.py)
-assets/img/pubs/, assets/img/software/   figures on the selected-paper cards, pictures on the tool cards
+assets/img/pubs/, assets/img/software/   figures on the selected-paper cards, pictures and logos on the tool and project cards
 data/                       IPN-V Mars network, ODC shells, sensor sites; pub-figures.json (from make_assets.py)
 data/news/                  one file per news post
 vendor/three/               three.js r170 (MIT)
 assets/fonts/               Inria Sans (SIL Open Font Licence)
-scripts/                    serve.py, generate.py, add_post.py, make_assets.py (+ git-ignored sources.local.json)
+scripts/                    serve.py, generate.py, add_post.py, make_assets.py (+ git-ignored sources.local.json),
+                            og-card.html (the home page's social card), pycgr-figure/ (the pyCGR picture)
 sitemap.xml, robots.txt     written by generate.py / by hand
 CNAME                       juanfraire.space
 ```
@@ -129,4 +151,8 @@ Planet textures: Solar System Scope, CC BY 4.0. Mars network: IPN-V scenario
 `dsn-network`. Orbital data-centre shells and hero render: Blender scenes with NASA
 Blue Marble and Black Marble imagery. Numbers on the
 orbital-computing page: *Dark Clouds Rising in Low-Earth Orbit* (LEO-NET 2026) and
-*Dirty Bits in Low-Earth Orbit*.
+*Dirty Bits in Low-Earth Orbit*. The tools on the other topic pages: the contact plan of
+*Routing in the Space Internet: A contact graph routing tutorial* (JNCA 2021), the designs of
+*Sparse Satellite Constellation Design for Global and Regional Direct-to-Satellite IoT Services*
+(TAES 2022), and the shell of *Distributed On-Demand Routing for LEO Mega-Constellations: A
+Starlink Case Study* (ASMS/SPSC 2022).

@@ -48,8 +48,24 @@ function tour() {
     const r = tall.getBoundingClientRect(), span = r.height - innerHeight;
     scene.setProgress(span > 0 ? -r.top / span : 0);
   };
-  const onScroll = () => { if (hint) hint.classList.toggle('is-gone', scrollY > 40); progress(); };
+
+  // The header shows at the top of the page and keeps out of the way during the tour. Past the
+  // tour it comes back as a slim bar whenever the visitor scrolls up or reaches the end of the page.
+  const head = document.querySelector('.site-head');
+  let lastY = scrollY;
+  const dock = () => {
+    const y = scrollY, past = journey.getBoundingClientRect().bottom < innerHeight / 2;
+    const end = y + innerHeight >= document.documentElement.scrollHeight - 4;
+    head.classList.toggle('is-docked', past);
+    if (y < 8) head.classList.remove('is-hidden');
+    else if (!past) head.classList.add('is-hidden');
+    else if (y < lastY - 2 || end) head.classList.remove('is-hidden');
+    else if (y > lastY + 2) head.classList.add('is-hidden');
+    lastY = y;
+  };
+  const onScroll = () => { if (hint) hint.classList.toggle('is-gone', scrollY > 40); progress(); dock(); };
   addEventListener('scroll', onScroll, { passive: true });
+  dock();
 
   const fallback = (reason) => {
     if (reason) console.info('3D tour off:', reason);
@@ -59,6 +75,7 @@ function tour() {
     seen.disconnect();
     journey.classList.remove('in-view');
     removeEventListener('scroll', onScroll);
+    head.classList.remove('is-hidden', 'is-docked');
     stops.forEach((s) => s.classList.remove('is-active'));
     for (const key of ['iot', 'mega']) { const el = live(key); if (el) el.hidden = true; }
     root.classList.remove('scene', 'scene-ready');

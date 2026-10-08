@@ -1,4 +1,25 @@
 {
+ "fraire2017delayBook": {
+  "img": "/assets/img/pubs/delay-tolerant-satellite-networks-book",
+  "width": 265,
+  "height": 400,
+  "alt": "Front cover of Delay-Tolerant Satellite Networks by Juan A. Fraire, Jorge M. Finochietto and Scott C. Burleigh: teal rings on a dark ground",
+  "credit": "Cover © 2018 Artech House"
+ },
+ "DBLP:conf/asms-spsc/StockFH22": {
+  "img": "/assets/img/pubs/starlink-on-demand-routing",
+  "width": 720,
+  "height": 218,
+  "alt": "Ground tracks of a Walker constellation over latitude and longitude, with two example routes stepping from satellite to satellite along and across orbital planes",
+  "credit": "© 2022 IEEE"
+ },
+ "DBLP:conf/adhoc-now/FraireCA19": {
+  "img": "/assets/img/pubs/direct-to-satellite-iot-survey",
+  "width": 720,
+  "height": 249,
+  "alt": "Bandwidth against range for personal, cellular, LPWA and satellite networks, with direct-to-satellite IoT in the gap between LPWA and satellite networks",
+  "credit": "© 2019 Springer Nature Switzerland AG"
+ },
  "DBLP:journals/cn/FlorezFPR25": {
   "img": "/assets/img/pubs/ml-satellite-iot-survey",
   "width": 720,

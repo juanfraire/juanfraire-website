@@ -37,6 +37,7 @@
   <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/next-pass.js"></script>
 </head>
 <body style="--accent: var(--t2)">
   <a class="skip" href="#main">Skip to content</a>
@@ -88,6 +89,91 @@
         <li><strong>Sensors that know the satellite's timetable.</strong> When devices use the satellite's predictable path to pick, moment by moment, the fastest radio setting that will still reach it, one pass can serve twice as many devices: from 250 to 500 in a simulated pass, with 60% of messages getting through on average. The comparison is with devices that always use the slowest, most robust setting. <span class="cite"><a href="https://doi.org/10.1109/access.2022.3189647">Uplink Policies, IEEE Access 2022, §V-A, Fig.&nbsp;4</a></span></li>
       </ul>
       <p class="note">These are simulation results, under the assumptions set out in each paper.</p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="pass-title">
+      <h2 id="pass-title">Wait for the next pass</h2>
+      <p class="prose">A sensor can only send while a satellite is in view. With a sparse constellation that happens a few minutes at a time, and in between the sensor sleeps and keeps its readings. How long it waits depends on where it is and on the constellation, here one of those designed in <a href="https://doi.org/10.1109/taes.2022.3185970">our study</a>.</p>
+
+      <div class="sizer next-pass" id="next-pass" hidden>
+        <figure class="sizer-figure">
+          <div class="np-map" id="np-map" tabindex="0" role="application" aria-label="Map of the Earth: click or tap to put the sensor anywhere, or move it with the arrow keys" aria-describedby="np-map-note">
+            <svg viewBox="0 0 360 180" aria-hidden="true" focusable="false">
+              <image id="np-earth" width="360" height="180" preserveAspectRatio="none"/>
+              <rect class="np-dim" width="360" height="180"/>
+              <rect class="np-beyond" id="np-north" x="0" y="0" width="360" height="0"/>
+              <rect class="np-beyond" id="np-south" x="0" y="180" width="360" height="0"/>
+              <g id="np-draw">
+                <path class="np-circle" id="np-circle" d="M0 0"/>
+                <path class="np-tracks" id="np-tracks" d="M0 0"/>
+              </g>
+              <use href="#np-draw" x="-360"/>
+              <use href="#np-draw" x="360"/>
+              <g id="np-pin"><circle class="np-pulse" r="3"/><circle class="np-dot" r="2.2"/></g>
+            </svg>
+          </div>
+          <figcaption class="note" id="np-map-note">Dashed circle: where a satellite 700&nbsp;km up is at least 5° above the horizon. Green: the satellites' tracks while in view. Shaded: latitudes this constellation never reaches. Tap the map to move the sensor, or focus it and use the arrow keys. Earth: <a href="https://www.solarsystemscope.com/textures/">Solar System Scope</a> (CC BY 4.0).</figcaption>
+        </figure>
+        <div>
+          <div class="field">
+            <label class="np-label" for="np-place">Place</label>
+            <select id="np-place">
+              <option value="lyon" selected>Lyon, France</option>
+              <option value="svalbard">Longyearbyen, Svalbard</option>
+              <option value="nuuk">Nuuk, Greenland</option>
+              <option value="agadez">Agadez, Niger</option>
+              <option value="nairobi">Nairobi, Kenya</option>
+              <option value="capetown">Cape Town, South Africa</option>
+              <option value="manaus">Manaus, Brazil</option>
+              <option value="cordoba">Córdoba, Argentina</option>
+              <option value="alice">Alice Springs, Australia</option>
+              <option value="pacific">A buoy in the Pacific, 0° 140° W</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="np-label" for="np-design">Constellation, and the region it was designed for</label>
+            <select id="np-design">
+              <option value="world-5">Whole planet: 5 satellites</option>
+              <option value="africa-12">Africa: 12 satellites</option>
+              <option value="africa-4">Africa: 4 satellites</option>
+              <option value="africa-3">Africa: 3 satellites</option>
+              <option value="europe-12">Europe: 12 satellites</option>
+              <option value="europe-4">Europe: 4 satellites</option>
+              <option value="europe-3" selected>Europe: 3 satellites</option>
+              <option value="greenland-2">Greenland: 2 satellites</option>
+            </select>
+          </div>
+          <p class="np-about" id="np-about"></p>
+        </div>
+        <div class="np-day">
+          <p class="kicker" id="np-day-title">24 hours</p>
+          <div class="np-wait-row" aria-hidden="true"><div class="np-wait" id="np-wait"></div><span class="np-wait-label" id="np-wait-label"></span></div>
+          <div class="np-track" id="np-track" role="img" aria-label="Passes during the day"></div>
+          <div class="np-hours" aria-hidden="true"><span>0 h</span><span>6 h</span><span>12 h</span><span>18 h</span><span>24 h</span></div>
+          <p class="np-legend" aria-hidden="true"><span class="np-key-pass">a satellite in view</span><span class="np-key-wait">longest wait</span></p>
+        </div>
+        <p class="verdict np-summary" id="np-summary" aria-live="polite"></p>
+        <p class="note np-assume">Circular orbits at 700&nbsp;km, planes and satellites evenly spaced, Earth's rotation included; a satellite counts as in view from 5° above the horizon, as in the paper. No orbital perturbations and no link budget. Hour 0 is an arbitrary start.</p>
+      </div>
+
+      <details class="numbers" id="np-numbers" open>
+        <summary>The constellations as published</summary>
+        <p class="note">From <a href="https://doi.org/10.1109/taes.2022.3185970"><i>Sparse Satellite Constellation Design for Global and Regional Direct-to-Satellite IoT Services</i></a> (IEEE TAES 2022): for each region and each longest wait that devices can accept, the smallest constellation the design algorithm found. All orbits are circular and 700&nbsp;km up, and a satellite counts as in view from 5° above the horizon (§V-A).</p>
+        <table class="np-table">
+          <thead><tr><th scope="col">Region, longest wait allowed</th><th scope="col">Smallest constellation found</th><th scope="col">Source</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Whole planet to 80° N and S, 186 min</th><td>5 satellites in 5 planes at 62.9°</td><td>Fig. 7, Table III</td></tr>
+            <tr><th scope="row">Africa, 60 min</th><td>12 satellites in 4 planes at 25°</td><td>Fig. 12</td></tr>
+            <tr><th scope="row">Africa, 120 min</th><td>4 satellites in 4 planes at 25°</td><td>Fig. 12</td></tr>
+            <tr><th scope="row">Africa, 186 min</th><td>3 satellites in 3 planes at 25°</td><td>Fig. 12</td></tr>
+            <tr><th scope="row">Europe, 60 min</th><td>12 satellites in 4 planes at 65°</td><td>Fig. 12</td></tr>
+            <tr><th scope="row">Europe, 120 min</th><td>4 satellites in 4 planes at 65°</td><td>Fig. 12</td></tr>
+            <tr><th scope="row">Europe, 186 min</th><td>3 satellites in 3 planes at 85°</td><td>Fig. 12</td></tr>
+            <tr><th scope="row">Brazil, 120 min</th><td>3 satellites in 3 planes at 25°; longest wait found, 97 min</td><td>Table V</td></tr>
+            <tr><th scope="row">Greenland, 120 min</th><td>2 satellites in 2 planes at 70°; longest wait found, 93 min</td><td>Table V</td></tr>
+          </tbody>
+        </table>
+      </details>
     </section>
 
     <section class="wrap section" aria-labelledby="tools-title">

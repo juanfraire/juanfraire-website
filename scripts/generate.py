@@ -210,9 +210,10 @@ def render_card(p, indent):
     num, cls, label = TOPIC_TILE.get(p["topics"][0] if p["topics"] else "", ("", "", TYPE_LABEL[p["kind"]]))
     f, pad = FIGURES.get(p["key"]), " " * indent
     if f:
+        credit = f["credit"] if f["credit"].startswith("Cover") else f'Figure {f["credit"]}'   # a book's cover
         fig = (f'<figure class="fig"><picture><source srcset="{f["img"]}.webp" type="image/webp">'
                f'<img src="{f["img"]}.jpg" width="{f["width"]}" height="{f["height"]}" alt="{escape(f["alt"])}" '
-               f'loading="lazy" decoding="async"></picture><figcaption>Figure {escape(f["credit"])}</figcaption></figure>')
+               f'loading="lazy" decoding="async"></picture><figcaption>{escape(credit)}</figcaption></figure>')
     else:
         fig = f'<div class="fig nofig" aria-hidden="true"><b>{num}</b><small>{label}</small></div>'
     return (f'{pad}<li class="paper-card {cls}">\n'

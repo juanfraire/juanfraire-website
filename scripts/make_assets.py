@@ -24,6 +24,7 @@ import random
 import shutil
 import subprocess
 import tempfile
+import urllib.request
 
 import numpy as np
 from PIL import Image, ImageChops, ImageCms, ImageDraw, ImageOps
@@ -91,7 +92,6 @@ ABOUT_PHOTOS = {
     "blaster": ("pic-9-gun.jpg", (0, 0, 1242)),
     "vader": ("pic-10-vader.jpg", (810, 0, 1324)),
 }
-OG_SOURCE = CV / "presentation-slide/intro-slide.png"
 FAVICON_BG = (7, 11, 22)                                  # --bg, also the favicon's tile
 
 # Solar System Scope 2k maps (CC BY 4.0), as bundled with Contact Plan Designer.
@@ -104,14 +104,27 @@ TEXTURES = {
 IPNV_DSN_CSV = CODE / "ipn-v/ipn-d/Assets/Data/input/network/dsn-network.csv"
 
 # One figure per paper for the cards under "Selected papers": bib key -> (output name, source,
-# crop, alt text, credit). Sources are the authors' own files (LaTeX figures, or the redrawn copies
-# in the HDR thesis); a PDF crop is (page, x0, y0, x1, y1) in PDF points. The credit follows each
-# publisher's author-reuse terms: IEEE asks for "© year IEEE" with every reprinted graphic, and
-# open-access papers name their licence. Figures whose rights are unclear are left out on purpose
-# (the Artech book, the Springer ADHOC-NOW paper, figures with third-party icons or renders);
-# scripts/generate.py gives a paper without an entry a topic tile instead.
+# crop, alt text, credit). Sources are the authors' own files (LaTeX figures, the redrawn copies
+# in the HDR thesis, or the authors' version on HAL); a PDF crop is (page, x0, y0, x1, y1) in PDF
+# points. The credit follows each publisher's author-reuse terms: IEEE asks for "© year IEEE" with
+# every reprinted graphic, open-access papers name their licence, and Springer's LNCS consent to
+# publish (2018-19) lets authors reuse illustrations in later work. The book shows its cover.
+# Figures with third-party icons or renders are left out; scripts/generate.py gives a paper
+# without an entry a topic tile instead.
 HDR = DRIVE / "inria/0000-oo-old/2023-11-hdr/[Juan] HDR/img"
 PAPER_FIGURES = {
+    "fraire2017delayBook": ("delay-tolerant-satellite-networks-book", DRIVE / "unc/0000-00-papers/2018-Artech-book-cover.pdf",
+        (1, 64, 72, 531, 776),
+        "Front cover of Delay-Tolerant Satellite Networks by Juan A. Fraire, Jorge M. Finochietto "
+        "and Scott C. Burleigh: teal rings on a dark ground", "Cover © 2018 Artech House"),
+    "DBLP:conf/asms-spsc/StockFH22": ("starlink-on-demand-routing", HDR / "discoroute.pdf", (1, 0, 0, 505, 155),
+        "Ground tracks of a Walker constellation over latitude and longitude, with two example routes "
+        "stepping from satellite to satellite along and across orbital planes", "© 2022 IEEE"),
+    "DBLP:conf/adhoc-now/FraireCA19": ("direct-to-satellite-iot-survey",
+        "https://laas.hal.science/hal-02315399/file/AdHocNow2019_042_original_v4.pdf", (5, 130, 112, 485, 240),
+        "Bandwidth against range for personal, cellular, LPWA and satellite networks, with "
+        "direct-to-satellite IoT in the gap between LPWA and satellite networks",
+        "© 2019 Springer Nature Switzerland AG"),
     "DBLP:journals/cn/FlorezFPR25": ("ml-satellite-iot-survey", HDR / "role_ml_iot_content.pdf", None,
         "Tree of the survey's topics: radio access, resource and network management, and applications "
         "and services, each split into the techniques reviewed", "© 2025 Elsevier"),
@@ -143,10 +156,20 @@ PAPER_FIGURES = {
         "for Starship and for Falcon 9", "CC BY 4.0"),
 }
 
-# One picture per tool on the software page: output name -> (source, crop, kind). kind "shot" is
-# cropped to 16:10 and shown edge to edge; "figure" keeps its white background. A bitmap crop is a
-# pixel box. The alt text is written in software/index.html; tools without a picture show their name.
+# One picture per tool or project on the software page: output name -> (source, crop, kind).
+# kind "shot" is cropped to 16:10 and shown edge to edge; "figure" keeps its white background;
+# "logo" and "logo-dark" centre a project's logo on a 16:10 light or dark ground. A bitmap crop
+# is a pixel box. The alt text is written in software/index.html; the others show their name.
+# The pyCGR picture is drawn from a pyCGR run on its tutorial contact plan: see scripts/pycgr-figure/.
 SOFTWARE_SHOTS = {
+    "dtnsim": (HDR / "dtn_sim.pdf", (1, 15, 144, 210, 266), "shot"),   # Fig. 3 of the SMC-IT 2017 paper, © 2017 IEEE
+    "pycgr": (SITE / "scripts/pycgr-figure/pycgr-route.png", None, "figure"),
+    "mission": (DRIVE / "proyects/2020-03-rise-mission/0000-website/mission-web/assets/images/mission-logo2.svg", None, "logo-dark"),
+    "dorsal-iot": (DRIVE / "inria/0000-00-project-ea-stsud-dorsal/dorsal-website/dorsal-website/dorsal-logo.png",
+                   (160, 88, 490, 540), "logo"),       # the mark and a little of its drop shadow
+    "d3-connect": (DRIVE / "inria/0000-00-project-ea-d3connect/website/d3-connect-website/logo.svg", None, "logo"),
+    "conopscon": (DRIVE / "saaruni/2026-04-esa-conopscon/management-dgit/_theme/assets/logo-conopscon-lockup.svg", None, "logo"),
+    "donuts": (DRIVE / "inria/0000-00-project-pepr-donuts/website/donuts-project-website/img-logo-donuts.svg", None, "logo-dark"),
     "ipn-v": (DRIVE / "ipnsig/0000-00-ipnv-screenshots/image_008_0000.png", (0, 760, 4320, 3460), "shot"),
     "contact-plan-designer": (CODE / "cpd/contact-plan-designer/docs/img/workbench.png", (555, 140, 1920, 993), "shot"),  # keeps the Cesium ion logo whole
     "a-sabr": (CODE / "a-sabr/asabr/examples/inter-regional_routing/images/irr-cp.svg", (0, 140, 1600, 910), "figure"),  # without the title line
@@ -170,10 +193,17 @@ def fit_width(im, width):
     return im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
 
 
-def load_figure(src, crop=None, trim=True):
-    """A figure as RGB on white. PDF: crop = (page, x0, y0, x1, y1) in points, rendered at 300 dpi
-    with poppler's pdftoppm (page 1, uncropped, without a crop). SVG: rendered 1600 px wide with
-    librsvg's rsvg-convert, crop in pixels of that. Bitmap: crop in pixels. White margins are trimmed."""
+def load_figure(src, crop=None, trim=True, ground=(255, 255, 255)):
+    """A figure as RGB on `ground` (white by default). PDF: crop = (page, x0, y0, x1, y1) in points,
+    rendered at 300 dpi with poppler's pdftoppm (page 1, uncropped, without a crop). SVG: rendered
+    1600 px wide with librsvg's rsvg-convert, crop in pixels of that. Bitmap: crop in pixels. A source
+    given as an https URL (a PDF on HAL) is downloaded first. Margins of the ground colour are trimmed."""
+    if isinstance(src, str):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / Path(src).name
+            with urllib.request.urlopen(src) as r:
+                path.write_bytes(r.read())
+            return load_figure(path, crop, trim, ground)
     if src.suffix == ".pdf":
         page, *box = crop or (1,)
         cmd = ["pdftoppm", "-f", str(page), "-l", str(page), "-r", "300", "-png", "-singlefile"]
@@ -186,22 +216,37 @@ def load_figure(src, crop=None, trim=True):
             im.load()
         crop = None
     elif src.suffix == ".svg":
-        png = subprocess.run(["rsvg-convert", "-w", "1600", "-b", "white", str(src)], check=True, capture_output=True).stdout
+        bg = "white" if ground == (255, 255, 255) else "#%02x%02x%02x" % ground
+        png = subprocess.run(["rsvg-convert", "-w", "1600", "-b", bg, str(src)], check=True, capture_output=True).stdout
         im = Image.open(io.BytesIO(png))
     else:
         im = Image.open(src)
     if im.mode in ("RGBA", "LA", "P"):
         im = im.convert("RGBA")
-        flat = Image.new("RGB", im.size, (255, 255, 255))
+        flat = Image.new("RGB", im.size, ground)
         flat.paste(im, mask=im.split()[-1])
         im = flat
     im = im.convert("RGB")
     if crop:
         im = im.crop(crop)
     if trim:
-        box = ImageChops.difference(im, Image.new("RGB", im.size, (255, 255, 255))).getbbox()
+        box = ImageChops.difference(im, Image.new("RGB", im.size, ground)).getbbox()
         im = im.crop(box) if box else im
     return im
+
+
+LOGO_GROUNDS = {"logo": (238, 241, 246), "logo-dark": (12, 19, 36)}   # .fig's light grey, --bg-raised
+
+
+def logo_card(src, crop, kind):
+    """A project logo centred on a 720 x 450 ground, at most 62 % of its width and 56 % of its height."""
+    ground = LOGO_GROUNDS[kind]
+    logo = load_figure(src, crop, trim=crop is None, ground=ground)
+    scale = min(720 * 0.62 / logo.width, 450 * 0.56 / logo.height)
+    logo = logo.resize((round(logo.width * scale), round(logo.height * scale)), Image.LANCZOS)
+    card = Image.new("RGB", (720, 450), ground)
+    card.paste(logo, ((720 - logo.width) // 2, (450 - logo.height) // 2))
+    return card
 
 
 def paper_figures():
@@ -211,6 +256,8 @@ def paper_figures():
     manifest = {}
     for key, (name, src, crop, alt, credit) in PAPER_FIGURES.items():
         im = fit_width(load_figure(src, crop), 720)
+        if im.height > im.width:                         # a book cover: twice the card's height is enough
+            im = im.resize((round(im.width * 400 / im.height), 400), Image.LANCZOS)
         save_pair(im, out / name, quality=84, webp_quality=82)
         manifest[key] = {"img": f"/assets/img/pubs/{name}", "width": im.width, "height": im.height,
                          "alt": alt, "credit": credit}
@@ -223,6 +270,9 @@ def software_shots():
     out = IMG / "software"
     out.mkdir(parents=True, exist_ok=True)
     for name, (src, crop, kind) in SOFTWARE_SHOTS.items():
+        if kind in LOGO_GROUNDS:
+            save_pair(logo_card(src, crop, kind), out / name, quality=86, webp_quality=82)
+            continue
         im = load_figure(src, crop, trim=kind == "figure")
         if kind == "shot":
             assert abs(im.width / im.height - 1.6) < 0.02, f"{name}: crop is not 16:10"
@@ -337,14 +387,8 @@ def about_photos():
 
 
 def og_image():
-    """1200x630 social cards: the whole intro slide for the site, a hero crop per topic page."""
-    im = Image.open(OG_SOURCE).convert("RGB")
-    # Fit the 16:9 slide by height and pad the sides, so its institution bars are not cut off.
-    im = im.resize((round(im.width * 630 / im.height), 630), Image.LANCZOS)
-    card = Image.new("RGB", (1200, 630), FAVICON_BG)
-    card.paste(im, ((1200 - im.width) // 2, 0))
-    card.save(IMG / "og.jpg", quality=84, optimize=True)
-    print("og     <-", OG_SOURCE.name)
+    """1200x630 social cards for the topic pages, a hero crop each. The site's own card,
+    assets/img/og.jpg, is a capture of scripts/og-card.html (see README.md), not made here."""
     out = IMG / "og"
     out.mkdir(parents=True, exist_ok=True)
     for name in ("dtn", "iot", "mega", "orbital"):
