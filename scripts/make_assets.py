@@ -9,10 +9,12 @@ entry and re-running. Outputs are committed; the site has no build step.
 
 Needs Pillow and numpy, and for the paper figures poppler's pdftoppm and librsvg's
 rsvg-convert (brew install poppler librsvg). Saving through Pillow drops EXIF and other metadata.
+The heroes of topic pages 01 to 03 are stills of the 3D tour, captured with Google Chrome from
+the preview server (scripts/serve.py); without it they are skipped and the committed ones stay.
 
 Sources that must not be named in this public repo are read from
 scripts/sources.local.json (git-ignored), which maps a key to a local path:
-"orbital-hero", "mega-hero", "odc-shells", and "about-photos" (the folder of
+"orbital-hero", "odc-shells", and "about-photos" (the folder of
 originals for the photo carousel).
 """
 from pathlib import Path
@@ -54,22 +56,13 @@ PANELS = {
     "p4-orbital": SLIDE / "p4-orbital.jpg",
 }
 
-# Wide topic-page heroes: name -> (source, layout or None). With a layout, the source is
-# placed on a 16:9 canvas so its subject sits on the right, clear of the title:
-# cx, cy = subject centre (fractions of the source), at = where it lands (fraction of the
-# canvas width), scale = canvas height / source height, blackout = boxes to erase (source px),
-# mirror = fill the margins with a starfield patch from the source corner instead of black.
-# A source given as a string is a key of sources.local.json.
-HEROES = {
-    "orbital-hero": ("orbital-hero", None),
-    # the same sources as the intro-slide panels 1 to 3
-    "dtn-hero": (CODE / "ipn-v/documentation/mars-earth-network.png",
-                 dict(cx=0.497, cy=0.47, at=0.68, scale=1.0,
-                      blackout=[(1300, 1020, 1560, 1105), (0, 400, 280, 520), (850, 455, 935, 505)])),  # HUD, "Mercury", "Earth"
-    "iot-hero": (DRIVE / "inria/0000-oo-old/0000-00-phd-insa-diego/g21985.png",
-                 dict(cx=0.5, cy=0.5, at=0.75, scale=1.5, blackout=[], mirror=False)),
-    "mega-hero": ("mega-hero", dict(cx=0.5, cy=0.5, at=0.72, scale=1.3, blackout=[])),
-}
+# Wide topic-page heroes, 1600 x 900. Orbital computing's is a render (a key of
+# sources.local.json); the other three are stills of the home page's 3D tour, one stop each,
+# drawn by scripts/og-card.html?hero=N (moments and framing are set there).
+HEROES = {"orbital-hero": "orbital-hero"}
+TOUR_HEROES = {"dtn-hero": 0, "iot-hero": 1, "mega-hero": 2}
+CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+OG_CARD = "http://localhost:8765/scripts/og-card.html?hero={}"
 
 PHOTO = CV / "profile/jfraire-profile-2-byn.jpg"          # portrait, black and white (2023 edit)
 PHOTO_COLOUR = CV / "profile/jfraire-profile-full.jpg"    # the same shot in colour, uncropped
@@ -289,45 +282,38 @@ def panels():
         print("panel ", name, "<-", src.name)
 
 
-def place_on_canvas(src, cx, cy, at, scale, blackout, mirror=True):
-    """Put the subject of `src` at `at` across a 16:9 canvas, filling the margins."""
-    im = Image.open(src)
-    if im.mode in ("RGBA", "LA", "P"):
-        im = im.convert("RGBA")
-        flat = Image.new("RGB", im.size, (0, 0, 0))
-        flat.paste(im, mask=im.split()[-1])
-        im = flat
-    im = im.convert("RGB")
-    draw = ImageDraw.Draw(im)
-    for box in blackout:
-        draw.rectangle(box, fill=(0, 0, 0))
-    src_arr = np.asarray(im)
-    w, h = im.size
-    ch = round(h * scale)
-    cw = round(ch * 16 / 9)
-    x0, y0 = round(at * cw - cx * w), round(ch / 2 - cy * h)    # where the source lands
-    if mirror:
-        # Fill the canvas with the empty top-left corner of the source (a patch of stars),
-        # tiled with alternating flips so it does not repeat visibly.
-        patch = src_arr[: h * 3 // 10, : w // 4]
-        row = np.concatenate([patch, patch[:, ::-1]] * (cw // (2 * patch.shape[1]) + 1), axis=1)
-        canvas = np.concatenate([row, row[::-1]] * (ch // (2 * patch.shape[0]) + 1), axis=0)[:ch, :cw].copy()
-    else:
-        canvas = np.zeros((ch, cw, 3), dtype=np.uint8)
-    sx0, sy0 = max(-x0, 0), max(-y0, 0)
-    sx1, sy1 = min(w, cw - x0), min(h, ch - y0)
-    canvas[sy0 + y0:sy1 + y0, sx0 + x0:sx1 + x0] = src_arr[sy0:sy1, sx0:sx1]
-    return Image.fromarray(canvas).resize((1600, 900), Image.LANCZOS)
-
-
 def heroes():
     out = IMG / "topics"
     out.mkdir(parents=True, exist_ok=True)
-    for name, (src, layout) in HEROES.items():
-        src = private(src) if isinstance(src, str) else src
-        im = place_on_canvas(src, **layout) if layout else fit_width(Image.open(src), 1600)
-        save_pair(im, out / name, quality=80, webp_quality=74)
+    for name, key in HEROES.items():
+        src = private(key)
+        save_pair(fit_width(Image.open(src), 1600), out / name, quality=80, webp_quality=74)
         print("hero  ", name, "<-", src.name)
+
+
+def tour_heroes():
+    """The heroes of topic pages 01 to 03: scripts/og-card.html?hero=N captured with headless Chrome
+    at 1600 x 900. Needs the preview server; without it (or without Chrome) they are left as they are."""
+    try:
+        urllib.request.urlopen(OG_CARD.format(0), timeout=2).close()
+    except OSError:
+        print("hero   tour stills skipped: start the preview server (scripts/serve.py) first")
+        return
+    if not Path(CHROME).exists():
+        print("hero   tour stills skipped: no Google Chrome at", CHROME)
+        return
+    out = IMG / "topics"
+    out.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory() as tmp:
+        for name, stop in TOUR_HEROES.items():
+            png = Path(tmp) / f"{name}.png"
+            subprocess.run([CHROME, "--headless", "--hide-scrollbars", "--window-size=1600,900",
+                            "--force-device-scale-factor=1", "--virtual-time-budget=60000",
+                            f"--screenshot={png}", OG_CARD.format(stop)], check=True, capture_output=True)
+            im = Image.open(png)
+            assert im.size == (1600, 900), f"{name}: capture is {im.size}, not 1600 x 900"
+            save_pair(im, out / name, quality=80, webp_quality=74)
+            print("hero  ", name, "<- og-card.html?hero", stop)
 
 
 def logos():
@@ -498,6 +484,7 @@ def main():
     cv_pdf()
     panels()
     heroes()
+    tour_heroes()
     logos()
     photos()
     about_photos()

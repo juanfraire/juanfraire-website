@@ -19,7 +19,7 @@
   <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-iot.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Earth seen from space with a small satellite beaming down over Europe, inside a ring of links">
+  <meta property="og:image:alt" content="Earth with Europe and Africa in view, a few small satellites overhead with the circles they cover, and sensors on the ground linked to the satellite passing over them">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
@@ -65,9 +65,10 @@
     <section class="topic-hero">
       <picture>
         <source srcset="/assets/img/topics/iot-hero.webp" type="image/webp">
-        <img src="/assets/img/topics/iot-hero.jpg" width="1600" height="900" alt="Earth seen from space with a small satellite beaming down over Europe, inside a ring of links">
+        <img src="/assets/img/topics/iot-hero.jpg" width="1600" height="900" alt="Earth with Europe and Africa in view, a few small satellites overhead with the circles they cover, and sensors on the ground linked to the satellite passing over them">
       </picture>
       <div class="wrap">
+        <p class="back"><a href="/#iot"><span aria-hidden="true">←</span> Back to the home page</a></p>
         <p class="num">02 · RESEARCH TOPIC</p>
         <h1>Direct-to-Satellite IoT</h1>
         <p class="lead">A sensor on a farm or a buoy at sea can send its data straight to a satellite. I design the small constellations that serve such devices, and the radio access that lets low-cost, battery-powered hardware use them.</p>
@@ -79,16 +80,6 @@
         <p>Large parts of the planet have no mobile coverage: oceans, deserts, farmland, forests. A sensor there can still send a few bytes at a time straight to a satellite overhead, using low-power radios such as LoRa that were designed for networks on the ground.</p>
         <p>Keeping every point under a satellite at all times takes many satellites. If devices can wait for the next pass, a handful is enough, and the cost falls. I design these sparse constellations and the protocols that let thousands of devices share a short pass, much of it in the ANR project STEREO with Kinéis, a French operator of satellites for the Internet of Things, and French laboratories.</p>
       </div>
-    </section>
-
-    <section class="wrap section" aria-labelledby="results-title">
-      <h2 id="results-title">Results, with sources</h2>
-      <ul class="results">
-        <li><strong>Nine satellites for the whole planet.</strong> If devices can go up to two hours without hearing from a satellite, the longest the LoRaWAN standard expects them to keep their timing, nine satellites in well-chosen orbits can reach them anywhere between 80° north and 80° south. Keeping every point in view at all times would take 88. This counts coverage only, for orbits at 700&nbsp;km. <span class="cite"><a href="https://doi.org/10.1109/taes.2022.3185970">Sparse Constellations, IEEE TAES 2022, §V-A, Fig.&nbsp;6</a></span></li>
-        <li><strong>Waiting longer means fewer satellites.</strong> To serve every device across Africa, or across Europe, the designs in the study need 12 satellites if devices must hear from one at least once an hour, 4 if they can wait two hours, and 3 if they can wait about three. <span class="cite"><a href="https://doi.org/10.1109/taes.2022.3185970">Sparse Constellations, IEEE TAES 2022, §V-B, Fig.&nbsp;12</a></span></li>
-        <li><strong>Sensors that know the satellite's timetable.</strong> When devices use the satellite's predictable path to pick, moment by moment, the fastest radio setting that will still reach it, one pass can serve twice as many devices: from 250 to 500 in a simulated pass, with 60% of messages getting through on average. The comparison is with devices that always use the slowest, most robust setting. <span class="cite"><a href="https://doi.org/10.1109/access.2022.3189647">Uplink Policies, IEEE Access 2022, §V-A, Fig.&nbsp;4</a></span></li>
-      </ul>
-      <p class="note">These are simulation results, under the assumptions set out in each paper.</p>
     </section>
 
     <section class="wrap section" aria-labelledby="pass-title">
@@ -176,21 +167,34 @@
       </details>
     </section>
 
+    <section class="wrap section" aria-labelledby="results-title">
+      <h2 id="results-title">Results, with sources</h2>
+      <ul class="results">
+        <li><strong>Nine satellites for the whole planet.</strong> If devices can go up to two hours without hearing from a satellite, the longest the LoRaWAN standard expects them to keep their timing, nine satellites in well-chosen orbits can reach them anywhere between 80° north and 80° south. Keeping every point in view at all times would take 88. This counts coverage only, for orbits at 700&nbsp;km. <span class="cite"><a href="https://doi.org/10.1109/taes.2022.3185970">Sparse Constellations, IEEE TAES 2022, §V-A, Fig.&nbsp;6</a></span></li>
+        <li><strong>Waiting longer means fewer satellites.</strong> To serve every device across Africa, or across Europe, the designs in the study need 12 satellites if devices must hear from one at least once an hour, 4 if they can wait two hours, and 3 if they can wait about three. <span class="cite"><a href="https://doi.org/10.1109/taes.2022.3185970">Sparse Constellations, IEEE TAES 2022, §V-B, Fig.&nbsp;12</a></span></li>
+        <li><strong>Sensors that know the satellite's timetable.</strong> When devices use the satellite's predictable path to pick, moment by moment, the fastest radio setting that will still reach it, one pass can serve twice as many devices: from 250 to 500 in a simulated pass, with 60% of messages getting through on average. The comparison is with devices that always use the slowest, most robust setting. <span class="cite"><a href="https://doi.org/10.1109/access.2022.3189647">Uplink Policies, IEEE Access 2022, §V-A, Fig.&nbsp;4</a></span></li>
+      </ul>
+      <p class="note">These are simulation results, under the assumptions set out in each paper.</p>
+    </section>
+
     <section class="wrap section" aria-labelledby="tools-title">
       <h2 id="tools-title">Tools and projects</h2>
       <ul class="tool-list">
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/florasat.webp" type="image/webp"><img src="/assets/img/software/florasat.jpg" width="720" height="450" alt="FLoRaSat in OMNeT++: a grid of LoRa gateway satellites over a world map, with a ground station and a network server" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Tool · open source</p>
           <h3><a href="https://gitlab.inria.fr/jfraire/florasat">FLoRaSat</a></h3>
           <p>An OMNeT++ simulator for end-to-end satellite IoT, with LoRa and LoRaWAN adapted to links with satellites. Its second version adds links between satellites.</p>
         </li>
         <li>
+          <div class="fig nofig" aria-hidden="true"><b>STEREO</b><small>ANR PRCE</small></div>
           <p class="meta">Project · ANR PRCE · 2023–2027</p>
           <h3><a href="https://stereo-project.space/">STEREO</a></h3>
           <p>Space-Terrestrial Integrated IoT: protocols that let low-cost devices reach satellites directly, with Inria, IRIT, LAAS, LIG and Kinéis.</p>
           <p class="duty">Coordinator</p>
         </li>
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/dorsal-iot.webp" type="image/webp"><img src="/assets/img/software/dorsal-iot.jpg" width="720" height="450" alt="DORSAL-IoT logo: a stylised satellite with lines falling from it like signals" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Project · STIC-AmSud · 2025–2027</p>
           <h3><a href="https://dorsaliot.space/">DORSAL-IoT</a></h3>
           <p>Downlink optimisation for robust direct-to-satellite IoT, with Universidad de Chile, UDP, UTEM and UFSC in Brazil.</p>
@@ -252,6 +256,17 @@
         <span class="label">STIC-AmSud</span>
       </div>
     </section>
+
+    <nav class="wrap section topic-nav" aria-labelledby="topic-nav-title">
+      <h2 class="kicker" id="topic-nav-title">The four research topics</h2>
+      <ol>
+        <li class="t1"><a href="/dtn/"><span>01</span>Delay-Tolerant Networks</a></li>
+        <li class="t2"><a href="/satellite-iot/" aria-current="page"><span>02</span>Direct-to-Satellite IoT</a></li>
+        <li class="t3"><a href="/mega-constellations/"><span>03</span>Mega-Constellations</a></li>
+        <li class="t4"><a href="/orbital-computing/"><span>04</span>Orbital Computing</a></li>
+      </ol>
+      <p class="back"><a href="/#iot"><span aria-hidden="true">←</span> Back to the home page</a></p>
+    </nav>
   </main>
 
   <footer class="site-foot">

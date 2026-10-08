@@ -23,7 +23,7 @@ visitors, low-power phones and browsers without WebGL get.
 | Images, textures, data from other projects | sources listed in `scripts/make_assets.py` | `python3 scripts/make_assets.py` |
 | Photos next to "About me" | crop boxes in `ABOUT_PHOTOS` (`make_assets.py`), originals in the folder `about-photos` of `sources.local.json` | `make_assets.py`, then the photo list in `index.html` and `about/index.html` (alt text) |
 | Figure on a selected paper's card | `PAPER_FIGURES` in `make_assets.py` (bib key, source, crop, alt text, credit line) | `make_assets.py`, then `generate.py` |
-| Picture or logo on a tool or project card (software page) | `SOFTWARE_SHOTS` in `make_assets.py` | `make_assets.py`, then the alt text in `software/index.html` |
+| Picture or logo on a tool or project card (software page, and "Tools and projects" on the topic pages) | `SOFTWARE_SHOTS` in `make_assets.py` | `make_assets.py`, then the alt text in `software/index.html` and the topic pages |
 | Everything else | the HTML pages directly | nothing |
 
 The selected papers are cards with one figure each (the book shows its cover), taken from the
@@ -38,7 +38,7 @@ markers; everything else in the pages is hand-written. It also rewrites `sitemap
 with each page's last commit date as `lastmod`, so run it once more just before committing.
 
 `make_assets.py` also builds the topic pages' social cards (`assets/img/og/og-*.jpg`,
-1200 × 630) and the touch icons (`apple-touch-icon.png`, `favicon.ico`). A few of its sources
+1200 × 630, crops of their heroes) and the touch icons (`apple-touch-icon.png`, `favicon.ico`). A few of its sources
 are kept out of this public repo: their paths live in `scripts/sources.local.json`, which git
 ignores. Keep it that way; never name those sources in a committed file.
 
@@ -53,6 +53,16 @@ with `--window-size=1920,1080`). To remake the card:
   --window-size=1200,630 --force-device-scale-factor=2 --virtual-time-budget=60000 \
   --screenshot=/tmp/og-card.png "http://localhost:8765/scripts/og-card.html"
 python3 -c "from PIL import Image; Image.open('/tmp/og-card.png').convert('RGB').resize((1200, 630), Image.LANCZOS).save('assets/img/og.jpg', quality=84, optimize=True)"
+```
+
+The same page draws the heroes of topic pages 01 to 03 (`assets/img/topics/{dtn,iot,mega}-hero`,
+1600 × 900; orbital computing keeps its render): `?hero=0`, `1` or `2` shows that stop alone, its
+subject on the right, clear of the title and inside the strip that phones keep. `tour_heroes()` in
+`make_assets.py` captures them with headless Chrome, so start the preview server first; without it
+they are skipped and the committed ones stay. To redo only these heroes and their social cards:
+
+```bash
+python3 -c "import sys; sys.path.insert(0, 'scripts'); import make_assets as m; m.tour_heroes(); m.og_image()"
 ```
 
 Bibliography keywords that the site reads (the CV ignores the extra ones):
@@ -140,7 +150,7 @@ data/news/                  one file per news post
 vendor/three/               three.js r170 (MIT)
 assets/fonts/               Inria Sans (SIL Open Font Licence)
 scripts/                    serve.py, generate.py, add_post.py, make_assets.py (+ git-ignored sources.local.json),
-                            og-card.html (the home page's social card), pycgr-figure/ (the pyCGR picture)
+                            og-card.html (social card and heroes from the tour), pycgr-figure/ (the pyCGR picture)
 sitemap.xml, robots.txt     written by generate.py / by hand
 CNAME                       juanfraire.space
 ```

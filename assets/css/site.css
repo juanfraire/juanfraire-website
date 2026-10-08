@@ -422,6 +422,21 @@ html.scene { scroll-behavior: smooth; }
   .topic-hero::after { background: linear-gradient(180deg, rgba(7, 11, 22, 0.55) 0%, rgba(7, 11, 22, 0.92) 55%); }
   .topic-hero .wrap { padding-top: 140px; padding-bottom: 40px; }
 }
+/* The way back to this topic's stop on the home page, and the four topics side by side. */
+.back { margin: 0; font-size: 15px; }
+.back a { color: var(--muted); text-decoration: none; }
+.back a:hover { color: var(--ink-strong); text-decoration: underline; }
+.topic-hero .back { margin-bottom: 18px; }
+.topic-nav ol { list-style: none; margin: 4px 0 18px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.topic-nav li a {
+  display: block; height: 100%; padding: 14px 18px 16px; border-radius: 12px;
+  border: 1px solid var(--line-soft); background: var(--bar); box-shadow: inset 0 2px 0 var(--accent);
+  font-size: 17px; font-weight: 700; line-height: 1.25; color: var(--ink-strong); text-decoration: none;
+}
+.topic-nav li a span { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 400; letter-spacing: 1.5px; color: var(--accent); }
+.topic-nav li a:hover { border-color: var(--line); }
+.topic-nav li a[aria-current] { border-color: color-mix(in srgb, var(--accent) 45%, transparent); background: color-mix(in srgb, var(--accent) 10%, var(--bg)); }
+@media (max-width: 760px) { .topic-nav ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
 .prose { max-width: 70ch; }
 .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
@@ -702,12 +717,13 @@ html.scene { scroll-behavior: smooth; }
   .mesh-readout li.wide { grid-column: 1 / -1; }
 }
 .mesh-map { margin: 0; }
-.mesh-map canvas { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line-soft); background: var(--bg); }
+.mesh-map canvas { width: 100%; height: auto; aspect-ratio: 18 / 7; border-radius: 10px; box-shadow: 0 0 0 1px var(--line-soft); background: var(--bg); }
 .mesh-legend { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 10px; font-size: 13px; color: var(--muted); }
 .mesh-legend span { display: inline-flex; align-items: center; gap: 7px; }
-.mesh-legend .sw { display: inline-block; flex: none; width: 22px; border-top: 2px solid var(--ink-strong); }
-.mesh-legend .sw.gc { border-top-style: dashed; border-color: var(--ink); }
-.mesh-legend .sw.sat { width: 5px; height: 5px; border: 0; background: var(--t3); }
+/* swatches drawn like the map's strokes: a heavy white route in a dark casing, a thin dashed great circle */
+.mesh-legend .sw { display: inline-block; flex: none; width: 23px; height: 3.4px; border-radius: 2px; background: var(--ink-strong); box-shadow: 0 0 0 1.5px rgba(7, 11, 22, 0.85); }
+.mesh-legend .sw.gc { height: 1.2px; border-radius: 0; box-shadow: none; background: repeating-linear-gradient(90deg, rgba(233, 237, 245, 0.75) 0 5px, transparent 5px 9px); }
+.mesh-legend .sw.sat { width: 5px; height: 5px; border-radius: 0; box-shadow: none; background: var(--t3); }
 .mesh .field > label { display: block; font-size: 15px; margin-bottom: 4px; }
 .mesh select {
   width: 100%; min-height: 38px; font: inherit; font-size: 15px; color: var(--ink); background: var(--bg);

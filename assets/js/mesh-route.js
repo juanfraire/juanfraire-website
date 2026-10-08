@@ -175,7 +175,7 @@ if (box) {
   }
 
   function resize() {
-    const css = canvas.getBoundingClientRect().width;
+    const css = canvas.clientWidth;
     if (!css) return;
     px = Math.min(window.devicePixelRatio || 1, 2);
     const w = Math.round(css * px), h = Math.round(((css * (LAT_N - LAT_S)) / 360) * px);   // one degree, one size both ways
@@ -186,8 +186,12 @@ if (box) {
     if (last) draw(last);
   }
 
-  // Points along the shorter arc between two unit vectors.
-  function arc(u, v, steps, outPts) {
+  // Ground points along the shorter arc between two directions. Satellites sit 1.09 Earth radii out,
+  // so both ends are made unit vectors first: without that the dot product passes 1, every arc
+  // collapses to its first point and the last leg, down to the second city, goes missing.
+  const unit = (p) => { const r = Math.hypot(p[0], p[1], p[2]); return [p[0] / r, p[1] / r, p[2] / r]; };
+  function arc(p, q, steps, outPts) {
+    const u = unit(p), v = unit(q);
     const d = Math.acos(Math.max(-1, Math.min(1, u[0] * v[0] + u[1] * v[1] + u[2] * v[2])));
     for (let k = 0; k <= steps; k++) {
       const f = k / steps;
@@ -238,11 +242,13 @@ if (box) {
     }
     ctx.fill();
     const ua = latLon(a.lat, a.lon), ub = latLon(b.lat, b.lon);
-    // great circle, where a perfectly straight fibre would run
-    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    // Great circle, where a perfectly straight fibre would run: thin, dashed, drawn first. The route
+    // goes on top of it, three times as heavy and in a dark casing, so the two never read as one
+    // line where they meet near the cities. The legend swatches in site.css match these strokes.
+    ctx.lineCap = 'butt'; ctx.lineJoin = 'round';
     ctx.setLineDash([5 * px, 4 * px]);
-    ctx.strokeStyle = 'rgba(233, 237, 245, 0.9)';
-    ctx.lineWidth = 1.6 * px;
+    ctx.strokeStyle = 'rgba(233, 237, 245, 0.75)';
+    ctx.lineWidth = 1.2 * px;
     polyline(arc(ua, ub, 96, []));
     ctx.setLineDash([]);
     // the route: up, across the mesh, down
@@ -250,12 +256,14 @@ if (box) {
       const n = shell.sats.n, nodes = r.path.map((u) => (u === n ? ua : u === n + 1 ? ub : fixed[u]));
       const pts = [];
       for (let k = 0; k + 1 < nodes.length; k++) arc(nodes[k], nodes[k + 1], 8, pts);
-      ctx.strokeStyle = 'rgba(7, 11, 22, 0.75)'; ctx.lineWidth = 4.5 * px; polyline(pts);
-      ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2.2 * px; polyline(pts);
-      ctx.fillStyle = '#ffffff';
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = 'rgba(7, 11, 22, 0.85)'; ctx.lineWidth = 6.5 * px; polyline(pts);
+      ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 3.4 * px; polyline(pts);
       for (const v of nodes.slice(1, -1)) {
         const [X, Y] = unitXY(v);
-        ctx.beginPath(); ctx.arc(X, Y, 2.4 * px, 0, 2 * Math.PI); ctx.fill();
+        ctx.beginPath(); ctx.arc(X, Y, 3.4 * px, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff'; ctx.fill();
+        ctx.lineWidth = 1.5 * px; ctx.strokeStyle = 'rgba(7, 11, 22, 0.85)'; ctx.stroke();
       }
     }
     // the two cities, labelled
@@ -392,7 +400,10 @@ if (box) {
     }
   }, { rootMargin: '400px 0px' }).observe(box);
   tex.addEventListener('load', () => { texReady = true; buildBase(); if (last) draw(last); });
-  new ResizeObserver(resize).observe(canvas);
+  // Resize on the next frame: setting the canvas size inside the callback made WebKit report a
+  // ResizeObserver loop. The CSS aspect ratio (18 / 7, the 360° by 140° crop) keeps its box steady.
+  let sizing = 0;
+  new ResizeObserver(() => { cancelAnimationFrame(sizing); sizing = requestAnimationFrame(resize); }).observe(canvas);
   document.fonts?.ready.then(() => last && draw(last));
   resize();
   update();

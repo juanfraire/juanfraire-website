@@ -19,7 +19,7 @@
   <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-dtn.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Mars ringed by the orbits of relay satellites, with links between them and back to Earth">
+  <meta property="og:image:alt" content="Mars ringed by the orbits of relay satellites, one of them linked to a rover on the surface, and a dashed line carrying data off towards Earth">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
@@ -73,9 +73,10 @@
     <section class="topic-hero">
       <picture>
         <source srcset="/assets/img/topics/dtn-hero.webp" type="image/webp">
-        <img src="/assets/img/topics/dtn-hero.jpg" width="1600" height="900" alt="Mars ringed by the orbits of relay satellites, with links between them and back to Earth">
+        <img src="/assets/img/topics/dtn-hero.jpg" width="1600" height="900" alt="Mars ringed by the orbits of relay satellites, one of them linked to a rover on the surface, and a dashed line carrying data off towards Earth">
       </picture>
       <div class="wrap">
+        <p class="back"><a href="/#dtn"><span aria-hidden="true">←</span> Back to the home page</a></p>
         <p class="num">01 · RESEARCH TOPIC</p>
         <h1>Delay-Tolerant Networks</h1>
         <p class="lead">Spacecraft drift in and out of reach, so a path from sender to receiver is often missing. Delay-tolerant networks keep the data on board and pass it on when the next link opens. I design the plans and the routing that decide where it goes next.</p>
@@ -88,15 +89,6 @@
         <p>Delay-tolerant networks work another way: each node keeps the data and hands it on at the next contact. Spacecraft follow known orbits, so most contacts can be predicted and listed in advance in a contact plan. Contact graph routing uses that plan to choose the next hop, and my routing modules run in NASA's ION and HDTN software. With students and colleagues, I also study what to do when the plan turns out wrong, how to schedule laser links at Mars, and how to see a whole interplanetary network at a glance.</p>
       </div>
       <p class="live-line" id="mars-now">A signal takes 3 to 22 minutes to reach Mars, depending on where the two planets are.</p>
-    </section>
-
-    <section class="wrap section" aria-labelledby="results-title">
-      <h2 id="results-title">Results, with sources</h2>
-      <ul class="results">
-        <li><strong>Tested in orbit.</strong> In December 2020 and May 2021, ESA's OPS-SAT satellite stored and forwarded a web request and its reply between a simulated offline site and a site with internet access. The paper reports it as the first successful test in space of version&nbsp;7 of the Bundle Protocol, the standard for this kind of networking. <span class="cite"><a href="https://doi.org/10.1109/mcom.001.2100835">Ring Road Networks, IEEE Comm. Magazine 2022, In-Orbit Validation</a></span> In simulations of ten remote ground stations, the average delivery time fell from 7.7&nbsp;hours with one small satellite to 1.3&nbsp;hours with 20. <span class="cite"><a href="https://doi.org/10.1109/mcom.001.2100835">Ring Road Networks, Fig.&nbsp;2b</a></span></li>
-        <li><strong>Laser links at Mars.</strong> In 24-hour simulations of Mars orbiters with one laser each, relaying science data to Earth, a scheduler that plans every link around the flow of data toward Earth could send back 1.5 to 2 times as much data as an earlier automatic method. <span class="cite"><a href="https://doi.org/10.1109/wisee61249.2024.10850428">Mars laser scheduling, IEEE WiSEE 2024, Fig.&nbsp;4a</a></span></li>
-        <li><strong>A network to another star.</strong> As a thought experiment, a chain of relay spacecraft could span the 39.5 light-years to the TRAPPIST-1 planetary system, each relay keeping a copy and resending whatever its hop loses. A message would arrive after 39.58 years if 1 packet in 1,000 is lost on each hop, and after 59.25 years if 1 in 5 is. With very clean links, about 15,000 small relays about a light-day apart look like a reasonable first estimate. The paper assumes hardware that does not exist yet. <span class="cite"><a href="https://doi.org/10.1109/taes.2018.2874149">Networking in Interstellar Dimensions, IEEE TAES 2019, Table&nbsp;III and §V</a></span></li>
-      </ul>
     </section>
 
     <section class="wrap section" aria-labelledby="route-title">
@@ -175,36 +167,51 @@
       </details>
     </section>
 
+    <section class="wrap section" aria-labelledby="results-title">
+      <h2 id="results-title">Results, with sources</h2>
+      <ul class="results">
+        <li><strong>Tested in orbit.</strong> In December 2020 and May 2021, ESA's OPS-SAT satellite stored and forwarded a web request and its reply between a simulated offline site and a site with internet access. The paper reports it as the first successful test in space of version&nbsp;7 of the Bundle Protocol, the standard for this kind of networking. <span class="cite"><a href="https://doi.org/10.1109/mcom.001.2100835">Ring Road Networks, IEEE Comm. Magazine 2022, In-Orbit Validation</a></span> In simulations of ten remote ground stations, the average delivery time fell from 7.7&nbsp;hours with one small satellite to 1.3&nbsp;hours with 20. <span class="cite"><a href="https://doi.org/10.1109/mcom.001.2100835">Ring Road Networks, Fig.&nbsp;2b</a></span></li>
+        <li><strong>Laser links at Mars.</strong> In 24-hour simulations of Mars orbiters with one laser each, relaying science data to Earth, a scheduler that plans every link around the flow of data toward Earth could send back 1.5 to 2 times as much data as an earlier automatic method. <span class="cite"><a href="https://doi.org/10.1109/wisee61249.2024.10850428">Mars laser scheduling, IEEE WiSEE 2024, Fig.&nbsp;4a</a></span></li>
+        <li><strong>A network to another star.</strong> As a thought experiment, a chain of relay spacecraft could span the 39.5 light-years to the TRAPPIST-1 planetary system, each relay keeping a copy and resending whatever its hop loses. A message would arrive after 39.58 years if 1 packet in 1,000 is lost on each hop, and after 59.25 years if 1 in 5 is. With very clean links, about 15,000 small relays about a light-day apart look like a reasonable first estimate. The paper assumes hardware that does not exist yet. <span class="cite"><a href="https://doi.org/10.1109/taes.2018.2874149">Networking in Interstellar Dimensions, IEEE TAES 2019, Table&nbsp;III and §V</a></span></li>
+      </ul>
+    </section>
+
     <section class="wrap section" aria-labelledby="tools-title">
       <h2 id="tools-title">Tools and projects</h2>
       <ul class="tool-list">
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/ipn-v.webp" type="image/webp"><img src="/assets/img/software/ipn-v.jpg" width="720" height="450" alt="IPN-V view: a cratered planet in the foreground and Earth behind it, crossed by glowing links between spacecraft" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Tool</p>
           <h3><a href="https://ipnv.net/">IPN-V</a></h3>
           <p>The Interplanetary Network Visualiser: a 3D view of orbiters, landers and ground stations across the Solar System, with their contacts and light-time delays. The Mars network on the home page comes from one of its scenarios. Demo on request.</p>
         </li>
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/contact-plan-designer.webp" type="image/webp"><img src="/assets/img/software/contact-plan-designer.jpg" width="720" height="450" alt="Contact Plan Designer: Earth and the tracks of two orbiters in the 3D view, above a timeline of scheduled contacts" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Tool · MIT licence</p>
           <h3><a href="https://contact-plan-designer.space/">Contact Plan Designer</a></h3>
           <p>Works out when spacecraft and ground stations can talk to each other and turns it into the contact plans that DTN routing needs. Runs in the browser and as a plug-in for STK.</p>
         </li>
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/dtnsim.webp" type="image/webp"><img src="/assets/img/software/dtnsim.jpg" width="720" height="450" alt="DtnSim in the OMNeT++ window: three satellites and a ground antenna in the network view, a bundle in transit between two of them, the contact timeline above and the event log beside" loading="lazy" decoding="async"></picture><figcaption>Figure © 2017 IEEE</figcaption></figure>
           <p class="meta">Tool · open source</p>
           <h3><a href="https://gitlab.inria.fr/jfraire/dtnsim">DtnSim</a></h3>
           <p>A simulator for studying delay-tolerant networks: routing, forwarding, scheduling and contact planning.</p>
         </li>
         <li>
+          <figure class="fig"><picture><source srcset="/assets/img/software/pycgr.webp" type="image/webp"><img src="/assets/img/software/pycgr.jpg" width="720" height="438" alt="A contact plan for five nodes as bars over 60 seconds, with the three contacts of the route pyCGR picks, A to C to D to E, highlighted" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Library · open source</p>
           <h3><a href="https://bitbucket.org/juanfraire/pycgr">pyCGR</a> and <a href="https://github.com/DTN-MTP/A-SABR">A-SABR</a></h3>
           <p>Contact graph routing in Python, adopted in NASA's HDTN, and an adaptive library for the wider family of schedule-aware bundle routing.</p>
         </li>
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/mission.webp" type="image/webp"><img src="/assets/img/software/mission.jpg" width="720" height="450" alt="MISSION logo: a rocket rising through an orange disc" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Project · EU MSCA RISE · 2021–2026</p>
           <h3><a href="https://mission-project.eu/">MISSION</a></h3>
           <p>Models in Space Systems: formal models and uncertainty-aware routing for space networks, with U. Twente, RWTH Aachen, Saarland University, UNC, UNRC, D3TN, Ascentio and INVAP.</p>
           <p class="duty">Responsible researcher</p>
         </li>
         <li>
+          <div class="fig nofig" aria-hidden="true"><b>VISTA</b><small>ANR JCJC · ESA OSIP</small></div>
           <p class="meta">Project · ANR JCJC and ESA OSIP · 2026–</p>
           <h3>VISTA and a Solar System Internet twin</h3>
           <p>Viable and scalable interplanetary architectures, coordinated by Olivier De Jonckère at LIRMM, and a doctoral project co-funded by ESA on a digital twin to plan and operate networks across the Solar System.</p>
@@ -268,6 +275,17 @@
         <img src="/assets/img/logos/esa.svg" alt="ESA" width="83" height="30">
       </div>
     </section>
+
+    <nav class="wrap section topic-nav" aria-labelledby="topic-nav-title">
+      <h2 class="kicker" id="topic-nav-title">The four research topics</h2>
+      <ol>
+        <li class="t1"><a href="/dtn/" aria-current="page"><span>01</span>Delay-Tolerant Networks</a></li>
+        <li class="t2"><a href="/satellite-iot/"><span>02</span>Direct-to-Satellite IoT</a></li>
+        <li class="t3"><a href="/mega-constellations/"><span>03</span>Mega-Constellations</a></li>
+        <li class="t4"><a href="/orbital-computing/"><span>04</span>Orbital Computing</a></li>
+      </ol>
+      <p class="back"><a href="/#dtn"><span aria-hidden="true">←</span> Back to the home page</a></p>
+    </nav>
   </main>
 
   <footer class="site-foot">

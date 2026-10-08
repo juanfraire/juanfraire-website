@@ -19,7 +19,7 @@
   <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-mega.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Earth half in night, wrapped in a dense mesh of links between satellites">
+  <meta property="og:image:alt" content="Earth with South America in daylight and Africa at night, wrapped in a mesh of laser links between satellites, with a route drawn from Lyon to Córdoba">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
@@ -65,9 +65,10 @@
     <section class="topic-hero">
       <picture>
         <source srcset="/assets/img/topics/mega-hero.webp" type="image/webp">
-        <img src="/assets/img/topics/mega-hero.jpg" width="1600" height="900" alt="Earth half in night, wrapped in a dense mesh of links between satellites">
+        <img src="/assets/img/topics/mega-hero.jpg" width="1600" height="900" alt="Earth with South America in daylight and Africa at night, wrapped in a mesh of laser links between satellites, with a route drawn from Lyon to Córdoba">
       </picture>
       <div class="wrap">
+        <p class="back"><a href="/#mega"><span aria-hidden="true">←</span> Back to the home page</a></p>
         <p class="num">03 · RESEARCH TOPIC</p>
         <h1>Mega-Constellations</h1>
         <p class="lead">Thousands of satellites linked by lasers form a network that reshapes itself every second. I work on routing through that mesh, on pointing and holding the lasers, and on who these networks actually serve.</p>
@@ -81,20 +82,9 @@
       </div>
     </section>
 
-    <section class="wrap section" aria-labelledby="results-title">
-      <h2 id="results-title">Results, with sources</h2>
-      <ul class="results two">
-        <li><strong>Satellites to reach every under-served address.</strong> About 4.7&nbsp;million US addresses have no provider offering broadband at 100&nbsp;Mbps down and 20&nbsp;Mbps up. Serving all of them without overselling capacity beyond the 20-to-1 ratio that US regulators allow fixed wireless providers would take Starlink over 40,000 satellites, more than five times the roughly 8,000 it had at the time of the study. The authors present this as a lower bound. <span class="cite"><a href="https://doi.org/10.1145/3772356.3772383">Anyone, Anywhere, HotNets 2025, §3, Table&nbsp;2</a></span></li>
-        <li><strong>Who can pay for it.</strong> At $120 a month, Starlink's residential plan would cost more than 2% of household income, a common affordability threshold, at about 3.5&nbsp;million of those 4.7&nbsp;million addresses, and at nearly 3&nbsp;million even with the federal Lifeline discount. Comparable cable plans at $40 to $50 a month are affordable at more than 99.99% of them. The study uses each county's median income. <span class="cite"><a href="https://doi.org/10.1145/3772356.3772383">Anyone, Anywhere, HotNets 2025, §4, Fig.&nbsp;4</a></span></li>
-        <li><strong>Getting lasers to lock on.</strong> Before a laser link between two satellites can carry data, both must turn to face each other and find the beam. In simulations of two 12&nbsp;kg satellites, that left only 72% of a contact for data on the harder of two passes. Turning early and exchanging satellite-navigation positions over a radio link raised the share to over 99%, and cut the memory needed to hold waiting data at 100&nbsp;Mbps from 4&nbsp;GB to 75&nbsp;MB. <span class="cite"><a href="https://doi.org/10.1109/ojcoms.2026.3688693">RF-Assisted Compensation, IEEE OJ-COMS 2026, §IV-B, Tables&nbsp;8 and&nbsp;9</a></span></li>
-        <li><strong>Finding a path through the mesh.</strong> On a model of Starlink's first shell of 1,584 satellites, each linked to its four neighbours, a routing method that first works out the fewest satellite-to-satellite hops found paths on average 158 times faster than the textbook shortest-path algorithm, and the routes it finds are nearly as short. The speed-up is in the time a computer takes to work out a route. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing, ASMS/SPSC 2022, §VI-B and §VI-C, Figs.&nbsp;5 and&nbsp;6</a></span></li>
-      </ul>
-      <p class="note">The last two are simulation results, under the assumptions set out in each paper. The first two come from a model built on public data from the US regulator (FCC).</p>
-    </section>
-
     <section class="wrap section" aria-labelledby="mesh-title">
       <h2 id="mesh-title">Across the mesh</h2>
-      <p class="prose">A route between two cities through a model of Starlink's first shell, with the size, height and tilt used in the routing study above: 1,584 satellites in 72 planes of 22, 550&nbsp;km up and inclined 53°, each with laser links to the satellites ahead of and behind it and to one in each neighbouring plane. The route climbs to a satellite over the first city, crosses the mesh and comes down over the second. Its delay is set against a fibre laid straight along the ground between them; in glass, light travels at about two thirds of its speed in vacuum. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing, ASMS/SPSC 2022, §II-C and §VI-A</a></span></p>
+      <p class="prose">A route between two cities through a model of Starlink's first shell, with the size, height and tilt used in our Starlink routing study: 1,584 satellites in 72 planes of 22, 550&nbsp;km up and inclined 53°, each with laser links to the satellites ahead of and behind it and to one in each neighbouring plane. The route climbs to a satellite over the first city, crosses the mesh and comes down over the second. Its delay is set against a fibre laid straight along the ground between them; in glass, light travels at about two thirds of its speed in vacuum. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing, ASMS/SPSC 2022, §II-C and §VI-A</a></span></p>
 
       <div class="sizer mesh" id="mesh" hidden>
         <div class="mesh-controls">
@@ -160,28 +150,43 @@
       <p class="note">Model: one shell of circular orbits; four laser links per satellite (three on the first and last planes, which are not linked to each other); each city reaches any satellite at least 25° above its horizon, and the route is the shortest by length. Light only: no queues, no ground network and no processing on board, which the routing study compares to about 1,000&nbsp;km of light travel, 3.3&nbsp;ms, per hop (§IV-B). Real cables run longer than the great circle.</p>
     </section>
 
+    <section class="wrap section" aria-labelledby="results-title">
+      <h2 id="results-title">Results, with sources</h2>
+      <ul class="results two">
+        <li><strong>Satellites to reach every under-served address.</strong> About 4.7&nbsp;million US addresses have no provider offering broadband at 100&nbsp;Mbps down and 20&nbsp;Mbps up. Serving all of them without overselling capacity beyond the 20-to-1 ratio that US regulators allow fixed wireless providers would take Starlink over 40,000 satellites, more than five times the roughly 8,000 it had at the time of the study. The authors present this as a lower bound. <span class="cite"><a href="https://doi.org/10.1145/3772356.3772383">Anyone, Anywhere, HotNets 2025, §3, Table&nbsp;2</a></span></li>
+        <li><strong>Who can pay for it.</strong> At $120 a month, Starlink's residential plan would cost more than 2% of household income, a common affordability threshold, at about 3.5&nbsp;million of those 4.7&nbsp;million addresses, and at nearly 3&nbsp;million even with the federal Lifeline discount. Comparable cable plans at $40 to $50 a month are affordable at more than 99.99% of them. The study uses each county's median income. <span class="cite"><a href="https://doi.org/10.1145/3772356.3772383">Anyone, Anywhere, HotNets 2025, §4, Fig.&nbsp;4</a></span></li>
+        <li><strong>Getting lasers to lock on.</strong> Before a laser link between two satellites can carry data, both must turn to face each other and find the beam. In simulations of two 12&nbsp;kg satellites, that left only 72% of a contact for data on the harder of two passes. Turning early and exchanging satellite-navigation positions over a radio link raised the share to over 99%, and cut the memory needed to hold waiting data at 100&nbsp;Mbps from 4&nbsp;GB to 75&nbsp;MB. <span class="cite"><a href="https://doi.org/10.1109/ojcoms.2026.3688693">RF-Assisted Compensation, IEEE OJ-COMS 2026, §IV-B, Tables&nbsp;8 and&nbsp;9</a></span></li>
+        <li><strong>Finding a path through the mesh.</strong> On a model of Starlink's first shell of 1,584 satellites, each linked to its four neighbours, a routing method that first works out the fewest satellite-to-satellite hops found paths on average 158 times faster than the textbook shortest-path algorithm, and the routes it finds are nearly as short. The speed-up is in the time a computer takes to work out a route. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Distributed On-Demand Routing, ASMS/SPSC 2022, §VI-B and §VI-C, Figs.&nbsp;5 and&nbsp;6</a></span></li>
+      </ul>
+      <p class="note">The last two are simulation results, under the assumptions set out in each paper. The first two come from a model built on public data from the US regulator (FCC).</p>
+    </section>
+
     <section class="wrap section" aria-labelledby="tools-title">
       <h2 id="tools-title">Tools and projects</h2>
       <ul class="tool-list">
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/d3-connect.webp" type="image/webp"><img src="/assets/img/software/d3-connect.jpg" width="720" height="450" alt="D3-CONNECT logo: a satellite above a mobile phone, linked by an orbit ring" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Project · Inria associate team · 2025–2027</p>
           <h3><a href="https://d3-connect.space/">D3-CONNECT</a></h3>
           <p>Direct-to-device satellite connectivity for everyone, with Sylvia Ratnasamy's NetSys Lab at UC Berkeley.</p>
           <p class="duty">Principal investigator</p>
         </li>
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/conopscon.webp" type="image/webp"><img src="/assets/img/software/conopscon.jpg" width="720" height="450" alt="ConOpsCon logo: three nested arcs forming a C, beside the words Continuous-Connectivity Operations Broker" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Project · ESA · 2026–</p>
           <h3>ConOpsCon</h3>
           <p>Constellation operations with continuous communication, with Saarland University as prime contractor and VisionSpace Technologies.</p>
           <p class="duty">Coordinator</p>
         </li>
         <li>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/donuts.webp" type="image/webp"><img src="/assets/img/software/donuts.jpg" width="720" height="450" alt="DONUTS logo: concentric arcs and dotted rings in orange and yellow" loading="lazy" decoding="async"></picture></figure>
           <p class="meta">Project · PEPR, France 2030 · 2025–2029</p>
           <h3><a href="https://donuts-project.space/">DONUTS</a></h3>
           <p>Design of multiscale, multitechnology networks: a seamless continuum of space, air and ground networks for 5G and 6G.</p>
           <p class="duty">Contributor</p>
         </li>
         <li>
+          <div class="fig nofig" aria-hidden="true"><b>ESA studies</b><small>2023–2025</small></div>
           <p class="meta">ESA studies · 2023–2025</p>
           <h3><a href="https://arxiv.org/abs/2507.15574">AI4LFNM</a>, <a href="https://resilience.esa.int/archives/projects/ml4mocs">ML4OISL</a> and <a href="https://resilience.esa.int/archives/projects/handingover">HANDING-OVER</a></h3>
           <p>AI for managing large satellite fleets, machine learning for optical links between satellites, and handover and routing in very low Earth orbit, with GMV, Thales Alenia Space, Eutelsat, Planet Labs and Politecnico di Torino.</p>
@@ -243,6 +248,17 @@
         <span class="label">Inria associate team · PEPR (France 2030)</span>
       </div>
     </section>
+
+    <nav class="wrap section topic-nav" aria-labelledby="topic-nav-title">
+      <h2 class="kicker" id="topic-nav-title">The four research topics</h2>
+      <ol>
+        <li class="t1"><a href="/dtn/"><span>01</span>Delay-Tolerant Networks</a></li>
+        <li class="t2"><a href="/satellite-iot/"><span>02</span>Direct-to-Satellite IoT</a></li>
+        <li class="t3"><a href="/mega-constellations/" aria-current="page"><span>03</span>Mega-Constellations</a></li>
+        <li class="t4"><a href="/orbital-computing/"><span>04</span>Orbital Computing</a></li>
+      </ol>
+      <p class="back"><a href="/#mega"><span aria-hidden="true">←</span> Back to the home page</a></p>
+    </nav>
   </main>
 
   <footer class="site-foot">

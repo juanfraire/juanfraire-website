@@ -6,13 +6,19 @@
   <meta name="robots" content="noindex">
   <title>Social card · Juan A. Fraire</title>
   <!--
-    The social card (assets/img/og.jpg) and its talk-slide version, drawn live from the home
-    page's 3D tour: each panel is its own copy of assets/js/scene/scene.js, sent to one stop.
+    The social card (assets/img/og.jpg), its talk-slide version and the heroes of topic pages
+    01 to 03, drawn live from the home page's 3D tour: each panel is its own copy of
+    assets/js/scene/scene.js, sent to one stop.
     Open it from the preview server and capture the page at its own size (see README.md):
 
       http://localhost:8765/scripts/og-card.html               1200 x 630, the social card
       http://localhost:8765/scripts/og-card.html?size=slide    1920 x 1080, the talk slide
       ?v=a|b|c    layout variant (b, the default, is the one installed as og.jpg)
+      ?view=0..3  one panel's picture alone, filling the window: at 476 x 856 it is framed as in
+                  the slide, which is how presentation-slide/make-assets.py captures its panels
+      ?hero=0..2  a topic page's hero at 1600 x 900: stop N, its subject on the right, clear of
+                  the title and inside what the page shows of the picture on phones and wide
+                  screens (scripts/make_assets.py captures them)
 
     For a picture that comes out the same every time, the page runs the scenes on a clock of
     its own: each scene starts at its moment in MOMENTS below and runs for its RUN minutes, its
@@ -115,6 +121,12 @@
       background: linear-gradient(rgba(7, 11, 22, 0.86), rgba(7, 11, 22, 0.5) 60%, rgba(7, 11, 22, 0));
     }
     .og.c .og-title { font-size: 2.8rem; margin-bottom: 0.6rem; }
+
+    /* ---- ?view=N: one panel's picture, nothing else */
+    html.one-view .og { display: block; width: 100vw; height: 100vh; }
+    html.one-view .og > :not(.og-topics), html.one-view .og .og-label, html.one-view .og .og-topic::before { display: none; }
+    html.one-view .og .og-topics, html.one-view .og .og-topic { display: flex; height: 100%; }
+    html.one-view .og .og-topic { flex: 1; }
   </style>
 </head>
 <body>
@@ -156,17 +168,32 @@
     const q = new URLSearchParams(location.search);
     const VARIANT = q.get('v') || 'b';
     const SLIDE = q.get('size') === 'slide';
+    const HERO = q.has('hero') ? Number(q.get('hero')) : -1;
+    const VIEW = q.has('view') ? Number(q.get('view')) : HERO;
 
     // Each panel's scene starts at a moment (UTC) and then runs for some simulated minutes: the
     // Sun, Earth's turn and Mars's direction follow the moment, while the satellites, the rovers
     // and the node are placed by the time run since the start, as on the home page.
-    const MOMENTS = ['2026-10-08T10:00:00Z', '2026-10-08T10:00:00Z', '2026-10-08T10:00:00Z', '2026-10-08T10:00:00Z'];
+    // The heroes have moments of their own: Europe and Africa under the IoT constellation, and
+    // the line between day and night over the Atlantic under the laser mesh.
+    const MOMENTS = HERO >= 0
+      ? ['2026-10-08T10:00:00Z', '2026-10-08T14:00:00Z', '2026-10-08T19:00:00Z']
+      : ['2026-10-08T10:00:00Z', '2026-10-08T10:00:00Z', '2026-10-08T10:00:00Z', '2026-10-08T10:00:00Z'];
     const RUN = [60, 0, 0, 12];
     // How far the last stop has pulled back from the node (the page's scroll through stop 04), 0 to 1.
     let PULL = 0;
     // Framing per panel: where the camera's target lands (fractions of the panel) and a zoom,
     // 1 being what a canvas of the panel's own size would show on the home page.
-    const FRAMES = {
+    // A hero is shown with object-fit: cover at 85% 50% (site.css, .topic-hero): phones see only
+    // x 0.56 to 0.90 of it, and a 1920 px wide screen only y 0.2 to 0.8. Its subject sits near
+    // x 0.72, y 0.48, clear of the title and the lead, which end at about 54% of a wide screen.
+    // A canvas that fills the window cannot show less than the scene's own framing (zoom 1, which
+    // needs the target at mid-height on a wide canvas). Mars is drawn large, lower left of its
+    // target, and above mid-height: on phones only the top third of a hero shows through the
+    // gradient. Earth, at the end of the dashed relay line, is out of view to the top right
+    // (left in, it would sit cut at the edge of every crop).
+    const HERO_FRAMES = [{ x: 0.717, y: 0.34, z: 2.5 }, { x: 0.72, y: 0.48, z: 1.04 }, { x: 0.72, y: 0.5, z: 1 }];
+    const FRAMES = HERO >= 0 ? HERO_FRAMES : {
       a: [{ x: 0.6, y: 0.44, z: 2.4 }, { x: 0.5, y: 0.5, z: 1.1 }, { x: 0.5, y: 0.5, z: 1.05 }, { x: 0.5, y: 0.61, z: 1.3 }],
       b: [{ x: 0.62, y: 0.34, z: 2.2 }, { x: 0.5, y: 0.4, z: 1 }, { x: 0.5, y: 0.4, z: 1 }, { x: 0.5, y: 0.52, z: 1.15 }],
       c: [{ x: 0.68, y: 0.56, z: 2.4 }, { x: 0.62, y: 0.62, z: 1.25 }, { x: 0.6, y: 0.6, z: 1.25 }, { x: 0.8, y: 0.62, z: 1.3 }],
@@ -182,7 +209,9 @@
 
     const root = document.documentElement;
     if (SLIDE) root.classList.add('slide');
+    if (VIEW >= 0) root.classList.add('one-view');
     document.getElementById('card').classList.add(VARIANT);
+    document.querySelectorAll('.og-topic').forEach((li, i) => { li.hidden = VIEW >= 0 && i !== VIEW; });
 
     // ---- a clock of our own: performance.now, requestAnimationFrame, Date.now and Math.random
     const nativeRaf = requestAnimationFrame.bind(window);
@@ -242,6 +271,7 @@
     const { createScene } = await import('/assets/js/scene/scene.js');
     const topics = [...document.querySelectorAll('.og-topic')];
     for (const [i, li] of topics.entries()) {
+      if (li.hidden) continue;
       const canvas = li.querySelector('canvas');
       frame(canvas, li.querySelector('.og-view'), FRAMES[i]);
       const at = Date.parse(q.get('t') || MOMENTS[i]);
