@@ -88,7 +88,8 @@ const ICONS = {
 const duration = (s) => { const m = Math.max(1, Math.ceil(s / 60)); return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')} min`; };
 const degrees = (lat, lon) => `${Math.abs(lat).toFixed(1)}° ${lat < 0 ? 'S' : 'N'}, ${Math.abs(lon).toFixed(1)}° ${lon < 0 ? 'W' : 'E'}`;
 
-export async function createScene(canvas, { onLive = () => {}, onSlow = () => {} } = {}) {
+// reach: how far each stop's camera stands from its target, as a multiple of the tour's (og-card.html only).
+export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}, reach = [1, 1, 1, 1] } = {}) {
   const small = matchMedia('(max-width: 760px)').matches;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
   let pixelRatio = Math.min(devicePixelRatio || 1, small ? 1.5 : 1.75);
@@ -948,7 +949,11 @@ export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}
       const w = (Math.exp(5 * s) - 1) / (Math.exp(5) - 1);   // distance grows about geometrically
       return { pos: pos.lerp(away.multiplyScalar(4.6 * k), w), target: target.lerp(y.clone().multiplyScalar(0.12), smooth(0, 1, w)), up: y.clone() };
     },
-  ];
+  ].map((stop, i) => (reach[i] === 1 ? stop : () => {
+    const s = stop();
+    s.pos.sub(s.target).multiplyScalar(reach[i]).add(s.target);
+    return s;
+  }));
 
   let current = 0, from = null, tweenStart = 0, tweenDur = 1;
   const cam = { pos: new THREE.Vector3(), target: new THREE.Vector3(), up: Y.clone() };
