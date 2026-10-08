@@ -154,6 +154,7 @@ PAPER_FIGURES = {
 # "logo" and "logo-dark" centre a project's logo on a 16:10 light or dark ground. A bitmap crop
 # is a pixel box. The alt text is written in software/index.html; the others show their name.
 # The pyCGR picture is drawn from a pyCGR run on its tutorial contact plan: see scripts/pycgr-figure/.
+# Screenshots of a website or a video are kept in scripts/shots/, with the date they were taken.
 SOFTWARE_SHOTS = {
     "dtnsim": (HDR / "dtn_sim.pdf", (1, 15, 144, 210, 266), "shot"),   # Fig. 3 of the SMC-IT 2017 paper, © 2017 IEEE
     "pycgr": (SITE / "scripts/pycgr-figure/pycgr-route.png", None, "figure"),
@@ -163,6 +164,10 @@ SOFTWARE_SHOTS = {
     "d3-connect": (DRIVE / "inria/0000-00-project-ea-d3connect/website/d3-connect-website/logo.svg", None, "logo"),
     "conopscon": (DRIVE / "saaruni/2026-04-esa-conopscon/management-dgit/_theme/assets/logo-conopscon-lockup.svg", None, "logo"),
     "donuts": (DRIVE / "inria/0000-00-project-pepr-donuts/website/donuts-project-website/img-logo-donuts.svg", None, "logo-dark"),
+    "esa": (SITE / "assets/img/logos/esa.svg", None, "logo-dark"),        # ESA-funded work without a logo of its own
+    "vista": (HDR / "store-and-forward-table.pdf", None, "figure"),         # the CGR tutorial's figure, © 2020 Elsevier
+    "stereo": (SITE / "scripts/shots/stereo-project-space.jpg", None, "shot"),          # stereo-project.space, 8 Oct 2026
+    "foundation": (SITE / "scripts/shots/foundation-video.jpg", (98, 0, 1922, 1140), "shot"),   # a frame of the video
     "ipn-v": (DRIVE / "ipnsig/0000-00-ipnv-screenshots/image_008_0000.png", (0, 760, 4320, 3460), "shot"),
     "contact-plan-designer": (CODE / "cpd/contact-plan-designer/docs/img/workbench.png", (555, 140, 1920, 993), "shot"),  # keeps the Cesium ion logo whole
     "a-sabr": (CODE / "a-sabr/asabr/examples/inter-regional_routing/images/irr-cp.svg", (0, 140, 1600, 910), "figure"),  # without the title line

@@ -82,30 +82,6 @@
       </div>
     </section>
 
-    <section class="wrap section" aria-labelledby="results-title">
-      <h2 id="results-title">Where it can work, and what it costs</h2>
-      <div class="cols">
-        <div class="box">
-          <h3>Where it can work</h3>
-          <ul>
-            <li><strong>Distance to the ground.</strong> A cloud in orbit answers faster than one on the ground when the user is more than about 5,000&nbsp;km from the nearest gateway. Under 2,000&nbsp;km, the ground wins. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc64465.2025.10946050">ASMS/SPSC 2025, §V-A</a></span></li>
-            <li><strong>Shrinking data before sending it.</strong> Processing in orbit saves carbon when it cuts the data enough: with one inter-satellite hop, down to 50% of the raw size on Falcon&nbsp;9, or 70% on Starship. <span class="cite"><a href="https://arxiv.org/abs/2508.06250v3">Dirty Bits, §4.3</a></span></li>
-            <li><strong>Against an average data centre.</strong> Within its first one or two years in orbit, a node emits less carbon per GPU-hour than the global-average data centre on Earth (about 477&nbsp;g of CO₂e). <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, LEO-NET 2026, Fig.&nbsp;1</a></span></li>
-          </ul>
-        </div>
-        <div class="box">
-          <h3>What it costs</h3>
-          <ul>
-            <li><strong>Heat.</strong> Every watt a computer draws ends up as heat, and in vacuum it can only be radiated away. For a 1&nbsp;kW node, the radiator weighs 30.5&nbsp;kg of the 44.3&nbsp;kg modelled; the computer itself, 3.2&nbsp;kg. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, §4</a></span> Scaled to the 250&nbsp;kW that <a href="https://x.com/elonmusk/status/2105718806769512812">SpaceX quotes</a> for each of its Star Mind spacecraft, the same ISS-based density gives about 760&nbsp;m² and 7.6&nbsp;tonnes of radiator, the heat load of some 18 ISS radiator panels. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, §3</a></span></li>
-            <li><strong>Launch and re-entry.</strong> Each kilogram costs about 52&nbsp;kg of CO₂e on Falcon&nbsp;9 and 34 on Starship. Re-entry adds about half again on top of the launch. <span class="cite"><a href="https://arxiv.org/abs/2508.06250v3">Dirty Bits, §3.1</a></span></li>
-            <li><strong>No repair.</strong> Spares have to fly from day one. One cold spare of the computer adds 40% to the carbon per GPU-hour on Starship, and 34% on Falcon&nbsp;9, for a three-year mission. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, abstract</a></span></li>
-            <li><strong>Against a clean data centre.</strong> Matching a data centre on a clean grid (about 107&nbsp;g per GPU-hour) takes at least six years in orbit with one spare on Starship, or nine years with two spares on Falcon&nbsp;9. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, §4</a></span></li>
-          </ul>
-        </div>
-      </div>
-      <p class="note">Carbon figures count manufacturing, launch and re-entry of the modelled components; once in orbit the node runs on sunlight. The satellite bus (structure, attitude control, avionics) is left out, as in the papers; including it would add mass.</p>
-    </section>
-
     <section class="wrap section" aria-labelledby="sizer-title">
       <h2 id="sizer-title">Size a computing node</h2>
       <p class="prose">One node: an H100-class GPU with its controller, storage and laser link, 1&nbsp;kW in all, in a dawn-dusk orbit at 510&nbsp;km. Choose how long it flies, how many copies of the computer it carries, and which rocket launches it.</p>
@@ -211,6 +187,30 @@
       </details>
     </section>
 
+    <section class="wrap section" aria-labelledby="results-title">
+      <h2 id="results-title">Where it can work, and what it costs</h2>
+      <div class="cols">
+        <div class="box">
+          <h3>Where it can work</h3>
+          <ul>
+            <li><strong>Distance to the ground.</strong> A cloud in orbit answers faster than one on the ground when the user is more than about 5,000&nbsp;km from the nearest gateway. Under 2,000&nbsp;km, the ground wins. <span class="cite"><a href="https://doi.org/10.1109/asms/spsc64465.2025.10946050">ASMS/SPSC 2025, §V-A</a></span></li>
+            <li><strong>Shrinking data before sending it.</strong> Processing in orbit saves carbon when it cuts the data enough: with one inter-satellite hop, down to 50% of the raw size on Falcon&nbsp;9, or 70% on Starship. <span class="cite"><a href="https://arxiv.org/abs/2508.06250v3">Dirty Bits, §4.3</a></span></li>
+            <li><strong>Against an average data centre.</strong> Within its first one or two years in orbit, a node emits less carbon per GPU-hour than the global-average data centre on Earth (about 477&nbsp;g of CO₂e). <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, LEO-NET 2026, Fig.&nbsp;1</a></span></li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>What it costs</h3>
+          <ul>
+            <li><strong>Heat.</strong> Every watt a computer draws ends up as heat, and in vacuum it can only be radiated away. For a 1&nbsp;kW node, the radiator weighs 30.5&nbsp;kg of the 44.3&nbsp;kg modelled; the computer itself, 3.2&nbsp;kg. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, §4</a></span> Scaled to the 250&nbsp;kW that <a href="https://x.com/elonmusk/status/2105718806769512812">SpaceX quotes</a> for each of its Star Mind spacecraft, the same ISS-based density gives about 760&nbsp;m² and 7.6&nbsp;tonnes of radiator, the heat load of some 18 ISS radiator panels. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, §3</a></span></li>
+            <li><strong>Launch and re-entry.</strong> Each kilogram costs about 52&nbsp;kg of CO₂e on Falcon&nbsp;9 and 34 on Starship. Re-entry adds about half again on top of the launch. <span class="cite"><a href="https://arxiv.org/abs/2508.06250v3">Dirty Bits, §3.1</a></span></li>
+            <li><strong>No repair.</strong> Spares have to fly from day one. One cold spare of the computer adds 40% to the carbon per GPU-hour on Starship, and 34% on Falcon&nbsp;9, for a three-year mission. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, abstract</a></span></li>
+            <li><strong>Against a clean data centre.</strong> Matching a data centre on a clean grid (about 107&nbsp;g per GPU-hour) takes at least six years in orbit with one spare on Starship, or nine years with two spares on Falcon&nbsp;9. <span class="cite"><a href="https://doi.org/10.1145/3789240.3827598">Dark Clouds, §4</a></span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Carbon figures count manufacturing, launch and re-entry of the modelled components; once in orbit the node runs on sunlight. The satellite bus (structure, attitude control, avionics) is left out, as in the papers; including it would add mass.</p>
+    </section>
+
     <section class="wrap section" aria-labelledby="tools-title">
       <h2 id="tools-title">Tools and projects</h2>
       <ul class="tool-list">
@@ -225,9 +225,9 @@
           <p>A continuous-time emulator for edge computing on low-Earth-orbit constellations, used to test where servers should sit and how tasks should move between orbit and ground.</p>
         </li>
         <li>
-          <div class="fig nofig" aria-hidden="true"><b>FOUNDATION</b><small>Video</small></div>
+          <figure class="fig shot"><picture><source srcset="/assets/img/software/foundation.webp" type="image/webp"><img src="/assets/img/software/foundation.jpg" width="720" height="450" alt="A frame of the video: the night side of Earth, wrapped in a dense mesh of links between satellites" loading="lazy" decoding="async"></picture></figure>
           <h3><a href="https://youtu.be/QxZvYLTl7Bs">FOUNDATION</a></h3>
-          <p>Computing without repair: what it takes to keep hardware dependable for years when no one can reach it. A 30-second teaser.</p>
+          <p>Computing without repair: what it takes to keep hardware dependable for years when no one can reach it. A short video.</p>
         </li>
       </ul>
     </section>

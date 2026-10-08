@@ -150,7 +150,8 @@ data/news/                  one file per news post
 vendor/three/               three.js r170 (MIT)
 assets/fonts/               Inria Sans (SIL Open Font Licence)
 scripts/                    serve.py, generate.py, add_post.py, make_assets.py (+ git-ignored sources.local.json),
-                            og-card.html (social card and heroes from the tour), pycgr-figure/ (the pyCGR picture)
+                            og-card.html (social card and heroes from the tour), pycgr-figure/ (the pyCGR picture),
+                            shots/ (screenshots of a project website and of a video, with their dates)
 sitemap.xml, robots.txt     written by generate.py / by hand
 CNAME                       juanfraire.space
 ```
