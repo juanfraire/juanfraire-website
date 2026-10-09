@@ -53,12 +53,12 @@
     .og-tagline strong { color: var(--ink); }
     .og-role {
       display: inline-flex; align-items: center; gap: 1rem; justify-self: start; align-self: center;
-      padding: 0.6rem 1.8rem 0.6rem 1.3rem; border-radius: 99rem;
-      border: 1px solid var(--line); background: var(--bar);
+      padding: 0.6rem 1.8rem 0.6rem 1.3rem;
+      border: 1px solid var(--line);
       font-size: 1.9rem; color: var(--ink); white-space: nowrap;
     }
     .og-role img { height: 2.4rem; width: auto; }
-    .og-role em { font-style: normal; font-size: 1.35rem; letter-spacing: 0.15rem; text-transform: uppercase; color: var(--muted); margin-right: 0.3rem; }
+    .og-role em { font-style: normal; font-size: 1.6rem; color: var(--muted); margin-right: 0.3rem; }
     .og-inst { display: flex; align-items: center; gap: 4rem; }
     .og-inst img { width: auto; filter: brightness(0) invert(1); opacity: 0.85; }
     .og-inst img.inria { height: 2.9rem; }
@@ -71,8 +71,7 @@
     .og-num { font-size: 1.5rem; letter-spacing: 0.2rem; color: var(--accent); }
     .og-title { font-size: 2.6rem; font-weight: 700; line-height: 1.08; color: var(--accent); }
     .og-tags {
-      align-self: flex-start; padding: 0.35rem 1.2rem; border-radius: 99rem;
-      background: rgba(7, 11, 22, 0.66); border: 1px solid var(--line);
+      align-self: flex-start;
       font-size: 1.5rem; letter-spacing: 0.04rem; color: #dfe5f0; white-space: nowrap;
     }
 
@@ -84,8 +83,8 @@
     .og.a .og-topics { column-gap: 1.6rem; }
     .og.a .og-label { order: -1; padding: 0 0.2rem 1rem; }
     .og.a .og-title { min-height: 2.16em; display: flex; align-items: flex-end; }
-    .og.a .og-view { border-radius: var(--radius); border: 1px solid var(--line-soft); }
-    .og.a .og-tags { position: absolute; left: 1.1rem; bottom: 1.1rem; z-index: 1; }
+    .og.a .og-view { border: 1px solid var(--line-soft); }
+    .og.a .og-tags { position: absolute; left: 0; bottom: 0; z-index: 1; padding: 0.4rem 1rem; background: rgba(7, 11, 22, 0.85); }
     .og.a .og-inst { padding: 2rem 0.2rem 0; }
 
     /* ---- b: the panels run to the edges; the name sits on a band above, titles over the pictures. */
@@ -114,7 +113,7 @@
     .og.c .og-role { margin: 0 0 3.4rem 1rem; }
     .og.c .og-inst { gap: 3.6rem; padding: 0 0 0.6rem 1rem; }
     .og.c .og-topics { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
-    .og.c .og-topic { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line-soft); }
+    .og.c .og-topic { overflow: hidden; border: 1px solid var(--line-soft); }
     .og.c .og-label {
       position: absolute; left: 0; top: 0; z-index: 1; display: flex; flex-direction: column; gap: 0.3rem;
       padding: 1.5rem 1.8rem 4rem 1.8rem; width: 100%;

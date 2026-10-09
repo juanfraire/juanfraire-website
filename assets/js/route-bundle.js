@@ -137,7 +137,7 @@ if (box) {
     const bars = PLAN.map(([id, a, b, start, end]) => {
       const r = ROWS.indexOf(pair(a, b)), h = onRow.get(r);
       const used = !!h && h.start === start;
-      add('rect', { class: used ? 'bar used' : 'bar', x: x(start), y: y(r) - BAR / 2, width: x(end) - x(start), height: BAR, rx: 4 });
+      add('rect', { class: used ? 'bar used' : 'bar', x: x(start), y: y(r) - BAR / 2, width: x(end) - x(start), height: BAR });
       return { id, r, start, end, used };
     });
     if (t0 > 0) add('rect', { class: 'past', x: x(0) - 2, y: TOP - 4, width: x(t0) - x(0) + 2, height: bottom - TOP + 4 });
