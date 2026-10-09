@@ -124,6 +124,9 @@
 
     /* ---- ?view=N: one panel's picture, nothing else */
     html.one-view .og { display: block; width: 100vw; height: 100vh; }
+    /* A hero is 1600 x 900 whatever the window: headless Chrome lays a 1600 x 900 window out
+       87 px short, which left a strip of page colour along the bottom of each capture. */
+    html.hero .og { width: 1600px; height: 900px; }
     html.one-view .og > :not(.og-topics), html.one-view .og .og-label, html.one-view .og .og-topic::before { display: none; }
     html.one-view .og .og-topics, html.one-view .og .og-topic { display: flex; height: 100%; }
     html.one-view .og .og-topic { flex: 1; }
@@ -201,7 +204,9 @@
     // The tour films stop 03 from 3.7 Earth radii and stop 02 from 4.3. Side by side, 03's camera
     // stands back by 1.156 so the two Earths come out the same size; y 0.389 above puts 03's
     // centre level with 02's (both panels are at their widest framing, so a zoom cannot do it).
-    const REACH = HERO >= 0 ? [1, 1, 1, 1] : [1, 1, 1.156, 1];
+    // The heroes' cameras stand back by 900 / 813: their framing was set while the capture came out
+    // 813 px tall (see html.hero above), and this keeps each subject the size it had then.
+    const REACH = HERO >= 0 ? [1.107, 1.107, 1.107, 1] : [1, 1, 1.156, 1];
     // For trying things out: ?t=ISO (every panel's moment), ?t0=ISO and ?r0=minutes (one panel's
     // moment and run), ?f2=x,y,z (one panel's framing), ?pull=0.3.
     if (q.has('pull')) PULL = Number(q.get('pull'));
@@ -214,6 +219,7 @@
     const root = document.documentElement;
     if (SLIDE) root.classList.add('slide');
     if (VIEW >= 0) root.classList.add('one-view');
+    if (HERO >= 0) root.classList.add('hero');
     document.getElementById('card').classList.add(VARIANT);
     document.querySelectorAll('.og-topic').forEach((li, i) => { li.hidden = VIEW >= 0 && i !== VIEW; });
 
@@ -283,7 +289,8 @@
       Date.now = () => at;
       Math.random = seeded(7);
       try {
-        const scene = await createScene(canvas, { onSlow() {}, reach: REACH });
+        // No fade along the bottom: a canvas here can end anywhere in its panel (the topic pages fade their heroes).
+        const scene = await createScene(canvas, { onSlow() {}, reach: REACH, fade: false });
         if (i === 3) scene.setProgress(PULL);
         scene.goTo(i, true);
         step(i, Math.round(RUN[i] * 10), 100);

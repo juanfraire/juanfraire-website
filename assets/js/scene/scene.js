@@ -89,7 +89,8 @@ const duration = (s) => { const m = Math.max(1, Math.ceil(s / 60)); return m < 6
 const degrees = (lat, lon) => `${Math.abs(lat).toFixed(1)}° ${lat < 0 ? 'S' : 'N'}, ${Math.abs(lon).toFixed(1)}° ${lon < 0 ? 'W' : 'E'}`;
 
 // reach: how far each stop's camera stands from its target, as a multiple of the tour's (og-card.html only).
-export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}, reach = [1, 1, 1, 1] } = {}) {
+// fade: whether the backdrop fades to the page colour along the bottom edge (off in og-card.html).
+export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}, reach = [1, 1, 1, 1], fade = true } = {}) {
   const small = matchMedia('(max-width: 760px)').matches;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
   let pixelRatio = Math.min(devicePixelRatio || 1, small ? 1.5 : 1.75);
@@ -176,10 +177,11 @@ export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}
   }
 
   const loader = new THREE.TextureLoader();
-  const [dayTex, nightTex, marsTex, dsn, odc, sensorsLL] = await Promise.all([
+  const [dayTex, nightTex, marsTex, skyTex, dsn, odc, sensorsLL] = await Promise.all([
     loader.loadAsync('/assets/img/tex/earth-day.jpg'),
     loader.loadAsync('/assets/img/tex/earth-night.jpg'),
     loader.loadAsync('/assets/img/tex/mars.jpg'),
+    loader.loadAsync('/assets/img/tex/sky.webp').catch(() => null),   // the tour goes on without it
     fetch('/data/dsn.json').then((r) => r.json()),
     fetch('/data/odc.json').then((r) => r.json()),
     fetch('/data/sensors.json').then((r) => r.json()),
@@ -213,6 +215,43 @@ export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}
     };
     scene.add(make(2600, 1.6, 0.55), make(500, 2.6, 0.8));
   }
+
+  // ---------------------------------------------------------------- backdrop
+  // A navy glow behind the subject, the same gradient as the stage's CSS background so the canvas
+  // fades in over it unseen, and a faint nebula (make_assets.py) fixed to the sky like the stars.
+  // Both fade to the page colour along the bottom edge, where the stage meets the sections below.
+  const SKY = 0.11;                                    // the nebula's brightness
+  const backdropRes = new THREE.Vector2(1, 1), edge = { value: fade ? 1 : 0 };
+  const SCREEN = /* glsl */`
+    uniform vec2 res; uniform float edge;
+    float dither() { return (fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) / 255.0; }
+    float bottom() { return edge * clamp((0.2 - gl_FragCoord.y / res.y) / 0.2, 0.0, 1.0); }`;
+  const backdrop = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
+    uniforms: { res: { value: backdropRes }, edge, at: { value: small ? new THREE.Vector2(0.5, 0.32) : new THREE.Vector2(0.7, 0.4) } },
+    vertexShader: 'void main() { gl_Position = vec4(position.xy, 0.0, 1.0); }',
+    fragmentShader: SCREEN + /* glsl */`
+      uniform vec2 at;
+      void main() {
+        vec2 uv = vec2(gl_FragCoord.x / res.x, 1.0 - gl_FragCoord.y / res.y);
+        float t = clamp(length((uv - at) / vec2(0.75, 0.85)), 0.0, 1.0);
+        vec3 col = mix(vec3(9.0, 15.0, 30.0), vec3(28.0, 43.0, 88.0), 0.5 * (1.0 - t)) / 255.0;
+        col = mix(col, vec3(7.0, 11.0, 22.0) / 255.0, bottom());
+        gl_FragColor = vec4(col + dither(), 1.0);
+      }`,
+    depthTest: false, depthWrite: false,
+  }));
+  const sky = new THREE.Mesh(new THREE.SphereGeometry(1400, 64, 32), new THREE.ShaderMaterial({
+    uniforms: { res: { value: backdropRes }, edge, map: { value: skyTex }, strength: { value: skyTex ? SKY : 0 } },
+    vertexShader: 'varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: SCREEN + /* glsl */`
+      uniform sampler2D map; uniform float strength; varying vec2 vUv;
+      void main() { gl_FragColor = vec4(texture2D(map, vUv).rgb * strength * (1.0 - bottom()) + dither(), 1.0); }`,
+    side: THREE.BackSide, depthTest: false, depthWrite: false, blending: THREE.AdditiveBlending,
+  }));
+  backdrop.renderOrder = -2;                           // drawn first, under everything else
+  sky.renderOrder = -1;
+  backdrop.frustumCulled = sky.frustumCulled = false;
+  scene.add(backdrop, sky);
 
   // ---------------------------------------------------------------- Earth
   const earth = new THREE.Group();
@@ -1038,6 +1077,7 @@ export async function createScene(canvas, { onLive = () => {}, onSlow = () => {}
     view.w = w; view.h = h;
     odcMat.uniforms.pr.value = renderer.getPixelRatio();
     renderer.setSize(w, h, false);
+    renderer.getDrawingBufferSize(backdropRes);
     camera.aspect = w / h;
     if (w > 760) camera.setViewOffset(w, h, -0.1 * w, 0, w, h);
     else camera.setViewOffset(w, h, 0, 0.21 * h, w, h);

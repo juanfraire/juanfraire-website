@@ -424,6 +424,56 @@ def textures():
         print("tex   ", name, "<-", src.name)
 
 
+def sky(w=2048, h=1024, seed=7):
+    """A faint nebula for the tour's sky, drawn here from noise so it comes out the same every time.
+
+    Equirectangular, in the layout of three.js's SphereGeometry uvs. The scene adds it at about a
+    tenth of its brightness, so it is stored at full range and scaled down there.
+    """
+    rng = np.random.default_rng(seed)
+    perm = np.tile(rng.permutation(256), 2)
+    vals = rng.random(256)
+
+    def noise(x, y, z):                                  # value noise, smooth in all three axes
+        i = [np.floor(c).astype(int) for c in (x, y, z)]
+        f = [c - ic for c, ic in zip((x, y, z), i)]
+        u = [t * t * t * (t * (t * 6 - 15) + 10) for t in f]
+        out = 0
+        for dx in (0, 1):
+            for dy in (0, 1):
+                for dz in (0, 1):
+                    k = vals[perm[perm[perm[(i[0] + dx) & 255] + ((i[1] + dy) & 255)] + ((i[2] + dz) & 255)] & 255]
+                    out = out + k * (u[0] if dx else 1 - u[0]) * (u[1] if dy else 1 - u[1]) * (u[2] if dz else 1 - u[2])
+        return out
+
+    def fbm(p, octaves):
+        total, amp, norm = 0, 1.0, 0
+        for o in range(octaves):
+            total, norm = total + amp * noise(*p), norm + amp
+            p, amp = p * 2.03 + 17.31 * (o + 1), amp * 0.5
+        return total / norm
+
+    def ramp(a, b, x):
+        t = np.clip((x - a) / (b - a), 0, 1)
+        return t * t * (3 - 2 * t)
+
+    phi, theta = np.meshgrid(2 * np.pi * (np.arange(w) + 0.5) / w, np.pi * (np.arange(h) + 0.5) / h)
+    d = np.stack([-np.cos(phi) * np.sin(theta), np.cos(theta), np.sin(phi) * np.sin(theta)])
+    p = d * 2.2
+    warp = np.stack([fbm(p + 3.1, 4), fbm(p + 8.7, 4), fbm(p + 1.9, 4)]) - 0.5
+    gas = ramp(0.42, 0.78, fbm(p + 2.2 * warp, 6))                              # where the clouds are
+    strands = (1 - np.abs(2 * fbm(p * 2.4 + 1.3 * warp + 5, 5) - 1)) ** 4       # brighter filaments in them
+    haze = 0.25 * ramp(0.3, 0.9, fbm(d * 1.3 + 40, 3))                          # so no view is quite empty
+    hue, teal = fbm(d * 1.1 + 11, 3), ramp(0.55, 0.75, fbm(d * 1.6 + 23, 3))
+    rgb = lambda s: np.array([int(s[i:i + 2], 16) / 255 for i in (1, 3, 5)])[:, None, None]
+    col = (rgb("#3a5bc0") * (1 - hue) + rgb("#7a52b8") * hue) * (1 - teal) + rgb("#2f9a9a") * teal
+    im = col * gas * (0.75 + 0.6 * strands) + rgb("#34488a") * haze
+    im = (np.clip(im / im.max(), 0, 1).transpose(1, 2, 0) * 255 + 0.5).astype(np.uint8)
+    out = IMG / "tex/sky.webp"
+    Image.fromarray(im).save(out, quality=80, method=6)
+    print("tex    sky.webp (drawn,", out.stat().st_size // 1024, "KB)")
+
+
 def sensors(n=520, seed=7):
     """Random land points for the IoT stop, sampled from the day map (ocean is dark blue)."""
     a = np.asarray(Image.open(TEXTURES["earth-day.jpg"][0]).convert("RGB")).astype(int)
@@ -498,6 +548,7 @@ def main():
     og_image()
     icons()
     textures()
+    sky()
     sensors()
     dsn()
     odc()
