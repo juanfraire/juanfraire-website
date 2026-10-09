@@ -1,6 +1,7 @@
 // News cards on the landing page, as on LinkedIn. The cards sit in one row that scrolls
 // sideways (swipe, trackpad or shift + wheel work without this script); here we add the
-// previous/next arrows for mouse users, and cut long posts to a few lines with "Show more".
+// previous/next arrows for mouse users, cut long posts to a few lines with "Show more", and then
+// let every card take the height of the row (see .posts.cards.even in site.css).
 // Without JavaScript the row still scrolls and the whole text shows.
 
 const row = document.getElementById('latest-posts');
@@ -59,6 +60,10 @@ for (const text of document.querySelectorAll('.post-text[data-clamp]')) {
     const open = !text.classList.toggle('clamped');
     button.setAttribute('aria-expanded', String(open));
     button.textContent = open ? 'Show less' : 'Show more';
+    // a post open in full grows on its own; the others keep their size
+    row?.classList.toggle('even', !row.querySelector('.post-toggle[aria-expanded="true"]'));
   });
   text.after(button);
 }
+// every long post is cut now, so the cards can all take the height of the row
+row?.classList.add('even');

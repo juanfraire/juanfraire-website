@@ -370,8 +370,7 @@ html.scene { scroll-behavior: smooth; }
 .post-media a { position: relative; display: block; background: #000; }
 .post-media picture { display: contents; }
 .post-media img { width: 100%; height: 100%; object-fit: cover; }
-.post-media.n1 img { height: auto; max-height: var(--one-max, 640px); object-position: 50% 20%; }
-.posts.cards .post-media.n1 { --one-max: 380px; }
+.post-media.n1 img { height: auto; max-height: 640px; object-position: 50% 20%; }
 .post-media.n2, .post-media.n3, .post-media.many { grid-template-columns: 1fr 1fr; }
 .post-media.n4 { grid-template-columns: repeat(3, 1fr); }
 .post-media:is(.n2, .n3, .n4, .many) a { aspect-ratio: 1; }
@@ -386,6 +385,28 @@ html.scene { scroll-behavior: smooth; }
 .post-preview small { font-size: 13px; color: var(--muted); }
 .post-preview:hover b { text-decoration: underline; }
 .post-foot { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 12px 0 0; font-size: 14px; }
+
+/* In the landing page's row every card has one shape: its pictures on top in a 16:10 frame, then
+   the date and the first lines of the text, with its links along the bottom. Once news.js has cut
+   the long posts it adds .even, and the cards all take the height of the row (not while a post is
+   open in full, or the others would grow with it). */
+.posts.cards.even { align-items: stretch; }
+.posts.cards .post { display: flex; flex-direction: column; height: 100%; }
+.posts.cards .post > :is(.post-media, .post-preview, .post-video) {
+  order: -1; margin: calc(-1 * var(--pad-y)) calc(-1 * var(--pad)) 12px; border-top: 0; aspect-ratio: 16 / 10;
+  overflow: hidden;   /* or a tall picture would stretch the frame */
+}
+.posts.cards .post-media { grid-template-rows: minmax(0, 2fr) minmax(0, 1fr); }
+.posts.cards .post-media:is(.n1, .n2) { grid-template-rows: minmax(0, 1fr); }
+.posts.cards .post-media > a { aspect-ratio: auto; }
+.posts.cards .post-media.n1 img { height: 100%; max-height: none; object-position: 50% 0; }   /* a poster's title is at its top */
+.posts.cards .post-video { width: calc(100% + 2 * var(--pad)); max-height: none; object-fit: cover; }
+.posts.cards .post-preview { display: flex; flex-direction: column; border-bottom: 1px solid var(--line-soft); }
+.posts.cards .post-preview picture { flex: 1; min-height: 0; }
+.posts.cards .post-preview img { height: 100%; aspect-ratio: auto; }
+.posts.cards .post-preview b { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.posts.cards .post-toggle { align-self: flex-start; }
+.posts.cards .post-foot { margin-top: auto; padding-top: 12px; }
 
 .press-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 22px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 .press-strip h2 { font-size: 22px; margin: 0 0 4px; }
