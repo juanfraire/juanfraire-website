@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World timeline</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <canvas id="globe" role="img" aria-label="Globe with the places visited over time"></canvas>
+
+  <header id="info">
+    <div class="eyebrow" id="info-res"></div>
+    <div class="hero" id="info-month"></div>
+    <div class="day" id="info-day"></div>
+    <div class="place" id="info-place"></div>
+    <div class="context" id="info-context"></div>
+  </header>
+
+  <section id="stats" aria-label="Totals so far">
+    <div class="tile"><div class="label">Countries</div><div class="value" id="st-countries">0</div></div>
+    <div class="tile"><div class="label">Places</div><div class="value" id="st-places">0</div></div>
+    <div class="tile"><div class="label">Trips</div><div class="value" id="st-trips">0</div></div>
+    <div class="tile" title="Straight-line distance between consecutive places">
+      <div class="label">Km traveled</div><div class="value" id="st-km">0</div></div>
+  </section>
+
+  <aside id="trips" aria-label="List of trips">
+    <div class="trips-head">
+      <h2>Trips</h2>
+      <label class="toggle"><input type="checkbox" id="show-minor"> Short getaways</label>
+    </div>
+    <ol id="trip-list"></ol>
+  </aside>
+
+  <button id="follow" class="chip" hidden>Follow the journey</button>
+
+  <footer id="bar">
+    <div class="legend" id="legend"></div>
+    <div class="controls">
+      <button id="play" class="play" aria-label="Play">
+        <svg viewBox="0 0 24 24" class="i-play"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        <svg viewBox="0 0 24 24" class="i-pause"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+      </button>
+      <div class="speeds" role="group" aria-label="Speed">
+        <button data-speed="0.5">½×</button><button data-speed="1" class="on">1×</button><button data-speed="2">2×</button><button data-speed="4">4×</button>
+      </div>
+      <svg id="scrub" role="slider" aria-label="Timeline" tabindex="0"></svg>
+      <button id="toggle-trips" class="ghost" aria-pressed="true">Trips</button>
+    </div>
+  </footer>
+
+  <div id="tooltip" role="tooltip" hidden></div>
+</div>
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
+<script src="data/world.js"></script>
+<script src="data/timeline.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

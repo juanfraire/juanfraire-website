@@ -5,7 +5,7 @@ Sources of truth:
 - publications: ../cv/cv-juan-fraire.bib (the CV bibliography)
 - news:         data/news/*.md, one file per post (scripts/add_post.py copies LinkedIn posts)
 
-It also rewrites sitemap.xml: every page except 404.html, with the date of the page's
+It also rewrites sitemap.xml: every page except 404.html and the UNLISTED folders, with the date of the page's
 last commit as lastmod (today for a page with uncommitted changes).
 
 A generated block is everything between a start marker and its end marker:
@@ -59,7 +59,9 @@ SITE = Path(__file__).resolve().parent.parent
 BIB = SITE.parent / "cv/cv-juan-fraire.bib"
 NEWS = SITE / "data/news"
 NEWS_IMG, NEWS_VIDEO = "/assets/img/news/", "/assets/video/news/"
-PAGES = sorted(p for p in SITE.rglob("*.html") if "vendor" not in p.parts)
+UNLISTED = {"timeline"}   # reachable by URL only: never rewritten, never in sitemap.xml
+PAGES = sorted(p for p in SITE.rglob("*.html")
+               if "vendor" not in p.parts and not UNLISTED & set(p.relative_to(SITE).parts))
 ORIGIN = "https://juanfraire.space"
 PRESS = {"en": "/press/", "es": "/es/prensa/", "fr": "/fr/presse/"}   # one page in three languages
 
