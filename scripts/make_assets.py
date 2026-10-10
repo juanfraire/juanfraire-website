@@ -21,7 +21,6 @@ from pathlib import Path
 import csv
 import io
 import json
-import math
 import random
 import shutil
 import subprocess
@@ -394,24 +393,16 @@ def icons():
     """apple-touch-icon.png and favicon.ico, redrawn from favicon.svg (Pillow cannot read SVG)."""
     def draw(size):
         k = 4 * size / 64                                  # supersample, then shrink
-        im = Image.new("RGBA", (round(64 * k),) * 2, (0, 0, 0, 0))
+        im = Image.new("RGB", (round(64 * k),) * 2, FAVICON_BG)   # a square tile, edge to edge
         g = ImageDraw.Draw(im)
-        g.rounded_rectangle((0, 0, 64 * k - 1, 64 * k - 1), radius=14 * k, fill=FAVICON_BG)
-        g.ellipse(((32 - 11) * k, (32 - 11) * k, (32 + 11) * k, (32 + 11) * k), fill=(0x5b, 0x9b, 0xd5))
-        a, c = math.radians(-28), 32 * k                   # the orbit: an ellipse rotated by -28 degrees
-        ellipse = lambda rx, ry: [(c + rx * k * math.cos(t) * math.cos(a) - ry * k * math.sin(t) * math.sin(a),
-                                   c + rx * k * math.cos(t) * math.sin(a) + ry * k * math.sin(t) * math.cos(a))
-                                  for t in (2 * math.pi * i / 720 for i in range(720))]
-        band = Image.new("L", im.size, 0)                  # a 3-unit stroke: outer ellipse minus inner
-        ImageDraw.Draw(band).polygon(ellipse(26.5, 11.5), fill=255)
-        ImageDraw.Draw(band).polygon(ellipse(23.5, 8.5), fill=0)
-        im.paste((0x82, 0xe0, 0xd4, 255), (0, 0), band)
-        g = ImageDraw.Draw(im)
-        g.ellipse(((53 - 4.5) * k, (21 - 4.5) * k, (53 + 4.5) * k, (21 + 4.5) * k), fill=(0xe8, 0xa5, 0x41))
+        disc = lambda x, y, r, fill: g.ellipse(((x - r) * k, (y - r) * k, (x + r) * k, (y + r) * k), fill=fill)
+        disc(32, 32, 23.75, (0x82, 0xe0, 0xd4))            # the orbit, a 3.5-unit ring of radius 22
+        disc(32, 32, 20.25, FAVICON_BG)
+        disc(32, 32, 11, (0xa9, 0xcd, 0xf7))               # the planet
+        disc(46.1, 15.1, 8, FAVICON_BG)                    # a gap in the orbit around the satellite
+        disc(46.1, 15.1, 5.5, (0xe8, 0xa5, 0x41))
         return im.resize((size, size), Image.LANCZOS)
-    touch = Image.new("RGB", (180, 180), FAVICON_BG)       # iOS fills transparency with black
-    touch.paste(draw(180), (0, 0), draw(180))
-    touch.save(SITE / "apple-touch-icon.png", optimize=True)
+    draw(180).save(SITE / "apple-touch-icon.png", optimize=True)
     draw(48).save(SITE / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
     print("icons  <- favicon.svg (redrawn)")
 
