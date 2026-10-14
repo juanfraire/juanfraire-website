@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Performance Evaluation of QUIC with BBR in Satellite Internet · Juan A. Fraire</title>
+  <meta name="description" content="Quick UDP Internet connection(QUIC) protocol and bottleneck bandwidth and round-trip propagation time (BBR) based congestion control algorithm are two…">
+  <link rel="canonical" href="https://juanfraire.space/publications/2018-performance-evaluation-of-quic-with-bbr-in-satellite/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Performance Evaluation of QUIC with BBR in Satellite Internet">
+  <meta property="og:description" content="Quick UDP Internet connection(QUIC) protocol and bottleneck bandwidth and round-trip propagation time (BBR) based congestion control algorithm are two major contributions out of Google’s persistent…">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://juanfraire.space/publications/2018-performance-evaluation-of-quic-with-bbr-in-satellite/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The four research topics of Juan A. Fraire: delay-tolerant networks, direct-to-satellite IoT, mega-constellations and orbital computing">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://juanfraire.space/publications/2018-performance-evaluation-of-quic-with-bbr-in-satellite/#paper",
+    "mainEntityOfPage": "https://juanfraire.space/publications/2018-performance-evaluation-of-quic-with-bbr-in-satellite/",
+    "name": "Performance Evaluation of QUIC with BBR in Satellite Internet",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Yue Wang"
+      },
+      {
+        "@type": "Person",
+        "name": "Kanglian Zhao"
+      },
+      {
+        "@type": "Person",
+        "name": "Wenfeng Li"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire"
+      },
+      {
+        "@type": "Person",
+        "name": "Zhili Sun"
+      },
+      {
+        "@type": "Person",
+        "name": "Yuan Fang"
+      }
+    ],
+    "datePublished": "2018",
+    "url": "https://juanfraire.space/publications/2018-performance-evaluation-of-quic-with-bbr-in-satellite/",
+    "sameAs": "https://doi.org/10.1109/wisee.2018.8637347",
+    "abstract": "Quick UDP Internet connection(QUIC) protocol and bottleneck bandwidth and round-trip propagation time (BBR) based congestion control algorithm are two major contributions out of Google’s persistent attempts to make the Internet faster. QUIC is an user level reliable protocol running on top of UDP to enable evolution of transport mechanisms, while BBR is designed for better TCP congestion control. Although in two different directions, they also converge with BBR support in QUIC. Many researches have proved the performance of QUIC and BBR in different network scenarios, but the evaluation in satellite Internet with long propagation delays and relatively high error rates is still missing.In this paper, we have a preliminary evaluation of the performance of QUIC with BBR via GEO satellite Internet access on dedicated network emulation testbeds. The results and our analysis confirms that for satellite Internet QUIC with the new BBR congestion control has improvements compared with the classic CUBIC.",
+    "isAccessibleForFree": false
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/share.js"></script>
+</head>
+<body>
+  <!-- Written by scripts/generate.py from the bib and data/pub-meta.json; edits here are overwritten. -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <div class="head-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/" aria-current="true">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="wrap page-head paper-page" data-url="https://juanfraire.space/publications/2018-performance-evaluation-of-quic-with-bbr-in-satellite/">
+      <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Conference paper · 2018</p>
+      <h1>Performance Evaluation of QUIC with BBR in Satellite Internet</h1>
+      <p class="pub-authors">Yue Wang, Kanglian Zhao, Wenfeng Li, <strong>Juan A. Fraire</strong>, Zhili Sun, and Yuan Fang</p>
+      <p class="pub-venue">IEEE International Conference on Wireless for Space and Extreme Environments (WiSEE), pp. 195–199, 2018</p>
+      <p class="paper-actions"><a class="button" href="https://doi.org/10.1109/wisee.2018.8637347">Publisher’s version</a></p>
+      <div class="paper-share" role="group" aria-label="Share this paper">
+        <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2018-performance-evaluation-of-quic-with-bbr-in-satellite/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2018-performance-evaluation-of-quic-with-bbr-in-satellite%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=Performance%20Evaluation%20of%20QUIC%20with%20BBR%20in%20Satellite%20Internet&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2018-performance-evaluation-of-quic-with-bbr-in-satellite%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=Performance%20Evaluation%20of%20QUIC%20with%20BBR%20in%20Satellite%20Internet%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2018-performance-evaluation-of-quic-with-bbr-in-satellite%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=Performance%20Evaluation%20of%20QUIC%20with%20BBR%20in%20Satellite%20Internet&amp;body=Performance%20Evaluation%20of%20QUIC%20with%20BBR%20in%20Satellite%20Internet%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2018-performance-evaluation-of-quic-with-bbr-in-satellite%2F" target="_blank" rel="noopener">Email</a>
+      </div>
+      <section class="paper-abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>Quick UDP Internet connection(QUIC) protocol and bottleneck bandwidth and round-trip propagation time (BBR) based congestion control algorithm are two major contributions out of Google’s persistent attempts to make the Internet faster. QUIC is an user level reliable protocol running on top of UDP to enable evolution of transport mechanisms, while BBR is designed for better TCP congestion control. Although in two different directions, they also converge with BBR support in QUIC. Many researches have proved the performance of QUIC and BBR in different network scenarios, but the evaluation in satellite Internet with long propagation delays and relatively high error rates is still missing.In this paper, we have a preliminary evaluation of the performance of QUIC with BBR via GEO satellite Internet access on dedicated network emulation testbeds. The results and our analysis confirms that for satellite Internet QUIC with the new BBR congestion control has improvements compared with the classic CUBIC.</p>
+      </section>
+      <section class="paper-cite" aria-labelledby="cite-title">
+        <h2 id="cite-title">Cite</h2>
+        <p class="paper-doi">DOI <a href="https://doi.org/10.1109/wisee.2018.8637347">10.1109/wisee.2018.8637347</a></p>
+        <details class="bibtex"><summary>BibTeX</summary><pre><code>@inproceedings{DBLP:conf/wisee/WangZLFSF18,
+  author    = {Yue Wang and Kanglian Zhao and Wenfeng Li and Juan A. Fraire and Zhili Sun and Yuan Fang},
+  title     = {Performance Evaluation of {QUIC} with {BBR} in Satellite Internet},
+  booktitle = {IEEE International Conference on Wireless for Space and Extreme Environments (WiSEE)},
+  pages     = {195--199},
+  publisher = {{IEEE}},
+  year      = {2018},
+  doi       = {10.1109/wisee.2018.8637347}
+}</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

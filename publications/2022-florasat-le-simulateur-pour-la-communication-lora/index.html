@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FLoRaSat: Le simulateur pour la communication LoRa avec les satellites LEO · Juan A. Fraire</title>
+  <meta name="description" content="Le nouveau paradigme de communication, Direct-to-Satellite-IoT (DtS-IoT), est une approche très prometteuse pour le transfert de données depuis/vers des…">
+  <link rel="canonical" href="https://juanfraire.space/publications/2022-florasat-le-simulateur-pour-la-communication-lora/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="FLoRaSat: Le simulateur pour la communication LoRa avec les satellites LEO">
+  <meta property="og:description" content="Le nouveau paradigme de communication, Direct-to-Satellite-IoT (DtS-IoT), est une approche très prometteuse pour le transfert de données depuis/vers des appareils IoT dans des zones reculées où le…">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://juanfraire.space/publications/2022-florasat-le-simulateur-pour-la-communication-lora/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-iot.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Earth with Europe and Africa in view, a few small satellites overhead with the circles they cover, and sensors on the ground linked to the satellite passing over them">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://juanfraire.space/publications/2022-florasat-le-simulateur-pour-la-communication-lora/#paper",
+    "mainEntityOfPage": "https://juanfraire.space/publications/2022-florasat-le-simulateur-pour-la-communication-lora/",
+    "name": "FLoRaSat: Le simulateur pour la communication LoRa avec les satellites LEO",
+    "author": [
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire"
+      },
+      {
+        "@type": "Person",
+        "name": "Mehdi Mesbah"
+      },
+      {
+        "@type": "Person",
+        "name": "Pablo Madoery"
+      },
+      {
+        "@type": "Person",
+        "name": "Oana Iova"
+      },
+      {
+        "@type": "Person",
+        "name": "Fabrice Valois"
+      }
+    ],
+    "datePublished": "2022",
+    "url": "https://juanfraire.space/publications/2022-florasat-le-simulateur-pour-la-communication-lora/",
+    "sameAs": "https://hal.science/hal-03657890v1",
+    "abstract": "Le nouveau paradigme de communication, Direct-to-Satellite-IoT (DtS-IoT), est une approche très prometteuse pour le transfert de données depuis/vers des appareils IoT dans des zones reculées où le déploiement d'une infrastructure terrestre n'est pas faisable. Dans ce contexte, les satellites en orbite terrestre basse (LEO) peuvent équiper des passerelles IoT comme celles de LoRa, pour faciliter la collecte de données des capteurs situés sur Terre en ligne de vue directe. Cependant, cette communication est soumise à plusieurs défis : grandes distances de transmission (500 à 2000 km), couverture sporadique et de courte durée (environ 7 minutes), liaisons inter-satellites à faible bande passante, et appareils IoT contraints en énergie. Pour permettre à la communauté de mettre en oeuvre et d'étudier des protocoles pour la communication DtS-IoT de façon réaliste, nous proposons un nouvel outil de simulation à événements discrets : FLoRaSat. Le simulateur s'appuie sur Omnet++ et implemente un scénario de communication DtS-IoT de de bout en bout comprenant 16 satellites LEO interconnectés et 1500 noeuds IoT sur Terre qui communiquent à l'aide du protocole LoRaWAN.",
+    "isAccessibleForFree": true
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/share.js"></script>
+</head>
+<body style="--accent: var(--t2)">
+  <!-- Written by scripts/generate.py from the bib and data/pub-meta.json; edits here are overwritten. -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <div class="head-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/" aria-current="true">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="wrap page-head paper-page" data-url="https://juanfraire.space/publications/2022-florasat-le-simulateur-pour-la-communication-lora/">
+      <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Conference paper · Satellite IoT · 2022</p>
+      <h1>FLoRaSat: Le simulateur pour la communication LoRa avec les satellites LEO</h1>
+      <p class="pub-authors"><strong>Juan A. Fraire</strong>, Mehdi Mesbah, Pablo Madoery, Oana Iova, and Fabrice Valois</p>
+      <p class="pub-venue">Rencontres Francophones sur la Conception de Protocoles (CoRes), pp. 1–4, 2022</p>
+      <p class="paper-actions"><a class="button oa" href="https://hal.science/hal-03657890v1">Read on HAL<small>free</small></a></p>
+      <div class="paper-share" role="group" aria-label="Share this paper">
+        <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2022-florasat-le-simulateur-pour-la-communication-lora/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2022-florasat-le-simulateur-pour-la-communication-lora%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=FLoRaSat%3A%20Le%20simulateur%20pour%20la%20communication%20LoRa%20avec%20les%20satellites%20LEO&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2022-florasat-le-simulateur-pour-la-communication-lora%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=FLoRaSat%3A%20Le%20simulateur%20pour%20la%20communication%20LoRa%20avec%20les%20satellites%20LEO%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2022-florasat-le-simulateur-pour-la-communication-lora%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=FLoRaSat%3A%20Le%20simulateur%20pour%20la%20communication%20LoRa%20avec%20les%20satellites%20LEO&amp;body=FLoRaSat%3A%20Le%20simulateur%20pour%20la%20communication%20LoRa%20avec%20les%20satellites%20LEO%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2022-florasat-le-simulateur-pour-la-communication-lora%2F" target="_blank" rel="noopener">Email</a>
+      </div>
+      <section class="paper-abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>Le nouveau paradigme de communication, Direct-to-Satellite-IoT (DtS-IoT), est une approche très prometteuse pour le transfert de données depuis/vers des appareils IoT dans des zones reculées où le déploiement d&#x27;une infrastructure terrestre n&#x27;est pas faisable. Dans ce contexte, les satellites en orbite terrestre basse (LEO) peuvent équiper des passerelles IoT comme celles de LoRa, pour faciliter la collecte de données des capteurs situés sur Terre en ligne de vue directe. Cependant, cette communication est soumise à plusieurs défis : grandes distances de transmission (500 à 2000 km), couverture sporadique et de courte durée (environ 7 minutes), liaisons inter-satellites à faible bande passante, et appareils IoT contraints en énergie. Pour permettre à la communauté de mettre en oeuvre et d&#x27;étudier des protocoles pour la communication DtS-IoT de façon réaliste, nous proposons un nouvel outil de simulation à événements discrets : FLoRaSat. Le simulateur s&#x27;appuie sur Omnet++ et implemente un scénario de communication DtS-IoT de de bout en bout comprenant 16 satellites LEO interconnectés et 1500 noeuds IoT sur Terre qui communiquent à l&#x27;aide du protocole LoRaWAN.</p>
+      </section>
+      <section class="paper-cite" aria-labelledby="cite-title">
+        <h2 id="cite-title">Cite</h2>
+        
+        <details class="bibtex"><summary>BibTeX</summary><pre><code>@inproceedings{fraire2022florasat,
+  author    = {Fraire, Juan A. and Mesbah, Mehdi and Madoery, Pablo and Iova, Oana and Valois, Fabrice},
+  title     = {FLoRaSat: Le simulateur pour la communication LoRa avec les satellites LEO},
+  booktitle = {Rencontres Francophones sur la Conception de Protocoles (CoRes)},
+  pages     = {1--4},
+  year      = {2022},
+  url       = {https://hal.science/hal-03657890v1}
+}</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
+      </section>
+    </article>
+    <section class="wrap section paper-more" aria-labelledby="more-title">
+      <h2 id="more-title">More on satellite IoT</h2>
+      <ol class="pubs">
+        <li class="pub" data-type="journal" data-topics="iot">
+          <span class="pub-title"><a href="/publications/2022-space-terrestrial-integrated-internet-of-things/">Space-Terrestrial Integrated Internet of Things: Challenges and Opportunities</a></span>
+          <span class="pub-authors"><strong>Juan A. Fraire</strong>, Oana Iova, and Fabrice Valois</span>
+          <span class="pub-venue">IEEE Communications Magazine, 2022</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>Large geographical regions of our planet remain uncovered by terrestrial network connections. Sparse and dense constellations of near Earth orbit satellites can bridge this gap by providing Internet of Things (IoT) connectivity on a worldwide scale in a flexible and cost-effective manner. This article presents STEREO: a novel space-terrestrial integrated IoT architecture spanning direct- and indirect-to-satellite access from IoT assets on the surface. Framed on the identified requirements, we analyze NB-IoT and LoRa/LoRaWAN features to put these technologies forward as appealing candidates for future satellite IoT deployments. Finally, we list and discuss the key open research challenges to be addressed in order to achieve successful space-terrestrial IoT integration.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-03789116" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1109/mcom.008.2200215">Publisher</a><button type="button" class="share" data-share="/publications/2022-space-terrestrial-integrated-internet-of-things/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="iot">
+          <span class="pub-title"><a href="/publications/2022-sparse-satellite-constellation-design-for-global/">Sparse Satellite Constellation Design for Global and Regional Direct-to-Satellite IoT Services</a></span>
+          <span class="pub-authors">Gabriel Maiolini Capez, Santiago Henn, <strong>Juan A. Fraire</strong>, and Roberto Garello</span>
+          <span class="pub-venue">IEEE Transactions on Aerospace and Electronic Systems, 2022</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>In this article, we introduce and design sparse constellations for direct-to-satellite Internet of Things (DtS-IoT). DtS-IoT does not require a ground infrastructure, because the devices are directly connected to low earth orbit satellites acting as orbiting gateways. The key idea of sparse constellations is to significantly reduce the number of in-orbit DtS-IoT satellites by a proper dimensioning of the delivery delay anyway present in resource-constrained IoT services and an optimal positioning of the orbiting gateways. First, we analyze long-range modulation (LoRa)/LoRaWAN and narrowband Internet of Things (NB-IoT) standards and derive realistic constraints on the maximum gap time between two consecutive passing-by satellites. Then, we introduce and optimize an algorithm to design quasi-optimal topologies for sparse IoT constellations. Finally, we apply our design to both global and regional coverage and we analyze the tradeoff between latency, number of orbit planes, and total number of satellites. Results show that sparse constellations can provide world-wide IoT coverage with only 12.5 and 22.5% of the satellites required by traditional dense constellations considering 3 and 2-h gaps. Also, we show that region-specific coverage of Africa and Europe can be achieved with only four and three satellites for LoRa/LoRaWAN and NB-IoT, respectively.</p></div></details>
+          <p class="pub-links"><a class="oa" href="http://hdl.handle.net/11583/2968664" title="Free to read on PORTO@Iris (Politecnico di Torino)">PORTO@Iris (Politecnico di Torino)</a><a class="oa" title="Free to read at the publisher" href="https://doi.org/10.1109/taes.2022.3185970">Publisher</a><button type="button" class="share" data-share="/publications/2022-sparse-satellite-constellation-design-for-global/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="iot">
+          <span class="pub-title"><a href="/publications/2025-on-the-role-of-machine-learning-in-satellite/">On the role of machine learning in satellite internet of things: A survey of techniques, challenges, and future directions</a></span>
+          <span class="pub-authors">Alexander Ylnner Choquenaira Florez, <strong>Juan A. Fraire</strong>, Hannah B. Pasandi, and Hervé Rivano</span>
+          <span class="pub-venue">Elsevier Computer Networks, 2025</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>The drive towards an interconnected world via satellites is reshaping the landscape of communication technologies. This survey comprehensively reviews studies in the Satellite Internet of Things (SIoT) domain, focusing on the role of Machine Learning (ML) techniques. Indeed, the global data collection scale in SIoT is ideally suited for data-intensive and sophisticated ML approaches. We highlight the innovative use of ML to address specific SIoT challenges, aiming to identify current trends, methodologies, and outcomes. We considered theoretical, practical, and experimental research, organizing existing publications into a new taxonomy that intersects ML and SIoT categories. Our taxonomy reveals that Deep Learning (DL), Reinforcement Learning (RL), and Federated Learning (FL) are widely applied to address radio access schemes, resource and network management, and application-specific issues. This survey identifies critical gaps in current research on ML applications in SIoT, such as the lack of differentiation between space-based and ground-based processing, insufficient integration of SIoT-specific metrics, and the oversight of limited computational resources on orbiting satellites. These issues raise concerns about the feasibility and efficiency of proposed solutions. We propose promising research directions based on the derived insights to effectively bridge the gap between ML researchers and industrial SIoT entities.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-04911360" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1016/j.comnet.2025.111063">Publisher</a><button type="button" class="share" data-share="/publications/2025-on-the-role-of-machine-learning-in-satellite/" hidden>Share</button></p>
+        </li>
+      </ol>
+      <p class="links"><a href="/satellite-iot/">Satellite IoT: the topic page</a> <a href="/publications/#iot">All 36 papers on this topic</a></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

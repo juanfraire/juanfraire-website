@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CGR*: A* Search for Contact Graph Routing · Juan A. Fraire</title>
+  <meta name="description" content="Routing in space Delay-Tolerant Networks relies on Contact Graph Routing (CGR), standardized within the CCSDS Schedule-Aware Bundle Routing (SABR)…">
+  <link rel="canonical" href="https://juanfraire.space/publications/2026-cgr-a-search-for-contact-graph-routing/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="CGR*: A* Search for Contact Graph Routing">
+  <meta property="og:description" content="Routing in space Delay-Tolerant Networks relies on Contact Graph Routing (CGR), standardized within the CCSDS Schedule-Aware Bundle Routing (SABR) framework. Existing SABR implementations use…">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://juanfraire.space/publications/2026-cgr-a-search-for-contact-graph-routing/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-dtn.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mars ringed by the orbits of relay satellites, one of them linked to a rover on the surface, and a dashed line carrying data off towards Earth">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://juanfraire.space/publications/2026-cgr-a-search-for-contact-graph-routing/#paper",
+    "mainEntityOfPage": "https://juanfraire.space/publications/2026-cgr-a-search-for-contact-graph-routing/",
+    "name": "CGR*: A* Search for Contact Graph Routing",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Simon Rink"
+      },
+      {
+        "@type": "Person",
+        "name": "Olivier De Jonckère"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire"
+      },
+      {
+        "@type": "Person",
+        "name": "Holger Hermanns"
+      }
+    ],
+    "datePublished": "2026",
+    "url": "https://juanfraire.space/publications/2026-cgr-a-search-for-contact-graph-routing/",
+    "abstract": "Routing in space Delay-Tolerant Networks relies on Contact Graph Routing (CGR), standardized within the CCSDS Schedule-Aware Bundle Routing (SABR) framework. Existing SABR implementations use Dijkstra's algorithm, which ignores any information about the remaining cost to the destination and therefore explores many unnecessary states. We propose CGR*, an A*-based variant that exploits domain-specific heuristics to prune this search. Two heuristics are designed: h_Delay, an admissible heuristic suited to delay-dominated deep-space networks, and h_Geo, a greedy geographic heuristic for near-Earth networks, where contact availability rather than propagation delay drives arrival time. Experiments on realistic orbital scenarios show that h_Delay accelerates routing on deep-space networks by up to an order of magnitude with no loss of optimality, while h_Geo speeds up near-Earth routing at the cost of arrival times up to ∼2.5× the optimum — revealing cost-model design, rather than heuristic design alone, as the open challenge for A*-based routing in near-Earth scenarios. CGR* and its heuristics are released as part of the open-source A-SABR library.",
+    "isAccessibleForFree": false
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/share.js"></script>
+</head>
+<body style="--accent: var(--t1)">
+  <!-- Written by scripts/generate.py from the bib and data/pub-meta.json; edits here are overwritten. -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <div class="head-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/" aria-current="true">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="wrap page-head paper-page" data-url="https://juanfraire.space/publications/2026-cgr-a-search-for-contact-graph-routing/">
+      <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Conference paper · Delay-tolerant networks · 2026</p>
+      <h1>CGR*: A* Search for Contact Graph Routing</h1>
+      <p class="pub-authors">Simon Rink, Olivier De Jonckère, <strong>Juan A. Fraire</strong>, and Holger Hermanns</p>
+      <p class="pub-venue">IEEE International Conference on Wireless for Space and Extreme Environments (WiSEE), Space-Terrestrial Internetworking Workshop (STINT), 2026</p>
+      <div class="paper-share" role="group" aria-label="Share this paper">
+        <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2026-cgr-a-search-for-contact-graph-routing/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-cgr-a-search-for-contact-graph-routing%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=CGR%2A%3A%20A%2A%20Search%20for%20Contact%20Graph%20Routing&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-cgr-a-search-for-contact-graph-routing%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=CGR%2A%3A%20A%2A%20Search%20for%20Contact%20Graph%20Routing%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-cgr-a-search-for-contact-graph-routing%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=CGR%2A%3A%20A%2A%20Search%20for%20Contact%20Graph%20Routing&amp;body=CGR%2A%3A%20A%2A%20Search%20for%20Contact%20Graph%20Routing%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-cgr-a-search-for-contact-graph-routing%2F" target="_blank" rel="noopener">Email</a>
+      </div>
+      <section class="paper-abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>Routing in space Delay-Tolerant Networks relies on Contact Graph Routing (CGR), standardized within the CCSDS Schedule-Aware Bundle Routing (SABR) framework. Existing SABR implementations use Dijkstra&#x27;s algorithm, which ignores any information about the remaining cost to the destination and therefore explores many unnecessary states. We propose CGR*, an A*-based variant that exploits domain-specific heuristics to prune this search. Two heuristics are designed: h_Delay, an admissible heuristic suited to delay-dominated deep-space networks, and h_Geo, a greedy geographic heuristic for near-Earth networks, where contact availability rather than propagation delay drives arrival time. Experiments on realistic orbital scenarios show that h_Delay accelerates routing on deep-space networks by up to an order of magnitude with no loss of optimality, while h_Geo speeds up near-Earth routing at the cost of arrival times up to ∼2.5× the optimum — revealing cost-model design, rather than heuristic design alone, as the open challenge for A*-based routing in near-Earth scenarios. CGR* and its heuristics are released as part of the open-source A-SABR library.</p>
+      </section>
+      <section class="paper-cite" aria-labelledby="cite-title">
+        <h2 id="cite-title">Cite</h2>
+        
+        <details class="bibtex"><summary>BibTeX</summary><pre><code>@inproceedings{rink2026cgrstar,
+  author    = {Rink, Simon and De Jonck{\`e}re, Olivier and Fraire, Juan A. and Hermanns, Holger},
+  title     = {{CGR*}: A* Search for Contact Graph Routing},
+  booktitle = {IEEE International Conference on Wireless for Space and Extreme Environments (WiSEE), Space-Terrestrial Internetworking Workshop (STINT)},
+  year      = {2026}
+}</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
+      </section>
+    </article>
+    <section class="wrap section paper-more" aria-labelledby="more-title">
+      <h2 id="more-title">More on delay-tolerant networks</h2>
+      <ol class="pubs">
+        <li class="pub" data-type="journal" data-topics="dtn">
+          <span class="pub-title"><a href="/publications/2025-comparing-statistical-analytical-and-learning-based/">Comparing Statistical, Analytical, and Learning-Based Routing Approaches for Delay-Tolerant Networks</a></span>
+          <span class="pub-authors">Pedro R. D&#x27;Argenio, <strong>Juan A. Fraire</strong>, Arnd Hartmanns, and Fernando D. Raverta</span>
+          <span class="pub-venue">ACM Transactions on Modeling and Computer Simulation, 2025</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>In delay-tolerant networks (DTNs) with uncertain contact plans, the communication episodes and their reliabilities are known a priori . To maximise the end-to-end delivery probability, a bounded network-wide number of message copies are allowed. The resulting multi-copy routing optimization problem is naturally modelled as a Markov decision process with distributed information. In this paper, we provide an in-depth comparison of three solution approaches: statistical model checking with scheduler sampling, the analytical RUCoP algorithm based on probabilistic model checking, and an implementation of concurrent Q-learning. We use an extensive benchmark set comprising random networks, scalable binomial topologies, and realistic ring-road low Earth orbit satellite networks. We evaluate the obtained message delivery probabilities as well as the computational effort. Our results show that all three approaches are suitable tools for obtaining reliable routes in DTN, and expose a tradeoff between scalability and solution quality.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-04711324" title="Free to read on HAL">HAL</a><a class="oa" title="Free to read at the publisher" href="https://doi.org/10.1145/3665927">Publisher</a><button type="button" class="share" data-share="/publications/2025-comparing-statistical-analytical-and-learning-based/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="conference" data-topics="dtn">
+          <span class="pub-title"><a href="/publications/2024-autonomous-max-flow-interplanetary-laser-link/">Autonomous Max-Flow Interplanetary Laser Link Scheduling for Martian Exploration</a></span>
+          <span class="pub-authors">Jason Gerard, Andre Ibrahim, <strong>Juan A. Fraire</strong>, and Sandra Céspedes</span>
+          <span class="pub-venue">IEEE International Conference on Wireless for Space and Extreme Environments (WiSEE), 2024</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>New communication technologies like delay and disruption-tolerant networking (DTN) and free-space laser communications are being developed to handle massive planetary telemetry data. However, existing infrastructure cannot meet the scalability and autonomy demands of future space missions, resulting in 95% of data left on the mission planet. Manual scheduling of deep-space laser transmissions by operators is inefficient and error-prone, limiting mission parallelization, while autonomous scheduling, though promising, may limit optimal network routes reducing the network capacity. We hypothesize that autonomously scheduling contact opportunities will enable acquisition, tracking, and pointing (ATP) for free-space lasers and increase the capacity of interplanetary backhaul networks. In this work, we propose the Laser Link Scheduler (LLS), which combines a novel max-flow network capacity model and a decision-making algorithm for contact selection. We define a series of deep-space communication scenarios where data is collected from orbiters around Mars and backhauled to Earth. LLS is evaluated in simulations using contact plans generated based on realistic conditions and orbital dynamics. Our results confirm that autonomous contact scheduling increases network capacity by 1.5-2x, reducing operational costs and enabling highly parallel space exploration missions.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-05357375" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1109/wisee61249.2024.10850428">Publisher</a><button type="button" class="share" data-share="/publications/2024-autonomous-max-flow-interplanetary-laser-link/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="dtn">
+          <span class="pub-title"><a href="/publications/2022-ring-road-networks/">Ring Road Networks: Access for Anyone</a></span>
+          <span class="pub-authors">Marius Feldmann, <strong>Juan A. Fraire</strong>, Felix Walter, and Scott C. Burleigh</span>
+          <span class="pub-venue">IEEE Communications Magazine, 2022</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>Several billion people currently lack reliable access to the Internet and thus to a tremendous source of knowledge. In this article, we describe a field-tested communication approach combining CubeSat platforms and delay-tolerant networking (DTN) solutions to provide asynchronous connectivity to populations and regions that are underserved by the Internet. The resulting class of networks is known as ring road networks (RRNs), a networking approach that is built on technology developed for the construction of a solar system Internet. The necessary self-sufficiency of DTN nodes enables network access to be deployed incrementally at low cost, supporting communities that cannot be profitably served by Internet satellite constellations. We present the RRN architecture and evaluate the expected performance by means of simulations. Based on the latter, we discuss µD3TN: a lightweight and open source DTN protocol stack for RRNs and other DTN classes. µD3TN has been flight-tested in ESA&#x27;s OPS-SAT in low Earth orbit during December 2020 and May 2021. This work discusses the experiment results as we validated the RRN approach in concrete application use cases. The reported outcomes motivate a new application domain.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-03692361" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1109/mcom.001.2100835">Publisher</a><button type="button" class="share" data-share="/publications/2022-ring-road-networks/" hidden>Share</button></p>
+        </li>
+      </ol>
+      <p class="links"><a href="/dtn/">Delay-tolerant networks: the topic page</a> <a href="/publications/#dtn">All 72 papers on this topic</a></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

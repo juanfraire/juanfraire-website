@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Direct-To-Satellite IoT - A Survey of the State of the Art and Future Research Perspectives - Backhauling the IoT Through LEO Satellites · Juan A. Fraire</title>
+  <meta name="description" content="The Internet of Things (IoT) has drawn an enormous attention into the scientific community thanks to unimaginable before applications newly available in…">
+  <link rel="canonical" href="https://juanfraire.space/publications/2019-direct-to-satellite-iot-a-survey-of-the-state/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Direct-To-Satellite IoT - A Survey of the State of the Art and Future Research Perspectives - Backhauling the IoT Through LEO Satellites">
+  <meta property="og:description" content="The Internet of Things (IoT) has drawn an enormous attention into the scientific community thanks to unimaginable before applications newly available in everyday life. The technological landscape…">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://juanfraire.space/publications/2019-direct-to-satellite-iot-a-survey-of-the-state/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-iot.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Earth with Europe and Africa in view, a few small satellites overhead with the circles they cover, and sensors on the ground linked to the satellite passing over them">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://juanfraire.space/publications/2019-direct-to-satellite-iot-a-survey-of-the-state/#paper",
+    "mainEntityOfPage": "https://juanfraire.space/publications/2019-direct-to-satellite-iot-a-survey-of-the-state/",
+    "name": "Direct-To-Satellite IoT - A Survey of the State of the Art and Future Research Perspectives - Backhauling the IoT Through LEO Satellites",
+    "author": [
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire"
+      },
+      {
+        "@type": "Person",
+        "name": "Sandra Céspedes"
+      },
+      {
+        "@type": "Person",
+        "name": "Nicola Accettura"
+      }
+    ],
+    "datePublished": "2019",
+    "url": "https://juanfraire.space/publications/2019-direct-to-satellite-iot-a-survey-of-the-state/",
+    "sameAs": [
+      "https://doi.org/10.1007/978-3-030-31831-4_17",
+      "https://hal.science/hal-02315399"
+    ],
+    "abstract": "The Internet of Things (IoT) has drawn an enormous attention into the scientific community thanks to unimaginable before applications newly available in everyday life. The technological landscape behind the implied surge of automated interactions among humans and machines has been shaped by plugging into the Internet very low power devices that can perform monitoring and actuation operations through very cheap circuitry. The most challenging IoT scenarios include deployments of low power devices dispersed over wide geographical areas. In such scenarios, satellites will play a key role in bridging the gap towards a pervasive IoT able to easily handle disaster recovery scenarios (earthquakes, tsunamis, and flash floods, etc.), where the presence of a resilient backhauling communications infrastructure is crucial. In these scenarios, Direct-to-Satellite IoT (DtS-IoT) connectivity is preferred as no intermediate ground gateway is required, facilitating and speeding up the deployment of wide coverage IoT infrastructure. In this work, an in-depth yet thorough survey on the state-of-the-art of DtS-IoT is presented. The available physical layer techniques specifically designed for the IoT satellite link are described, and the suitability of both the current Medium Access Control protocol and the upper layer protocols to communicate over space links will be argued. We also discuss the design of the overall satellite LEO constellation and topology to be considered in DtS-IoT networks.",
+    "isAccessibleForFree": true
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/share.js"></script>
+</head>
+<body style="--accent: var(--t2)">
+  <!-- Written by scripts/generate.py from the bib and data/pub-meta.json; edits here are overwritten. -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <div class="head-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/" aria-current="true">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="wrap page-head paper-page" data-url="https://juanfraire.space/publications/2019-direct-to-satellite-iot-a-survey-of-the-state/">
+      <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Conference paper · Satellite IoT · 2019</p>
+      <h1>Direct-To-Satellite IoT - A Survey of the State of the Art and Future Research Perspectives - Backhauling the IoT Through LEO Satellites</h1>
+      <p class="pub-authors"><strong>Juan A. Fraire</strong>, Sandra Céspedes, and Nicola Accettura</p>
+      <p class="pub-venue">International Conference on Ad-Hoc Networks and Wireless (ADHOC-NOW), vol. 11803, pp. 241–258, 2019</p>
+      <p class="paper-actions"><a class="button oa" href="https://hal.science/hal-02315399">Read on HAL<small>free</small></a><a class="button" href="https://doi.org/10.1007/978-3-030-31831-4_17">Publisher’s version</a></p>
+      <div class="paper-share" role="group" aria-label="Share this paper">
+        <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2019-direct-to-satellite-iot-a-survey-of-the-state/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2019-direct-to-satellite-iot-a-survey-of-the-state%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=Direct-To-Satellite%20IoT%20-%20A%20Survey%20of%20the%20State%20of%20the%20Art%20and%20Future%20Research%20Perspectives%20-%20Backhauling%20the%20IoT%20Through%20LEO%20Satellites&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2019-direct-to-satellite-iot-a-survey-of-the-state%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=Direct-To-Satellite%20IoT%20-%20A%20Survey%20of%20the%20State%20of%20the%20Art%20and%20Future%20Research%20Perspectives%20-%20Backhauling%20the%20IoT%20Through%20LEO%20Satellites%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2019-direct-to-satellite-iot-a-survey-of-the-state%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=Direct-To-Satellite%20IoT%20-%20A%20Survey%20of%20the%20State%20of%20the%20Art%20and%20Future%20Research%20Perspectives%20-%20Backhauling%20the%20IoT%20Through%20LEO%20Satellites&amp;body=Direct-To-Satellite%20IoT%20-%20A%20Survey%20of%20the%20State%20of%20the%20Art%20and%20Future%20Research%20Perspectives%20-%20Backhauling%20the%20IoT%20Through%20LEO%20Satellites%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2019-direct-to-satellite-iot-a-survey-of-the-state%2F" target="_blank" rel="noopener">Email</a>
+      </div>
+      <section class="paper-abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>The Internet of Things (IoT) has drawn an enormous attention into the scientific community thanks to unimaginable before applications newly available in everyday life. The technological landscape behind the implied surge of automated interactions among humans and machines has been shaped by plugging into the Internet very low power devices that can perform monitoring and actuation operations through very cheap circuitry. The most challenging IoT scenarios include deployments of low power devices dispersed over wide geographical areas. In such scenarios, satellites will play a key role in bridging the gap towards a pervasive IoT able to easily handle disaster recovery scenarios (earthquakes, tsunamis, and flash floods, etc.), where the presence of a resilient backhauling communications infrastructure is crucial. In these scenarios, Direct-to-Satellite IoT (DtS-IoT) connectivity is preferred as no intermediate ground gateway is required, facilitating and speeding up the deployment of wide coverage IoT infrastructure. In this work, an in-depth yet thorough survey on the state-of-the-art of DtS-IoT is presented. The available physical layer techniques specifically designed for the IoT satellite link are described, and the suitability of both the current Medium Access Control protocol and the upper layer protocols to communicate over space links will be argued. We also discuss the design of the overall satellite LEO constellation and topology to be considered in DtS-IoT networks.</p>
+      </section>
+      <figure class="fig paper-fig"><picture><source srcset="/assets/img/pubs/direct-to-satellite-iot-survey.webp" type="image/webp"><img src="/assets/img/pubs/direct-to-satellite-iot-survey.jpg" width="720" height="249" alt="Bandwidth against range for personal, cellular, LPWA and satellite networks, with direct-to-satellite IoT in the gap between LPWA and satellite networks" decoding="async"></picture><figcaption>Figure © 2019 Springer Nature Switzerland AG</figcaption></figure>
+      <section class="paper-cite" aria-labelledby="cite-title">
+        <h2 id="cite-title">Cite</h2>
+        <p class="paper-doi">DOI <a href="https://doi.org/10.1007/978-3-030-31831-4_17">10.1007/978-3-030-31831-4_17</a></p>
+        <details class="bibtex"><summary>BibTeX</summary><pre><code>@inproceedings{DBLP:conf/adhoc-now/FraireCA19,
+  author    = {Juan A. Fraire and Sandra C{\&#x27;{e}}spedes and Nicola Accettura},
+  editor    = {Maria Rita Palattella and Stefano Scanzio and Sinem Coleri Ergen},
+  title     = {Direct-To-Satellite IoT - {A} Survey of the State of the Art and Future Research Perspectives - Backhauling the IoT Through {LEO} Satellites},
+  booktitle = {International Conference on Ad-Hoc Networks and Wireless (ADHOC-NOW)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {11803},
+  pages     = {241--258},
+  publisher = {Springer},
+  year      = {2019},
+  doi       = {10.1007/978-3-030-31831-4_17}
+}</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
+      </section>
+    </article>
+    <section class="wrap section paper-more" aria-labelledby="more-title">
+      <h2 id="more-title">More on satellite IoT</h2>
+      <ol class="pubs">
+        <li class="pub" data-type="journal" data-topics="iot">
+          <span class="pub-title"><a href="/publications/2022-space-terrestrial-integrated-internet-of-things/">Space-Terrestrial Integrated Internet of Things: Challenges and Opportunities</a></span>
+          <span class="pub-authors"><strong>Juan A. Fraire</strong>, Oana Iova, and Fabrice Valois</span>
+          <span class="pub-venue">IEEE Communications Magazine, 2022</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>Large geographical regions of our planet remain uncovered by terrestrial network connections. Sparse and dense constellations of near Earth orbit satellites can bridge this gap by providing Internet of Things (IoT) connectivity on a worldwide scale in a flexible and cost-effective manner. This article presents STEREO: a novel space-terrestrial integrated IoT architecture spanning direct- and indirect-to-satellite access from IoT assets on the surface. Framed on the identified requirements, we analyze NB-IoT and LoRa/LoRaWAN features to put these technologies forward as appealing candidates for future satellite IoT deployments. Finally, we list and discuss the key open research challenges to be addressed in order to achieve successful space-terrestrial IoT integration.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-03789116" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1109/mcom.008.2200215">Publisher</a><button type="button" class="share" data-share="/publications/2022-space-terrestrial-integrated-internet-of-things/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="iot">
+          <span class="pub-title"><a href="/publications/2022-sparse-satellite-constellation-design-for-global/">Sparse Satellite Constellation Design for Global and Regional Direct-to-Satellite IoT Services</a></span>
+          <span class="pub-authors">Gabriel Maiolini Capez, Santiago Henn, <strong>Juan A. Fraire</strong>, and Roberto Garello</span>
+          <span class="pub-venue">IEEE Transactions on Aerospace and Electronic Systems, 2022</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>In this article, we introduce and design sparse constellations for direct-to-satellite Internet of Things (DtS-IoT). DtS-IoT does not require a ground infrastructure, because the devices are directly connected to low earth orbit satellites acting as orbiting gateways. The key idea of sparse constellations is to significantly reduce the number of in-orbit DtS-IoT satellites by a proper dimensioning of the delivery delay anyway present in resource-constrained IoT services and an optimal positioning of the orbiting gateways. First, we analyze long-range modulation (LoRa)/LoRaWAN and narrowband Internet of Things (NB-IoT) standards and derive realistic constraints on the maximum gap time between two consecutive passing-by satellites. Then, we introduce and optimize an algorithm to design quasi-optimal topologies for sparse IoT constellations. Finally, we apply our design to both global and regional coverage and we analyze the tradeoff between latency, number of orbit planes, and total number of satellites. Results show that sparse constellations can provide world-wide IoT coverage with only 12.5 and 22.5% of the satellites required by traditional dense constellations considering 3 and 2-h gaps. Also, we show that region-specific coverage of Africa and Europe can be achieved with only four and three satellites for LoRa/LoRaWAN and NB-IoT, respectively.</p></div></details>
+          <p class="pub-links"><a class="oa" href="http://hdl.handle.net/11583/2968664" title="Free to read on PORTO@Iris (Politecnico di Torino)">PORTO@Iris (Politecnico di Torino)</a><a class="oa" title="Free to read at the publisher" href="https://doi.org/10.1109/taes.2022.3185970">Publisher</a><button type="button" class="share" data-share="/publications/2022-sparse-satellite-constellation-design-for-global/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="iot">
+          <span class="pub-title"><a href="/publications/2025-on-the-role-of-machine-learning-in-satellite/">On the role of machine learning in satellite internet of things: A survey of techniques, challenges, and future directions</a></span>
+          <span class="pub-authors">Alexander Ylnner Choquenaira Florez, <strong>Juan A. Fraire</strong>, Hannah B. Pasandi, and Hervé Rivano</span>
+          <span class="pub-venue">Elsevier Computer Networks, 2025</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>The drive towards an interconnected world via satellites is reshaping the landscape of communication technologies. This survey comprehensively reviews studies in the Satellite Internet of Things (SIoT) domain, focusing on the role of Machine Learning (ML) techniques. Indeed, the global data collection scale in SIoT is ideally suited for data-intensive and sophisticated ML approaches. We highlight the innovative use of ML to address specific SIoT challenges, aiming to identify current trends, methodologies, and outcomes. We considered theoretical, practical, and experimental research, organizing existing publications into a new taxonomy that intersects ML and SIoT categories. Our taxonomy reveals that Deep Learning (DL), Reinforcement Learning (RL), and Federated Learning (FL) are widely applied to address radio access schemes, resource and network management, and application-specific issues. This survey identifies critical gaps in current research on ML applications in SIoT, such as the lack of differentiation between space-based and ground-based processing, insufficient integration of SIoT-specific metrics, and the oversight of limited computational resources on orbiting satellites. These issues raise concerns about the feasibility and efficiency of proposed solutions. We propose promising research directions based on the derived insights to effectively bridge the gap between ML researchers and industrial SIoT entities.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-04911360" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1016/j.comnet.2025.111063">Publisher</a><button type="button" class="share" data-share="/publications/2025-on-the-role-of-machine-learning-in-satellite/" hidden>Share</button></p>
+        </li>
+      </ol>
+      <p class="links"><a href="/satellite-iot/">Satellite IoT: the topic page</a> <a href="/publications/#iot">All 36 papers on this topic</a></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

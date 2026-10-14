@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A soft-error resilient route computation unit for 3D Networks-on-Chips · Juan A. Fraire</title>
+  <meta name="description" content="Three-dimensional Networks-on-Chips (3D-NoCs) have emerged as an alternative to further enhance the performance, functionality, and packaging density of…">
+  <link rel="canonical" href="https://juanfraire.space/publications/2018-a-soft-error-resilient-route-computation-unit-for-3d/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A soft-error resilient route computation unit for 3D Networks-on-Chips">
+  <meta property="og:description" content="Three-dimensional Networks-on-Chips (3D-NoCs) have emerged as an alternative to further enhance the performance, functionality, and packaging density of 2D-NoCs. However, the increasing complexity of…">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://juanfraire.space/publications/2018-a-soft-error-resilient-route-computation-unit-for-3d/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The four research topics of Juan A. Fraire: delay-tolerant networks, direct-to-satellite IoT, mega-constellations and orbital computing">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://juanfraire.space/publications/2018-a-soft-error-resilient-route-computation-unit-for-3d/#paper",
+    "mainEntityOfPage": "https://juanfraire.space/publications/2018-a-soft-error-resilient-route-computation-unit-for-3d/",
+    "name": "A soft-error resilient route computation unit for 3D Networks-on-Chips",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Alexandre Coelho"
+      },
+      {
+        "@type": "Person",
+        "name": "Amir Charif"
+      },
+      {
+        "@type": "Person",
+        "name": "Nacer-Eddine Zergainoh"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire"
+      },
+      {
+        "@type": "Person",
+        "name": "Raoul Velazco"
+      }
+    ],
+    "datePublished": "2018",
+    "url": "https://juanfraire.space/publications/2018-a-soft-error-resilient-route-computation-unit-for-3d/",
+    "sameAs": "https://doi.org/10.23919/date.2018.8342224",
+    "abstract": "Three-dimensional Networks-on-Chips (3D-NoCs) have emerged as an alternative to further enhance the performance, functionality, and packaging density of 2D-NoCs. However, the increasing complexity of NoC routers, the continuous miniaturization of silicon technology, the lower operating voltages, and the higher operating frequencies have made the NoC increasingly vulnerable to soft errors. In particular, transient faults occurring in the route computation unit (RCU) can provoke misrouting which may lead to severe effects such as deadlocks or packet loss, corrupting the operation of the entire chip. By combining a reliable fault detection circuit leveraging circuit-level double-sampling, with a cost-effective rerouting mechanism, we develop a full fault-tolerance solution that can efficiently detect and correct such fatal errors before the affected packets leave the router. To validate the proposed solution, we also introduce a novel method for simulation-based fault -injection based on the NoC's gate-level netlist. Experimental results obtained from a partially and vertically connected 3D-NoC indicate that our solution can provide a high level of reliability in the presence of errors, at the expense of an area and power overhead of 4.1% and 6.8% respectively.",
+    "isAccessibleForFree": false
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/share.js"></script>
+</head>
+<body>
+  <!-- Written by scripts/generate.py from the bib and data/pub-meta.json; edits here are overwritten. -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <div class="head-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/" aria-current="true">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="wrap page-head paper-page" data-url="https://juanfraire.space/publications/2018-a-soft-error-resilient-route-computation-unit-for-3d/">
+      <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Conference paper · 2018</p>
+      <h1>A soft-error resilient route computation unit for 3D Networks-on-Chips</h1>
+      <p class="pub-authors">Alexandre Coelho, Amir Charif, Nacer-Eddine Zergainoh, <strong>Juan A. Fraire</strong>, and Raoul Velazco</p>
+      <p class="pub-venue">Design, Automation and Test in Europe Conference (DATE), pp. 1357–1362, 2018</p>
+      <p class="paper-actions"><a class="button" href="https://doi.org/10.23919/date.2018.8342224">Publisher’s version</a></p>
+      <div class="paper-share" role="group" aria-label="Share this paper">
+        <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2018-a-soft-error-resilient-route-computation-unit-for-3d/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2018-a-soft-error-resilient-route-computation-unit-for-3d%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=A%20soft-error%20resilient%20route%20computation%20unit%20for%203D%20Networks-on-Chips&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2018-a-soft-error-resilient-route-computation-unit-for-3d%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=A%20soft-error%20resilient%20route%20computation%20unit%20for%203D%20Networks-on-Chips%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2018-a-soft-error-resilient-route-computation-unit-for-3d%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=A%20soft-error%20resilient%20route%20computation%20unit%20for%203D%20Networks-on-Chips&amp;body=A%20soft-error%20resilient%20route%20computation%20unit%20for%203D%20Networks-on-Chips%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2018-a-soft-error-resilient-route-computation-unit-for-3d%2F" target="_blank" rel="noopener">Email</a>
+      </div>
+      <section class="paper-abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>Three-dimensional Networks-on-Chips (3D-NoCs) have emerged as an alternative to further enhance the performance, functionality, and packaging density of 2D-NoCs. However, the increasing complexity of NoC routers, the continuous miniaturization of silicon technology, the lower operating voltages, and the higher operating frequencies have made the NoC increasingly vulnerable to soft errors. In particular, transient faults occurring in the route computation unit (RCU) can provoke misrouting which may lead to severe effects such as deadlocks or packet loss, corrupting the operation of the entire chip. By combining a reliable fault detection circuit leveraging circuit-level double-sampling, with a cost-effective rerouting mechanism, we develop a full fault-tolerance solution that can efficiently detect and correct such fatal errors before the affected packets leave the router. To validate the proposed solution, we also introduce a novel method for simulation-based fault -injection based on the NoC&#x27;s gate-level netlist. Experimental results obtained from a partially and vertically connected 3D-NoC indicate that our solution can provide a high level of reliability in the presence of errors, at the expense of an area and power overhead of 4.1% and 6.8% respectively.</p>
+      </section>
+      <section class="paper-cite" aria-labelledby="cite-title">
+        <h2 id="cite-title">Cite</h2>
+        <p class="paper-doi">DOI <a href="https://doi.org/10.23919/date.2018.8342224">10.23919/date.2018.8342224</a></p>
+        <details class="bibtex"><summary>BibTeX</summary><pre><code>@inproceedings{DBLP:conf/date/CoelhoCZFV18,
+  author    = {Alexandre Coelho and Amir Charif and Nacer{-}Eddine Zergainoh and Juan A. Fraire and Raoul Velazco},
+  editor    = {Jan Madsen and Ayse K. Coskun},
+  title     = {A soft-error resilient route computation unit for 3D Networks-on-Chips},
+  booktitle = {Design, Automation and Test in Europe Conference (DATE)},
+  pages     = {1357--1362},
+  publisher = {{IEEE}},
+  year      = {2018},
+  doi       = {10.23919/date.2018.8342224}
+}</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

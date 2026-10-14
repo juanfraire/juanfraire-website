@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distributed On-Demand Routing for LEO Mega-Constellations: A Starlink Case Study · Juan A. Fraire</title>
+  <meta name="description" content="The design and launch of large-scale satellite networks create an imminent demand for efficient and delay-minimising routing methods. With the rising…">
+  <link rel="canonical" href="https://juanfraire.space/publications/2022-distributed-on-demand-routing-for-leo/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Distributed On-Demand Routing for LEO Mega-Constellations: A Starlink Case Study">
+  <meta property="og:description" content="The design and launch of large-scale satellite networks create an imminent demand for efficient and delay-minimising routing methods. With the rising number of satellites in such constellations…">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://juanfraire.space/publications/2022-distributed-on-demand-routing-for-leo/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-mega.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Earth with South America in daylight and Africa at night, wrapped in a mesh of laser links between satellites, with a route drawn from Lyon to Córdoba">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://juanfraire.space/publications/2022-distributed-on-demand-routing-for-leo/#paper",
+    "mainEntityOfPage": "https://juanfraire.space/publications/2022-distributed-on-demand-routing-for-leo/",
+    "name": "Distributed On-Demand Routing for LEO Mega-Constellations: A Starlink Case Study",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Gregory Stock"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire"
+      },
+      {
+        "@type": "Person",
+        "name": "Holger Hermanns"
+      }
+    ],
+    "datePublished": "2022",
+    "url": "https://juanfraire.space/publications/2022-distributed-on-demand-routing-for-leo/",
+    "sameAs": [
+      "https://doi.org/10.1109/asms/spsc55670.2022.9914716",
+      "https://hal.science/hal-03827298"
+    ],
+    "abstract": "The design and launch of large-scale satellite networks create an imminent demand for efficient and delay-minimising routing methods. With the rising number of satellites in such constellations, pre-computing all shortest routes between all satellites and for all times becomes more and more infeasible due to space and time limitations. Even though distributed on-demand routing methods were developed for specific LEO satellite network configurations, they are not suited for increasingly popular mega-constellations based on Walker Delta formations.The contributions of this paper are twofold. First, we introduce a formal model that mathematically captures the time-evolving locations of satellites in a Walker Delta constellation and use it to establish a formula to compute the minimum number of ISL hops between two given satellites. In the second part, we present an on-demand hop-count-based routing algorithm that approximates the optimal path while achieving superior performance compared to classical shortest-path algorithms like Dijkstra.",
+    "isAccessibleForFree": true
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/share.js"></script>
+</head>
+<body style="--accent: var(--t3)">
+  <!-- Written by scripts/generate.py from the bib and data/pub-meta.json; edits here are overwritten. -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <div class="head-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/" aria-current="true">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="wrap page-head paper-page" data-url="https://juanfraire.space/publications/2022-distributed-on-demand-routing-for-leo/">
+      <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Conference paper · Mega-constellations · 2022</p>
+      <h1>Distributed On-Demand Routing for LEO Mega-Constellations: A Starlink Case Study</h1>
+      <p class="pub-authors">Gregory Stock, <strong>Juan A. Fraire</strong>, and Holger Hermanns</p>
+      <p class="pub-venue">Advanced Satellite Multimedia Systems Conference and Signal Processing for Space Communications Workshop (ASMS/SPSC), pp. 1–8, 2022</p>
+      <p class="paper-actions"><a class="button oa" href="https://hal.science/hal-03827298">Read on HAL<small>free</small></a><a class="button" href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">Publisher’s version</a></p>
+      <div class="paper-share" role="group" aria-label="Share this paper">
+        <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2022-distributed-on-demand-routing-for-leo/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2022-distributed-on-demand-routing-for-leo%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=Distributed%20On-Demand%20Routing%20for%20LEO%20Mega-Constellations%3A%20A%20Starlink%20Case%20Study&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2022-distributed-on-demand-routing-for-leo%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=Distributed%20On-Demand%20Routing%20for%20LEO%20Mega-Constellations%3A%20A%20Starlink%20Case%20Study%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2022-distributed-on-demand-routing-for-leo%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=Distributed%20On-Demand%20Routing%20for%20LEO%20Mega-Constellations%3A%20A%20Starlink%20Case%20Study&amp;body=Distributed%20On-Demand%20Routing%20for%20LEO%20Mega-Constellations%3A%20A%20Starlink%20Case%20Study%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2022-distributed-on-demand-routing-for-leo%2F" target="_blank" rel="noopener">Email</a>
+      </div>
+      <section class="paper-abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>The design and launch of large-scale satellite networks create an imminent demand for efficient and delay-minimising routing methods. With the rising number of satellites in such constellations, pre-computing all shortest routes between all satellites and for all times becomes more and more infeasible due to space and time limitations. Even though distributed on-demand routing methods were developed for specific LEO satellite network configurations, they are not suited for increasingly popular mega-constellations based on Walker Delta formations.The contributions of this paper are twofold. First, we introduce a formal model that mathematically captures the time-evolving locations of satellites in a Walker Delta constellation and use it to establish a formula to compute the minimum number of ISL hops between two given satellites. In the second part, we present an on-demand hop-count-based routing algorithm that approximates the optimal path while achieving superior performance compared to classical shortest-path algorithms like Dijkstra.</p>
+      </section>
+      <figure class="fig paper-fig"><picture><source srcset="/assets/img/pubs/starlink-on-demand-routing.webp" type="image/webp"><img src="/assets/img/pubs/starlink-on-demand-routing.jpg" width="720" height="218" alt="Ground tracks of a Walker constellation over latitude and longitude, with two example routes stepping from satellite to satellite along and across orbital planes" decoding="async"></picture><figcaption>Figure © 2022 IEEE</figcaption></figure>
+      <section class="paper-cite" aria-labelledby="cite-title">
+        <h2 id="cite-title">Cite</h2>
+        <p class="paper-doi">DOI <a href="https://doi.org/10.1109/asms/spsc55670.2022.9914716">10.1109/asms/spsc55670.2022.9914716</a></p>
+        <details class="bibtex"><summary>BibTeX</summary><pre><code>@inproceedings{DBLP:conf/asms-spsc/StockFH22,
+  author    = {Gregory Stock and Juan A. Fraire and Holger Hermanns},
+  title     = {Distributed On-Demand Routing for {LEO} Mega-Constellations: {A} Starlink Case Study},
+  booktitle = {Advanced Satellite Multimedia Systems Conference and Signal Processing for Space Communications Workshop (ASMS/SPSC)},
+  pages     = {1--8},
+  publisher = {{IEEE}},
+  year      = {2022},
+  doi       = {10.1109/asms/spsc55670.2022.9914716}
+}</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
+      </section>
+    </article>
+    <section class="wrap section paper-more" aria-labelledby="more-title">
+      <h2 id="more-title">More on mega-constellations</h2>
+      <ol class="pubs">
+        <li class="pub" data-type="journal" data-topics="mega">
+          <span class="pub-title"><a href="/publications/2024-on-the-use-of-mega-constellation-services-in-space/">On the Use of Mega Constellation Services in Space: Integrating LEO Platforms Into 6G Non-Terrestrial Networks</a></span>
+          <span class="pub-authors">Gabriel Maiolini Capez, Mauricio A. Cáceres, Roberto Armellin, Christopher P. Bridges, <strong>Juan A. Fraire</strong>, Stefan Frey, and Roberto Garello</span>
+          <span class="pub-venue">IEEE Journal on Selected Areas in Communications, 2024</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>This paper presents a framework for integrating Low-Earth Orbit (LEO) platforms with Non-Terrestrial Networks (NTNs) in the emerging 6G communication landscape. Our work applies the Mega-Constellation Services in Space (MCSS) paradigm, leveraging LEO mega-constellations’ expansive coverage and capacity, designed initially for terrestrial devices, to serve platforms in lower LEO orbits. Results show that this approach overcomes the limitation of sporadic and time-bound satellite communication links, a challenge not fully resolved by available Ground Station Networks and Data Relay Systems. We contribute three key elements: (i) a detailed MCSS evaluation framework employing Monte Carlo simulations to assess space user links and distributions; (ii) a novel Space User Terminal (SUT) design optimized for MCSS, using different configurations and 5G New Radio Adaptive Coding and Modulation; (iii) extensive results demonstrating MCSS’s substantial improvement over existing Ground Station Networks and Data Relay Systems, motivating its role in the upcoming 6G NTNs. The space terminal, incorporating a multi-system, multi-orbit, and software-defined architecture, can handle Terabit-scale daily data volumes and minute-scale latencies. It offers a compact, power-efficient solution for properly integrating LEO platforms as space internet nodes.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-04711308" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1109/jsac.2024.3459078">Publisher</a><button type="button" class="share" data-share="/publications/2024-on-the-use-of-mega-constellation-services-in-space/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="mega">
+          <span class="pub-title"><a href="/publications/2024-rf-assisted-uncertainty-cone-reduction-in-free-space/">RF-Assisted Uncertainty Cone Reduction in Free-Space Optical Inter-Satellite Links</a></span>
+          <span class="pub-authors">Elena Fernández-Niño, <strong>Juan A. Fraire</strong>, Adriano Camps, and Joan Adrià Ruiz-de-Azua</span>
+          <span class="pub-venue">IEEE Open Journal of the Communications Society, 2024</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>One of the space communications industry’s current focuses is developing high-throughput communication terminals for satellite-to-satellite communication links. Optical inter-satellite links provide high data rates, long-range, and robustness against interferences, and they do not require frequency licensing as radiofrequency communication systems. Nevertheless, as the uncertain location of the receiver is comprised in an area larger than that illuminated by the transmitting laser, the pointing accuracy is a critical element in the success of the optical link establishment and maintenance, requiring a pointing, acquisition, and tracking mechanism. The acquisition process is the most time-consuming of the pointing processes, limiting the time available to send data, especially in highly dynamic networks. This paper focuses on reducing the acquisition time by reducing the initial satellite position uncertainty. To this end, a hybrid system that combines RF and optical technologies in a single communication module is proposed. Whereas the control plane is managed via the RF link to exchange more precise global navigation data, the optical link corresponds to the data plane in which payload data is exchanged. The pointing between two satellites is simulated to analyze its behavior, considering the error of cumulative orbital propagation data and global navigation satellite system data. This work also analyzes the cumulative error produced by the propagation of the TLEs over time. Finally, the results show how a system that relies on the exchange of global navigation satellite system positioning data achieves up to 99.45% better-pointing accuracy than a system that bases positioning data on TLE propagation.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-05424606" title="Free to read on HAL">HAL</a><a class="oa" title="Free to read at the publisher" href="https://doi.org/10.1109/ojcoms.2024.3507555">Publisher</a><button type="button" class="share" data-share="/publications/2024-rf-assisted-uncertainty-cone-reduction-in-free-space/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="mega">
+          <span class="pub-title"><a href="/publications/2020-managing-fleets-of-leo-satellites/">Managing Fleets of LEO Satellites: Nonlinear, Optimal, Efficient, Scalable, Usable, and Robust</a></span>
+          <span class="pub-authors">Gregory Stock, <strong>Juan A. Fraire</strong>, Tobias Mömke, Holger Hermanns, Fakhri Babayev, and Eduardo Cruz</span>
+          <span class="pub-venue">IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, 2020</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>Size and weight limitations of low-earth orbit (LEO) small satellites make their operation rest on a fine balance between solar power infeed and power demands of communication technologies on board, buffered by on-board battery storage. As a result, the problem of planning battery-powered payload utilization together with intersatellite communication is extremely intricate. Nevertheless, there is a growing trend toward constellations and megaconstellations that are to be managed using sophisticated software support. Earlier work has leveraged cost-optimal reachability in priced timed automata for deriving near-optimal finite-horizon schedules to operate a single LEO satellite in orbit. This article harvests that work and improves it in several dimensions, all needed for true in-orbit applicability: 1) the battery representation is no longer bound to be linear, but can be kinetic, which means that the optimization problem includes nonlinearities; 2) the management is perpetuated by a receding horizon scheduling strategy; 3) the model is continuously improved with the latest telemetry received from orbit; 4) a tandem of satellites equipped with state-of-the-art intersatellite link transponders is considered; 5) the core optimization problem is now solved using dynamic programming with antichain-based pruning, which is proven to be optimal and despite all the additional features outperforms the earlier approach by orders of magnitude; 6) the entire approach is grounded in the concrete requirements of the GOM X–4 LEO mission; 7) care is taken to make the approach usable by the space engineers, and robust against failures of parts of the toolchain; and 8) an extensive test campaign validates accuracy, efficiency, scalability, and robustness with respect to the operational requirements and constraints of LEO constellations.</p></div></details>
+          <p class="pub-links"><a href="https://doi.org/10.1109/tcad.2020.3012751">Publisher</a><button type="button" class="share" data-share="/publications/2020-managing-fleets-of-leo-satellites/" hidden>Share</button></p>
+        </li>
+      </ol>
+      <p class="links"><a href="/mega-constellations/">Mega-constellations: the topic page</a> <a href="/publications/#mega">All 29 papers on this topic</a></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

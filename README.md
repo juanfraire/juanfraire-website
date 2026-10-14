@@ -17,7 +17,8 @@ visitors, low-power phones and browsers without WebGL get.
 
 | What | Where | Then |
 |---|---|---|
-| Publications | `../cv/cv-juan-fraire.bib` (the CV bibliography) | `python3 scripts/generate.py` |
+| Publications | `../cv/cv-juan-fraire.bib` (the CV bibliography) | `python3 scripts/fetch_pubs.py`, then `generate.py` |
+| A paper's abstract or free copy, by hand | its entry in `data/pub-meta.json` (see "Abstracts and free copies" below) | `python3 scripts/generate.py` |
 | News from LinkedIn | the post's URL | `python3 scripts/add_post.py <URL>`, then `generate.py` |
 | Other news | a file in `data/news/` (see below) | `python3 scripts/generate.py` |
 | Images, textures, data from other projects | sources listed in `scripts/make_assets.py` | `python3 scripts/make_assets.py` |
@@ -34,7 +35,9 @@ number instead, so the bib can change freely. Rendering PDF and SVG figures need
 version on HAL, so that one entry needs a network connection.
 
 `generate.py` rewrites only the blocks between `<!-- gen:… -->` and `<!-- /gen -->`
-markers; everything else in the pages is hand-written. It also rewrites `sitemap.xml`,
+markers; everything else in the pages is hand-written, except the paper pages in
+`publications/<slug>/`, which it writes whole (header and footer copied from
+`publications/index.html`, so edit those there). It also rewrites `sitemap.xml`,
 with each page's last commit date as `lastmod`, so run it once more just before committing.
 
 `make_assets.py` also builds the topic pages' social cards (`assets/img/og/og-*.jpg`,
@@ -72,7 +75,48 @@ Bibliography keywords that the site reads (the CV ignores the extra ones):
 - `selected` (the CV's flagship list) or `featured` (website only): shown on the topic page;
   `selected` alone also fills "Selected papers" on the publications page (`<!-- gen:pubs selected -->`)
   and its JSON-LD in `<head>` (`<!-- gen:ld selected -->`);
-- optional field `weburl`: the link the website uses instead of the DOI (the CV ignores it).
+- optional field `weburl`: the link the website uses instead of the DOI (the CV ignores it). It also
+  wins over the free copy that `fetch_pubs.py` finds, and so does a `url` on HAL or arXiv;
+- optional field `slug`: pins the address of the paper's page (see below).
+
+### Papers: pages, abstracts and free copies
+
+Every printed paper has a page of its own, `publications/<slug>/`, written whole by `generate.py`:
+title, authors, venue, a free copy and the publisher's version, share links, the abstract, the
+figure when it has one, its DOI and BibTeX, and three more papers of its topic. The slug is the year
+and the start of the title (`/publications/2022-space-terrestrial-integrated-internet-of-things/`).
+In the lists, a title opens that page, "Abstract" unfolds the abstract in place, and "Share" hands
+out the page's address (copy, LinkedIn, X, Bluesky, email: plain links, nothing loaded from them;
+`assets/js/share.js`). `/publications/#<slug>` opens the full list on that paper.
+
+Shared addresses must keep working. A page whose paper leaves the bib is deleted, and so is one
+whose title changes, since the slug follows the title: `generate.py` says so when it happens. If the
+old address was shared, put `slug = {<old slug>}` in the entry.
+
+#### Abstracts and free copies
+
+`scripts/fetch_pubs.py` is the only script that goes online. It asks HAL, arXiv, OpenAlex, Semantic
+Scholar and Crossref (no keys needed) and writes `data/pub-meta.json`, one entry per bib key:
+
+```bash
+python3 scripts/fetch_pubs.py            # new entries, and those still missing something (about a minute)
+python3 scripts/fetch_pubs.py --all      # every entry again, e.g. after depositing papers on HAL
+python3 scripts/fetch_pubs.py --report   # offline: what lacks an abstract or a free copy, HAL records to fix
+```
+
+- Free copy, the first found: the HAL record with its full text, arXiv, another repository known
+  to OpenAlex (CONICET Digital, PORTO@Iris, UPCommons…). `publisher_oa` marks a publisher's
+  version that is free to read; both get the open padlock on the site.
+- Abstract, the first that passes its checks: Crossref (the publisher's), Semantic Scholar,
+  OpenAlex, HAL, arXiv. HAL comes late because its abstract field is typed by hand and has held a
+  reply to reviewers and a publisher's notice. An abstract sharing no word with its title is kept
+  only if another source agrees: OpenAlex once gave a SmallSat paper someone else's abstract.
+- Hand edits stay: set `"abstract_from": "manual"` (or `"from": "manual"` inside `open`) and the
+  script never replaces that field; `"keep": true` freezes the whole entry. Abstracts of papers not
+  yet online (the 2026 workshop papers, for instance) were taken from their camera-ready versions
+  and are marked `manual`.
+- The run also lists what HAL and arXiv hold under the name Fraire that matches no bib entry: papers
+  missing from the CV, or preprints.
 
 ### News
 
@@ -127,6 +171,7 @@ menu whenever the visitor scrolls up or reaches the end of the page (`home.js`, 
 index.html                  landing page
 dtn/, satellite-iot/, mega-constellations/, orbital-computing/   topic pages 01 to 04
 publications/               full list from the bib, with topic/type/text filters (assets/js/pubs.js)
+publications/<slug>/        one page per paper, written by generate.py (never edit by hand)
 software/                   tools and projects, grouped by topic
 press/, es/prensa/, fr/presse/   press kit in English, Spanish and French (assets/js/press.js)
 about/                      positions, education, students, service, teaching
@@ -141,15 +186,17 @@ assets/js/route-bundle.js   "Route a bundle" on the DTN page (the CGR tutorial's
 assets/js/next-pass.js      "Wait for the next pass" on the satellite-IoT page (TAES 2022 designs)
 assets/js/mesh-route.js     "Across the mesh" on the mega-constellations page (the tour's laser shell)
 assets/js/news.js           "Show more" on long news cards, arrows for the row of cards
+assets/js/share.js          "Share" on papers (lists and paper pages), copy link and BibTeX
 assets/js/photos.js         photo carousels: About (random order) and the press photo (colour, black and white)
 assets/img/photo/           portrait and press downloads (colour and black and white), about/ for the carousel
 assets/img/news/, assets/video/news/   media of the news posts (from add_post.py)
 assets/img/pubs/, assets/img/software/   figures on the selected-paper cards, pictures and logos on the tool and project cards
-data/                       IPN-V Mars network, ODC shells, sensor sites; pub-figures.json (from make_assets.py)
+data/                       IPN-V Mars network, ODC shells, sensor sites; pub-figures.json (from make_assets.py);
+                            pub-meta.json (abstracts and free copies, from fetch_pubs.py)
 data/news/                  one file per news post
 vendor/three/               three.js r170 (MIT)
 assets/fonts/               Inria Sans (SIL Open Font Licence)
-scripts/                    serve.py, generate.py, add_post.py, make_assets.py (+ git-ignored sources.local.json),
+scripts/                    serve.py, generate.py, fetch_pubs.py, add_post.py, make_assets.py (+ git-ignored sources.local.json),
                             og-card.html (social card and heroes from the tour), pycgr-figure/ (the pyCGR picture),
                             shots/ (screenshots of a project website and of a video, with their dates)
 sitemap.xml, robots.txt     written by generate.py / by hand

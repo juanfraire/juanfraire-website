@@ -1,6 +1,7 @@
-// Filters for the full publication list: topic, type and free text.
+// Filters for the full publication list: topic, type and free text (title, authors, venue, abstract).
 // The whole list is in the HTML, so without JavaScript everything shows; this only hides
-// what does not match. A topic in the hash (/publications/#orbital) opens with it selected.
+// what does not match. A topic in the hash (/publications/#orbital) opens with it selected;
+// a paper's slug (/publications/#2022-space-terrestrial-…) opens on that paper, its abstract unfolded.
 
 const form = document.getElementById('pub-filters');
 const section = document.querySelector('.all-pubs');
@@ -14,7 +15,8 @@ if (form && section) {
   const query = form.querySelector('#pub-q');
   const count = form.querySelector('#pub-count');
   const topicsOf = new Map(items.map((li) => [li, li.dataset.topics.split(' ')]));
-  const textOf = new Map(items.map((li) => [li, norm(li.textContent)]));
+  const searched = '.pub-title, .pub-authors, .pub-venue, .pub-abs .abs';
+  const textOf = new Map(items.map((li) => [li, norm([...li.querySelectorAll(searched)].map((e) => e.textContent).join(' '))]));
   const known = chips.map((c) => c.dataset.topic).filter(Boolean);
   let topic = '';
 
@@ -45,6 +47,18 @@ if (form && section) {
 
   const fromHash = () => {
     const t = decodeURIComponent(location.hash.slice(1));
+    const paper = t && document.getElementById(t);
+    if (paper && paper.matches('.pub')) {          // one paper: clear the filters so it shows, and unfold it
+      if (paper.hidden) {
+        topic = '';
+        type.value = '';
+        query.value = '';
+        apply();
+      }
+      paper.querySelector('.pub-abs')?.setAttribute('open', '');
+      paper.scrollIntoView({ block: 'center' });
+      return;
+    }
     if (!known.includes(t)) return;
     topic = t;
     apply();

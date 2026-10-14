@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenCL overview, implementation, and performance comparison · Juan A. Fraire</title>
+  <meta name="description" content="High performance parallel computing was something exclusive for expensive specialized hardware some years ago. But now we can find powerful parallel…">
+  <link rel="canonical" href="https://juanfraire.space/publications/2013-opencl-overview-implementation-and-performance/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="OpenCL overview, implementation, and performance comparison">
+  <meta property="og:description" content="High performance parallel computing was something exclusive for expensive specialized hardware some years ago. But now we can find powerful parallel processors in many home graphics card whose…">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://juanfraire.space/publications/2013-opencl-overview-implementation-and-performance/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The four research topics of Juan A. Fraire: delay-tolerant networks, direct-to-satellite IoT, mega-constellations and orbital computing">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://juanfraire.space/publications/2013-opencl-overview-implementation-and-performance/#paper",
+    "mainEntityOfPage": "https://juanfraire.space/publications/2013-opencl-overview-implementation-and-performance/",
+    "name": "OpenCL overview, implementation, and performance comparison",
+    "author": [
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire"
+      },
+      {
+        "@type": "Person",
+        "name": "Alejandro Ferreyra"
+      },
+      {
+        "@type": "Person",
+        "name": "Carlos Marques"
+      }
+    ],
+    "datePublished": "2013",
+    "url": "https://juanfraire.space/publications/2013-opencl-overview-implementation-and-performance/",
+    "sameAs": [
+      "https://doi.org/10.1109/tla.2013.6502816",
+      "http://hdl.handle.net/11336/25002"
+    ],
+    "abstract": "High performance parallel computing was something exclusive for expensive specialized hardware some years ago. But now we can find powerful parallel processors in many home graphics card whose interface has been recently opened by many manufacturers for general purpose computing. OpenCL, created by the world most important processors manufacturers, went a little further, aiming for a platform and manufacturer independent parallel language. However, understanding this new processing paradigm is challenging and critical for future computation demanding applications. The first approach of this document is to provide a deep technical background of OpenCL architecture. Second, we propose an implementation of a matrix product calculation OpenCL kernel directly implemented in C++ without wrappers so as to describe in detail the OpenCL programming flow. Thirdly, different platforms and algebraic scenarios are created for this program concluding that the improvement of calculation performance can reach up to 3 orders of magnitude over the same algorithm in plain C++.",
+    "isAccessibleForFree": true
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/share.js"></script>
+</head>
+<body>
+  <!-- Written by scripts/generate.py from the bib and data/pub-meta.json; edits here are overwritten. -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <div class="head-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/" aria-current="true">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="wrap page-head paper-page" data-url="https://juanfraire.space/publications/2013-opencl-overview-implementation-and-performance/">
+      <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Conference paper · 2013</p>
+      <h1>OpenCL overview, implementation, and performance comparison</h1>
+      <p class="pub-authors"><strong>Juan A. Fraire</strong>, Alejandro Ferreyra, and Carlos Marques</p>
+      <p class="pub-venue">IEEE Latin America Transactions, vol. 11, no. 1, pp. 274–280, 2013</p>
+      <p class="paper-actions"><a class="button oa" href="http://hdl.handle.net/11336/25002">Read on CONICET Digital<small>free</small></a><a class="button" href="https://doi.org/10.1109/tla.2013.6502816">Publisher’s version</a></p>
+      <div class="paper-share" role="group" aria-label="Share this paper">
+        <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2013-opencl-overview-implementation-and-performance/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2013-opencl-overview-implementation-and-performance%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=OpenCL%20overview%2C%20implementation%2C%20and%20performance%20comparison&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2013-opencl-overview-implementation-and-performance%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=OpenCL%20overview%2C%20implementation%2C%20and%20performance%20comparison%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2013-opencl-overview-implementation-and-performance%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=OpenCL%20overview%2C%20implementation%2C%20and%20performance%20comparison&amp;body=OpenCL%20overview%2C%20implementation%2C%20and%20performance%20comparison%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2013-opencl-overview-implementation-and-performance%2F" target="_blank" rel="noopener">Email</a>
+      </div>
+      <section class="paper-abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>High performance parallel computing was something exclusive for expensive specialized hardware some years ago. But now we can find powerful parallel processors in many home graphics card whose interface has been recently opened by many manufacturers for general purpose computing. OpenCL, created by the world most important processors manufacturers, went a little further, aiming for a platform and manufacturer independent parallel language. However, understanding this new processing paradigm is challenging and critical for future computation demanding applications. The first approach of this document is to provide a deep technical background of OpenCL architecture. Second, we propose an implementation of a matrix product calculation OpenCL kernel directly implemented in C++ without wrappers so as to describe in detail the OpenCL programming flow. Thirdly, different platforms and algebraic scenarios are created for this program concluding that the improvement of calculation performance can reach up to 3 orders of magnitude over the same algorithm in plain C++.</p>
+      </section>
+      <section class="paper-cite" aria-labelledby="cite-title">
+        <h2 id="cite-title">Cite</h2>
+        <p class="paper-doi">DOI <a href="https://doi.org/10.1109/tla.2013.6502816">10.1109/tla.2013.6502816</a></p>
+        <details class="bibtex"><summary>BibTeX</summary><pre><code>@article{fraire2013opencl,
+  author    = {Fraire, Juan A. and Ferreyra, Alejandro and Marques, Carlos},
+  title     = {OpenCL overview, implementation, and performance comparison},
+  journal   = {IEEE Latin America Transactions},
+  volume    = {11},
+  number    = {1},
+  pages     = {274--280},
+  publisher = {IEEE},
+  year      = {2013},
+  doi       = {10.1109/tla.2013.6502816}
+}</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>
