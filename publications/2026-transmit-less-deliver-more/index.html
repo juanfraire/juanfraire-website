@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transmit Less, Deliver More: Frugal On-Device Intelligence for Energy- and Spectrum-Sustainable Direct-to-Satellite IoT · Juan A. Fraire</title>
+  <meta name="description" content="The terminals that make direct-to-satellite IoT affordable are cheap, battery-powered, and effectively blind. A device cannot hear whether a satellite is…">
+  <link rel="canonical" href="https://juanfraire.space/publications/2026-transmit-less-deliver-more/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Transmit Less, Deliver More: Frugal On-Device Intelligence for Energy- and Spectrum-Sustainable Direct-to-Satellite IoT">
+  <meta property="og:description" content="The terminals that make direct-to-satellite IoT affordable are cheap, battery-powered, and effectively blind. A device cannot hear whether a satellite is overhead, so it transmits the same packet…">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://juanfraire.space/publications/2026-transmit-less-deliver-more/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-iot.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Earth with Europe and Africa in view, a few small satellites overhead with the circles they cover, and sensors on the ground linked to the satellite passing over them">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://juanfraire.space/publications/2026-transmit-less-deliver-more/#paper",
+    "mainEntityOfPage": "https://juanfraire.space/publications/2026-transmit-less-deliver-more/",
+    "name": "Transmit Less, Deliver More: Frugal On-Device Intelligence for Energy- and Spectrum-Sustainable Direct-to-Satellite IoT",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Alexander Y. Choquenaira-Florez"
+      },
+      {
+        "@type": "Person",
+        "name": "Hervé Rivano"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire"
+      }
+    ],
+    "datePublished": "2026",
+    "url": "https://juanfraire.space/publications/2026-transmit-less-deliver-more/",
+    "sameAs": "https://hal.science/hal-05800184",
+    "abstract": "The terminals that make direct-to-satellite IoT affordable are cheap, battery-powered, and effectively blind. A device cannot hear whether a satellite is overhead, so it transmits the same packet many times and hopes. In a representative LoRa scenario, fewer than one in five of those transmissions is received, and each wasted frame drains a battery nobody will travel to replace while radiating interference into a band shared with everyone else. A terminal able to decline a transmission it expects to lose changes both budgets at once. In closed-loop simulation, a tiny on-device predictor delivers 16.1% more unique packets while emitting 41.6% fewer transmissions, halving the radio energy per delivered packet, returning two-fifths of the airtime to the band, and delivering 2.3 times more data than the blind policy at a matched energy budget.\n\nWe then ask what the intelligence itself costs. Scored on identical data, a classifier that sees no history at all lands within seed noise of a Transformer; every nonlinear model we tried falls inside the same narrow accuracy band, and their deployed sizes span five orders of magnitude. Accuracy stops discriminating long before cost does. We argue that inference energy and runtime footprint must be charged against the transmissions saved before any model is called necessary, and we give the resulting design rule for frugal intelligence in non-terrestrial networks.",
+    "isAccessibleForFree": true
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/share.js"></script>
+</head>
+<body style="--accent: var(--t2)">
+  <!-- Written by scripts/generate.py from the bib and data/pub-meta.json; edits here are overwritten. -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <div class="head-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/" aria-current="true">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="wrap page-head paper-page" data-url="https://juanfraire.space/publications/2026-transmit-less-deliver-more/">
+      <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Preprint · Satellite IoT · 2026</p>
+      <h1>Transmit Less, Deliver More: Frugal On-Device Intelligence for Energy- and Spectrum-Sustainable Direct-to-Satellite IoT</h1>
+      <p class="pub-authors">Alexander Y. Choquenaira-Florez, Hervé Rivano, and <strong>Juan A. Fraire</strong></p>
+      <p class="pub-venue">HAL preprint, 2026</p>
+      <p class="paper-actions"><a class="button oa" href="https://hal.science/hal-05800184">Read on HAL<small>free</small></a></p>
+      <div class="paper-share" role="group" aria-label="Share this paper">
+        <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2026-transmit-less-deliver-more/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-transmit-less-deliver-more%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=Transmit%20Less%2C%20Deliver%20More%3A%20Frugal%20On-Device%20Intelligence%20for%20Energy-%20and%20Spectrum-Sustainable%20Direct-to-Satellite%20IoT&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-transmit-less-deliver-more%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=Transmit%20Less%2C%20Deliver%20More%3A%20Frugal%20On-Device%20Intelligence%20for%20Energy-%20and%20Spectrum-Sustainable%20Direct-to-Satellite%20IoT%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-transmit-less-deliver-more%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=Transmit%20Less%2C%20Deliver%20More%3A%20Frugal%20On-Device%20Intelligence%20for%20Energy-%20and%20Spectrum-Sustainable%20Direct-to-Satellite%20IoT&amp;body=Transmit%20Less%2C%20Deliver%20More%3A%20Frugal%20On-Device%20Intelligence%20for%20Energy-%20and%20Spectrum-Sustainable%20Direct-to-Satellite%20IoT%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-transmit-less-deliver-more%2F" target="_blank" rel="noopener">Email</a>
+      </div>
+      <section class="paper-abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>The terminals that make direct-to-satellite IoT affordable are cheap, battery-powered, and effectively blind. A device cannot hear whether a satellite is overhead, so it transmits the same packet many times and hopes. In a representative LoRa scenario, fewer than one in five of those transmissions is received, and each wasted frame drains a battery nobody will travel to replace while radiating interference into a band shared with everyone else. A terminal able to decline a transmission it expects to lose changes both budgets at once. In closed-loop simulation, a tiny on-device predictor delivers 16.1% more unique packets while emitting 41.6% fewer transmissions, halving the radio energy per delivered packet, returning two-fifths of the airtime to the band, and delivering 2.3 times more data than the blind policy at a matched energy budget.</p><p>We then ask what the intelligence itself costs. Scored on identical data, a classifier that sees no history at all lands within seed noise of a Transformer; every nonlinear model we tried falls inside the same narrow accuracy band, and their deployed sizes span five orders of magnitude. Accuracy stops discriminating long before cost does. We argue that inference energy and runtime footprint must be charged against the transmissions saved before any model is called necessary, and we give the resulting design rule for frugal intelligence in non-terrestrial networks.</p>
+      </section>
+      <section class="paper-cite" aria-labelledby="cite-title">
+        <h2 id="cite-title">Cite</h2>
+        
+        <details class="bibtex"><summary>BibTeX</summary><pre><code>@article{choquenaira2026frugal,
+  author  = {Choquenaira-Florez, Alexander Y. and Rivano, Herv{\&#x27;e} and Fraire, Juan A.},
+  title   = {Transmit Less, Deliver More: Frugal On-Device Intelligence for Energy- and Spectrum-Sustainable Direct-to-Satellite {IoT}},
+  journal = {HAL preprint},
+  year    = {2026},
+  url     = {https://hal.science/hal-05800184}
+}</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
+      </section>
+    </article>
+    <section class="wrap section paper-more" aria-labelledby="more-title">
+      <h2 id="more-title">More on satellite IoT</h2>
+      <ol class="pubs">
+        <li class="pub" data-type="journal" data-topics="iot">
+          <span class="pub-title"><a href="/publications/2026-dorsal-downlink-optimization-for-robust/">DORSAL: Downlink Optimization for Robust Direct-to-Satellite LoRaWAN</a></span>
+          <span class="pub-authors"><strong>Juan A. Fraire</strong>, Oana Iova, Carlos Fernandez Hernandez, Fabrice Valois, Hervé Rivano, Cesar Azurdia-Meza, Marcos Diaz, Miguel Gutiérrez Gaitán, Diego Dujovne, Samuel Montejo Sánchez, and Richard Demo Souza</span>
+          <span class="pub-venue">IEEE Internet of Things Journal, 2026</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>Delivering downlink (DL) ACKs to Class A LoRaWAN devices via low Earth orbit (LEO) satellite constellations requires predicting end-to-end propagation delays of 10–500 ms to hit a 1-s receive window, a timing challenge absent from terrestrial schedulers. We present downlink optimization for robust direct-to-satellite LoRaWAN (DORSAL), the first mixed-integer linear programming (MILP) scheduler for DL delivery in direct-to-satellite (DtS) LoRaWAN networks. It introduces the downlink arrival receive-window timing (DART) as the central constraint to jointly optimize gateway (GW) selection and packet injection timing across ISL-capable and bent-pipe architectures. Evaluation on a Walker 5× 5 polar constellation (25 satellites, 650 km) and a commercial ground station (GS) network yields five results: 1) DART infeasibility blocks 73% of bent-pipe deliveries regardless of scheduler quality: DART-unaware approaches collapse from 93% nominal to only 20% real delivery; 2) ISL routing raises %ACK by + 67.4 pp over bent-pipe (91.6% versus 24.2% at n_mathrm GS=3 ground stations, ISM band) by eliminating the three-way simultaneous-visibility constraint, with 73% of ACKs delivered via ≥ 2 -hop paths; 3) ISL %ACK is nearly flat across n_mathrm GSin 3,6,12 GSs (91.6%–92.7%), showing that a minimal three-station polar network captures the full scheduling benefit of an ISL-equipped constellation; 4) ISL hardware speed has negligible impact up to 300 ms/hop: %ACK is flat from 0 to 300 ms, then degrades in two discrete steps (−5.3 pp at 500 ms, −2 pp at 700 ms) as successive hop-count tiers lose causal injection feasibility; and 5) the MILP solves to proven optimality within seconds for up to 10^3 devices, confirming that the sparse conflict-graph structure keeps the problem tractable at realistic Internet of Things (IoT) subscriber counts.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-05671806" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1109/jiot.2026.3696890">Publisher</a><button type="button" class="share" data-share="/publications/2026-dorsal-downlink-optimization-for-robust/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="iot">
+          <span class="pub-title"><a href="/publications/2025-on-the-role-of-machine-learning-in-satellite/">On the role of machine learning in satellite internet of things: A survey of techniques, challenges, and future directions</a></span>
+          <span class="pub-authors">Alexander Ylnner Choquenaira Florez, <strong>Juan A. Fraire</strong>, Hannah B. Pasandi, and Hervé Rivano</span>
+          <span class="pub-venue">Elsevier Computer Networks, 2025</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>The drive towards an interconnected world via satellites is reshaping the landscape of communication technologies. This survey comprehensively reviews studies in the Satellite Internet of Things (SIoT) domain, focusing on the role of Machine Learning (ML) techniques. Indeed, the global data collection scale in SIoT is ideally suited for data-intensive and sophisticated ML approaches. We highlight the innovative use of ML to address specific SIoT challenges, aiming to identify current trends, methodologies, and outcomes. We considered theoretical, practical, and experimental research, organizing existing publications into a new taxonomy that intersects ML and SIoT categories. Our taxonomy reveals that Deep Learning (DL), Reinforcement Learning (RL), and Federated Learning (FL) are widely applied to address radio access schemes, resource and network management, and application-specific issues. This survey identifies critical gaps in current research on ML applications in SIoT, such as the lack of differentiation between space-based and ground-based processing, insufficient integration of SIoT-specific metrics, and the oversight of limited computational resources on orbiting satellites. These issues raise concerns about the feasibility and efficiency of proposed solutions. We propose promising research directions based on the derived insights to effectively bridge the gap between ML researchers and industrial SIoT entities.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-04911360" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1016/j.comnet.2025.111063">Publisher</a><button type="button" class="share" data-share="/publications/2025-on-the-role-of-machine-learning-in-satellite/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="iot">
+          <span class="pub-title"><a href="/publications/2022-space-terrestrial-integrated-internet-of-things/">Space-Terrestrial Integrated Internet of Things: Challenges and Opportunities</a></span>
+          <span class="pub-authors"><strong>Juan A. Fraire</strong>, Oana Iova, and Fabrice Valois</span>
+          <span class="pub-venue">IEEE Communications Magazine, 2022</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>Large geographical regions of our planet remain uncovered by terrestrial network connections. Sparse and dense constellations of near Earth orbit satellites can bridge this gap by providing Internet of Things (IoT) connectivity on a worldwide scale in a flexible and cost-effective manner. This article presents STEREO: a novel space-terrestrial integrated IoT architecture spanning direct- and indirect-to-satellite access from IoT assets on the surface. Framed on the identified requirements, we analyze NB-IoT and LoRa/LoRaWAN features to put these technologies forward as appealing candidates for future satellite IoT deployments. Finally, we list and discuss the key open research challenges to be addressed in order to achieve successful space-terrestrial IoT integration.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-03789116" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1109/mcom.008.2200215">Publisher</a><button type="button" class="share" data-share="/publications/2022-space-terrestrial-integrated-internet-of-things/" hidden>Share</button></p>
+        </li>
+      </ol>
+      <p class="links"><a href="/satellite-iot/">Satellite IoT: the topic page</a> <a href="/publications/#iot">All 39 papers on this topic</a></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

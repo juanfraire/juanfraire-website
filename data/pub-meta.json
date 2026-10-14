@@ -352,6 +352,12 @@
   "abstract_from": "manual",
   "publisher_oa": false
  },
+ "choquenaira2026frugal": {
+  "title": "Transmit Less, Deliver More: Frugal On-Device Intelligence for Energy- and Spectrum-Sustainable Direct-to-Satellite IoT",
+  "abstract": "The terminals that make direct-to-satellite IoT affordable are cheap, battery-powered, and effectively blind. A device cannot hear whether a satellite is overhead, so it transmits the same packet many times and hopes. In a representative LoRa scenario, fewer than one in five of those transmissions is received, and each wasted frame drains a battery nobody will travel to replace while radiating interference into a band shared with everyone else. A terminal able to decline a transmission it expects to lose changes both budgets at once. In closed-loop simulation, a tiny on-device predictor delivers 16.1% more unique packets while emitting 41.6% fewer transmissions, halving the radio energy per delivered packet, returning two-fifths of the airtime to the band, and delivering 2.3 times more data than the blind policy at a matched energy budget.\n\nWe then ask what the intelligence itself costs. Scored on identical data, a classifier that sees no history at all lands within seed noise of a Transformer; every nonlinear model we tried falls inside the same narrow accuracy band, and their deployed sizes span five orders of magnitude. Accuracy stops discriminating long before cost does. We argue that inference energy and runtime footprint must be charged against the transmissions saved before any model is called necessary, and we give the resulting design rule for frugal intelligence in non-terrestrial networks.",
+  "abstract_from": "manual",
+  "publisher_oa": false
+ },
  "DBLP:conf/wisee/JonckereMF25": {
   "title": "A-SABR: The Adaptive Library for Schedule-Aware Bundle Routing",
   "abstract": "Deep space communications face long delays and disruptions, making Delay-Tolerant Networking (DTN) and specialized routing essential. To address this, the CCSDS published the Schedule-Aware Bundle Routing (SABR) standard, built on the Contact Graph Routing (CGR) algorithm. Yet, over a decade of CGR development has introduced complexity and fragmentation, hindering prototyping and benchmarking.This paper presents the Adaptive Library for Schedule-Aware Bundle Routing (A-SABR), an extensible Rust-based library for research and operations involving SABR/CGR. A-SABR supports rapid development and evaluation of routing strategies through a safe, modular design, and includes a broad set of existing CGR variants. It bridges the gap between flexible prototyping and reliable benchmarking, accelerating innovation in DTN routing. To illustrate its adaptability, we introduce new methods developed with A-SABR: a routing algorithm stamped VolCgr (Volume-CGR), a shortest-path-tree-based pathfinding for contact graphs, and additional options for volume management.",
@@ -1793,16 +1799,6 @@
   "abstract_from": "openalex",
   "publisher_oa": false
  },
- "barrientos2017glaciers": {
-  "title": "A Segmented Architecture Approach to Provide a Continuous, Long-Term, Adaptive and Cost-effective Glaciers Monitoring System Based on DTN Communications and CubeSat Platforms",
-  "abstract": "Mountain glaciers are important because they work as precipitation buffers and water sources for downstream populations. In addition, they have been a source of data for climate dynamics analysis. Measuring glaciers meteorological variables, estimating the amount of black carbon, as well as recording mass slides on a periodic basis becomes mandatory to understand and drive effective environmental policies. While these measurements are traditionally executed via expensive field campaigns, they tend to be scarce and non-periodic. Thus, remote sensing alternatives have been explored by the community, they are based in monolithic satellite architectures which besides the long development time, are bounded in mission lifetime. In this paper we propose a Glacier Segmented Observation System (SOS), based on a number of interconnected cubesats under the segmented architecture paradigm to provide frequent revisit times and extendable lifetime for critical observation missions. We evaluate how SOS can support a world-wide glacier remote sensing mission to then discuss relevant mission requirements, formation flying disposition of satellites and communication architecture challenges.",
-  "abstract_from": "manual",
-  "publisher_oa": false,
-  "matched_by_title": [
-   "hal hal-01525715 1.0"
-  ],
-  "hal": "hal-01525715 (notice)"
- },
  "DBLP:journals/asc/FraireMFL17": {
   "title": "An evolutionary approach towards contact plan design for disruption-tolerant satellite networks",
   "abstract": "Delay and disruption tolerant networks (DTNs) are becoming an appealing solution for satellite networks where nodes can temporarily store and carry in-transit data until a link with a suitable next-hop becomes available. Since satellite trajectories and orientation can be predicted, on-board routing schemes can base these forwarding decisions on a contact plan comprising all forthcoming communication opportunities. In general, contact plans are previously calculated on ground where their design can be optimized to consider not only available spacecraft resources but also the expected traffic which is largely foreseeable in space applications. Despite optimal contact plan design procedures exist, their computation complexity might result prohibitive even for medium-sized satellite networks. In this work, we propose an evolutionary algorithm to provide sub-optimal yet efficient and implementable contact plans in bounded time. In particular, we depict specific strategies such as encoding and repairing techniques to later evaluate the algorithm performance in a typical scenario demonstrating its usefulness for planning future DTN-based satellite networks.",
@@ -1852,16 +1848,6 @@
    "hal hal-02108420 1.0"
   ],
   "hal": "hal-02108420 (notice)"
- },
- "ferreyra2017enhancing": {
-  "title": "Enhancing Contact Graph Routing Forwarding Performance for Segmented Satellites Architectures",
-  "abstract": "The Argentinean Space Agency (CONAE) has developed a concept known as Segmented Architecture in which sets of satellites (i.e., segments) share common components and characteristics and the ability to interact with each other and share resources. Although there are multiple potential benefits, technological challenges such as the network protocols among satellite segments still need to be tackled. In general, segmented communications can be modeled as Delay/Disruption Tolerant Networks (DTNs) which have been recognized as a promising architecture for challenged distributed systems. Among the routing schemes used by DTN nodes, the Contact Graph Routing (CGR) has received the most attention in the space community. Although this implementation has been capable of providing basic routing functionalities, there are still many challenges and potential improvements that deserve further research and discussion. In this work, we propose and implement strategic modifications to CGR in order to improve its performance and we make a comparative study by executing CGR in different scenarios and in different software-hardware platforms. Finally, we discuss the implications of the results and propose future research lines to contribute to the development of the segmented architecture.",
-  "abstract_from": "manual",
-  "publisher_oa": false,
-  "matched_by_title": [
-   "hal hal-01524117 1.0"
-  ],
-  "hal": "hal-01524117 (notice)"
  },
  "fraire2017introducing": {
   "title": "Introducing contact plan designer: A planning tool for DTN-based space-terrestrial networks",
@@ -1934,14 +1920,6 @@
    "hal hal-01477218 1.0"
   ],
   "hal": "hal-01477218 (notice)"
- },
- "solinas2016netfi2": {
-  "title": "Primeros Resultados con NETFI-2: Una Nueva Herramienta para la Inyección de Fallos en Diseños Basados en HDL",
-  "publisher_oa": false,
-  "matched_by_title": [
-   "hal hal-01525714 1.0"
-  ],
-  "hal": "hal-01525714 (notice)"
  },
  "DBLP:journals/adhoc/FraireMF16": {
   "title": "Traffic-aware contact plan design for disruption-tolerant space sensor networks",

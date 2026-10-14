@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://juanfraire.space/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-15</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/about/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-15</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/dtn/</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://juanfraire.space/es/prensa/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://juanfraire.space/fr/presse/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://juanfraire.space/press/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
@@ -117,15 +117,7 @@
     <lastmod>2026-10-15</lastmod>
   </url>
   <url>
-    <loc>https://juanfraire.space/publications/2016-primeros-resultados-con-netfi-2/</loc>
-    <lastmod>2026-10-15</lastmod>
-  </url>
-  <url>
     <loc>https://juanfraire.space/publications/2016-traffic-aware-contact-plan-design/</loc>
-    <lastmod>2026-10-15</lastmod>
-  </url>
-  <url>
-    <loc>https://juanfraire.space/publications/2017-a-segmented-architecture-approach-to-provide/</loc>
     <lastmod>2026-10-15</lastmod>
   </url>
   <url>
@@ -150,10 +142,6 @@
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-dtnsim-bridging-the-gap-between-simulation/</loc>
-    <lastmod>2026-10-15</lastmod>
-  </url>
-  <url>
-    <loc>https://juanfraire.space/publications/2017-enhancing-contact-graph-routing-forwarding/</loc>
     <lastmod>2026-10-15</lastmod>
   </url>
   <url>
@@ -814,6 +802,10 @@
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-to-transmit-or-not/</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/publications/2026-transmit-less-deliver-more/</loc>
     <lastmod>2026-10-15</lastmod>
   </url>
   <url>
