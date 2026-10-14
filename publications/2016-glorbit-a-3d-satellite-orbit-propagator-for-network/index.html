@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GLOrbit: A 3D Satellite Orbit Propagator for Network Topology Analysis · Juan A. Fraire</title>
+  <meta name="description" content="Los protocolos de redes tradicionales fueron desarrollados para redes terrestres, caracterizadas por topologías altamente estáticas. En este escenario…">
+  <link rel="canonical" href="https://juanfraire.space/publications/2016-glorbit-a-3d-satellite-orbit-propagator-for-network/">
+  <meta name="author" content="Juan A. Fraire">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content="Juan A. Fraire">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="GLOrbit: A 3D Satellite Orbit Propagator for Network Topology Analysis">
+  <meta property="og:description" content="Los protocolos de redes tradicionales fueron desarrollados para redes terrestres, caracterizadas por topologías altamente estáticas. En este escenario, los errores de enlace aleatorios han sido el…">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://juanfraire.space/publications/2016-glorbit-a-3d-satellite-orbit-propagator-for-network/">
+  <meta property="og:image" content="https://juanfraire.space/assets/img/og/og-dtn.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mars ringed by the orbits of relay satellites, one of them linked to a rover on the surface, and a dashed line carrying data off towards Earth">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://juanfraire.space/publications/2016-glorbit-a-3d-satellite-orbit-propagator-for-network/#paper",
+    "mainEntityOfPage": "https://juanfraire.space/publications/2016-glorbit-a-3d-satellite-orbit-propagator-for-network/",
+    "name": "GLOrbit: A 3D Satellite Orbit Propagator for Network Topology Analysis",
+    "author": [
+      {
+        "@type": "Person",
+        "@id": "https://juanfraire.space/#person",
+        "name": "Juan A. Fraire"
+      },
+      {
+        "@type": "Person",
+        "name": "Pablo A. Ferreyra"
+      },
+      {
+        "@type": "Person",
+        "name": "Raoul Velazco"
+      }
+    ],
+    "datePublished": "2016",
+    "isPartOf": {
+      "@type": "Periodical",
+      "name": "Revista de la Facultad de Ciencias Exactas, Físicas y Naturales (UNC)"
+    },
+    "url": "https://juanfraire.space/publications/2016-glorbit-a-3d-satellite-orbit-propagator-for-network/",
+    "sameAs": "https://revistas.unc.edu.ar/index.php/FCEFyN/article/view/13881",
+    "abstract": "Los protocolos de redes tradicionales fueron desarrollados para redes terrestres, caracterizadas por topologías altamente estáticas. En este escenario, los errores de enlace aleatorios han sido el cambio más demandante que una configuración de red podía enfrentar. Por otro lado, los protocolos de redes móviles se ocupan de topologías dinámicas pero asumen trayectorias desconocidas y muy alta conectividad. Ninguna de ambas se aplica al paradigma para las redes de constelaciones satelitales donde su naturaleza orbital describe topologías temporalmente variables pero altamente predecibles. Para estudiar este tipo de redes tolerantes a demoras, proponemos GLOrbit; una herramienta de análisis de topologías y redes de satélites, capaz de propagar nodos espaciales en el tiempo, en un ambiente visual 3D mientras registra la topología en diferentes formatos para estudios analíticos posteriores. Para esto implementamos el algoritmo de propagación SGP4, evaluadores de enlace entre nodos, y un motor gráfico de OpenGL. Esto permite obtener salidas precisas para graficar la red satelital y el análisis físico mientras se va ganando intuición visual para diferentes configuraciones orbitales. Se demuestran las capacidades de la herramienta con un primer trabajo de análisis con GLOrbit de tres topologías de orbitas bajas representativas. Escenarios lineales, transversales y diferentes escenarios de altitud son estudiados concluyendo que los lineales poseen una gran fortaleza en los enlaces inter-satelitales, mientras que los segundos en los contactos tierra-espacio. Finalmente, pero no por ello menos importante, debido a que los gráficos tradicionales representan redes estáticas, una novedosa estructura gráfica para topologías evolutivas temporalmente, es presentada como un resultado para el diseño topológico de redes tolerantes a demoras predecibles y sus estrategias de asignación de enlaces.",
+    "isAccessibleForFree": false
+  }
+  </script>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inria-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="module" src="/assets/js/share.js"></script>
+</head>
+<body style="--accent: var(--t1)">
+  <!-- Written by scripts/generate.py from the bib and data/pub-meta.json; edits here are overwritten. -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <p class="brand"><a href="/">Juan A. Fraire</a></p>
+      <p class="tagline">Researcher in <strong>Space Networking and Informatics</strong></p>
+      <div class="head-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="75" height="22"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="51" height="28"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="68" height="30"></a>
+      </div>
+    </div>
+    <nav class="wrap site-nav" aria-label="Main">
+      <a href="/#topics">Research</a>
+      <a href="/publications/" aria-current="true">Publications</a>
+      <a href="/software/">Software</a>
+      <a href="/press/">Press</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="wrap page-head paper-page" data-url="https://juanfraire.space/publications/2016-glorbit-a-3d-satellite-orbit-propagator-for-network/">
+      <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Journal article · Delay-tolerant networks · 2016</p>
+      <h1>GLOrbit: A 3D Satellite Orbit Propagator for Network Topology Analysis</h1>
+      <p class="pub-authors"><strong>Juan A. Fraire</strong>, Pablo A. Ferreyra, and Raoul Velazco</p>
+      <p class="pub-venue">Revista de la Facultad de Ciencias Exactas, Físicas y Naturales (UNC), vol. 3, no. 2, pp. 29–35, 2016</p>
+      <p class="paper-actions"><a class="button" href="https://revistas.unc.edu.ar/index.php/FCEFyN/article/view/13881">Publisher’s version</a></p>
+      <div class="paper-share" role="group" aria-label="Share this paper">
+        <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2016-glorbit-a-3d-satellite-orbit-propagator-for-network/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2016-glorbit-a-3d-satellite-orbit-propagator-for-network%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=GLOrbit%3A%20A%203D%20Satellite%20Orbit%20Propagator%20for%20Network%20Topology%20Analysis&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2016-glorbit-a-3d-satellite-orbit-propagator-for-network%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=GLOrbit%3A%20A%203D%20Satellite%20Orbit%20Propagator%20for%20Network%20Topology%20Analysis%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2016-glorbit-a-3d-satellite-orbit-propagator-for-network%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=GLOrbit%3A%20A%203D%20Satellite%20Orbit%20Propagator%20for%20Network%20Topology%20Analysis&amp;body=GLOrbit%3A%20A%203D%20Satellite%20Orbit%20Propagator%20for%20Network%20Topology%20Analysis%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2016-glorbit-a-3d-satellite-orbit-propagator-for-network%2F" target="_blank" rel="noopener">Email</a>
+      </div>
+      <section class="paper-abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p lang="es">Los protocolos de redes tradicionales fueron desarrollados para redes terrestres, caracterizadas por topologías altamente estáticas. En este escenario, los errores de enlace aleatorios han sido el cambio más demandante que una configuración de red podía enfrentar. Por otro lado, los protocolos de redes móviles se ocupan de topologías dinámicas pero asumen trayectorias desconocidas y muy alta conectividad. Ninguna de ambas se aplica al paradigma para las redes de constelaciones satelitales donde su naturaleza orbital describe topologías temporalmente variables pero altamente predecibles. Para estudiar este tipo de redes tolerantes a demoras, proponemos GLOrbit; una herramienta de análisis de topologías y redes de satélites, capaz de propagar nodos espaciales en el tiempo, en un ambiente visual 3D mientras registra la topología en diferentes formatos para estudios analíticos posteriores. Para esto implementamos el algoritmo de propagación SGP4, evaluadores de enlace entre nodos, y un motor gráfico de OpenGL. Esto permite obtener salidas precisas para graficar la red satelital y el análisis físico mientras se va ganando intuición visual para diferentes configuraciones orbitales. Se demuestran las capacidades de la herramienta con un primer trabajo de análisis con GLOrbit de tres topologías de orbitas bajas representativas. Escenarios lineales, transversales y diferentes escenarios de altitud son estudiados concluyendo que los lineales poseen una gran fortaleza en los enlaces inter-satelitales, mientras que los segundos en los contactos tierra-espacio. Finalmente, pero no por ello menos importante, debido a que los gráficos tradicionales representan redes estáticas, una novedosa estructura gráfica para topologías evolutivas temporalmente, es presentada como un resultado para el diseño topológico de redes tolerantes a demoras predecibles y sus estrategias de asignación de enlaces.</p>
+      </section>
+      <section class="paper-cite" aria-labelledby="cite-title">
+        <h2 id="cite-title">Cite</h2>
+        
+        <details class="bibtex"><summary>BibTeX</summary><pre><code>@article{fraire2016glorbit,
+  author  = {Fraire, Juan A. and Ferreyra, Pablo A. and Velazco, Raoul},
+  title   = {{GLOrbit}: A {3D} Satellite Orbit Propagator for Network Topology Analysis},
+  journal = {Revista de la Facultad de Ciencias Exactas, F{\&#x27;i}sicas y Naturales (UNC)},
+  volume  = {3},
+  number  = {2},
+  pages   = {29--35},
+  year    = {2016},
+  url     = {https://revistas.unc.edu.ar/index.php/FCEFyN/article/view/13881}
+}</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
+      </section>
+    </article>
+    <section class="wrap section paper-more" aria-labelledby="more-title">
+      <h2 id="more-title">More on delay-tolerant networks</h2>
+      <ol class="pubs">
+        <li class="pub" data-type="journal" data-topics="dtn">
+          <span class="pub-title"><a href="/publications/2017-assessing-contact-graph-routing-performance/">Assessing Contact Graph Routing Performance and Reliability in Distributed Satellite Constellations</a></span>
+          <span class="pub-authors"><strong>Juan A. Fraire</strong>, Pablo G. Madoery, Scott C. Burleigh, Marius Feldmann, Jorge M. Finochietto, Amir Charif, Nacer-Eddine Zergainoh, and Raoul Velazco</span>
+          <span class="pub-venue">Journal of Computer Networks and Communications, 2017</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>Existing Internet protocols assume persistent end-to-end connectivity, which cannot be guaranteed in disruptive and high-latency space environments. To operate over these challenging networks, a store-carry-and-forward communication architecture called Delay/Disruption Tolerant Networking (DTN) has been proposed. This work provides the first examination of the performance and robustness of Contact Graph Routing (CGR) algorithm, the state-of-the-art routing scheme for space-based DTNs. To this end, after a thorough description of CGR, two appealing satellite constellations are proposed and evaluated by means of simulations. Indeed, the DtnSim simulator is introduced as another relevant contribution of this work. Results enabled the authors to identify existing CGR weaknesses and enhancement opportunities.</p></div></details>
+          <p class="pub-links"><a class="oa" title="Free to read at the publisher" href="https://doi.org/10.1155/2017/2830542">Publisher</a><button type="button" class="share" data-share="/publications/2017-assessing-contact-graph-routing-performance/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="book" data-topics="dtn">
+          <span class="pub-title"><a href="/publications/2017-delay-tolerant-satellite-networks/">Delay Tolerant Satellite Networks</a></span>
+          <span class="pub-authors"><strong>Juan A. Fraire</strong>, Jorge M Finochietto, and Scott C Burleigh</span>
+          <span class="pub-venue">Artech House, 2017</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>This cutting-edge resource provides a comprehensive treatment of applying delay-tolerant networking (DTN) principles to satellite-based network communications. Detailed models and analytical tools are used to evaluate performance and provide guidance in the field. This book presents the state-of-the-art in existing on-board and ground technologies that support satellite applications, such as communications protocols, algorithms, and security procedures. Readers gain key insight into the fundamental concepts of DTN applied to satellite networks (DTSNs) and case studies are provided. This book presents an authoritative introduction to the methods for computing metrics for satellite network modeling. Satellite communications are examined, including satellite links, communication protocols, and distributed multiple access schemes, such as time division, code division, and frequency division. This book focuses on ways in which DTN might make terrestrial communication and observation via earth orbiting satellites less expensive and more robust. The fundamental concepts and analysis of the Ring Road Architecture are explored. Unique analyses on the motivating factors of using Inter-Satellite Links (ISL) to form networks in disruptive environments in space are discussed. This book explores the limits of larger and complex DTSNs as the number of satellites increase and different orbital formations become possible. As satellite networks become larger in upcoming years this book provides a guide for readers to stay informed about standard protocols such as DTN that will allow seamless interoperation, cost reduction, and risk mitigation.</p></div></details>
+          <p class="pub-links"><button type="button" class="share" data-share="/publications/2017-delay-tolerant-satellite-networks/" hidden>Share</button></p>
+        </li>
+        <li class="pub" data-type="journal" data-topics="dtn">
+          <span class="pub-title"><a href="/publications/2015-design-challenges-in-contact-plans/">Design challenges in contact plans for disruption-tolerant satellite networks</a></span>
+          <span class="pub-authors"><strong>Juan A. Fraire</strong> and Jorge M. Finochietto</span>
+          <span class="pub-venue">IEEE Communications Magazine, 2015</span>
+          <details class="pub-abs"><summary>Abstract</summary><div class="abs"><p>During the past 20 years, space communications technologies have shown limited progress in comparison to Internet-based networks on Earth. However, a brand new working group of the IETF with focus on DTN promises to extend today&#x27;s Internet boundaries to embrace disruptive communications such as those seen in space networks. Nevertheless, several challenges need to be overcome before operative DTNs can be deployed in orbit. We analyze the state of the art of effective design, planning, and implementation of the forthcoming network communications opportunities (contacts). To this end, different modeling techniques, system constraints, selection criteria, and methods are reviewed and compared. Finally, we discuss the increasing complexity of considering routing and traffic information to enrich the planning procedure, yielding the need to implement a contact plan computation element to support space DTN operation.</p></div></details>
+          <p class="pub-links"><a class="oa" href="https://hal.science/hal-05619375" title="Free to read on HAL">HAL</a><a href="https://doi.org/10.1109/mcom.2015.7105656">Publisher</a><button type="button" class="share" data-share="/publications/2015-design-challenges-in-contact-plans/" hidden>Share</button></p>
+        </li>
+      </ol>
+      <p class="links"><a href="/dtn/">Delay-tolerant networks: the topic page</a> <a href="/publications/#dtn">All 84 papers on this topic</a></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="inst-logos" role="group" aria-label="Institutions">
+        <a href="https://www.inria.fr/en"><img src="/assets/img/logos/inria.svg" alt="Inria" width="96" height="28"></a>
+        <a href="https://www.conicet.gov.ar/"><img src="/assets/img/logos/conicet.svg" alt="CONICET" width="66" height="36"></a>
+        <a href="https://www.uni-saarland.de/"><img src="/assets/img/logos/saarland.svg" alt="Saarland University" width="87" height="38"></a>
+      </div>
+      <p class="communities">Communities: <a href="https://datatracker.ietf.org/rg/space/about/">IETF and IRTF</a>, chair of the SPACE Research Group · <a href="https://www.ipnsig.org/">IPNSIG</a>, board member · <a href="https://ccsds.org/">CCSDS</a>, Space Internetworking Services</p>
+      <p>Juan A. Fraire · <a href="mailto:juan.fraire@inria.fr">juan.fraire@inria.fr</a> · Inria, INSA Lyon, CITI, 69621 Villeurbanne, France</p>
+      <p>This site sets no cookies and does not track you.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -81,7 +81,10 @@
       "name": "IEEE Internet of Things Journal"
     },
     "url": "https://juanfraire.space/publications/2026-dorsal-downlink-optimization-for-robust/",
-    "sameAs": "https://amu.hal.science/hal-05432825v1",
+    "sameAs": [
+      "https://doi.org/10.1109/jiot.2026.3696890",
+      "https://hal.science/hal-05671806"
+    ],
     "abstract": "Delivering downlink (DL) ACKs to Class A LoRaWAN devices via low Earth orbit (LEO) satellite constellations requires predicting end-to-end propagation delays of 10–500 ms to hit a 1-s receive window, a timing challenge absent from terrestrial schedulers. We present downlink optimization for robust direct-to-satellite LoRaWAN (DORSAL), the first mixed-integer linear programming (MILP) scheduler for DL delivery in direct-to-satellite (DtS) LoRaWAN networks. It introduces the downlink arrival receive-window timing (DART) as the central constraint to jointly optimize gateway (GW) selection and packet injection timing across ISL-capable and bent-pipe architectures. Evaluation on a Walker 5× 5 polar constellation (25 satellites, 650 km) and a commercial ground station (GS) network yields five results: 1) DART infeasibility blocks 73% of bent-pipe deliveries regardless of scheduler quality: DART-unaware approaches collapse from 93% nominal to only 20% real delivery; 2) ISL routing raises %ACK by + 67.4 pp over bent-pipe (91.6% versus 24.2% at n_mathrm GS=3 ground stations, ISM band) by eliminating the three-way simultaneous-visibility constraint, with 73% of ACKs delivered via ≥ 2 -hop paths; 3) ISL %ACK is nearly flat across n_mathrm GSin 3,6,12 GSs (91.6%–92.7%), showing that a minimal three-station polar network captures the full scheduling benefit of an ISL-equipped constellation; 4) ISL hardware speed has negligible impact up to 300 ms/hop: %ACK is flat from 0 to 300 ms, then degrades in two discrete steps (−5.3 pp at 500 ms, −2 pp at 700 ms) as successive hop-count tiers lose causal injection feasibility; and 5) the MILP solves to proven optimality within seconds for up to 10^3 devices, confirming that the sparse conflict-graph structure keeps the problem tractable at realistic Internet of Things (IoT) subscriber counts.",
     "isAccessibleForFree": true
   }
@@ -119,8 +122,8 @@
       <p class="kicker"><a href="/publications/">Publications</a> <span aria-hidden="true">/</span> Journal article · Satellite IoT · 2026</p>
       <h1>DORSAL: Downlink Optimization for Robust Direct-to-Satellite LoRaWAN</h1>
       <p class="pub-authors"><strong>Juan A. Fraire</strong>, Oana Iova, Carlos Fernandez Hernandez, Fabrice Valois, Hervé Rivano, Cesar Azurdia-Meza, Marcos Diaz, Miguel Gutiérrez Gaitán, Diego Dujovne, Samuel Montejo Sánchez, and Richard Demo Souza</p>
-      <p class="pub-venue">IEEE Internet of Things Journal, 2026</p>
-      <p class="paper-actions"><a class="button oa" href="https://amu.hal.science/hal-05432825v1">Read on HAL<small>free</small></a></p>
+      <p class="pub-venue">IEEE Internet of Things Journal, vol. 13, no. 15, pp. 35318–35331, 2026</p>
+      <p class="paper-actions"><a class="button oa" href="https://hal.science/hal-05671806">Read on HAL<small>free</small></a><a class="button" href="https://doi.org/10.1109/jiot.2026.3696890">Publisher’s version</a></p>
       <div class="paper-share" role="group" aria-label="Share this paper">
         <span class="label">Share</span><button type="button" class="copy" data-copy="https://juanfraire.space/publications/2026-dorsal-downlink-optimization-for-robust/" hidden>Copy link</button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-dorsal-downlink-optimization-for-robust%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/intent/post?text=DORSAL%3A%20Downlink%20Optimization%20for%20Robust%20Direct-to-Satellite%20LoRaWAN&amp;url=https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-dorsal-downlink-optimization-for-robust%2F" target="_blank" rel="noopener">X</a><a href="https://bsky.app/intent/compose?text=DORSAL%3A%20Downlink%20Optimization%20for%20Robust%20Direct-to-Satellite%20LoRaWAN%20https%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-dorsal-downlink-optimization-for-robust%2F" target="_blank" rel="noopener">Bluesky</a><a href="mailto:?subject=DORSAL%3A%20Downlink%20Optimization%20for%20Robust%20Direct-to-Satellite%20LoRaWAN&amp;body=DORSAL%3A%20Downlink%20Optimization%20for%20Robust%20Direct-to-Satellite%20LoRaWAN%0Ahttps%3A%2F%2Fjuanfraire.space%2Fpublications%2F2026-dorsal-downlink-optimization-for-robust%2F" target="_blank" rel="noopener">Email</a>
       </div>
@@ -130,14 +133,17 @@
       </section>
       <section class="paper-cite" aria-labelledby="cite-title">
         <h2 id="cite-title">Cite</h2>
-        
+        <p class="paper-doi">DOI <a href="https://doi.org/10.1109/jiot.2026.3696890">10.1109/jiot.2026.3696890</a></p>
         <details class="bibtex"><summary>BibTeX</summary><pre><code>@article{fraire2026dorsal,
   author    = {Fraire, Juan A. and Iova, Oana and Fernandez Hernandez, Carlos and Valois, Fabrice and Rivano, Herv{\&#x27;e} and Azurdia-Meza, Cesar and Diaz, Marcos and Guti{\&#x27;e}rrez Gait{\&#x27;a}n, Miguel and Dujovne, Diego and Montejo S{\&#x27;a}nchez, Samuel and Demo Souza, Richard},
   title     = {{DORSAL}: Downlink Optimization for Robust Direct-to-Satellite LoRaWAN},
   journal   = {IEEE Internet of Things Journal},
+  volume    = {13},
+  number    = {15},
+  pages     = {35318--35331},
   publisher = {IEEE},
   year      = {2026},
-  url       = {https://amu.hal.science/hal-05432825v1}
+  doi       = {10.1109/jiot.2026.3696890}
 }</code></pre><button type="button" class="copy" data-copy-from="pre" hidden>Copy BibTeX</button></details>
       </section>
     </article>
@@ -166,7 +172,7 @@
           <p class="pub-links"><a class="oa" href="http://hdl.handle.net/11583/2968664" title="Free to read on PORTO@Iris (Politecnico di Torino)">PORTO@Iris (Politecnico di Torino)</a><a class="oa" title="Free to read at the publisher" href="https://doi.org/10.1109/taes.2022.3185970">Publisher</a><button type="button" class="share" data-share="/publications/2022-sparse-satellite-constellation-design-for-global/" hidden>Share</button></p>
         </li>
       </ol>
-      <p class="links"><a href="/satellite-iot/">Satellite IoT: the topic page</a> <a href="/publications/#iot">All 36 papers on this topic</a></p>
+      <p class="links"><a href="/satellite-iot/">Satellite IoT: the topic page</a> <a href="/publications/#iot">All 38 papers on this topic</a></p>
     </section>
   </main>
 

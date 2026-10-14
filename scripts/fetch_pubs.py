@@ -453,21 +453,32 @@ def fetch(pubs, meta, everything, keys=()):
         elif old.get("open"):
             entry["open"] = old["open"]
         entry["publisher_oa"] = publisher_open(w) or old.get("publisher_oa", False)
-        if h:
-            entry["hal"] = h["id"] + ("" if h["file"] else f" ({'embargo' if h['embargo'] else h['kind']})")
-            hal_text, fixes = clean(h["abstract"]), []                 # worth fixing on HAL itself
-            if h["file"] and (not hal_text or usable(hal_text)):
-                fixes.append(f"abstract field: {usable(hal_text) if hal_text else 'empty'}")
-            if "chim" in h["domains"]:                                  # filed under chemistry by mistake
-                fixes.append(f"discipline: {', '.join(DISCIPLINES.get(d, d) for d in h['domains'])}")
-            if fixes:
-                entry["hal_fix"] = fixes
         if a:
             entry["arxiv"] = a["id"]
         if h and h.get("score", 2) < 2 or a and a.get("score", 2) < 2:
             entry["matched_by_title"] = [f"{n} {r['id']} {r['score']}" for n, r in (("hal", h), ("arxiv", a)) if r and r["score"] < 2]
         meta[key] = entry
+    if hal_all:                       # HAL came whole: refresh every entry's HAL status, fetched or not
+        for p in pubs:
+            if p["key"] in meta and not meta[p["key"]].get("keep"):
+                hal_status(meta[p["key"]], hal.get(p["key"]))
     return meta
+
+
+def hal_status(entry, h):
+    """The entry's HAL record, and what is wrong with it on HAL (worth fixing there)."""
+    entry.pop("hal", None)
+    entry.pop("hal_fix", None)
+    if not h:
+        return
+    entry["hal"] = h["id"] + ("" if h["file"] else f" ({'embargo' if h['embargo'] else h['kind']})")
+    hal_text, fixes = clean(h["abstract"]), []
+    if h["file"] and (not hal_text or usable(hal_text)):
+        fixes.append(f"abstract field: {usable(hal_text) if hal_text else 'empty'}")
+    if "chim" in h["domains"] or "scco" in h["domains"]:        # chemistry or cognitive science, by mistake
+        fixes.append(f"discipline: {', '.join(DISCIPLINES.get(d, d) for d in h['domains'])}")
+    if fixes:
+        entry["hal_fix"] = fixes
 
 
 def report(pubs, meta):

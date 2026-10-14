@@ -51,13 +51,25 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05761560",
-  "hal_fix": [
-   "abstract field: not an abstract"
-  ],
   "arxiv": "2503.18353",
   "matched_by_title": [
    "arxiv 2503.18353 1.0"
+  ],
+  "hal": "hal-05761560"
+ },
+ "gerard2026contactplan": {
+  "title": "Contact Plan Design for Optical Interplanetary Communications",
+  "abstract": "Space exploration missions generate rapidly increasing volumes of scientific telemetry that far exceed the capacity of today's manually scheduled, RF-based deep-space infrastructure. Free-space optical (FSO) communications promise orders of magnitude higher throughput, but their narrow beams require precise pointing, acquisition, and tracking (PAT) for link establishment and tightly synchronized contact schedules. Critically, no existing contact plan design (CPD) framework accounts for optical head retargeting delay, the time spent during coarse pointing and link acquisition before data transmission begins, which directly reduces usable contact time. Retargeting delay is the dominant impairment unique to optical networks, which induces a seconds-to-minutes-long mechanical pointing process for an optical terminal's laser from its current partner to the next receiver. This paper introduces the first PAT-aware CPD framework for optical interplanetary backhaul networks. The model captures directional temporal flows across both direct-to-Earth optical links and two-hop relay paths using delay/disruption-tolerant networking (DTN) satellites. We also introduce an optical network duty-cycle metric that quantifies the proportion of time spent transmitting to the contact window duration, exposing capacity lost to retargeting delay. Our results show that our MILP scheduler delivers over 30 percent higher network capacity than a greedy algorithm. More importantly, the results uncover a fundamental behavioral shift: when retargeting delays are modeled accurately, optimal schedules favor fewer but longer optical links that maximize throughput while minimizing retargeting overhead. These findings demonstrate that zero-delay assumptions substantially overestimate achievable performance and yield unrealistic contact plans.",
+  "abstract_from": "arxiv",
+  "open": {
+   "url": "https://arxiv.org/abs/2601.18148",
+   "label": "arXiv",
+   "from": "arxiv"
+  },
+  "publisher_oa": false,
+  "arxiv": "2601.18148",
+  "matched_by_title": [
+   "arxiv 2601.18148 1.0"
   ]
  },
  "ohs2026darkclouds": {
@@ -70,13 +82,10 @@
    "from": "hal"
   },
   "publisher_oa": true,
-  "hal": "hal-05671481",
-  "hal_fix": [
-   "abstract field: empty"
-  ],
   "matched_by_title": [
    "hal hal-05671481 1.0"
-  ]
+  ],
+  "hal": "hal-05671481"
  },
  "fuste2026quic": {
   "title": "Deploying QUIC in Challenged Networks: Profiling and Volume-Aware Congestion Control",
@@ -106,10 +115,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05761577",
   "matched_by_title": [
    "hal hal-05761577 1.0"
-  ]
+  ],
+  "hal": "hal-05761577"
  },
  "fraire2026dorsal": {
   "title": "DORSAL: Downlink Optimization for Robust Direct-to-Satellite LoRaWAN",
@@ -121,10 +130,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05671806",
   "matched_by_title": [
    "hal hal-05671806 1.0"
-  ]
+  ],
+  "hal": "hal-05671806"
  },
  "singla2026e2etestbed": {
   "title": "End-to-End Testbed Validation of Periodic and Probabilistic-Aware Constellation Scheduling for Non-Terrestrial Networks",
@@ -178,11 +187,11 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05424111",
   "arxiv": "2508.20479",
   "matched_by_title": [
    "arxiv 2508.20479 1.0"
-  ]
+  ],
+  "hal": "hal-05424111"
  },
  "maldonado2026jointlora": {
   "title": "Joint LoRa and LR-FHSS Resource Allocation Optimization in Direct-to-Satellite IoT Networks",
@@ -212,10 +221,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05619379",
   "matched_by_title": [
    "hal hal-05619379 1.0"
-  ]
+  ],
+  "hal": "hal-05619379"
  },
  "fraire2026pushpull": {
   "title": "On the Distribution of DTN Reachability Information: A Quantitative Push-vs-Pull Analysis",
@@ -246,6 +255,42 @@
   },
   "publisher_oa": false,
   "hal": "hal-05702020"
+ },
+ "yan2026cislunar": {
+  "title": "Optimized Contact Plan Design for Reflector and Phased Array Terminals in Cislunar Space Networks",
+  "abstract": "Cislunar space is emerging as a critical domain for human exploration, requiring robust infrastructure to support spatial users-spacecraft with navigation and communication demands. Deploying satellites at Earth-Moon three-body orbits offers an effective solution to construct cislunar space infrastructure (CLSI). However, scheduling satellite links to serve users necessitates an appropriate contact plan design (CPD) scheme. Existing CPD schemes focus solely on inter-satellite link scheduling, overlooking their role in providing services to users. This paper introduces a CPD scheme that considers two classes of satellite transponders: Reflector Links (RL) for high-volume data transfers and Phased Array Links (PL) for fast switching and navigation services. Our approach supports both satellites and spatial users in cislunar space. Simulations validate the scheme, demonstrating effective support for user while meeting satellite ranging and communication requirements. These findings provide essential insights for developing future Cislunar Space Infrastructures.",
+  "abstract_from": "arxiv",
+  "open": {
+   "url": "https://arxiv.org/abs/2503.18340",
+   "label": "arXiv",
+   "from": "arxiv"
+  },
+  "publisher_oa": false,
+  "arxiv": "2503.18340",
+  "matched_by_title": [
+   "arxiv 2503.18340 1.0"
+  ]
+ },
+ "fraire2026poweringcloud": {
+  "title": "Powering the Cloud Above the Clouds: Are Orbital Data Centers the First Real Customer for Space-Based Solar Power?",
+  "abstract": "Orbital data centers (ODCs) and space-based solar power (SBSP) are converging on the same orbital shell. Most ODC proposals target dawn–dusk sun-synchronous orbit because it almost never enters Earth's shadow, so a compute node can run without a large battery. That orbit is crowded, and it is poorly placed for latency-sensitive AI inference. This article asks whether SBSP can let compute leave it: sunlit relays would beam power to ODCs in other orbits, and orbital compute would become the first real in-space customer for SBSP. We frame the pairing as a fractionated architecture, the Sun-Side Cloud, and test it with an orbital, optical, and carbon model whose uncertain inputs are all set in the relay's favor. Three results bound the idea. First, relays in the dawn–dusk plane shrink an inclined client's eclipse but cannot erase it: for part of every precession cycle the middle of Earth's shadow is hidden from them, so clients keep a residual battery. Second, reaching that shadow core takes links of several thousand kilometers, where a sun-sized receiver captures only a small part of the beam. Third, once relay mass scales with the power it delivers, beamed power beats an onboard battery on carbon only above roughly 10–20% end-to-end efficiency and with tens of clients per fleet. Today's technology falls an order of magnitude short, so near-term value must come from the orbit itself. We turn these thresholds, together with the cooling and computing bottlenecks that no orbit removes, into a research agenda.",
+  "abstract_from": "manual",
+  "publisher_oa": false
+ },
+ "yan2026beidou": {
+  "title": "Progressive Replacement Sequence Planning for Laser-Enhanced BeiDou Navigation Constellations",
+  "abstract": "The early satellites of the third-generation BeiDou Navigation Satellite System (BDS-3) are approaching the end of their design lifetime, making progressive constellation replacement an inevitable engineering task. Meanwhile, laser inter-satellite links (LISLs) provide high-precision time transfer, sub-millimeter-level ranging, and high-rate data forwarding capabilities, offering a promising upgrade path for future BeiDou satellites. This paper investigates the replacement-sequence planning problem for progressively replacing legacy microwave satellites with laser-enabled satellites from a networking perspective. To address this problem, three main contributions are made: (i) BeiDou progressive replacement is formulated as a network-aware launch sequence planning problem over evolving laser–microwave hybrid constellation states; (ii) an integer linear programming (ILP) model is developed to evaluate the networking gain of each candidate launch action under practical engineering constraints; and (iii) a priority-aware search heuristic is introduced to reduce the action evaluation space for efficient round-wise decision making. Simulations based on the actual BDS-3 constellation demonstrate that the proposed replacement sequence achieves a more favorable hybrid-network evolution than the historical BDS-3 launch order, including earlier formation of a ground-accessible laser-enhanced network structure, better utilization of laser-link resources, fewer residual non-anchor satellites, and lower microwave-layer waiting delay. The proposed framework can serve as a network-aware decision-support tool for future BeiDou evolution, and the resulting replacement sequence can provide direct engineering guidance for BeiDou replacement planning.",
+  "abstract_from": "arxiv",
+  "open": {
+   "url": "https://arxiv.org/abs/2607.25235",
+   "label": "arXiv",
+   "from": "arxiv"
+  },
+  "publisher_oa": false,
+  "arxiv": "2607.25235",
+  "matched_by_title": [
+   "arxiv 2607.25235 1.0"
+  ]
  },
  "fernandez2026rf": {
   "title": "RF-Assisted Compensation for Rapid Optical Acquisition in Hybrid Inter-Satellite Links",
@@ -376,12 +421,12 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05190388",
   "arxiv": "2507.17403",
   "matched_by_title": [
    "hal hal-05190388 1.0",
    "arxiv 2507.17403 1.0"
-  ]
+  ],
+  "hal": "hal-05190388"
  },
  "DBLP:conf/wisee/NegrelliCF25": {
   "title": "Deep Reinforcement Learning for Routing in Uncertain DTNs with Graph Neural Networks",
@@ -405,10 +450,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05423957",
   "matched_by_title": [
    "hal hal-05423957 1.0"
-  ]
+  ],
+  "hal": "hal-05423957"
  },
  "ohs2025dirty": {
   "title": "Dirty Bits in Low-Earth Orbit: The Carbon Footprint of Launching Computers",
@@ -420,8 +465,8 @@
    "from": "hal"
   },
   "publisher_oa": true,
-  "hal": "hal-05411623",
-  "arxiv": "2508.06250"
+  "arxiv": "2508.06250",
+  "hal": "hal-05411623"
  },
  "DBLP:conf/softcom/BensoCSFCORVGOCG25": {
   "title": "Distributed On-Demand Routing for VLEO Constellations with 3-Terminal Inter-Satellite Links",
@@ -433,10 +478,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05423987",
   "matched_by_title": [
    "hal hal-05423987 1.0"
-  ]
+  ],
+  "hal": "hal-05423987"
  },
  "DBLP:journals/cn/MaldonadoCFGIKR25": {
   "title": "Enhanced LR-FHSS receiver for headerless frame recovery in space-terrestrial integrated IoT networks",
@@ -460,11 +505,11 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05087729",
   "arxiv": "2407.03490",
   "matched_by_title": [
    "arxiv 2407.03490 1.0"
-  ]
+  ],
+  "hal": "hal-05087729"
  },
  "dudukovich2025evolution": {
   "title": "Evolution of Interplanetary Internet: Technology Demonstrations for Space Network Operations",
@@ -476,13 +521,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05424590",
-  "hal_fix": [
-   "discipline: chemical sciences"
-  ],
   "matched_by_title": [
    "hal hal-05424590 1.0"
-  ]
+  ],
+  "hal": "hal-05424590"
  },
  "pasandi2025fedsat": {
   "title": "FedSat-LAM: Enabling Large AI Models on Resource-Constrained Satellites via Hierarchical Federated Learning",
@@ -494,10 +536,7 @@
    "from": "hal"
   },
   "publisher_oa": true,
-  "hal": "hal-05423924",
-  "hal_fix": [
-   "discipline: chemical sciences"
-  ]
+  "hal": "hal-05423924"
  },
  "DBLP:conf/asms-spsc/FlorezOFR25": {
   "title": "FLoRaSat 2: Simulating Cross-Linked Direct-to-Satellite IoT LEO Constellations",
@@ -511,6 +550,21 @@
   "publisher_oa": false,
   "hal": "hal-05087751"
  },
+ "choquenaira2025florasat2": {
+  "title": "FLoRaSat 2: Simulating Cross-Linked Direct-to-Satellite IoT LEO Constellations with Joint Access and Routing Evaluation",
+  "abstract": "Direct-to-Satellite IoT (DtS-IoT) has emerged as a promising solution for extending IoT connectivity to remote regions where terrestrial infrastructure is impractical or economically unfeasible. In such scenarios, Low-Earth Orbit (LEO) satellites act as mobile in-orbit gateways, but their dynamic nature and reliance on constrained Inter-Satellite Links (ISLs) introduce significant challenges for medium access, routing, and end-to-end performance evaluation. To address these issues, we present FLORASAT 2, an open-source, event-driven simulator based on OMNET++. The first version of FLORASAT focused on device-to-satellite communication, providing a unique tool to study LoRa/LoRaWAN-based DtS-IoT systems. The present work advances FLORASAT 2 into a full end-to-end simulation framework by integrating Medium Access Control (MAC) protocols with constellation-grade routing models, including constellation creation, dynamic ISL topology control, and a sandbox for benchmarking routing algorithms such as Directed, DDRA, and DiscoRoute. Notably, it introduces K-MAC, a repetition-based MAC scheme designed to improve resilience under Doppler effects, congestion, and intermittent visibility, while expanding the satellite and device modules to support multiple MAC protocols beyond LoRaWAN. To the best of our knowledge, FLORASAT 2 is the only open-source simulator capable of jointly evaluating access and routing layers for constellation-grade DtS-IoT networks. Through extended benchmark scenarios on Starlink-and Iridiumlike constellations, we demonstrate how the integration of MAC and routing enables a more realistic and holistic assessment of network performance, positioning FLORASAT 2 as a versatile platform for the design and optimization of next-generation satellite IoT systems.",
+  "abstract_from": "hal",
+  "open": {
+   "url": "https://hal.science/hal-05424077",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05424077 1.0"
+  ],
+  "hal": "hal-05424077"
+ },
  "mardones2025city": {
   "title": "From the City to the Clouds: An Experimental Performance Evaluation of LR-FHSS",
   "abstract": "This paper comprehensively evaluates Long-Range Frequency Hopping Spread Spectrum (LR-FHSS) modulation for urban and aerial IoT scenarios, comparing it with the established Long Range (LoRa) modulation in LoRaWAN networks. LR-FHSS offers a promising alternative to LoRa by efficiently utilizing the available spectrum, enhancing device capacity, and minimizing collisions in dense deployments. Using a range of performance metrics, including Packet Delivery Ratio (PDR) and Received Signal Strength Indicator (RSSI), we experimentally assess LR-FHSS's performance across varied data rates, payload lengths, and coding rates. Our urban and elevated balloon-based measurements provide the first real-world insights into LR-FHSS's potential for dense urban networks and sparse aerial applications. Our results reveal conditions where LR-FHSS outperforms LoRa, offering deployment guidelines for Internet of Things (IoT) networks that require high reliability and scalability. We make the resulting dataset publicly available to the community, marking the first dataset for advancing LR-FHSS research and applications.",
@@ -521,10 +575,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05118362",
   "matched_by_title": [
    "hal hal-05118362 1.0"
-  ]
+  ],
+  "hal": "hal-05118362"
  },
  "DBLP:conf/wisee/GerardFC25": {
   "title": "Modeling Pointing, Acquisition, and Tracking Delays in Free-Space Optical Satellite Networks",
@@ -536,11 +590,11 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05423887",
   "arxiv": "2511.16063",
   "matched_by_title": [
    "arxiv 2511.16063 1.0"
-  ]
+  ],
+  "hal": "hal-05423887"
  },
  "DBLP:conf/icc/IlabacaMFSC25": {
   "title": "Network Size Estimation in DtS-IoT: A LoRaWAN Approach for Satellite Constellations",
@@ -552,10 +606,7 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05357368",
-  "hal_fix": [
-   "discipline: chemical sciences"
-  ]
+  "hal": "hal-05357368"
  },
  "DBLP:conf/asms-spsc/RojasFPM25": {
   "title": "On the Latency Trade-off Between Space and Terrestrial Clouds in Non-Terrestrial Networks",
@@ -579,15 +630,12 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05424582",
-  "hal_fix": [
-   "discipline: chemical sciences"
-  ],
   "arxiv": "2507.15574",
   "matched_by_title": [
    "hal hal-05424582 1.0",
    "arxiv 2507.15574 1.0"
-  ]
+  ],
+  "hal": "hal-05424582"
  },
  "DBLP:journals/cn/FlorezFPR25": {
   "title": "On the role of machine learning in satellite internet of things: A survey of techniques, challenges, and future directions",
@@ -600,6 +648,12 @@
   },
   "publisher_oa": false,
   "hal": "hal-04911360"
+ },
+ "fuste2025performance": {
+  "title": "Performance Comparison of DTN-Inspired Approaches for Store-and-Forward NTNs",
+  "abstract": "3GPP is actively exploring massive Machine-Type Communications (mMTC), one of the three core 5G services areas, to enable services for large amounts of Internet of Things (IoT) terminals that generate regular small-payload messages. Covering this type of applications involve dealing with high density of terminals, which also require resource efficiency for long battery lifes. Expanding global coverage to remote and underserved areas is a crucial step towards the mMTC vision due to the multitude of remote IoT use cases that are uncovered by existing infrastructure. To achieve this efficiently, one approach is to use satellites to provide global coverage, standardized as Non-Terrestrial Networks (NTN). In addition, advancements in Low-Power Wide-Area Network technologies, such as NB-IoT, play a crucial role in enabling efficient direct-to-satellite communications. Among NTN architectures, small and sparse networks of Low Earth Orbit satellites are a cost-effective alternative to large mega-constellations, but require the support of a Store-and-Forward (S&F) architecture and a regenerative payload approach on-board the satellites to overcome the link discontinuities. This need is recognized by 3GPP and is an active discussion topic in Release 19 known as S&F NTNs. Current solution proposals primarily focus on high-level architectural frameworks, leaving the concrete enabling technologies for S&F NTNs largely undefined. Delay/Disruption-Tolerant Networking is a well-established approach for challenged networks, but its integration into 3GPP systems presents challenges. In this work, we explore the options available to deploy an interoperable S&F solution, and evaluate them in a testbed featuring the payload twin of a S&F NTN mission and discuss the results and their conclusions on candidate technologies for enabling S&F NTNs.",
+  "abstract_from": "manual",
+  "publisher_oa": false
  },
  "DBLP:conf/anrw/OhsSFH025": {
   "title": "PhantomLink: Emulating Virtual End-to-End Links on Ground and in Orbit",
@@ -623,8 +677,8 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05423879",
-  "arxiv": "2511.20241"
+  "arxiv": "2511.20241",
+  "hal": "hal-05423879"
  },
  "DBLP:journals/ojcs/SinglaGCFA25": {
   "title": "Probabilistic-Aware Satellite Constellation Scheduling for Integrated TN-NTN Operations",
@@ -636,10 +690,7 @@
    "from": "hal"
   },
   "publisher_oa": true,
-  "hal": "hal-05424596",
-  "hal_fix": [
-   "discipline: chemical sciences"
-  ]
+  "hal": "hal-05424596"
  },
  "rojas2025quantifying": {
   "title": "Quantifying Edge Server Placement in LEO Constellations: A Comparative Emulation of Space and Terrestrial Cloud",
@@ -651,10 +702,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05424023",
   "matched_by_title": [
    "hal hal-05424023 1.0"
-  ]
+  ],
+  "hal": "hal-05424023"
  },
  "feldmann2025redmars2": {
   "title": "Selected Results from the REDMARS2 Project: Recursive Delay-Tolerant Networking using Bundle-in-Bundle Encapsulation",
@@ -682,6 +733,12 @@
   },
   "publisher_oa": true,
   "hal": "hal-05424159"
+ },
+ "fraire2025unified": {
+  "title": "Towards a Unified Routing Framework for the Interplanetary Internet of Things",
+  "abstract": "The Interplanetary Internet of Things (IIoT) extends traditional networking paradigms to space environments, where extreme latencies, planetary occlusions, and intermittent connectivity challenge conventional routing mechanisms. Delay-Tolerant Networking (DTN), notably the Bundle Protocol (BP), has emerged as the leading approach to mitigate these challenges, enabling reliable data delivery across interplanetary networks. This paper revises and extends the state-of-the-art taxonomy of DTN routing protocols for IIoT, classifying them based on contact predictability and occurrence knowledge. We categorize routing strategies into four paradigms: opportunistic (e.g., Spray-and-Wait, RAPID), probabilistic (e.g., PRoPHET, MaxProp, O-CGR), uncertain (e.g., RUCoP), and scheduled (e.g., CGR, SPSN). Each paradigm addresses specific IIoT use cases, from autonomous planetary exploration and nanosatellite constellations to interplanetary backbones and mission-critical data transfers. Finally, we propose an Interregional Routing Fabric that integrates these approaches into a unified framework, leveraging their complementary strengths to enable scalable, robust, and adaptive routing in the Solar System Internet.",
+  "abstract_from": "manual",
+  "publisher_oa": false
  },
  "DBLP:conf/eucnc/FernandezNinoFFCA24": {
   "title": "A Case Study of an Hybrid RF and Optical Inter-Satellite Link Terminal to Enhance Optical Pointing",
@@ -720,8 +777,8 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-04711313",
-  "arxiv": "2408.07460"
+  "arxiv": "2408.07460",
+  "hal": "hal-04711313"
  },
  "DBLP:conf/leo-net/PasandiFRR24": {
   "title": "A Survey on Direct-to-Device Satellite Communications: Advances, Challenges, and Prospects",
@@ -771,6 +828,18 @@
   "publisher_oa": false,
   "hal": "hal-05357375"
  },
+ "ntagiou2024constellation": {
+  "title": "Constellation Autonomy: AI Solutions for Adaptable and Efficient Operations",
+  "abstract": "The space industry is experiencing a boom in satellite constellation launches, with both institutional and industry missions involving numerous collaborative spacecraft. These constellations provide continuous global coverage and improved network capabilities for Positioning, Telecommunications, and Earth Observation. At the same time, the trend towards “New Space” involves deploying smaller, cost-effective satellites that are part of larger systems, increasing the complexity and variety of satellites in Low Earth Orbit (LEO), Medium Earth Orbit (MEO), and Geostationary Earth Orbit (GEO), as well as stratospheric platforms. As the number of satellites grows, managing these complex networks becomes more challenging, necessitating advanced computational methods and real-time replanning. Artificial Intelligence (AI) is emerging as a key tool to handle this complexity, offering new capabilities for optimizing and automating satellite network management. The European Space Operations Centre, along with GMV, Saarland University, Thales Alenia Space France, and other major operators, is exploring how AI can enhance constellation management. The work focuses on using Reinforcement Learning (RL) to optimize resource use and improve routing in large constellations. This approach aims to surpass traditional optimization methods, providing a scalable and flexible decision-making process crucial for managing dynamic and complex satellite networks.",
+  "abstract_from": "manual",
+  "publisher_oa": false
+ },
+ "fernandeznino2024protocol": {
+  "title": "Design and Implementation of the Protocol Stack of the Control Plane in Hybrid Inter-Satellite Link Terminals",
+  "abstract": "Optical technology is emerging as a candidate in satellite communications to provide high throughput links. It offers resilience to interference and simplifies the administrative burden of obtaining frequency coordination. This disruption has triggered the discussion of how optical and Radio-frequency (RF) technologies can coexist. This work is based on a hybrid communications concept in which a control plane handles the signaling data via an RF inter-satellite link (ISL) terminal, and a data plane transmits the user data via an optical ISL terminal. Following the evolution of this hybrid concept, this work contributes to designing and implementing a protocol stack to deploy the control plane. This control plane implements the Proximity-1 protocol over LoRa technology. On one hand, the physical layer uses Long-Range (LoRa) technology as an example of chirp spread spectrum implementation to extend the link distance but without increasing the transmitted power due to the additional code gain. On the other hand, the data link layer implements the Proximity-1 protocol to guarantee a collision-free communications channel due to the hailing process.",
+  "abstract_from": "manual",
+  "publisher_oa": false
+ },
  "de2024distributed": {
   "title": "Distributed Volume Management in Space DTNs: Scoping Schedule-Aware Bundle Routing",
   "abstract": "This paper addresses critical improvements in the Schedule-Aware Bundle Routing (SABR) standard, pivotal for distributed space missions based on Delay-Tolerant Networking (DTN). With a focus on volume management, defined as efficiently allocating and utilizing the data transmission capacity of network contacts, we explore enhancements for distributed and scheduled DTNs. Our analysis begins by identifying and scrutinizing existing gaps in volume management within the SABR framework. We then introduce a novel concept coined contact segmentation, which streamlines the management of the transmission volumes. Our approach spans all network contacts, initial and subsequent, by unifying previously separate methods such as Effective Volume Limit (EVL), Earliest Transmission Opportunity (ETO), and Queue-Delay (QD) into a single process. Lastly, we propose a refined generic interface for volume management in SABR, enhancing the system's maintainability and flexibility. These advancements rectify current limitations in volume management and lay a foundation for more resilient and adaptable space DTN operations in the future.",
@@ -792,10 +861,7 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-05357398",
-  "hal_fix": [
-   "discipline: chemical sciences"
-  ]
+  "hal": "hal-05357398"
  },
  "DBLP:conf/icc/RojasFPM24": {
   "title": "Fuzzy Logic-Based Orchestration of Multi-Access Edge Computing in LEO Satellite Constellations",
@@ -809,8 +875,14 @@
   "publisher_oa": false,
   "hal": "hal-04711314"
  },
+ "singla2024cmsiac": {
+  "title": "Integrating Satellite and Network Operations for NB-IoT NTN Connectivity: In-Orbit Test Design of the Constellation Management System",
+  "abstract": "With the technological advancements in software and hardware and the cost reduction of satellite launches, there has been a surge in future planned Low-Earth Orbit (LEO) constellations aimed at providing Internet of Things (IoT) services. Leveraging these constellations to extend terrestrial networks for global coverage has become a key focus, as evidenced by the standardization of Non-Terrestrial Networks (NTN) by 3GPP. However, managing operations in satellite-based NTN poses significant challenges due to the intersection of satellite operations and network management, especially in sparse constellations with intermittent connectivity. Another challenge is the need for satellite operations to adhere to standard-compliant procedures, such as those set by 3GPP standards. This ensures satellite services align with established industry practices, facilitating interoperability and compatibility with existing network infrastructures. A Constellation Management System (CMS) has been developed in response to these challenges. This system is an autonomous framework designed to seamlessly integrate satellite and network operations. The CMS integrates all the necessary agents, coordinating satellite and network operations in this heterogeneous scenario by providing business policy- and resource-aware task schedules. This facilitates the alignment of contact and task plans for satellites, ground station networks, and core networks, ultimately enabling the extension of existing terrestrial networks through satellite-based NTN. This work presents a plan to validate this novel approach through a dedicated CubeSat mission scheduled eventually for the end of 2024.",
+  "abstract_from": "manual",
+  "publisher_oa": false
+ },
  "singla2024integrating": {
-  "title": "Integrating satellite constellation and mobile operations for non-terrestrial networks: preliminary results of dynamic scheduling",
+  "title": "Integrating Satellite Constellation and Mobile Operations for Non-Terrestrial Networks: Preliminary Results of Dynamic Scheduling",
   "abstract": "The integration of terrestrial networks with Non-Terrestrial Networks requires a comprehensive management framework to address the mutual impact between satellite operations and network services. Past research by the authors introduced the Constellation Management System (CMS) as a solution, facilitating optimized plans for both satellite and network operators. This paper extends prior work by focusing on enhancing the adaptability of the CMS through dynamic execution methodologies, particularly by integrating telemetry feedback. The study presents a dynamic execution framework and a sequence diagram outlining the rescheduling process. Validation through telemetry emulation demonstrates the system's agility in responding to telemetry variations and the value of this new architecture using the CMS dynamically. Initial findings indicate a throughput enhancement of 10% with the implementation of a closed-loop approach compared to an open-loop approach. This research advances satellite constellation operations management towards automated communications, enhancing adaptability and robustness in unpredictable and constantly changing environments.",
   "abstract_from": "manual",
   "publisher_oa": false
@@ -825,12 +897,12 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-04996148",
   "arxiv": "2409.04857",
   "matched_by_title": [
    "hal hal-04996148 1.0",
    "arxiv 2409.04857 1.0"
-  ]
+  ],
+  "hal": "hal-04996148"
  },
  "DBLP:conf/birthday/BuddeDFH025": {
   "title": "Modest Models and Tools for Real Stochastic Timed Systems",
@@ -843,6 +915,21 @@
   },
   "publisher_oa": true,
   "hal": "hal-04825963"
+ },
+ "henn2024multigateway": {
+  "title": "Multi-Gateway LoRaWAN Throughput Modeling in Direct-to-Satellite IoT Constellations",
+  "abstract": "The emerging paradigm of Direct-to-Satellite Internet of Things (DtS-IoT) heralds a new era of global IoT connectivity unlocked by gateways in Low-Earth Orbit (LEO). Among the spectrum of technologies for achieving DtS-IoT, LoRaWAN, which relies on duty-cycled ALOHA channel access over unlicensed bands, emerges as a promising candidate. Lo-RaWAN's broad adoption in terrestrial IoT applications paves the way for a seamless Space-Terrestrial IoT integration. Lo-RaWAN distinctively allows multiple gateways to receive uplink packets simultaneously, an appealing feature for proliferated DtS-IoT constellations leveraging multiple satellites. However, existing theoretical throughput models for static multi-gateway LoRaWAN systems have not been evaluated in the more complex and dynamic satellite context. Our study addresses this gap by adapting, extending, and fine-tuning throughput models for the multi-gateway LEO DtS-IoT scenario. This approach will enable the rapid analysis of various LoRaWAN constellations to optimize their performance, addressing a critical need in current DtS-IoT mission design and operations. Additionally, we validate the proposed modeling with a comprehensive and realistic simulation campaign. Differences between the model predictions and simulation results remain below 5%. Results show that the proposed modeling is accurate and insightful, offering valuable projections into the performance of forthcoming LoRaWAN DtS-IoT constellations.",
+  "abstract_from": "hal",
+  "open": {
+   "url": "https://hal.science/hal-04749023",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-04749023 1.0"
+  ],
+  "hal": "hal-04749023"
  },
  "DBLP:conf/infocom/BullDFKKSS24": {
   "title": "Network Emulation Testbed Capabilities for Prototyping Space DTN Software and Protocols",
@@ -934,6 +1021,18 @@
   "publisher_oa": true,
   "hal": "hal-05424606"
  },
+ "coeugnet2024routing": {
+  "title": "Routing in All-Optical LEO Constellations with High-Altitude Ground Stations",
+  "abstract": "The recent proliferation of non-terrestrial networks (NTNs) utilizing low Earth orbit (LEO) satellites and highaltitude platform stations (HAPS) has garnered significant attention. Establishing an all-optical network in LEO constellations has been explored, leveraging HAPS used as high-altitude ground stations (HAGS) in conjunction with traditional ground stations (GS). This approach is appealing for Earth observation missions spanning a fully connected network between LEO satellites and a delay-tolerant stochastic partition between HAGS and GS. To address the emerging routing challenges arising from weatherrelated impairments, we first develop new routing solutions that mitigate these issues. Secondly, we compare the performance of our new routing solutions to the classic contact graph routing (CGR), demonstrating improved performance for NTN networks. Finally, we conclude by outlining future research directions.",
+  "abstract_from": "hal",
+  "open": {
+   "url": "https://hal.science/hal-05357384",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "hal": "hal-05357384"
+ },
  "DBLP:journals/ijscn/YanQWFZLX24": {
   "title": "Routing in future space-terrestrial integrated networks with SATNET-OSPF",
   "abstract": "Summary\n\nConnectivity in satellite networks is governed by the spacecraft nodes' orbital dynamics together with the planet's continuous rotation where ground nodes are located. The resulting time‐dynamic but predictable topology demands the design of specific distributed routing schemes. However, terrestrial Internet routing schemes' maturity, proven scalability, and efficiency shall be leveraged whenever possible to facilitate space‐terrestrial integration while reducing risk and costs. In line with this reflection, we introduce SATNET‐OSPF: a backward‐compatible satellite extension for the widely used Open Shortest Path First routing protocol. The key features of SATNET‐OSPF are (a) accurate routing interface mapping to inter‐satellite links and ground‐to‐satellite links, (b) accelerated link‐up/link‐down event detection adapted to space‐specific wireless technologies, (c) proactive routing and forwarding mechanism to take advantage of predicted link‐down events, and (d) low memory footprint topology model to efficiently propagate the forthcoming space connectivity events via constrained telecommand links. Leveraging existing IPv6 and OSPFv3 open‐source stacks, we implemented SATNET‐OSPF in an actual space router comprising a space‐grade SPARC V8 CPU and a radiation‐hardened FPGA. Furthermore, we present the details of an emulation test bench supporting various configurations with COTS terrestrial OSPF routers that enabled a realistic performance evaluation of the SATNET‐OSPF. Results show that SATNET‐OSPF reduced OSPFv3 routing protocol overhead by up to 31%; shortened the link event detection delay by four orders of magnitude; decreased the routing outage by a factor of 22; and ensured flooding control message generation and forwarding times, as well as routing computing time, satisfy the original requirements (192, 37, and 17 ms, respectively).",
@@ -1019,10 +1118,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-04711334",
   "matched_by_title": [
    "hal hal-04711334 1.0"
-  ]
+  ],
+  "hal": "hal-04711334"
  },
  "DBLP:conf/icc/JonckereFB23": {
   "title": "Enhanced Pathfinding and Scalability with Shortest-Path Tree Routing for Space Networks",
@@ -1058,10 +1157,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-04087040",
   "matched_by_title": [
    "hal hal-04087040 1.0"
-  ]
+  ],
+  "hal": "hal-04087040"
  },
  "DBLP:journals/iotj/ParraSFSC23": {
   "title": "Network Size Estimation for Direct-to-Satellite IoT",
@@ -1121,12 +1220,12 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-04152028",
   "arxiv": "2306.08360",
   "matched_by_title": [
    "hal hal-04152028 1.0",
    "arxiv 2306.08360 1.0"
-  ]
+  ],
+  "hal": "hal-04152028"
  },
  "DBLP:conf/ewsn/OlmedoFCPM23": {
   "title": "Routing in Scalable Delay-Tolerant Space Networks with Graph Neural Networks",
@@ -1138,10 +1237,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-04711328",
   "matched_by_title": [
    "hal hal-04711328 1.0"
-  ]
+  ],
+  "hal": "hal-04711328"
  },
  "DBLP:journals/pervasive/CheriniDFMF23": {
   "title": "Toward Deep Digital Contact Tracing: Opportunities and Challenges",
@@ -1154,6 +1253,18 @@
   },
   "publisher_oa": false,
   "hal": "hal-04282277"
+ },
+ "rimani2022parametric": {
+  "title": "A Parametric Data Handling Evaluation Framework for Autonomous Lunar Networks",
+  "abstract": "Different and exciting exploration opportunities toward the Moon are opening in this decade. In particular, the major space agencies are putting a considerable effort in designing and studying a broad spectrum of missions that will bring back the humans on the Moon. During the evaluation of Lunar mission concepts, having a tool that can quickly assess the best communication and data-handling architecture given a set of satellites and a site of interest is mandatory. In this work, a novel parametric framework is presented and applied to the study of the expected connectivity of Lunar networks. The framework comprises bent-pipe, store-and-forward and store-carry-and-forward networking approaches, covering most common data management options. The methodology is designed to determine the best communication architecture given an arbitrary set of available satellites, ground stations, point of interest, and data volume. The proposed algorithm has been applied in a motivating case study of a networked mission devoted to observing lava tubes sites on the Moon surface. Results validate the approach which can identify the inflection points where different data handling techniques outperform each other.",
+  "abstract_from": "crossref",
+  "open": {
+   "url": "https://hal.science/hal-03494119",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "hal": "hal-03494119"
  },
  "DBLP:conf/qest/DArgenioFHR22": {
   "title": "Comparing Statistical and Analytical Routing Approaches for Delay-Tolerant Networks",
@@ -1189,8 +1300,8 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-03827298",
-  "arxiv": "2208.02128"
+  "arxiv": "2208.02128",
+  "hal": "hal-03827298"
  },
  "fraire2022florasat": {
   "title": "FLoRaSat: Le simulateur pour la communication LoRa avec les satellites LEO",
@@ -1202,27 +1313,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-03657890",
   "matched_by_title": [
    "hal hal-03657890 1.0"
-  ]
- },
- "stock2022automation": {
-  "title": "On the automation, optimization, and in-orbit validation of intelligent satellite constellation operations",
-  "abstract": "Recent breakthroughs in technology have led to a thriving\"new space\"culture in low-Earth orbit (LEO) in which performance and cost considerations dominate over resilience and reliability as mission goals. These advances create a manifold of opportunities for new research and business models but come with a number of striking new challenges. In particular, the size and weight limitations of low-Earth orbit small satellites make their successful operation rest on a fine balance between solar power infeed and the power demands of the mission payload and supporting platform technologies, buffered by on-board battery storage. At the same time, these satellites are being rolled out as part of ever-larger constellations and mega-constellations. Altogether, this induces a number of challenging computational problems related to the recurring need to make decisions about which task each satellite is to effectuate next. Against this background, GomSpace and Saarland University have joined forces to develop highly sophisticated software-based automated solutions rooted in optimal algorithmic and self-improving learning techniques, all this validated in modern nanosatellite networked missions operating in orbit.",
-  "abstract_from": "semanticscholar",
-  "open": {
-   "url": "https://hal.science/hal-03494123",
-   "label": "HAL",
-   "from": "hal"
-  },
-  "publisher_oa": false,
-  "hal": "hal-03494123",
-  "arxiv": "2210.11171",
-  "matched_by_title": [
-   "hal hal-03494123 1.0",
-   "arxiv 2210.11171 1.0"
-  ]
+  ],
+  "hal": "hal-03657890"
  },
  "DBLP:journals/cm/FeldmannFWB22": {
   "title": "Ring Road Networks: Access for Anyone",
@@ -1246,10 +1340,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-03698223",
   "matched_by_title": [
    "hal hal-03698223 1.0"
-  ]
+  ],
+  "hal": "hal-03698223"
  },
  "DBLP:journals/cm/FraireIV22": {
   "title": "Space-Terrestrial Integrated Internet of Things: Challenges and Opportunities",
@@ -1261,12 +1355,12 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-03789116",
   "arxiv": "2110.11518",
   "matched_by_title": [
    "hal hal-03789116 1.0",
    "arxiv 2110.11518 1.0"
-  ]
+  ],
+  "hal": "hal-03789116"
  },
  "DBLP:journals/taes/CapezHFG22": {
   "title": "Sparse Satellite Constellation Design for Global and Regional Direct-to-Satellite IoT Services",
@@ -1326,6 +1420,18 @@
   },
   "publisher_oa": false
  },
+ "nardin2021empowering": {
+  "title": "Empowering the Tracking Performance of LEO-Based Positioning by Means of Meta-Signals",
+  "abstract": "Global Navigation Satellite Systems (GNSSs) are the most widespread technology for Position Navigation and Timing (PNT). They have been traditionally deployed exploiting Medium Earth Orbit (MEO) or Geosynchronous Orbit (GSO) satellites. To meet future demands and overcome MEO and GSO limitations, GNSSs based on Low Earth Orbit (LEO) constellations have been investigated as a radical system change. Although characterized by a higher Doppler effect, a PNT service supplied by LEO satellites can provide received signals that are about 30 dB stronger. Moreover, broadband LEO constellations and the forthcoming mega-constellations can be exploited to deliver a piggybacked PNT service. With this cost-effective solution, a PNT service might be subject to substantial bandwidth limitations. A narrowband implementation of the so-called metasignal approach in GNSS receivers, namely Virtual Wideband (VWB), can tolerate harsh Doppler conditions while reducing the processed bandwidth. It is thus suited to a secondary PNT service delivered by LEO satellites. The aim of this work is to show the applicability of the VWB architecture to signals provided by a piggybacked PNT service, hosted on a mega-constellation. Through this case study we demonstrate the capability of this implementation to bear high Doppler conditions while empowering the potential of LEO PNT.",
+  "abstract_from": "hal",
+  "open": {
+   "url": "https://hal.science/hal-03494115",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "hal": "hal-03494115"
+ },
  "DBLP:journals/percom/MadoeryDBCFGBBO21": {
   "title": "Feature selection for proximity estimation in COVID-19 contact tracing apps based on Bluetooth Low Energy (BLE)",
   "abstract": "During the COVID-19 pandemic, contact tracing apps based on the Bluetooth Low Energy (BLE) technology found in smartphones have been deployed by multiple countries despite BLE's debatable performance for determining close contacts among users. Current solutions estimate proximity based on a single feature: the mean attenuation of the BLE signal. In this context, a new generation of these apps which better exploits data from the BLE signal and other sensors available on phones can be fostered. Collected data can be used to extract multiple features that feed machine learning models which can potentially improve the accuracy of today's solutions. In this work, we consider the use of machine learning models to evaluate different feature sets that can be extracted from the received BLE signal, and assess the performance gain as more features are introduced in these models. Since indoor conditions have a strong impact in assessing the risk of being exposed to the SARS-CoV-2, we analyze the environment (indoor or outdoor) role in these models, aiming at understanding the need for apps that could increase proximity accuracy if aware of its environment. Results show that a better accuracy can be obtained in outdoor locations with respect to indoor ones, and that indoor proximity estimation can benefit more from the introduction of more features with respect to the outdoor estimation case. Accuracy can be increased about 10% when multiple features are considered if the device is aware of its environment, reaching a performance of up to 83% in indoor spaces and up to 91% in outdoor ones. These results encourage future contact tracing apps to integrate this awareness not only to better assess the associated risk of a given environment but also to improve the proximity accuracy for detecting close contacts.",
@@ -1337,6 +1443,23 @@
   },
   "publisher_oa": false,
   "hal": "hal-03494110"
+ },
+ "stock2022automation": {
+  "title": "On the automation, optimization, and in-orbit validation of intelligent satellite constellation operations",
+  "abstract": "Recent breakthroughs in technology have led to a thriving\"new space\"culture in low-Earth orbit (LEO) in which performance and cost considerations dominate over resilience and reliability as mission goals. These advances create a manifold of opportunities for new research and business models but come with a number of striking new challenges. In particular, the size and weight limitations of low-Earth orbit small satellites make their successful operation rest on a fine balance between solar power infeed and the power demands of the mission payload and supporting platform technologies, buffered by on-board battery storage. At the same time, these satellites are being rolled out as part of ever-larger constellations and mega-constellations. Altogether, this induces a number of challenging computational problems related to the recurring need to make decisions about which task each satellite is to effectuate next. Against this background, GomSpace and Saarland University have joined forces to develop highly sophisticated software-based automated solutions rooted in optimal algorithmic and self-improving learning techniques, all this validated in modern nanosatellite networked missions operating in orbit.",
+  "abstract_from": "semanticscholar",
+  "open": {
+   "url": "https://hal.science/hal-03494123",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "arxiv": "2210.11171",
+  "matched_by_title": [
+   "hal hal-03494123 1.0",
+   "arxiv 2210.11171 1.0"
+  ],
+  "hal": "hal-03494123"
  },
  "DBLP:journals/ijscn/FraireGHNBB21": {
   "title": "On the scalability of battery-aware contact plan design for LEO satellite constellations",
@@ -1372,11 +1495,11 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-03494116",
   "arxiv": "2108.07092",
   "matched_by_title": [
    "arxiv 2108.07092 1.0"
-  ]
+  ],
+  "hal": "hal-03494116"
  },
  "DBLP:journals/jnca/FraireJB21": {
   "title": "Routing in the Space Internet: A contact graph routing tutorial",
@@ -1388,10 +1511,7 @@
    "from": "hal"
   },
   "publisher_oa": true,
-  "hal": "hal-03494106",
-  "hal_fix": [
-   "abstract field: not an abstract"
-  ]
+  "hal": "hal-03494106"
  },
  "alvarez2021satellite": {
   "title": "Satellite-Based AIS Trade-off Analysis in the Context of the PANSAT CubeSat Mission",
@@ -1409,10 +1529,10 @@
    "from": "hal"
   },
   "publisher_oa": false,
-  "hal": "hal-03494140",
   "matched_by_title": [
    "hal hal-03494140 1.0"
-  ]
+  ],
+  "hal": "hal-03494140"
  },
  "de2020shortest": {
   "title": "A shortest-path tree approach for routing in space networks",
@@ -1573,10 +1693,10 @@
   "abstract": "Three-dimensional Networks-on-Chips (3D-NoCs) have emerged as an alternative to further enhance the performance, functionality, and packaging density of 2D-NoCs. However, the increasing complexity of NoC routers, the continuous miniaturization of silicon technology, the lower operating voltages, and the higher operating frequencies have made the NoC increasingly vulnerable to soft errors. In particular, transient faults occurring in the route computation unit (RCU) can provoke misrouting which may lead to severe effects such as deadlocks or packet loss, corrupting the operation of the entire chip. By combining a reliable fault detection circuit leveraging circuit-level double-sampling, with a cost-effective rerouting mechanism, we develop a full fault-tolerance solution that can efficiently detect and correct such fatal errors before the affected packets leave the router. To validate the proposed solution, we also introduce a novel method for simulation-based fault -injection based on the NoC's gate-level netlist. Experimental results obtained from a partially and vertically connected 3D-NoC indicate that our solution can provide a high level of reliability in the presence of errors, at the expense of an area and power overhead of 4.1% and 6.8% respectively.",
   "abstract_from": "hal",
   "publisher_oa": false,
-  "hal": "hal-01806204 (notice)",
   "matched_by_title": [
    "hal hal-01806204 1.0"
-  ]
+  ],
+  "hal": "hal-01806204 (notice)"
  },
  "DBLP:conf/globecom/FraireNHBB18": {
   "title": "Battery-Aware Contact Plan Design for LEO Satellite Constellations: The Ulloriaq Case Study",
@@ -1609,9 +1729,9 @@
  },
  "DBLP:conf/wisee/CarosinoFR18": {
   "title": "Integrating Scheduled DTNs and TDMA-based MAC Sublayers: Preliminary Results",
-  "publisher_oa": false,
   "abstract": "Delay Tolerant Networks (DTN) have been widely studied and indicated as a possible solution to the challenging environment proposed by LEO satellite networking. Despite an abundance of research in the area, most works make simplifying assumptions on the inter-satellite crosslinks to ignore channel access schemes and their corresponding complications. In this work, we analyze the performance of satellite DTN’s when using TDMA channel sharing. We identify two ways of supplying MAC layer information to the DTN routing layer and show significant performance gains by each. Finally, we discuss the complexity trade-offs among the different information sharing schemes.",
-  "abstract_from": "manual"
+  "abstract_from": "manual",
+  "publisher_oa": false
  },
  "DBLP:conf/wisee/MadoeryFRFB18": {
   "title": "Managing Routing Scalability in Space DTNs",
@@ -1673,6 +1793,16 @@
   "abstract_from": "openalex",
   "publisher_oa": false
  },
+ "barrientos2017glaciers": {
+  "title": "A Segmented Architecture Approach to Provide a Continuous, Long-Term, Adaptive and Cost-effective Glaciers Monitoring System Based on DTN Communications and CubeSat Platforms",
+  "abstract": "Mountain glaciers are important because they work as precipitation buffers and water sources for downstream populations. In addition, they have been a source of data for climate dynamics analysis. Measuring glaciers meteorological variables, estimating the amount of black carbon, as well as recording mass slides on a periodic basis becomes mandatory to understand and drive effective environmental policies. While these measurements are traditionally executed via expensive field campaigns, they tend to be scarce and non-periodic. Thus, remote sensing alternatives have been explored by the community, they are based in monolithic satellite architectures which besides the long development time, are bounded in mission lifetime. In this paper we propose a Glacier Segmented Observation System (SOS), based on a number of interconnected cubesats under the segmented architecture paradigm to provide frequent revisit times and extendable lifetime for critical observation missions. We evaluate how SOS can support a world-wide glacier remote sensing mission to then discuss relevant mission requirements, formation flying disposition of satellites and communication architecture challenges.",
+  "abstract_from": "manual",
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-01525715 1.0"
+  ],
+  "hal": "hal-01525715 (notice)"
+ },
  "DBLP:journals/asc/FraireMFL17": {
   "title": "An evolutionary approach towards contact plan design for disruption-tolerant satellite networks",
   "abstract": "Delay and disruption tolerant networks (DTNs) are becoming an appealing solution for satellite networks where nodes can temporarily store and carry in-transit data until a link with a suitable next-hop becomes available. Since satellite trajectories and orientation can be predicted, on-board routing schemes can base these forwarding decisions on a contact plan comprising all forthcoming communication opportunities. In general, contact plans are previously calculated on ground where their design can be optimized to consider not only available spacecraft resources but also the expected traffic which is largely foreseeable in space applications. Despite optimal contact plan design procedures exist, their computation complexity might result prohibitive even for medium-sized satellite networks. In this work, we propose an evolutionary algorithm to provide sub-optimal yet efficient and implementable contact plans in bounded time. In particular, we depict specific strategies such as encoding and repairing techniques to later evaluate the algorithm performance in a typical scenario demonstrating its usefulness for planning future DTN-based satellite networks.",
@@ -1696,10 +1826,16 @@
   "abstract": "Ring Road Networks (RRNs) have been introduced as a solution to transfer data between different ground stations by means of a world-wide message-ferry system built upon low Earth orbit (LEO) satellites. The objective of this work is to study the benefits and challenges of including Inter-Satellite Links (ISL) capabilities into RRNs. In this context, an appealing RRN case study is presented and evaluated through simulations based on Delay/Disruption-tolerant Network (DTN) protocols and algorithms. Results show that even though the overall delivery metrics improve with ISLs, network congestion impedes a more efficient utilization of the communication resources.",
   "abstract_from": "hal",
   "publisher_oa": false,
-  "hal": "hal-01513717 (notice)",
   "matched_by_title": [
    "hal hal-01513717 1.0"
-  ]
+  ],
+  "hal": "hal-01513717 (notice)"
+ },
+ "fraire2017contactplan": {
+  "title": "Contact Plan Design for Predictable Disruption-Tolerant Space Sensor Networks",
+  "abstract": "This chapter discusses the benefits of exploiting space borne wireless sensor networks to enhance the functionality and performance of Earth-observation missions. It provides an overview of the evolution of traditional Internet communications towards disruption-tolerant schemes, and discusses the specific characteristics of these when implemented in space environments. Next, the chapter introduces the problem of resource limitations and the derived need for contact plan design (CPD) and also describes traffic-aware contact plan designs (TACPs) as an appealing CPD scheme for space sensor networks (SSNs). It evaluates and compares the performance of fair contact plan (FCP), route-aware contact plan (RACP) and TACP by applying them to the example sensor network with a single usable port per node. Finally, the chapter presents a case study and is used as a CPD benchmark to inform the discussion of the challenges of implementing efficient planning strategies in operative SSNs systems.",
+  "abstract_from": "manual",
+  "publisher_oa": false
  },
  "fraire2017delayBook": {
   "title": "Delay Tolerant Satellite Networks",
@@ -1712,15 +1848,31 @@
   "abstract": "Existing Internet protocols assume persistent end-to-end connectivity, which cannot be guaranteed in disruptive and high-latency space-terrestrial networks. To operate over these challenging networks, Delay/Disruption Tolerant Networking (DTN) architecture has been proposed. Although recent advances, evaluating DTN routing in large-scale networks spanning prolonged time-evolving topologies remain an unsolved issue. In this work, we introduce DtnSim, an event-driven DTN simulation tool that leverages routing models with flight-software routing algorithms implementations. This paper describes how DtnSim allows to conveniently and intuitively determine network flow metrics which otherwise would require complex prototyping and prolonged experiment times.",
   "abstract_from": "openalex",
   "publisher_oa": false,
-  "hal": "hal-02108420 (notice)",
   "matched_by_title": [
    "hal hal-02108420 1.0"
-  ]
+  ],
+  "hal": "hal-02108420 (notice)"
+ },
+ "ferreyra2017enhancing": {
+  "title": "Enhancing Contact Graph Routing Forwarding Performance for Segmented Satellites Architectures",
+  "abstract": "The Argentinean Space Agency (CONAE) has developed a concept known as Segmented Architecture in which sets of satellites (i.e., segments) share common components and characteristics and the ability to interact with each other and share resources. Although there are multiple potential benefits, technological challenges such as the network protocols among satellite segments still need to be tackled. In general, segmented communications can be modeled as Delay/Disruption Tolerant Networks (DTNs) which have been recognized as a promising architecture for challenged distributed systems. Among the routing schemes used by DTN nodes, the Contact Graph Routing (CGR) has received the most attention in the space community. Although this implementation has been capable of providing basic routing functionalities, there are still many challenges and potential improvements that deserve further research and discussion. In this work, we propose and implement strategic modifications to CGR in order to improve its performance and we make a comparative study by executing CGR in different scenarios and in different software-hardware platforms. Finally, we discuss the implications of the results and propose future research lines to contribute to the development of the segmented architecture.",
+  "abstract_from": "manual",
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-01524117 1.0"
+  ],
+  "hal": "hal-01524117 (notice)"
  },
  "fraire2017introducing": {
   "title": "Introducing contact plan designer: A planning tool for DTN-based space-terrestrial networks",
   "abstract": "Either by resource-constrained communication systems, high signal propagation delay, or planet occlusion, space-terrestrial networks can neither expect a continuous nor instantaneous end-to-end connectivity. However, episodes of communications can be precisely computed based on orbital elements and then imprinted in contact plans to optimize Delay/Disruption Tolerant Networking (DTN) routing solutions. In this work, we present the first prototype of Contact Plan Designer, a tool conceived not only to generate accurate contact plans but also to fine-tune them, resolve future resource conflicts and analyze or iterate over expected network metrics.",
   "abstract_from": "openalex",
+  "publisher_oa": false
+ },
+ "madoery2017performance": {
+  "title": "On the Performance Analysis of Disruption Tolerant Satellite Networks under Uncertainties",
+  "abstract": "Collaborative Earth observation satellite constellations are arising as a new paradigm with important advantages in comparison with traditional monolithic systems. In this context, Disruptions Tolerant Networking (DTN) protocols were proposed to provide efficient and autonomous store-and-forward data transport. Although a scheduled contact plan can be used to optimize routing and data delivery metrics, significant challenges remains in studying the capacity of recovering from unplanned events. In this work we analyze, by means of simulation, the sensitivity of state-of-the art DTN routing algorithms towards transient faults occurring both in random and critical points in the satellite network. Furthermore, obtained results provides enough evidence that the a priori knowledge of the fault rate of DTN nodes can be used to further improve data delivery, which motivates future enhancements in the existing routing solutions.",
+  "abstract_from": "manual",
   "publisher_oa": false
  },
  "coelho2017robustness": {
@@ -1735,20 +1887,20 @@
   "abstract": "Fault injection is a well-known technique to evaluate the susceptibility of integrated circuits to the effects of radiation. In this work, an existing emulation-based methodology is extended, updated and improved under the name of NETFI-2. Preliminary results show that NETFI-2 provides accurate measurements while improving the execution time of the experiment by more than 300% compared with other simulation-based campaigns.",
   "abstract_from": "hal",
   "publisher_oa": false,
-  "hal": "hal-01477581 (notice)",
   "matched_by_title": [
    "hal hal-01477581 1.0"
-  ]
+  ],
+  "hal": "hal-01477581 (notice)"
  },
  "clemente2017seu": {
   "title": "SEU sensitivity trends of three successive generations of COTS SRAMs at ultra low bias voltage",
   "abstract": "Radiation tests with 14.2 MeV neutrons were performed at ultra low bias voltages on COTS SRAMs manufactured on 130nm, 90nm and 65nm CMOS processes. Experimental results with power supplies in 0.5V-3.17V are presented and discussed",
   "abstract_from": "hal",
   "publisher_oa": false,
-  "hal": "in2p3-01735635 (notice)",
   "matched_by_title": [
    "hal in2p3-01735635 1.0"
-  ]
+  ],
+  "hal": "in2p3-01735635 (notice)"
  },
  "madoery2016analysis": {
   "title": "Analysis of communication strategies for earth observation satellite constellations",
@@ -1757,24 +1909,39 @@
   "publisher_oa": false
  },
  "coelho2016evidences": {
-  "title": "Evidences of Bayesian Machines Robustness Against SEUs and SETs",
-  "abstract": "This work revisits the stochastic computation paradigm as a way to implement architectures dedicated to Bayesian computation. Fault injection experiments assess the intrinsic robustness of a Bayesian Machine with respect to Soft Errors.",
+  "title": "Evidences of Stochastic Bayesian Machines Robustness Against SEUs and SETs",
+  "abstract": "This work revisits the stochastic computation paradigm as a way to implement architectures dedicated to Bayesian computation. It is assumed that Stochastic Bayesian Machines (SMBs) are intrinsically tolerant to the effects of radiation. However, practical assessment is mandatory before considering SBMs in hazardous environments. Results of faultinjection campaigns performed at the RTL level provide the first evidences of SBMs robustness with respect to SEUs and SETs.",
   "abstract_from": "hal",
   "publisher_oa": false,
-  "hal": "hal-01477233 (notice)",
   "matched_by_title": [
-   "hal hal-01477233 1.0"
-  ]
+   "hal hal-01445895 1.0"
+  ],
+  "hal": "hal-01445895 (notice)"
+ },
+ "fraire2016glorbit": {
+  "title": "GLOrbit: A 3D Satellite Orbit Propagator for Network Topology Analysis",
+  "abstract": "Los protocolos de redes tradicionales fueron desarrollados para redes terrestres, caracterizadas por topologías altamente estáticas. En este escenario, los errores de enlace aleatorios han sido el cambio más demandante que una configuración de red podía enfrentar. Por otro lado, los protocolos de redes móviles se ocupan de topologías dinámicas pero asumen trayectorias desconocidas y muy alta conectividad. Ninguna de ambas se aplica al paradigma para las redes de constelaciones satelitales donde su naturaleza orbital describe topologías temporalmente variables pero altamente predecibles. Para estudiar este tipo de redes tolerantes a demoras, proponemos GLOrbit; una herramienta de análisis de topologías y redes de satélites, capaz de propagar nodos espaciales en el tiempo, en un ambiente visual 3D mientras registra la topología en diferentes formatos para estudios analíticos posteriores. Para esto implementamos el algoritmo de propagación SGP4, evaluadores de enlace entre nodos, y un motor gráfico de OpenGL. Esto permite obtener salidas precisas para graficar la red satelital y el análisis físico mientras se va ganando intuición visual para diferentes configuraciones orbitales. Se demuestran las capacidades de la herramienta con un primer trabajo de análisis con GLOrbit de tres topologías de orbitas bajas representativas. Escenarios lineales, transversales y diferentes escenarios de altitud son estudiados concluyendo que los lineales poseen una gran fortaleza en los enlaces inter-satelitales, mientras que los segundos en los contactos tierra-espacio. Finalmente, pero no por ello menos importante, debido a que los gráficos tradicionales representan redes estáticas, una novedosa estructura gráfica para topologías evolutivas temporalmente, es presentada como un resultado para el diseño topológico de redes tolerantes a demoras predecibles y sus estrategias de asignación de enlaces.",
+  "abstract_from": "manual",
+  "lang": "es",
+  "publisher_oa": false
  },
  "DBLP:conf/wisee/FraireMFFV16": {
   "title": "Internetworking approaches towards along-track segmented satellite architectures",
   "abstract": "The Argentinian Space Agency (CONAE) has been pursuing the development of segmented satellite architectures as a novel strategy to reduce the cost and improve responsiveness of space access. Among the key enablers for these architectures, wireless communication is likely to be the most critical as it requires to operate on a highly dynamic, sparse and extreme environments. In this work, we analyze and derive the main specifications that a communication system for segmented architectures (CSSA) must support. In particular, we provide an abstract model to predict the access time to segmented systems to later propose a layered arrangement of the main specifications for the CSSA. Finally, we analyze by simulation a particular CSSA configuration in a simple yet representative scenario with an along-track flight formation.",
   "abstract_from": "hal",
   "publisher_oa": false,
-  "hal": "hal-01477218 (notice)",
   "matched_by_title": [
    "hal hal-01477218 1.0"
-  ]
+  ],
+  "hal": "hal-01477218 (notice)"
+ },
+ "solinas2016netfi2": {
+  "title": "Primeros Resultados con NETFI-2: Una Nueva Herramienta para la Inyección de Fallos en Diseños Basados en HDL",
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-01525714 1.0"
+  ],
+  "hal": "hal-01525714 (notice)"
  },
  "DBLP:journals/adhoc/FraireMF16": {
   "title": "Traffic-aware contact plan design for disruption-tolerant space sensor networks",
@@ -1826,6 +1993,12 @@
    "label": "CONICET Digital",
    "from": "openalex"
   },
+  "publisher_oa": false
+ },
+ "fraire2014assessing": {
+  "title": "Assessing DTN Architecture Reliability for Distributed Satellite Constellations: Preliminary Results from a Case Study",
+  "abstract": "Networked small satellites constellations can yield, in general, not only higher revisit rates but new mission opportunities with important cost and risk saving by means of successive small launches and distributed functionalities such as payload, storage, processing, or data downlink. Nevertheless, as this networks operates in challenged environments, they usually face resources constraints; moreover, orbital dynamics might impose sporadic channel availability. As a result, these intermittent inter-satellite communications challenges existing networking protocols as they assume persistent connectivity. To this end, Delay Tolerant Networking (DTN) has emerged as an automated store-carry-and-forward communication architecture capable to cope with contact disruption. In order to assess DTN reliability, we generalize the communications disruptions to also include transient and permanent component faults so as to demonstrate that DTN architecture result inherently fault tolerant as failures no longer implies a service outage but an overall system capacity degradation. To this end, we developed a network model encompassing DTN communication protocols, routing algorithms, and satellite failure models to measure the system capacity degradation under specific constellation topologies.",
+  "abstract_from": "manual",
   "publisher_oa": false
  },
  "alfonzo2014development": {
