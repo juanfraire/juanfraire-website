@@ -55,10 +55,24 @@
 
   <div id="tooltip" role="tooltip" hidden></div>
 </div>
+
+<div id="lock" hidden>
+  <form>
+    <h1>World timeline</h1>
+    <p>This page is private.</p>
+    <input type="text" name="username" value="timeline" autocomplete="username" hidden>
+    <label for="lock-pw">Password</label>
+    <input type="password" id="lock-pw" autocomplete="current-password" required>
+    <label class="remember"><input type="checkbox" id="lock-remember"> Remember on this device</label>
+    <button type="submit">Open</button>
+    <p class="status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+<noscript><p class="nojs">This page needs JavaScript.</p></noscript>
+
 <script src="vendor/d3.min.js"></script>
 <script src="vendor/topojson-client.min.js"></script>
 <script src="data/world.js"></script>
-<script src="data/timeline.js"></script>
-<script src="app.js"></script>
+<script src="unlock.js"></script>
 </body>
 </html>

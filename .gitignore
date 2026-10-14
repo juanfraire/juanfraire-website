@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 # private source paths for scripts/make_assets.py; never commit
 scripts/sources.local.json
+# the timeline's readable data: only timeline/data/timeline.enc.json is published
+# (scripts/encrypt_timeline.mjs; the source path is in sources.local.json)
+timeline/data/timeline.js

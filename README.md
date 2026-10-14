@@ -165,6 +165,25 @@ During the tour the header slides away; past it, the header comes back as a slim
 menu whenever the visitor scrolls up or reaches the end of the page (`home.js`, classes
 `is-hidden` and `is-docked`).
 
+## The private timeline (`/timeline/`)
+
+A globe that replays every stay and trip. It is linked from nowhere, kept out of
+`sitemap.xml` and `generate.py`, and it asks for a password. Since this repo is public, the
+data are published only encrypted: `timeline/data/timeline.enc.json` (AES-256-GCM, the key
+derived from the password with PBKDF2-SHA256, 600,000 iterations), which `timeline/unlock.js`
+decrypts in the browser before it starts `app.js`. The readable data never enter the repo:
+their path is `timeline` in `scripts/sources.local.json`, and `.gitignore` refuses
+`timeline/data/timeline.js`. After regenerating the data, or to change the password:
+
+```bash
+node scripts/encrypt_timeline.mjs     # asks for the password twice
+```
+
+A visitor who ticks "Remember on this device" keeps the derived key (never the password) in
+the browser; a new encryption makes those keys lapse. The protection is as strong as the
+password: anyone can download the encrypted file and try passwords offline, so use a
+passphrase of several words.
+
 ## Files
 
 ```
@@ -196,7 +215,8 @@ data/                       IPN-V Mars network, ODC shells, sensor sites; pub-fi
 data/news/                  one file per news post
 vendor/three/               three.js r170 (MIT)
 assets/fonts/               Inria Sans (SIL Open Font Licence)
-scripts/                    serve.py, generate.py, fetch_pubs.py, add_post.py, make_assets.py (+ git-ignored sources.local.json),
+timeline/                   the private timeline (password; see above): unlock.js, app.js, data/timeline.enc.json
+scripts/                    serve.py, generate.py, fetch_pubs.py, encrypt_timeline.mjs, add_post.py, make_assets.py (+ git-ignored sources.local.json),
                             og-card.html (social card and heroes from the tour), pycgr-figure/ (the pyCGR picture),
                             shots/ (screenshots of a project website and of a video, with their dates)
 sitemap.xml, robots.txt     written by generate.py / by hand
