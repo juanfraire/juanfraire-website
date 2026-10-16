@@ -4,8 +4,8 @@
     python3 scripts/add_post.py <post URL> [<post URL> ...] [--force]
     python3 scripts/generate.py
 
-Any form of post URL works: feed/update/urn:li:activity:…, posts/…-activity-<id>-…, or a
-share or ugcPost URN. The script reads LinkedIn's public embed of the post (no login, so the
+Any form of post URL works: feed/update/urn:li:activity:…, posts/…-activity-<id>-…, a
+share or ugcPost URN, or a lnkd.in short link. The script reads LinkedIn's public embed of the post (no login, so the
 post must be public) and writes:
 
 - data/news/YYYY-MM-DD-slug.md   the post: a few header lines, then the text as on LinkedIn;
@@ -64,7 +64,9 @@ def get(url, binary=False):
 
 
 def post_id(arg):
-    """(kind, id) from any LinkedIn post URL or URN."""
+    """(kind, id) from any LinkedIn post URL or URN, or a lnkd.in short link to one."""
+    if re.match(r"(https?://)?lnkd\.in/", arg):
+        arg = location(arg if arg.startswith("http") else "https://" + arg)
     m = re.search(r"(activity|share|ugcPost)[:-](\d{15,})", unquote(arg))
     if not m:
         raise Failed(f"not a LinkedIn post URL: {arg}")

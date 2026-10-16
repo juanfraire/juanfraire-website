@@ -1,5 +1,5 @@
 ---
-date: 2026-10
+date: 2026-10-07
 preview: https://ntndays.space/
 preview-title: NTN Days 2026 | Non-Terrestrial Networks Conference — Paris
 preview-image: 2026-09-03-last-call-talks-ntn-days-2026-preview.jpg
