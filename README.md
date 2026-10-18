@@ -184,6 +184,17 @@ the browser; a new encryption makes those keys lapse. The protection is as stron
 password: anyone can download the encrypted file and try passwords offline, so use a
 passphrase of several words.
 
+The globe is the landing tour's planet. `assets/js/scene/planet.js` holds the Earth's shader,
+its atmosphere, the navy glow, the nebula and the stars, and both `scene.js` and
+`timeline/globe.js` build from it, so a change there shows on both pages. `globe.js` looks at the
+planet through an orthographic camera fitted to the d3 projection that `app.js` draws with
+(countries, flights, places), so the two layers line up; it uses a 4k day map
+(`earth-day-4k.jpg`, from `make_assets.py`) because the timeline zooms in to a city. It starts as
+soon as the page opens, and the planet turns behind the password form. Without WebGL2, `app.js`
+draws a flat globe of its own. The page takes the site's palette and Inria Sans, the colour of
+each place I lived in is one of the tour's accents, and a callout follows the current place as
+the tour's callouts follow a rover or a sensor.
+
 ## Files
 
 ```
@@ -199,7 +210,7 @@ news/                       every news post, newest first (the home page shows t
 assets/css/site.css         all styles; palette from the intro slide
 assets/js/home.js           landing behaviour (live Mars light-time, tour, fallback)
 assets/js/astro.js          low-precision ephemerides (Sun, Earth, Mars, sidereal time)
-assets/js/scene/            the three.js tour and its orbit helpers
+assets/js/scene/            the three.js tour, its orbit helpers, and the planet it shares with the timeline (planet.js)
 assets/js/node-sizer.js     the node sizer on the orbital-computing page
 assets/js/route-bundle.js   "Route a bundle" on the DTN page (the CGR tutorial's contact plan)
 assets/js/next-pass.js      "Wait for the next pass" on the satellite-IoT page (TAES 2022 designs)
@@ -215,7 +226,7 @@ data/                       IPN-V Mars network, ODC shells, sensor sites; pub-fi
 data/news/                  one file per news post
 vendor/three/               three.js r170 (MIT)
 assets/fonts/               Inria Sans (SIL Open Font Licence)
-timeline/                   the private timeline (password; see above): unlock.js, app.js, data/timeline.enc.json
+timeline/                   the private timeline (password; see above): unlock.js, app.js, globe.js, data/timeline.enc.json
 scripts/                    serve.py, generate.py, fetch_pubs.py, encrypt_timeline.mjs, add_post.py, make_assets.py (+ git-ignored sources.local.json),
                             og-card.html (social card and heroes from the tour), pycgr-figure/ (the pyCGR picture),
                             shots/ (screenshots of a project website and of a video, with their dates)

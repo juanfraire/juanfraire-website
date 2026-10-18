@@ -86,11 +86,13 @@ ABOUT_PHOTOS = {
 }
 FAVICON_BG = (7, 11, 22)                                  # --bg, also the favicon's tile
 
-# Solar System Scope 2k maps (CC BY 4.0), as bundled with Contact Plan Designer.
+# Solar System Scope 2k maps (CC BY 4.0), as bundled with Contact Plan Designer, and a 4k day map
+# from the same 8k set (bundled with IPN-V) for the timeline, which zooms in to a city.
 TEXTURES = {
     "earth-day.jpg": (CODE / "cpd/contact-plan-designer/web/assets/planets/earth.jpg", 2048, 80),
     "earth-night.jpg": (CODE / "cpd/contact-plan-designer/web/assets/planets/earth_nightmap.jpg", 2048, 80),
     "mars.jpg": (CODE / "cpd/contact-plan-designer/web/assets/planets/mars.jpg", 2048, 72),
+    "earth-day-4k.jpg": (CODE / "ipn-v/ipn-v/Assets/Textures/SolarSystemScope/8k_earth_daymap.jpg", 4096, 80),
 }
 
 IPNV_DSN_CSV = CODE / "ipn-v/ipn-d/Assets/Data/input/network/dsn-network.csv"

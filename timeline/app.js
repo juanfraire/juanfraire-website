@@ -5,8 +5,12 @@
  * segments: a stay (calendar time advances, slowly on trips, fast at home) or a move
  * (an arc flies from one place to the next while calendar time crosses the gap).
  * Everything drawn is a pure function of tau, so frames can be rendered for video.
+ *
+ * The globe under the drawing is the landing tour's planet (globe.js, WebGL), turned by the same
+ * d3 projection; without WebGL this script draws a flat globe of its own.
  */
-(() => {
+(async () => {
+  const planet = await import('./globe.js').then(m => m.planet, () => null);
   const T = window.TIMELINE;
   const P = T.places;
   const DAY_MS = 864e5;
@@ -36,12 +40,18 @@
   const escapeHtml = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   // ------------------------------------------------------------------ colors
-  // Residences: categorical slots 1-4 (validated on the dark surface), in order of first appearance.
-  const RES_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500'];
+  // Residences, in order of first appearance: the site's link blue and three of the landing tour's
+  // topic accents (--link, --t1, --t2, --t3 in site.css).
+  const RES_COLORS = ['#a9cdf7', '#e8a541', '#a9dc63', '#82e0d4'];
   const resPlaces = [...new Set(T.residences.map(r => r.p))];
-  const resColor = new Map(resPlaces.map((p, i) => [p, RES_COLORS[i] || '#898781']));
-  // Days spent in a country: one-hue sequential ramp (violet, a hue the residences do not use).
-  const countryRamp = d3.scaleSequentialLog(d3.interpolateLab('#302c58', '#7d74c9')).domain([1, 2000]).clamp(true);
+  const resColor = new Map(resPlaces.map((p, i) => [p, RES_COLORS[i] || '#8d97ab']));
+  // Days spent in a country: a warm light over the land, the colour of the planet's city lights,
+  // stronger the longer the stay. On the flat globe, a ramp from the land's colour to that light.
+  const LIGHT = [255, 190, 110];
+  const countryAlpha = d3.scaleLog().domain([1, 2000]).range([0.06, 0.24]).clamp(true);
+  const countryFill = days => `rgba(${LIGHT},${countryAlpha(days).toFixed(3)})`;
+  // The legend shows that light over a typical stretch of the day map's land.
+  const countrySwatch = days => d3.interpolateRgb('#5d5a45', `rgb(${LIGHT})`)(countryAlpha(days));
 
   // ------------------------------------------------------------------ the script
   const K_HOME = 2.6, K_AWAY = 4.2;
@@ -221,7 +231,6 @@
   }
   const W110 = prepWorld(window.WORLD['110m']);
   const W50 = prepWorld(window.WORLD['50m']);
-  const graticule = d3.geoGraticule10();
 
   // ------------------------------------------------------------------ DOM
   const $ = id => document.getElementById(id);
@@ -240,33 +249,41 @@
   let screenPlaces = [];
   let lastUI = {};
 
+  // The globe sits in the space the card, the trip list and the bar leave free: centred between
+  // the card and the list when there is room, so the place in view is never under the card.
   function layout() {
     dpr = Math.min(2, window.devicePixelRatio || 1);
     W = app.clientWidth;
     H = app.clientHeight;
     for (const c of [canvas, stars]) { c.width = W * dpr; c.height = H * dpr; }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (planet) planet.resize(W, H, Math.min(dpr, 1.75));      // the landing tour's cap
     const wide = W > 900;
+    const card = $('info').getBoundingClientRect();
     const barH = exportMode ? 0 : $('bar').offsetHeight;
-    const panel = wide && !exportMode && !app.classList.contains('no-trips') ? 300 + 40 : 0;
-    const top = wide && !exportMode ? 40 : 150;
-    const availW = W - panel, availH = H - barH - top;
-    R0 = Math.min(availW, availH) * 0.42;
-    proj.translate([availW / 2, top + availH / 2]);
+    const right = W - (wide && !exportMode && !app.classList.contains('no-trips') ? 300 + 40 : 0);
+    const top = wide ? 24 : card.bottom + 8;
+    const availH = H - barH - top;
+    R0 = Math.min(right, availH) * 0.42;
+    const cx = wide ? clamp((card.right + right) / 2, right / 2, right - R0 * 1.1) : W / 2;
+    proj.translate([cx, top + availH / 2]);
     drawStars();
     buildScrub();
+    measureAvoid();
     lastUI = {};
+    calloutBox.w = 0;
   }
 
+  // Stars for the flat globe; the planet brings its own sky.
   function drawStars() {
     const c = stars.getContext('2d');
     c.setTransform(dpr, 0, 0, dpr, 0, 0);
-    c.fillStyle = '#0b0d10';
-    c.fillRect(0, 0, W, H);
+    c.clearRect(0, 0, W, H);
+    if (planet) return;
     const rnd = d3.randomLcg(7);
     for (let i = 0; i < 420; i++) {
       const a = 0.12 + 0.5 * rnd() ** 3;
-      c.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
+      c.fillStyle = `rgba(201,214,255,${a.toFixed(3)})`;
       const s = rnd() < 0.08 ? 1.4 : 0.9;
       c.fillRect(rnd() * W, rnd() * H, s, s);
     }
@@ -293,6 +310,20 @@
     }
   }
 
+  // A soft round light under each place, like the points of the landing tour.
+  const glow = (() => {
+    const c = document.createElement('canvas');
+    c.width = c.height = 64;
+    const g = c.getContext('2d');
+    const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0, 'rgba(255,255,255,0.5)');
+    grad.addColorStop(0.3, 'rgba(255,255,255,0.14)');
+    grad.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = grad;
+    g.fillRect(0, 0, 64, 64);
+    return c;
+  })();
+
   function render(tau, clock) {
     const st = stateAt(tau);
     const view = manual || st;
@@ -302,32 +333,35 @@
     const center = view.center;
     const cvec = vec(center[0], center[1]);
     const t = st.t;
+    const accent = resColor.get(residenceAt(t).p);
+    const world = view.k >= 2 ? W50 : W110;
     ctx.clearRect(0, 0, W, H);
 
-    // atmosphere, ocean, graticule
-    const atm = ctx.createRadialGradient(cx, cy, R * 0.97, cx, cy, R * 1.13);
-    atm.addColorStop(0, 'rgba(90,150,255,0.24)');
-    atm.addColorStop(1, 'rgba(90,150,255,0)');
-    ctx.fillStyle = atm;
-    ctx.beginPath(); ctx.arc(cx, cy, R * 1.13, 0, 2 * Math.PI); ctx.fill();
-    const oc = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.05, cx, cy, R);
-    oc.addColorStop(0, '#18243a');
-    oc.addColorStop(1, '#0a111c');
-    ctx.beginPath(); path({ type: 'Sphere' }); ctx.fillStyle = oc; ctx.fill();
-    ctx.beginPath(); path(graticule); ctx.strokeStyle = 'rgba(255,255,255,0.045)'; ctx.lineWidth = 0.6; ctx.stroke();
+    if (planet) planet.draw(center, R, cx, cy);
+    else {
+      // the flat globe: atmosphere, ocean, land
+      const atm = ctx.createRadialGradient(cx, cy, R * 0.97, cx, cy, R * 1.13);
+      atm.addColorStop(0, 'rgba(84,148,255,0.28)');
+      atm.addColorStop(1, 'rgba(84,148,255,0)');
+      ctx.fillStyle = atm;
+      ctx.beginPath(); ctx.arc(cx, cy, R * 1.13, 0, 2 * Math.PI); ctx.fill();
+      const oc = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.05, cx, cy, R);
+      oc.addColorStop(0, '#1c2b58');
+      oc.addColorStop(1, '#0c1324');
+      ctx.beginPath(); path({ type: 'Sphere' }); ctx.fillStyle = oc; ctx.fill();
+      ctx.beginPath(); path(world.land); ctx.fillStyle = '#2a3550'; ctx.fill();
+    }
 
-    // land, visited countries, borders
-    const world = view.k >= 2 ? W50 : W110;
-    ctx.beginPath(); path(world.land); ctx.fillStyle = '#272b33'; ctx.fill();
+    // visited countries, lit by the days spent there; borders
     for (const c of ccInfo.values()) {
       if (c.tauFirst > tau) continue;
       const f = world.byNum.get(c.num);
       if (!f) continue;
-      ctx.globalAlpha = 0.75 * clamp((tau - c.tauFirst) / 0.8, 0.15, 1);
-      ctx.beginPath(); path(f); ctx.fillStyle = countryRamp(daysIn(c, t)); ctx.fill();
+      ctx.globalAlpha = clamp((tau - c.tauFirst) / 0.8, 0.15, 1);
+      ctx.beginPath(); path(f); ctx.fillStyle = countryFill(daysIn(c, t)); ctx.fill();
     }
     ctx.globalAlpha = 1;
-    ctx.beginPath(); path(world.borders); ctx.strokeStyle = 'rgba(255,255,255,0.14)'; ctx.lineWidth = 0.6; ctx.stroke();
+    ctx.beginPath(); path(world.borders); ctx.strokeStyle = 'rgba(255,255,255,0.16)'; ctx.lineWidth = 0.6; ctx.stroke();
 
     // past arcs: recent ones still raised, older ones settled on the surface
     ctx.globalCompositeOperation = 'lighter';
@@ -354,7 +388,7 @@
     }
     ctx.globalCompositeOperation = 'source-over';
 
-    // places
+    // places: a soft light and a bright core, ringed in its colour where I lived
     screenPlaces = [];
     const zoomR = 0.85 + 0.15 * Math.min(view.k, 4);
     const currentPlace = st.g.type === 'stay' ? st.g.place : null;
@@ -369,9 +403,12 @@
         ctx.strokeStyle = `rgba(255,255,255,${(0.7 * (1 - u)).toFixed(3)})`; ctx.lineWidth = 1.5; ctx.stroke();
         r *= 1 + 0.8 * (1 - u);
       }
-      ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI);
-      ctx.fillStyle = '#f3f1ea'; ctx.fill();
-      ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(11,13,16,0.9)'; ctx.stroke();   // surface ring
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.drawImage(glow, x - 2.6 * r, y - 2.6 * r, 5.2 * r, 5.2 * r);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.beginPath(); ctx.arc(x, y, r * 0.75, 0, 2 * Math.PI);
+      ctx.fillStyle = '#ffffff'; ctx.fill();
+      ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(7,11,22,0.6)'; ctx.stroke();
       if (resColor.has(p.id)) {
         ctx.beginPath(); ctx.arc(x, y, r + 3, 0, 2 * Math.PI);
         ctx.strokeStyle = resColor.get(p.id); ctx.lineWidth = 2; ctx.stroke();
@@ -395,23 +432,29 @@
       ctx.globalCompositeOperation = 'source-over';
     }
 
-    // pulse on the current place
+    // pulse on the current place, in the colour of where I lived
     if (currentPlace != null && dot3(placeVec[currentPlace], cvec) > 0.03) {
       const [x, y] = proj(ll(currentPlace));
       const ph = (clock / 1600) % 1;
       ctx.beginPath(); ctx.arc(x, y, 7 + 16 * ph, 0, 2 * Math.PI);
-      ctx.strokeStyle = `rgba(255,255,255,${(0.8 * (1 - ph)).toFixed(3)})`; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.globalAlpha = 0.9 * (1 - ph);
+      ctx.strokeStyle = accent; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.globalAlpha = 1;
     }
 
-    drawLabels(st, view, currentPlace);
+    const called = placeCallout(st, tau, cvec);
+    drawLabels(st, view, called ? currentPlace : null);
     return st;
   }
 
-  function drawLabels(st, view, currentPlace) {
+  // Place names; the place the callout names (`called`) gets no second label.
+  function drawLabels(st, view, called) {
+    const currentPlace = st.g.type === 'stay' ? st.g.place : null;
     const cand = [];
     for (const s of screenPlaces) {
       const p = s.p;
       let pri = null;
+      if (p.id === called) continue;
       if (p.id === currentPlace) pri = 0;
       else if (st.g.type === 'move' && st.g.to === p.id) pri = 0;
       else if (s.age >= 0 && s.age < 2) pri = 1;
@@ -424,20 +467,99 @@
     const boxes = [];
     for (const c of cand) {
       const bold = c.pri <= 1;
-      ctx.font = `${bold ? 600 : 400} ${bold ? 14 : 12}px system-ui, -apple-system, sans-serif`;
+      ctx.font = `${bold ? 700 : 400} ${bold ? 15 : 13}px "Inria Sans", "Helvetica Neue", Arial, sans-serif`;
       const text = placeName(c.p);
-      const w = ctx.measureText(text).width, h = bold ? 16 : 14;
+      const w = ctx.measureText(text).width, h = bold ? 17 : 15;
       const x = c.x + c.r + 5, y = c.y + 4;
       const box = [x - 2, y - h + 2, x + w + 2, y + 4];
       if (box[2] > W - 4 || boxes.some(b => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1])) {
         if (c.pri > 0) continue;
       }
       boxes.push(box);
-      ctx.lineWidth = 3.5; ctx.strokeStyle = 'rgba(8,10,14,0.85)'; ctx.lineJoin = 'round';
+      ctx.lineWidth = 3.5; ctx.strokeStyle = 'rgba(7,11,22,0.8)'; ctx.lineJoin = 'round';
       ctx.strokeText(text, x, y);
-      ctx.fillStyle = c.pri <= 1 ? '#ffffff' : '#c3c2b7';
+      ctx.fillStyle = c.pri <= 1 ? '#ffffff' : '#e9edf5';
       ctx.fillText(text, x, y);
     }
+  }
+
+  // ------------------------------------------------------------------ callout
+  // A box pinned to the place of the current stay, as the landing tour pins one to the rover, the
+  // sensor or the satellite it follows: where it is, how far into the stay, and what comes next.
+  const callBox = document.querySelector('#callouts .callout');
+  const callLine = document.querySelector('#callouts line'), callDot = document.querySelector('#callouts circle');
+  const calloutBox = { html: '', w: 0, h: 0, side: 0, shown: false };
+  let avoid = [];                          // boxes the callout keeps off: the card, the trip list, the bar
+  const degrees = (lat, lon) => `${Math.abs(lat).toFixed(1)}° ${lat < 0 ? 'S' : 'N'}, ${Math.abs(lon).toFixed(1)}° ${lon < 0 ? 'W' : 'E'}`;
+  const inDays = n => (n <= 1 ? '<b>tomorrow</b>' : `in <b>${fmtNum.format(n)} days</b>`);
+
+  function measureAvoid() {
+    avoid = [$('info'), $('trips'), $('follow')].map(el => el.getBoundingClientRect()).filter(r => r.width)
+      .map(r => ({ left: r.left - 10, top: r.top - 10, right: r.right + 10, bottom: r.bottom + 10 }));
+    if (!exportMode) avoid.push({ left: 0, top: H - $('bar').offsetHeight + 20, right: W, bottom: H });
+  }
+  new ResizeObserver(measureAvoid).observe($('info'));
+
+  function calloutHtml(st) {
+    const s = st.g.stay, p = P[s.p], day = Math.floor(st.t);
+    const sub = p.coarse ? country(p.cc) : `${country(p.cc)} · ${degrees(p.lat, p.lon)}`;
+    let state, next = '';
+    if (s.trip >= 0) {
+      const tr = T.trips[s.trip], n = tr.e - tr.s + 1;
+      state = `Day <b>${clamp(day - tr.s + 1, 1, n)}</b> of ${n} away`;
+    } else state = `<b>At home</b>`;
+    const nxt = stays.slice(st.g.idx + 1).find(x => x.p !== s.p);
+    if (nxt) {
+      const name = escapeHtml(placeName(P[nxt.p]));
+      if (s.trip >= 0) next = nxt.home ? `Then home to <b>${name}</b>` : `Then <b>${name}</b>`;
+      else next = nxt.home ? `Moving to <b>${name}</b> ${inDays(nxt.s - day)}` : `Next trip ${inDays(nxt.s - day)}`;
+    }
+    return `<p class="c-head">${flag(p.cc)} ${escapeHtml(placeName(p))}</p><p class="c-sub">${sub}</p>`
+      + `<p class="c-state">${state}</p>` + (next ? `<p class="c-next">${next}</p>` : '');
+  }
+
+  function hideCallout() {
+    if (calloutBox.shown) {
+      calloutBox.shown = false;
+      callBox.style.opacity = callLine.style.opacity = callDot.style.opacity = '0';
+    }
+    return false;
+  }
+
+  // Shown during a stay. In playback it fades in after the landing and out before the take-off
+  // (a function of tau, so exported frames match); stays at home last a fraction of a second, so
+  // the fades shrink with the stay. Paused, it is simply there. Returns whether it is up.
+  function placeCallout(st, tau, cvec) {
+    const g = st.g;
+    if (g.type !== 'stay' || dot3(placeVec[g.place], cvec) < 0.25) return hideCallout();
+    const o = !playing && !exportMode ? 1
+      : clamp((tau - g.tau0) / Math.min(0.3, 0.25 * g.dur), 0, 1) * clamp((g.tau0 + g.dur - tau) / Math.min(0.15, 0.15 * g.dur), 0, 1);
+    if (o < 0.02) return hideCallout();
+    const html = calloutHtml(st);
+    if (html !== calloutBox.html) { calloutBox.html = html; callBox.innerHTML = html; calloutBox.w = 0; }
+    if (!calloutBox.w) { calloutBox.w = callBox.offsetWidth; calloutBox.h = callBox.offsetHeight; }
+    const [x, y] = proj(ll(g.place));
+    const bw = calloutBox.w, bh = calloutBox.h, small = W <= 900;
+    const gap = small ? 26 : 40, rise = small ? 46 : 70, edge = 12;
+    // Above right if it fits, else the side that covers least of the card, the list and the bar;
+    // the last side is kept unless another is clearly better, so the box does not hop about.
+    const clash = (bx, by) => avoid.reduce((sum, r) => sum
+      + Math.max(0, Math.min(bx + bw, r.right) - Math.max(bx, r.left)) * Math.max(0, Math.min(by + bh, r.bottom) - Math.max(by, r.top)), 0);
+    const spots = [[x + gap, y - rise - bh], [x - gap - bw, y - rise - bh], [x + gap, y + rise], [x - gap - bw, y + rise]]
+      .map(([sx, sy]) => { const kx = clamp(sx, edge, W - bw - edge); return [kx, sy, Math.abs(kx - sx)]; });
+    const costs = spots.map(([sx, sy, moved]) => (sy >= edge && sy + bh <= H - edge ? clash(sx, sy) + moved : Infinity));
+    const best = costs.indexOf(Math.min(...costs));
+    if (!(costs[calloutBox.side] <= costs[best] * 1.2)) calloutBox.side = best;
+    if (!isFinite(costs[calloutBox.side])) return hideCallout();
+    const [bx, by] = spots[calloutBox.side];
+    const ax = bx > x ? bx : bx + bw, ay = by > y ? by : by + bh;
+    callBox.style.transform = `translate(${bx.toFixed(1)}px, ${by.toFixed(1)}px)`;
+    callLine.setAttribute('x1', x.toFixed(1)); callLine.setAttribute('y1', y.toFixed(1));
+    callLine.setAttribute('x2', ax.toFixed(1)); callLine.setAttribute('y2', ay.toFixed(1));
+    callDot.setAttribute('cx', x.toFixed(1)); callDot.setAttribute('cy', y.toFixed(1));
+    callBox.style.opacity = callLine.style.opacity = callDot.style.opacity = o.toFixed(3);
+    calloutBox.shown = true;
+    return o > 0.5;
   }
 
   // ------------------------------------------------------------------ UI text
@@ -448,27 +570,29 @@
   function updateUI(st) {
     const t = st.t, g = st.g;
     const res = residenceAt(t);
+    if (lastUI.accent !== res.p) {
+      lastUI.accent = res.p;
+      app.style.setProperty('--res', resColor.get(res.p));
+    }
     setText('info-res', g.type === 'outro' ? 'All places' : `Living in ${placeName(P[res.p])}`);
     setText('info-month', g.type === 'outro'
       ? `${yearOf(D0)}–${yearOf(D1 - 1)}` : cap(fmtMonth.format(date(t))));
-    setText('info-day', g.type === 'outro' ? '' : cap(fmtDay.format(date(t))));
+    setText('info-day', g.type === 'outro' ? `${fmtMonth.format(date(D0))} to ${fmtMonth.format(date(D1 - 1))}`
+      : cap(fmtDay.format(date(t))));
     let place = '', context = '', trip = -1;
     if (g.type === 'stay') {
       place = fullName(P[g.place]);
       trip = g.stay.trip;
-      if (trip >= 0) {
-        const tr = T.trips[trip];
-        context = `${tr.name} · day ${clamp(Math.floor(t) - tr.s + 1, 1, tr.e - tr.s + 1)} of ${tr.e - tr.s + 1}`;
-      } else context = 'At home';
+      context = trip >= 0 ? T.trips[trip].name : 'At home';
     } else if (g.type === 'move' && g.arc) {
       const to = stays[g.toStay], from = stays[g.toStay - 1];
       place = `${placeName(P[g.from])} → ${placeName(P[g.to])}`;
       trip = to.trip >= 0 ? to.trip : from.trip;
       context = !to.home ? T.trips[to.trip].name
         : from.home ? `Moving to ${placeName(P[g.to])}` : 'Back home';
-    } else if (g.type === 'outro') {
-      place = `${ccInfo.size} countries · ${placeFirst.length} places`;
-      context = `${tripFirst.length} trips · ${fmtNum.format(Math.round(KM_TOTAL / 1000) * 1000)} km`;
+    } else if (g.type === 'outro') {               // the totals are in the figures below
+      place = 'Every stay and trip';
+      context = `${fmtNum.format(moves.length)} journeys between ${fmtNum.format(placeFirst.length)} places`;
     }
     setText('info-place', place);
     setText('info-context', context);
@@ -609,7 +733,7 @@
   // ------------------------------------------------------------------ legend
   function buildLegend() {
     const res = resPlaces.map(p => `<span class="key"><i class="sw" style="background:${resColor.get(p)}"></i>${escapeHtml(placeName(P[p]))}</span>`).join('');
-    const ramp = [1, 10, 100, 1000].map(d => `<i style="background:${countryRamp(d)}"></i>`).join('');
+    const ramp = [1, 10, 100, 1000].map(d => `<i style="background:${countrySwatch(d)}"></i>`).join('');
     $('legend').innerHTML =
       `<span class="group"><span class="title">Where I lived</span>${res}</span>` +
       `<span class="group"><span class="title">Days in the country</span><span class="ramp"><span>1</span>${ramp}<span>1000+</span></span></span>` +
@@ -743,6 +867,8 @@
 
   buildLegend();
   buildTripList();
+  if (planet) planet.take();
+  app.classList.add('live');
   layout();
   console.log(`[timeline] ${segs.length} segments, ${moves.length} flights, ${TOTAL.toFixed(0)} s at 1x, ` +
               `${Math.round(KM_TOTAL)} km`);
