@@ -562,6 +562,40 @@
     return o > 0.5;
   }
 
+  // ------------------------------------------------------------------ distance, in space terms
+  // Under the figures: the kilometres so far laid along the way to the Moon, one Moon per lunar
+  // distance up to the total.
+  const MOON_KM = 384400;                      // mean Earth–Moon distance
+  const MOONS = Math.max(1, Math.ceil(KM_TOTAL / MOON_KM));
+  const space = (() => {
+    const el = (cls, left) => {
+      const i = document.createElement('i');
+      i.className = cls;
+      if (left != null) i.style.left = `${left}%`;
+      return i;
+    };
+    const way = el('way'), fill = el('fill'), moons = [];
+    for (let k = 1; k <= MOONS; k++) moons.push(el('body moon', 100 * k / MOONS));
+    way.append(fill, ...moons);
+    $('tr-moon').append(way, el('body earth'));
+    return { fill, moons, width: '', lit: -1 };
+  })();
+
+  function updateSpace(km) {
+    const moon = km / MOON_KM;
+    setText('sp-moon', `${moon.toFixed(1)}×`);
+    const width = (100 * moon / MOONS).toFixed(2);
+    if (space.width !== width) {
+      space.width = width;
+      space.fill.style.width = `${width}%`;
+    }
+    const lit = Math.floor(moon);
+    if (lit !== space.lit) {
+      space.lit = lit;
+      space.moons.forEach((m, k) => m.classList.toggle('on', k < lit));
+    }
+  }
+
   // ------------------------------------------------------------------ UI text
   function setText(id, text) {
     if (lastUI[id] !== text) { $(id).textContent = text; lastUI[id] = text; }
@@ -600,6 +634,7 @@
     setText('st-places', fmtNum.format(countLE(placeFirst, t)));
     setText('st-trips', fmtNum.format(countLE(tripFirst, t)));
     setText('st-km', fmtNum.format(Math.round(st.km)));
+    updateSpace(st.km);
     if (lastUI.trip !== trip) {
       lastUI.trip = trip;
       highlightTrip(trip);
@@ -663,7 +698,7 @@
     for (let y = y0 + 1; y <= y1; y++) {
       const x = xDay(Date.UTC(y, 0, 1) / DAY_MS);
       yr.append('line').attr('x1', x).attr('x2', x).attr('y1', 2).attr('y2', BASE + 10);
-      if (y % step === 0) yr.append('text').attr('x', x + 3).attr('y', 60).text(step === 1 ? `'${String(y).slice(2)}` : y);
+      if (y % step === 0 && x + (step === 1 ? 24 : 36) <= w) yr.append('text').attr('x', x + 3).attr('y', 60).text(step === 1 ? `'${String(y).slice(2)}` : y);
     }
     scrub.append('line').attr('class', 'base').attr('x1', 6).attr('x2', w - 6).attr('y1', BASE + 0.5).attr('y2', BASE + 0.5);
     scrub.append('g').selectAll('rect').data(T.residences).join('rect')

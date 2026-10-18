@@ -167,8 +167,8 @@ menu whenever the visitor scrolls up or reaches the end of the page (`home.js`, 
 
 ## The private timeline (`/timeline/`)
 
-A globe that replays every stay and trip. It is linked from nowhere, kept out of
-`sitemap.xml` and `generate.py`, and it asks for a password. Since this repo is public, the
+A globe that replays every stay and trip. Its only link is a quiet line under "Visits" on the
+About page; it is kept out of `sitemap.xml` and `generate.py`, and it asks for a password. Since this repo is public, the
 data are published only encrypted: `timeline/data/timeline.enc.json` (AES-256-GCM, the key
 derived from the password with PBKDF2-SHA256, 600,000 iterations), which `timeline/unlock.js`
 decrypts in the browser before it starts `app.js`. The readable data never enter the repo:

@@ -679,6 +679,9 @@ button.share:hover, button.share[aria-expanded="true"] { color: var(--ink-strong
 .cv-list .when { color: var(--muted); font-size: 15px; font-variant-numeric: tabular-nums; padding-top: 1px; }
 .cv-list p { margin: 0; }
 .cv-list .sub { font-size: 15px; color: var(--muted); }
+/* a link that keeps to the colour of its line (the private timeline, on the About page) */
+a.quiet { color: inherit; text-decoration-color: rgba(141, 151, 171, 0.45); }
+a.quiet:hover { color: var(--ink); text-decoration-color: currentColor; }
 @media (max-width: 620px) { .cv-list li { grid-template-columns: 1fr; gap: 0; } }
 .hello h1 { font-size: clamp(30px, 3.6vw, 42px); }
 

@@ -69,7 +69,7 @@ SITE = Path(__file__).resolve().parent.parent
 BIB = SITE.parent / "cv/cv-juan-fraire.bib"
 NEWS = SITE / "data/news"
 NEWS_IMG, NEWS_VIDEO = "/assets/img/news/", "/assets/video/news/"
-UNLISTED = {"timeline"}   # reachable by URL only: never rewritten, never in sitemap.xml
+UNLISTED = {"timeline"}   # private (linked once, from about/): never rewritten, never in sitemap.xml
 
 
 def site_pages():

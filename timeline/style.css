@@ -68,6 +68,20 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block
 #stats dt { font-size: 12px; color: var(--muted); }
 #stats dd { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.25; color: var(--ink-strong); }
 
+/* The distance traveled laid out in space: Earth on the left, one Moon per lunar distance,
+   lit once passed. */
+#space { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line-soft); }
+#space .leg { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; color: var(--muted); }
+#space .leg b { font-size: 14px; font-weight: 700; color: var(--ink-strong); }
+.track { position: relative; height: 12px; margin: 3px 5px 2px; }
+.track .way { position: absolute; left: 10px; right: 0; top: 0; bottom: 0; }   /* starts at Earth's edge */
+.track .way::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dashed var(--line); }
+.track .fill { position: absolute; left: 0; top: 50%; height: 2px; margin-top: -0.5px; width: 0; background: var(--ink-strong); }
+.track .body { position: absolute; top: 50%; border-radius: 50%; transform: translate(-50%, -50%); }
+.track .earth { left: 0; width: 9px; height: 9px; background: #4f8fe0; box-shadow: 0 0 6px rgba(79, 143, 224, 0.7); }
+.track .moon { width: 7px; height: 7px; border: 1px solid #b8c0cc; background: var(--bg); transition: background 0.3s ease; }
+.track .moon.on { background: #e3e7ee; border-color: #e3e7ee; box-shadow: 0 0 6px rgba(227, 231, 238, 0.6); }
+
 /* ---------- trip list (right) */
 #trips { position: absolute; top: 24px; right: var(--gutter); bottom: calc(var(--bar-h) + 12px); width: var(--panel-w);
   background: var(--panel); border-top: 2px solid var(--rule); display: flex; flex-direction: column; overflow: hidden; }
