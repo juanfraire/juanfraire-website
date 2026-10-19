@@ -40,6 +40,8 @@
   --inria: #e53516;
   --conicet: #0096d5;
   --saarland: #5b9bd5;
+  --insa: #ec4a4f;      /* the courses page: INSA Lyon's red and a gold for UBA, lightened to read on --bg */
+  --uba: #e0b341;
   /* one accent per topic, echoing what each scene draws */
   --t1: #e8a541;   /* deep-space links */
   --t2: #a9dc63;   /* sensors and passes */
@@ -679,6 +681,7 @@ button.share:hover, button.share[aria-expanded="true"] { color: var(--ink-strong
 .cv-list .when { color: var(--muted); font-size: 15px; font-variant-numeric: tabular-nums; padding-top: 1px; }
 .cv-list p { margin: 0; }
 .cv-list .sub { font-size: 15px; color: var(--muted); }
+.cv-list + .prose { margin-top: 18px; }
 /* a link that keeps to the colour of its line (the private timeline, on the About page) */
 a.quiet { color: inherit; text-decoration-color: rgba(141, 151, 171, 0.45); }
 a.quiet:hover { color: var(--ink); text-decoration-color: currentColor; }
@@ -923,3 +926,55 @@ a.quiet:hover { color: var(--ink); text-decoration-color: currentColor; }
 .np-table tbody th { font-weight: 400; color: var(--ink); }
 .np-table td:last-child { color: var(--muted); white-space: nowrap; }
 @media (max-width: 480px) { .np-table td:last-child { white-space: normal; } }
+
+/* ---------- courses ---------- */
+/* One colour per course, shared by its card and its column in the matrix. */
+.c-saar { --c: var(--saarland); } .c-insa { --c: var(--insa); } .c-uba { --c: var(--uba); }
+.course-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 28px; }
+.course-cards li { padding: 14px 0 0; border-top: 2px solid var(--c); }
+.course-cards .meta { margin: 0 0 6px; font-size: 14px; color: var(--c); }
+.course-cards h3 { font-size: 19px; margin-bottom: 10px; }
+.course-cards .team { margin: 0; font-size: 15px; color: var(--ink); }
+.course-cards .team .k { display: block; font-size: 13px; color: var(--muted); }
+@media (max-width: 900px) { .course-cards { grid-template-columns: 1fr; gap: 24px; } }
+
+/* The matrix: a domain per row, a column per course. Each domain is a <details> that opens on its
+   lectures; a dot marks a course that covers it. */
+.cm { --col: 104px; --indent: 56px; max-width: 920px; }
+.cm-row { display: grid; grid-template-columns: minmax(0, 1fr) repeat(var(--cols), var(--col)); align-items: center; }
+.cm-cell { display: flex; justify-content: center; }
+.dot { display: inline-block; flex: none; width: 13px; height: 13px; border-radius: 50%; background: var(--c); }
+.cm-head { position: sticky; top: 0; z-index: 2; padding: 10px 0 8px; background: var(--bg); border-bottom: 1px solid var(--rule); font-size: 14px; color: var(--muted); }
+.cm-col { text-align: center; font-weight: 700; color: var(--c); }
+.cm-col .short { display: none; }
+.cm-domain { border-bottom: 1px solid var(--line-soft); }
+.cm-domain > summary { list-style: none; cursor: pointer; padding: 13px 0; font-size: 18px; font-weight: 700; color: var(--ink-strong); }
+.cm-domain > summary::-webkit-details-marker { display: none; }
+.cm-domain > summary:hover { background: var(--bar); }
+.cm-domain > summary .cm-name { display: flex; align-items: baseline; }   /* a long name wraps under itself */
+.cm-domain .num { flex: none; }
+.cm-domain > summary .cm-name::before {
+  content: ""; display: inline-block; width: 7px; height: 7px; margin: 0 15px 3px 4px;
+  border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(-45deg); transition: transform 0.15s ease; }
+.cm-domain[open] > summary .cm-name::before { transform: rotate(45deg); margin-bottom: 5px; }
+.cm-domain .num { display: inline-block; width: 30px; font-size: 13px; font-weight: 400; letter-spacing: 1.5px; color: var(--muted); }
+.cm-about { margin: -4px 0 6px; padding-left: var(--indent); max-width: calc(62ch + var(--indent)); font-size: 15px; color: var(--muted); }
+.cm-lectures { list-style: none; margin: 0 0 12px; padding: 0; }
+.cm-lectures .cm-row { padding: 5px 0; font-size: 15px; }
+.cm-lectures .cm-row:hover { background: var(--bar); }
+.cm-lectures .cm-name { padding-left: var(--indent); }
+.cm-lectures .dot { width: 9px; height: 9px; }
+.cm-key { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; max-width: 920px; margin: 0 0 10px; font-size: 14px; color: var(--muted); }
+.cm-key p { margin: 0; }
+.cm-toggle { margin-left: auto; padding: 3px 12px; font: inherit; font-size: 14px; color: var(--ink-strong); background: none; border: 1px solid var(--line); cursor: pointer; }
+.cm-toggle:hover { border-color: var(--link); }
+@media (max-width: 620px) {
+  .cm { --col: 46px; --indent: 0px; }
+  .cm-col .long { display: none; }
+  .cm-col .short { display: inline; }
+  .cm-domain > summary { font-size: 16px; }
+  .cm-domain > summary .cm-name::before { margin-right: 10px; }
+  .cm-domain .num { width: 26px; }
+  .cm-about { padding-left: 0; }
+  .cm-lectures .cm-name { padding-left: 0; }
+}

@@ -5,6 +5,7 @@ Sources of truth:
 - publications: ../cv/cv-juan-fraire.bib (the CV bibliography), with each paper's abstract and
                 open copy from data/pub-meta.json (scripts/fetch_pubs.py, the only script that goes online)
 - news:         data/news/*.md, one file per post (scripts/add_post.py copies LinkedIn posts)
+- courses:      data/courses.json, the courses and the lectures each one covers
 
 Every printed publication gets a page of its own, publications/<slug>/index.html, written whole
 (abstract, links, citation, share buttons); it is the address that "Share" hands out. The slug is
@@ -24,6 +25,8 @@ A generated block is everything between a start marker and its end marker:
     <!-- gen:ld selected -->                ...  <!-- /gen -->   the same papers as JSON-LD (in <head>)
     <!-- gen:news limit=10 -->              ...  <!-- /gen -->   the latest posts, as a row of cards
     <!-- gen:news all -->                   ...  <!-- /gen -->   every post, as a feed
+    <!-- gen:courses cards -->              ...  <!-- /gen -->   the courses and their teaching teams (data/courses.json)
+    <!-- gen:courses matrix -->             ...  <!-- /gen -->   what each course covers, domain by domain
 
 A news post is a few header lines between `---` lines, then the text as written on LinkedIn:
 
@@ -69,6 +72,7 @@ SITE = Path(__file__).resolve().parent.parent
 BIB = SITE.parent / "cv/cv-juan-fraire.bib"
 NEWS = SITE / "data/news"
 NEWS_IMG, NEWS_VIDEO = "/assets/img/news/", "/assets/video/news/"
+COURSES = SITE / "data/courses.json"
 UNLISTED = {"timeline"}   # private (linked once, from about/): never rewritten, never in sitemap.xml
 
 
@@ -752,6 +756,48 @@ def block_news(args, news, indent):
     return "\n".join(out + [pad + "</ol>"])
 
 
+# ---------------------------------------------------------------- courses
+
+def load_courses():
+    return json.loads(COURSES.read_text(encoding="utf-8"))
+
+
+def mark_cells(courses, at):
+    """One cell per course: a dot if the course is in `at`, empty otherwise."""
+    return "".join(f'<span class="cm-cell c-{c["id"]}"><i class="dot"></i>'
+                   f'<span class="visually-hidden">{escape(c["short"])}</span></span>' if c["id"] in at
+                   else f'<span class="cm-cell c-{c["id"]}"></span>' for c in courses)
+
+
+def block_courses(args, data, indent):
+    pad = " " * indent
+    courses = data["courses"]
+    if "cards" in args:
+        out = [pad + '<ul class="course-cards">']
+        for c in courses:
+            out += [f'{pad}  <li class="c-{c["id"]}">',
+                    f'{pad}    <p class="meta">{escape(c["institution"])} · {escape(c["country"])}</p>',
+                    f'{pad}    <h3>{escape(c["title"])}</h3>',
+                    f'{pad}    <p class="team"><span class="k">Teaching team</span>{escape(", ".join(c["team"]))}</p>',
+                    f'{pad}  </li>']
+        return "\n".join(out + [pad + "</ul>"])
+    heads = "".join(f'<span class="cm-col c-{c["id"]}"><span class="long">{escape(c["short"])}</span>'
+                    f'<span class="short" aria-hidden="true">{escape(c["tiny"])}</span></span>' for c in courses)
+    out = [pad + f'<div class="cm" style="--cols: {len(courses)}">',
+           f'{pad}  <div class="cm-row cm-head"><span class="cm-name">Domain</span>{heads}</div>']
+    for i, d in enumerate(data["domains"], 1):
+        out += [f'{pad}  <details class="cm-domain" id="{d["id"]}">',
+                f'{pad}    <summary class="cm-row"><span class="cm-name"><span class="num">{i:02d}</span>'
+                f'<span>{escape(d["name"])}</span></span>'
+                f'{mark_cells(courses, {c for lec in d["lectures"] for c in lec["at"]})}</summary>',
+                f'{pad}    <p class="cm-about">{escape(d["about"])}</p>',
+                f'{pad}    <ul class="cm-lectures">']
+        out += [f'{pad}      <li class="cm-row"><span class="cm-name">{escape(lec["title"])}</span>'
+                f'{mark_cells(courses, lec["at"])}</li>' for lec in d["lectures"]]
+        out += [f"{pad}    </ul>", f"{pad}  </details>"]
+    return "\n".join(out + [pad + "</div>"])
+
+
 MARK = re.compile(r"(?P<indent>[ \t]*)<!-- gen:(?P<name>\w+)(?P<args>[^>]*?)-->\n(?P<body>.*?)(?P=indent)<!-- /gen -->",
                   re.S)
 
@@ -810,6 +856,7 @@ def parse_args(s):
 def main():
     pubs = load_pubs()
     news = load_news()
+    courses = load_courses()
     for page in PAGES:
         html = page.read_text(encoding="utf-8")
 
@@ -821,6 +868,8 @@ def main():
                 body = block_ld(args, pubs, indent)
             elif m.group("name") == "news":
                 body = block_news(args, news, indent)
+            elif m.group("name") == "courses":
+                body = block_courses(args, courses, indent)
             else:
                 sys.exit(f"{page}: unknown block gen:{m.group('name')}")
             return f'{m.group("indent")}<!-- gen:{m.group("name")}{m.group("args")}-->\n{body}\n{m.group("indent")}<!-- /gen -->'

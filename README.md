@@ -21,6 +21,7 @@ visitors, low-power phones and browsers without WebGL get.
 | A paper's abstract or free copy, by hand | its entry in `data/pub-meta.json` (see "Abstracts and free copies" below) | `python3 scripts/generate.py` |
 | News from LinkedIn | the post's URL | `python3 scripts/add_post.py <URL>`, then `generate.py` |
 | Other news | a file in `data/news/` (see below) | `python3 scripts/generate.py` |
+| Courses page: the courses, their teaching teams, and which lectures each one covers | `data/courses.json` | `python3 scripts/generate.py` |
 | Images, textures, data from other projects | sources listed in `scripts/make_assets.py` | `python3 scripts/make_assets.py` |
 | Photos next to "About me" | crop boxes in `ABOUT_PHOTOS` (`make_assets.py`), originals in the folder `about-photos` of `sources.local.json` | `make_assets.py`, then the photo list in `index.html` and `about/index.html` (alt text) |
 | Figure on a selected paper's card | `PAPER_FIGURES` in `make_assets.py` (bib key, source, crop, alt text, credit line) | `make_assets.py`, then `generate.py` |

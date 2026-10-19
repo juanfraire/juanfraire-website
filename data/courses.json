@@ -1,0 +1,142 @@
+{
+  "_about": "The courses page (/courses/), rendered by scripts/generate.py into its gen:courses blocks. Each lecture lists the courses that cover it (at); a domain is marked for every course that covers one of its lectures.",
+  "courses": [
+    {
+      "id": "saar",
+      "short": "Saarland",
+      "tiny": "Saar.",
+      "institution": "Saarland University",
+      "country": "Germany",
+      "title": "Space Informatics",
+      "team": ["Juan A. Fraire", "Holger Hermanns", "Santiago Henn", "Gregory Stock", "Andreas Schmidt"]
+    },
+    {
+      "id": "insa",
+      "short": "INSA Lyon",
+      "tiny": "INSA",
+      "institution": "INSA Lyon",
+      "country": "France",
+      "title": "Satellite Communications and Navigation",
+      "team": ["Juan A. Fraire", "André Terrasse", "François-Xavier Marmet (CNES)", "Olivier Bompis (CNES)", "Benoit Coeugnet"]
+    },
+    {
+      "id": "uba",
+      "short": "UBA",
+      "tiny": "UBA",
+      "institution": "Universidad de Buenos Aires, with CONAE",
+      "country": "Argentina",
+      "title": "Space Industry and Space Systems",
+      "team": ["Juan A. Fraire", "Santiago Henn", "Victoria Marinelli (CONAE)", "Laura Quintana (CONAE)", "Marcelo Bisogni (CONAE)"]
+    }
+  ],
+  "domains": [
+    {
+      "id": "missions",
+      "name": "Missions and the space sector",
+      "about": "Why we go to space, who builds and pays for it, and how New Space changed the sector.",
+      "lectures": [
+        {"title": "Space applications", "at": ["saar", "uba"]},
+        {"title": "New Space and distributed missions", "at": ["saar", "uba"]},
+        {"title": "Satellite markets, operators and actors", "at": ["insa"]}
+      ]
+    },
+    {
+      "id": "orbits",
+      "name": "Orbits and astrodynamics",
+      "about": "How satellites move, and how to put them where a mission needs them.",
+      "lectures": [
+        {"title": "Physics and orbits", "at": ["saar", "insa", "uba"]},
+        {"title": "Propagation and perturbations", "at": ["saar", "insa", "uba"]},
+        {"title": "Launch and manoeuvres", "at": ["saar"]},
+        {"title": "Trajectory design", "at": ["saar"]},
+        {"title": "Constellation design", "at": ["saar"]}
+      ]
+    },
+    {
+      "id": "technology",
+      "name": "Space technology and environment",
+      "about": "What a satellite is made of, the environment it has to survive, and the software used to simulate it.",
+      "lectures": [
+        {"title": "Space environment", "at": ["saar"]},
+        {"title": "Satellite technologies and subsystems", "at": ["saar", "uba"]},
+        {"title": "Attitude determination and control", "at": ["uba"]},
+        {"title": "Computers in space", "at": ["saar"]},
+        {"title": "Simulation and analysis tools: STK, GMAT, Orekit, Cesium", "at": ["saar", "uba"]}
+      ]
+    },
+    {
+      "id": "systems",
+      "name": "Systems engineering",
+      "about": "Turning a mission idea into requirements, interfaces and a plan, and keeping its risks in check.",
+      "lectures": [
+        {"title": "Technical planning and requirements", "at": ["uba"]},
+        {"title": "Interfaces and risk management", "at": ["uba"]},
+        {"title": "Mission design with SMAD", "at": ["uba"]},
+        {"title": "Space project management", "at": ["uba"]}
+      ]
+    },
+    {
+      "id": "communications",
+      "name": "Space communications",
+      "about": "Getting bits across a radio link that is long, weak and shared.",
+      "lectures": [
+        {"title": "Signals, modulation and coding", "at": ["saar", "insa"]},
+        {"title": "Link budget", "at": ["saar", "insa"]},
+        {"title": "Multiplexing and multiple access", "at": ["saar"]},
+        {"title": "Command and telemetry links, antennas and frequency bands", "at": ["insa"]}
+      ]
+    },
+    {
+      "id": "navigation",
+      "name": "Space navigation",
+      "about": "Working out where you are, and what time it is, from satellite signals.",
+      "lectures": [
+        {"title": "Positioning from range, Doppler and angle", "at": ["insa"]},
+        {"title": "GNSS: GPS, Galileo, GLONASS and BeiDou", "at": ["insa"]},
+        {"title": "Error sources and augmentation (SBAS, EGNOS)", "at": ["insa"]},
+        {"title": "Argos and DORIS", "at": ["insa"]},
+        {"title": "Interference, jamming and spoofing", "at": ["insa"]}
+      ]
+    },
+    {
+      "id": "networking",
+      "name": "Space networking",
+      "about": "Protocols for links that are long, intermittent, or both.",
+      "lectures": [
+        {"title": "Space network architectures and protocols", "at": ["saar", "insa"]},
+        {"title": "Delay-tolerant networking", "at": ["saar"]},
+        {"title": "Contact graph routing", "at": ["saar"]},
+        {"title": "Transport and congestion control", "at": ["saar"]},
+        {"title": "Routing in LEO constellations", "at": ["saar"]},
+        {"title": "Opportunistic networking", "at": ["saar"]},
+        {"title": "Direct-to-satellite IoT", "at": ["saar"]},
+        {"title": "Direct-to-device", "at": ["saar"]}
+      ]
+    },
+    {
+      "id": "operations",
+      "name": "Mission operations",
+      "about": "Running a mission once it flies: planning the passes, sending commands, reading telemetry.",
+      "lectures": [
+        {"title": "Operations across the mission life cycle", "at": ["uba"]},
+        {"title": "Commanding, telemetry and data products", "at": ["saar", "uba"]},
+        {"title": "Mission control with Yamcs, hands-on", "at": ["saar"]}
+      ]
+    },
+    {
+      "id": "informatics",
+      "name": "Space informatics",
+      "about": "Algorithms that plan and check space systems: optimisation, model checking and learning.",
+      "lectures": [
+        {"title": "Linear and dynamic programming", "at": ["saar"]},
+        {"title": "Model checking with timed automata", "at": ["saar"]},
+        {"title": "Contact plan design", "at": ["saar"]},
+        {"title": "Battery-aware scheduling", "at": ["saar"]},
+        {"title": "Sustainable space", "at": ["saar"]},
+        {"title": "Uncertainty-aware routing", "at": ["saar"]},
+        {"title": "Machine learning", "at": ["saar"]},
+        {"title": "AI for constellation operations", "at": ["saar"]}
+      ]
+    }
+  ]
+}

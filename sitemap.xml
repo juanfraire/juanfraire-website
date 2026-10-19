@@ -2,19 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://juanfraire.space/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/about/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
+    <loc>https://juanfraire.space/courses/</loc>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/dtn/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/es/prensa/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
@@ -22,7 +26,7 @@
   </url>
   <url>
     <loc>https://juanfraire.space/fr/presse/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
@@ -30,19 +34,19 @@
   </url>
   <url>
     <loc>https://juanfraire.space/mega-constellations/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/news/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/orbital-computing/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/press/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://juanfraire.space/press/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://juanfraire.space/es/prensa/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://juanfraire.space/fr/presse/"/>
@@ -50,770 +54,770 @@
   </url>
   <url>
     <loc>https://juanfraire.space/publications/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2013-on-the-design-of-fair-contact-plans-in-predictable/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2013-opencl-accelerated-simplified-general-perturbations/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2013-opencl-overview-implementation-and-performance/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2014-assessing-dtn-architecture-reliability/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2014-development-of-a-dtn-bundle-protocol-convergence/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2014-leveraging-routing-performance-and-congestion/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2014-on-the-design-and-analysis-of-fair-contact-plans/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2015-a-flexible-and-autonomous-communication-subsystem/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2015-congestion-modeling-and-management-techniques/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2015-design-challenges-in-contact-plans/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2015-preliminary-results-of-an-evolutionary-approach/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2015-routing-aware-fair-contact-plan-design/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2016-analysis-of-communication-strategies-for-earth/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2016-evidences-of-stochastic-bayesian-machines-robustness/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2016-glorbit-a-3d-satellite-orbit-propagator-for-network/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2016-internetworking-approaches-towards-along-track/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2016-traffic-aware-contact-plan-design/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-an-evolutionary-approach-towards-contact-plan-design/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-assessing-contact-graph-routing-performance/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-benefits-and-challenges-of-cross-linked-ring-road/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-contact-plan-design-for-predictable/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-delay-tolerant-satellite-networks/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-dtnsim-bridging-the-gap-between-simulation/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-introducing-contact-plan-designer/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-on-the-performance-analysis-of-disruption-tolerant/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-on-the-robustness-of-stochastic-bayesian-machines/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-preliminary-results-of-netfi-2/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2017-seu-sensitivity-trends-of-three-successive/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-a-markov-decision-process-for-routing-in-space-dtns/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-a-soft-error-resilient-route-computation-unit-for-3d/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-battery-aware-contact-plan-design-for-leo-satellite/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-congestion-management-techniques/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-dtn-of-things/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-expected-file-delivery-time-of-dtn-protocol-over/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-integrating-scheduled-dtns-and-tdma-based-mac/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-managing-routing-scalability-in-space-dtns/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-modeling-routing-in-scheduled-delay-tolerant/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-on-route-table-computation-strategies/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-on-the-trade-off-analysis-of-centralized/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-performance-evaluation-of-quic-with-bbr-in-satellite/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-routing-in-space-delay-tolerant-networks/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-seu-characterization-of-three-successive-generations/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2018-tracking-lunar-ring-road-communication/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2019-a-wireless-embedded-system-for-measuring-the-effects/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2019-delay-tolerant-wireless-networks-on-chip/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2019-direct-to-satellite-iot-a-survey-of-the-state/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2019-effect-of-link-disruption-on-bp-ltp-over/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2019-energy-consumption-of-bundle-protocol-for-reliable/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2019-networking-in-interstellar-dimensions/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2019-towards-the-design-of-space-missions-with-optimal/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-a-shortest-path-tree-approach-for-routing-in-space/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-battery-aware-contact-plan-design-for-leo-satellite/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-distributed-contact-plan-design-for-gnsss/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-empowering-the-tracking-performance-of-leo-pnt/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-experimental-evaluation-of-on-board-contact-graph/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-leo-satellite-constellations-to-offload-optical/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-managing-fleets-of-leo-satellites/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-network-availability-maximization-for-free-space/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-sampling-distributed-schedulers-for-resilient-space/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2020-sparse-satellite-constellation-design-for-lora-based/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-centralized-and-decentralized-routing-solutions/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-covid-19-mitigation-by-digital-contact-tracing/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-embedded-wireless-delay-tolerant-networks-on-chips/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-empowering-the-tracking-performance-of-leo-based/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-feature-selection-for-proximity-estimation/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-on-the-automation-optimization-and-in-orbit/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-on-the-scalability-of-battery-aware-contact-plan/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-ress-iot-a-scalable-energy-efficient-mac-protocol/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-revising-computer-science-networking-hands-on/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-routing-in-delay-tolerant-networks-under-uncertain/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-routing-in-the-space-internet/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-satellite-based-ais-trade-off-analysis/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2021-uplink-transmission-probability-functions/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-a-parametric-data-handling-evaluation-framework/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-comparing-statistical-and-analytical-routing/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-contact-plan-design-for-gnss-constellations/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-distributed-on-demand-routing-for-leo/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-florasat-le-simulateur-pour-la-communication-lora/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-ring-road-networks/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-simulating-lora-based-direct-to-satellite-iot/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-space-terrestrial-integrated-internet-of-things/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-sparse-satellite-constellation-design-for-global/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2022-uplink-transmission-policies-for-lora-based/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-continuous-time-emulation-for-software-defined/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-enhanced-pathfinding-and-scalability/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-inter-regional-routing-in-interplanetary-networks/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-lr-fhss-j-ai-perdu-l-entete/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-network-size-estimation-for-direct-to-satellite-iot/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-network-size-estimation-for-lora-based/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-on-the-tractability-of-yen-s-algorithm-and-contact/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-polygon-based-algorithms-for-n-satellite/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-recovering-headerless-frames-in-lr-fhss/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-routing-in-scalable-delay-tolerant-space-networks/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2023-toward-deep-digital-contact-tracing/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-a-case-study-of-an-hybrid-rf-and-optical/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-a-novel-non-terrestrial-networks-architecture/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-a-stability-first-approach-to-running-tcp-over/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-a-survey-on-direct-to-device-satellite/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-advanced-constellation-emulation-and-synthetic/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-architectural-framework-and-feasibility-of-internet/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-autonomous-max-flow-interplanetary-laser-link/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-constellation-autonomy-ai-solutions-for-adaptable/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-design-and-implementation-of-the-protocol-stack/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-distributed-volume-management-in-space-dtns/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-dts-iot-resource-allocation-analysis-framework/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-fuzzy-logic-based-orchestration-of-multi-access-edge/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-integrating-satellite-and-network-operations/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-integrating-satellite-constellation-and-mobile/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-ipn-v-the-interplanetary-network-visualizer/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-modest-models-and-tools-for-real-stochastic-timed/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-multi-gateway-lorawan-throughput-modeling/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-network-emulation-testbed-capabilities/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-network-storage-analysis-via-semiring-geometry/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-on-the-role-of-delay-tolerant-networks-and-contact/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-on-the-use-of-mega-constellation-services-in-space/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-optimizing-deep-space-dtn-congestion-control/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-performance-assessment-of-lorawan-dts-iot-networks/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-quantitative-analysis-of-segmented-satellite-network/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-rf-assisted-uncertainty-cone-reduction-in-free-space/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-routing-in-all-optical-leo-constellations/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-routing-in-future-space-terrestrial-integrated/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-satellite-visibility-prediction-for-constrained/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-the-architectural-refinement-of-d3tn/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-toward-optimal-placement-of-free-space-optical/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-trends-in-lpwan-technologies-for-leo-satellite/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2024-unlocking-dts-iot-medium-access-through/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-a-sabr-the-adaptive-library-for-schedule-aware/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-adaptive-orbital-direct-to-device/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-advanced-routing-strategies-for-leo-and-vleo/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-anyone-anywhere-not-everyone-everywhere/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-comparing-statistical-analytical-and-learning-based/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-custody-transfer-and-compressed-status-reporting/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-deep-reinforcement-learning-for-routing-in-uncertain/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-design-of-a-digital-twin-for-nb-iot-satellite/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-dirty-bits-in-low-earth-orbit/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-distributed-on-demand-routing-for-vleo/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-enhanced-lr-fhss-receiver-for-headerless-frame/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-enhancing-lr-fhss-scalability-through-advanced/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-evolution-of-interplanetary-internet/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-fedsat-lam-enabling-large-ai-models/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-florasat-2-joint-access-and-routing-evaluation/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-florasat-2-simulating-cross-linked/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-from-the-city-to-the-clouds/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-modeling-pointing-acquisition-and-tracking-delays/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-network-size-estimation-in-dts-iot/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-on-the-latency-trade-off-between-space/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-on-the-role-of-ai-in-managing-satellite/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-on-the-role-of-machine-learning-in-satellite/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-performance-comparison-of-dtn-inspired-approaches/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-phantomlink-emulating-virtual-end-to-end-links/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-pomdp-based-routing-for-dtns-with-partial-knowledge/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-probabilistic-aware-satellite-constellation/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-quantifying-edge-server-placement-in-leo/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-selected-results-from-the-redmars2-project/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-toward-integrated-satellite-operations-and-network/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2025-towards-a-unified-routing-framework/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-beyond-the-cone-model/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-blind-vs-satellite-detect-uplink-in-leo/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-cgr-a-search-for-contact-graph-routing/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-constellation-management-for-inter-satellite-link/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-contact-plan-design-for-cross-linked-gnsss/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-contact-plan-design-for-optical-interplanetary/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-dark-clouds-rising-in-low-earth-orbit/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-deploying-quic-in-challenged-networks/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-direct-to-satellite-internet-of-things-dts-iot/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-distributed-reinforcement-learning-for-resource/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-dorsal-downlink-optimization-for-robust/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-end-to-end-testbed-validation-of-periodic/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-esc-an-emulation-framework-for-the-spatial-computing/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-fast-analytical-tuning-of-repetition-based-mac/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-from-emerging-leo-satellite-constellations/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-ir-cgr-time-aware-inter-region-contact-graph-routing/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-joint-contact-planning-for-navigation/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-joint-lora-and-lr-fhss-resource-allocation/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-lifespan-aware-contact-plan-design/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-meteornet-continuous-time-emulation-platform/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-on-the-distribution-of-dtn-reachability-information/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-online-learning-for-predictive-satellite-telemetry/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-optimal-design-of-space-based-data-center/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-optimized-contact-plan-design-for-reflector/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-powering-the-cloud-above-the-clouds/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-progressive-replacement-sequence-planning/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-rf-assisted-compensation-for-rapid-optical/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-rf-emulated-tn-ntn-testbed-for-service-continuity/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-security-aware-route-selection-in-dtns/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-semicentralized-online-resource-allocation/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-space-cloud-networks/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-to-transmit-or-not/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/publications/2026-transmit-less-deliver-more/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/satellite-iot/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://juanfraire.space/software/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
 </urlset>
