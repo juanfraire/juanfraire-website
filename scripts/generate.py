@@ -73,7 +73,7 @@ BIB = SITE.parent / "cv/cv-juan-fraire.bib"
 NEWS = SITE / "data/news"
 NEWS_IMG, NEWS_VIDEO = "/assets/img/news/", "/assets/video/news/"
 COURSES = SITE / "data/courses.json"
-UNLISTED = {"timeline"}   # private (linked once, from about/): never rewritten, never in sitemap.xml
+UNLISTED = {"timeline", "talks"}   # private or unlinked (timeline: from about/; talks: shared by URL): never rewritten, never in sitemap.xml
 
 
 def site_pages():

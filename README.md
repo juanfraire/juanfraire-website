@@ -228,6 +228,8 @@ data/news/                  one file per news post
 vendor/three/               three.js r170 (MIT)
 assets/fonts/               Inria Sans (SIL Open Font Licence)
 timeline/                   the private timeline (password; see above): unlock.js, app.js, globe.js, data/timeline.enc.json
+talks/<slug>/               talk decks shared by URL only: no link on the site, kept out of sitemap.xml (UNLISTED in generate.py);
+                            each is a Marp HTML deck with only the assets it loads, from talks/_tools/talk.sh <deck.md> web <dir>
 scripts/                    serve.py, generate.py, fetch_pubs.py, encrypt_timeline.mjs, add_post.py, make_assets.py (+ git-ignored sources.local.json),
                             og-card.html (social card and heroes from the tour), pycgr-figure/ (the pyCGR picture),
                             shots/ (screenshots of a project website and of a video, with their dates)

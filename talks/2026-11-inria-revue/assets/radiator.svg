@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="499.309619pt" height="192.788612pt" viewBox="0 0 499.309619 192.788612" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-14T13:14:50.707020</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 192.788612 
+L 499.309619 192.788612 
+L 499.309619 0 
+L 0 0 
+L 0 192.788612 
+z
+" style="fill: none"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 160.502813 151.089862 
+L 464.054813 151.089862 
+L 464.054813 4.728262 
+L 160.502813 4.728262 
+L 160.502813 151.089862 
+z
+" style="fill: none"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 160.502813 40.9335 
+L 370.91954 40.9335 
+L 370.91954 25.013466 
+L 160.502813 25.013466 
+z
+" clip-path="url(#p389574c4bc)" style="fill: #c9191e"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 160.502813 66.610973 
+L 270.223063 66.610973 
+L 270.223063 50.69094 
+L 160.502813 50.69094 
+z
+" clip-path="url(#p389574c4bc)" style="fill: #ff8300"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 160.502813 92.288447 
+L 265.711176 92.288447 
+L 265.711176 76.368413 
+L 160.502813 76.368413 
+z
+" clip-path="url(#p389574c4bc)" style="fill: #ff8300"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 160.502813 117.965921 
+L 225.083501 117.965921 
+L 225.083501 102.045887 
+L 160.502813 102.045887 
+z
+" clip-path="url(#p389574c4bc)" style="fill: #a60f79"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 160.502813 143.643394 
+L 215.362938 143.643394 
+L 215.362938 127.723361 
+L 160.502813 127.723361 
+z
+" clip-path="url(#p389574c4bc)" style="fill: #a60f79"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m831fb83d76" d="M 0 0 
+L 0 3.5 
+" style="stroke: #5b6270; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m831fb83d76" x="160.502813" y="151.089862" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 15px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #5b6270" x="160.502813" y="169.487518" transform="rotate(-0 160.502813 169.487518)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m831fb83d76" x="229.491903" y="151.089862" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 15px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #5b6270" x="229.491903" y="169.487518" transform="rotate(-0 229.491903 169.487518)">10</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m831fb83d76" x="298.480994" y="151.089862" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 15px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #5b6270" x="298.480994" y="169.487518" transform="rotate(-0 298.480994 169.487518)">20</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m831fb83d76" x="367.470085" y="151.089862" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 15px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #5b6270" x="367.470085" y="169.487518" transform="rotate(-0 367.470085 169.487518)">30</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m831fb83d76" x="436.459176" y="151.089862" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 15px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #5b6270" x="436.459176" y="169.487518" transform="rotate(-0 436.459176 169.487518)">40</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 13px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #1d1d22" x="312.278813" y="186.485018" transform="rotate(-0 312.278813 186.485018)">radiator mass for a 1 kW node (kg)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_6"/>
+     <g id="text_7">
+      <text style="font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: end; fill: #5b6270" x="157.002813" y="141.002284" transform="rotate(-0 157.002813 141.002284)">47 °C and half mass</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_7"/>
+     <g id="text_8">
+      <text style="font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: end; fill: #5b6270" x="157.002813" y="115.32481" transform="rotate(-0 157.002813 115.32481)">panel at 77 °C</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_8"/>
+     <g id="text_9">
+      <text style="font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: end; fill: #5b6270" x="157.002813" y="89.647337" transform="rotate(-0 157.002813 89.647337)">half-mass panel</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_9"/>
+     <g id="text_10">
+      <text style="font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: end; fill: #5b6270" x="157.002813" y="63.969863" transform="rotate(-0 157.002813 63.969863)">panel at 47 °C</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_10"/>
+     <g id="text_11">
+      <text style="font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: end; fill: #5b6270" x="157.002813" y="38.292389" transform="rotate(-0 157.002813 38.292389)">ISS panels (≈ 3–17 °C)</text>
+     </g>
+    </g>
+   </g>
+   <g id="line2d_11">
+    <path d="M 177.060194 151.089862 
+L 177.060194 4.728262 
+" clip-path="url(#p389574c4bc)" style="fill: none; stroke: #27348b; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 160.502813 151.089862 
+L 464.054813 151.089862 
+" style="fill: none; stroke: #5b6270; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22" x="374.368994" y="36.78192" transform="rotate(-0 374.368994 36.78192)">30.5 kg  (12.7×)</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22" x="273.672517" y="62.459394" transform="rotate(-0 273.672517 62.459394)">15.9 kg  (6.6×)</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22" x="269.160631" y="88.136868" transform="rotate(-0 269.160631 88.136868)">15.2 kg  (6.4×)</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22" x="228.532955" y="113.814341" transform="rotate(-0 228.532955 113.814341)">9.4 kg  (3.9×)</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22" x="218.812392" y="139.491815" transform="rotate(-0 218.812392 139.491815)">8.0 kg  (3.3×)</text>
+   </g>
+   <g id="text_17">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #27348b" x="179.129867" y="13.477969" transform="rotate(-0 179.129867 13.477969)">the GPU: 2.4 kg</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p389574c4bc">
+   <rect x="160.502813" y="4.728262" width="303.552" height="146.3616"/>
+  </clipPath>
+ </defs>
+</svg>

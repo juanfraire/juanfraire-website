@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 450" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif">
+  <!-- The loop that closes on itself (redrawn from fig3 of the IEEE Computer submission). -->
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#C9191E"/>
+    </marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1067A3"/>
+    </marker>
+  </defs>
+  <style>
+    .node { fill: #fff; stroke: #27348B; stroke-width: 2.4; }
+    .hot  { fill: #fdf0f0; stroke: #C9191E; }
+    .lab  { font-size: 19px; font-weight: 700; fill: #1d1d22; text-anchor: middle; }
+    .edge { fill: none; stroke: #C9191E; stroke-width: 3; marker-end: url(#ar); }
+    .verb { font-size: 16px; fill: #5b6270; font-style: italic; }
+  </style>
+
+  <!-- arcs -->
+  <path class="edge" d="M 238 58 C 160 70, 110 95, 100 140"/>
+  <path class="edge" d="M 92 200 C 80 260, 95 305, 128 334"/>
+  <path class="edge" d="M 252 372 C 300 392, 350 392, 398 372"/>
+  <path class="edge" d="M 528 334 C 560 300, 570 255, 560 200"/>
+  <path class="edge" d="M 548 140 C 535 95, 490 68, 412 58"/>
+
+  <text class="verb" x="128" y="88" text-anchor="end">is bought with</text>
+  <text class="verb" x="62" y="276" text-anchor="end">adds</text>
+  <text class="verb" x="325" y="414" text-anchor="middle">raises</text>
+  <text class="verb" x="586" y="276">inflates</text>
+  <text class="verb" x="526" y="88">demands more</text>
+
+  <!-- nodes -->
+  <rect class="node hot" x="235" y="22" width="180" height="62" rx="10"/>
+  <text class="lab" x="325" y="48">redundancy</text>
+  <text class="lab" x="325" y="72" style="font-weight:400;font-size:16px">shielding · spares</text>
+
+  <rect class="node" x="22" y="142" width="150" height="56" rx="10"/>
+  <text class="lab" x="97" y="177">launched mass</text>
+
+  <rect class="node" x="62" y="336" width="190" height="62" rx="10"/>
+  <text class="lab" x="157" y="362">cross-section</text>
+  <text class="lab" x="157" y="386" style="font-weight:400;font-size:16px">&amp; debris</text>
+
+  <rect class="node" x="398" y="336" width="190" height="62" rx="10"/>
+  <text class="lab" x="493" y="374">collision hazard</text>
+
+  <rect class="node hot" x="488" y="142" width="150" height="56" rx="10"/>
+  <text class="lab" x="563" y="177">failure rate</text>
+
+  <!-- the one arc that pushes the other way -->
+  <rect x="262" y="262" width="150" height="40" rx="8" fill="#eef5fb" stroke="#1067A3" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="337" y="288" text-anchor="middle" font-size="16" font-weight="700" fill="#1067A3">reliable disposal</text>
+  <path d="M 285 302 C 270 318, 252 328, 240 336" fill="none" stroke="#1067A3" stroke-width="2.4" stroke-dasharray="6 4" marker-end="url(#ab)"/>
+  <text x="300" y="327" font-size="15" font-style="italic" fill="#1067A3">starves</text>
+
+  <!-- the message -->
+  <text x="330" y="165" text-anchor="middle" font-size="19" font-style="italic" font-weight="700" fill="#A60F79">the armour a system adds</text>
+  <text x="330" y="190" text-anchor="middle" font-size="19" font-style="italic" font-weight="700" fill="#A60F79">to survive becomes part of</text>
+  <text x="330" y="215" text-anchor="middle" font-size="19" font-style="italic" font-weight="700" fill="#A60F79">the hazard it must survive</text>
+</svg>

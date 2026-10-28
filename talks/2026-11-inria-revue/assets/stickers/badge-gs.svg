@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220">
+  <!-- certification seal, after the old "works on my machine" badge: works on ground, certified -->
+  <defs>
+    <path id="top" d="M28,110 A82,82 0 0 1 192,110"/>
+    <path id="bot" d="M34,110 A76,76 0 0 0 186,110"/>
+  </defs>
+  <circle cx="110" cy="110" r="106" fill="#2e7d32"/>
+  <circle cx="110" cy="110" r="99" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="4 4"/>
+  <circle cx="110" cy="110" r="64" fill="#fff"/>
+  <text font-family="'Arial Black', Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="1.6" fill="#fff">
+    <textPath href="#top" startOffset="50%" text-anchor="middle">WORKS ON GROUND</textPath>
+  </text>
+  <text font-family="'Arial Black', Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="3" fill="#fff" dominant-baseline="hanging">
+    <textPath href="#bot" startOffset="50%" text-anchor="middle">CERTIFIED</textPath>
+  </text>
+  <text x="33" y="116" font-family="Arial, sans-serif" font-size="15" fill="#fff" text-anchor="middle">★</text>
+  <text x="187" y="116" font-family="Arial, sans-serif" font-size="15" fill="#fff" text-anchor="middle">★</text>
+  <g transform="translate(110,112)">
+    <path d="M-12,22 L0,-6 L12,22 Z" fill="#44546A"/>
+    <path d="M-30,-24 A34,34 0 0 0 16,-2 Z" fill="#c9ced8" stroke="#44546A" stroke-width="3" transform="rotate(-20)"/>
+    <line x1="-6" y1="-13" x2="10" y2="-30" stroke="#44546A" stroke-width="3"/>
+    <circle cx="10" cy="-30" r="3.5" fill="#44546A"/>
+    <path d="M-34,6 l16,16 l32,-36" fill="none" stroke="#2e7d32" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>
+  </g>
+</svg>

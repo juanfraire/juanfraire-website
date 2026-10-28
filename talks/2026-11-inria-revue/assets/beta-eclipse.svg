@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="384" viewBox="0 8 960 384" role="img" aria-labelledby="title desc">
+  <title id="title">Why a high beta angle means no eclipse</title>
+  <desc id="desc">Two views down the Sun line. Earth's shadow is a disc of radius R-Earth. A 600 km orbit projects to an ellipse with semi-axes a and a sin beta. At beta = 40 degrees the ellipse cuts through the shadow disc; at beta = 75 degrees it clears it entirely.</desc>
+  <defs>
+    <marker id="arrTeal" markerWidth="9" markerHeight="9" refX="7.5" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#FF8300"/>
+    </marker>
+    <clipPath id="shadowA"><path d="M150,215 A100,100 0 0 0 350,215 Z"/></clipPath>
+    <clipPath id="shadowB"><path d="M610,215 A100,100 0 0 0 810,215 Z"/></clipPath>
+  </defs>
+
+  <rect width="960" height="400" fill="#ffffff"/>
+
+  <text x="480" y="26" text-anchor="middle" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="700" fill="#334155">Looking straight down the Sun line, at a 600 km orbit</text>
+
+  <!-- ============ Panel A : beta = 40 deg ============ -->
+  <circle cx="250" cy="215" r="100" fill="#334155"/>
+  <text x="250" y="256" text-anchor="middle" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="700" fill="#94a3b8">shadow</text>
+  <ellipse cx="250" cy="215" rx="109" ry="70" fill="none" stroke="#1067A3" stroke-width="5"/>
+  <g clip-path="url(#shadowA)">
+    <ellipse cx="250" cy="215" rx="109" ry="70" fill="none" stroke="#A60F79" stroke-width="7"/>
+  </g>
+  <line x1="250" y1="215" x2="250" y2="147" stroke="#FF8300" stroke-width="4" marker-end="url(#arrTeal)"/>
+  <text x="238" y="178" text-anchor="end" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="24" font-weight="700" fill="#FF8300">a sin &#946;</text>
+
+  <text x="250" y="93" text-anchor="middle" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="27" font-weight="700" fill="#334155">&#946; = 40&#176;</text>
+  <text x="250" y="352" text-anchor="middle" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="700" fill="#A60F79">a sin &#946; = 4,485 km &lt; R⊕</text>
+  <text x="250" y="381" text-anchor="middle" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="24" fill="#A60F79">the arc behind Earth is in eclipse</text>
+
+  <!-- ============ Panel B : beta = 75 deg ============ -->
+  <circle cx="710" cy="215" r="100" fill="#334155"/>
+  <text x="710" y="256" text-anchor="middle" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="700" fill="#94a3b8">shadow</text>
+  <ellipse cx="710" cy="215" rx="109" ry="106" fill="none" stroke="#1067A3" stroke-width="5"/>
+  <g clip-path="url(#shadowB)">
+    <ellipse cx="710" cy="215" rx="109" ry="106" fill="none" stroke="#A60F79" stroke-width="7"/>
+  </g>
+  <line x1="710" y1="215" x2="710" y2="113" stroke="#FF8300" stroke-width="4" marker-end="url(#arrTeal)"/>
+  <text x="698" y="162" text-anchor="end" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="24" font-weight="700" fill="#FF8300">a sin &#946;</text>
+
+  <text x="710" y="93" text-anchor="middle" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="27" font-weight="700" fill="#334155">&#946; = 75&#176;</text>
+  <text x="710" y="352" text-anchor="middle" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="700" fill="#608B37">a sin &#946; = 6,740 km &gt; R⊕</text>
+  <text x="710" y="381" text-anchor="middle" font-family="Inria Sans, Helvetica Neue, Arial, sans-serif" font-size="24" fill="#608B37">the orbit never enters the shadow</text>
+</svg>

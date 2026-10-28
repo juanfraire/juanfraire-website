@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="621pt" height="192.632211pt" viewBox="0 0 621 192.632211" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-14T23:40:23.339442</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 192.632211 
+L 621 192.632211 
+L 621 -0 
+L 0 -0 
+L 0 192.632211 
+z
+" style="fill: none"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 3.6 189.032211 
+L 617.4 189.032211 
+L 617.4 3.6 
+L 3.6 3.6 
+L 3.6 189.032211 
+z
+" style="fill: none"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 3.6 89.532 
+L 617.4 89.532 
+" clip-path="url(#pc3ed0772da)" style="fill: none; stroke: #e3e5ea; stroke-width: 6; stroke-linecap: round"/>
+   </g>
+   <g id="matplotlib.axis_1"/>
+   <g id="matplotlib.axis_2"/>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m45697142c9" d="M 0 10.246951 
+C 2.717523 10.246951 5.324109 9.167267 7.245688 7.245688 
+C 9.167267 5.324109 10.246951 2.717523 10.246951 0 
+C 10.246951 -2.717523 9.167267 -5.324109 7.245688 -7.245688 
+C 5.324109 -9.167267 2.717523 -10.246951 0 -10.246951 
+C -2.717523 -10.246951 -5.324109 -9.167267 -7.245688 -7.245688 
+C -9.167267 -5.324109 -10.246951 -2.717523 -10.246951 0 
+C -10.246951 2.717523 -9.167267 5.324109 -7.245688 7.245688 
+C -5.324109 9.167267 -2.717523 10.246951 0 10.246951 
+z
+" style="stroke: #ffffff; stroke-width: 2.5"/>
+    </defs>
+    <g clip-path="url(#pc3ed0772da)">
+     <use xlink:href="#m45697142c9" x="31.587054" y="89.532" style="fill: #608b37; stroke: #ffffff; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #608b37" x="31.587054" y="51.868036" transform="rotate(-0 31.587054 51.868036)">Starcloud-1</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 14.5px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #5b6270" x="31.587054" y="72.043695" transform="rotate(-0 31.587054 72.043695)">1 sat · 1 H100 · flown Nov 2025</text>
+   </g>
+   <g id="PathCollection_2">
+    <defs>
+     <path id="m715597b1c3" d="M 0 8.062258 
+C 2.138136 8.062258 4.188987 7.212767 5.700877 5.700877 
+C 7.212767 4.188987 8.062258 2.138136 8.062258 0 
+C 8.062258 -2.138136 7.212767 -4.188987 5.700877 -5.700877 
+C 4.188987 -7.212767 2.138136 -8.062258 0 -8.062258 
+C -2.138136 -8.062258 -4.188987 -7.212767 -5.700877 -5.700877 
+C -7.212767 -4.188987 -8.062258 -2.138136 -8.062258 0 
+C -8.062258 2.138136 -7.212767 4.188987 -5.700877 5.700877 
+C -4.188987 7.212767 -2.138136 8.062258 0 8.062258 
+z
+" style="stroke: #ffffff; stroke-width: 2.5"/>
+    </defs>
+    <g clip-path="url(#pc3ed0772da)">
+     <use xlink:href="#m715597b1c3" x="403.470982" y="89.532" style="fill: #5b6270; stroke: #ffffff; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #44546a" x="403.470982" y="117.681945" transform="rotate(-0 403.470982 117.681945)">Starlink</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 14.5px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #5b6270" x="403.470982" y="134.470261" transform="rotate(-0 403.470982 134.470261)">≈10⁴ sats</text>
+   </g>
+   <g id="PathCollection_3">
+    <defs>
+     <path id="mbf5adfe060" d="M 0 10.246951 
+C 2.717523 10.246951 5.324109 9.167267 7.245688 7.245688 
+C 9.167267 5.324109 10.246951 2.717523 10.246951 0 
+C 10.246951 -2.717523 9.167267 -5.324109 7.245688 -7.245688 
+C 5.324109 -9.167267 2.717523 -10.246951 0 -10.246951 
+C -2.717523 -10.246951 -5.324109 -9.167267 -7.245688 -7.245688 
+C -9.167267 -5.324109 -10.246951 -2.717523 -10.246951 0 
+C -10.246951 2.717523 -9.167267 5.324109 -7.245688 7.245688 
+C -5.324109 9.167267 -2.717523 10.246951 0 10.246951 
+z
+" style="stroke: #ffffff; stroke-width: 2.5"/>
+    </defs>
+    <g clip-path="url(#pc3ed0772da)">
+     <use xlink:href="#mbf5adfe060" x="469.726724" y="89.532" style="fill: #a60f79; stroke: #ffffff; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #a60f79" x="469.726724" y="51.727411" transform="rotate(-0 469.726724 51.727411)">Blue Origin Sunrise</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 14.5px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #5b6270" x="469.726724" y="72.043695" transform="rotate(-0 469.726724 72.043695)">51,600 sats · Mar 2026</text>
+   </g>
+   <g id="PathCollection_4">
+    <defs>
+     <path id="m30288868fa" d="M 0 10.246951 
+C 2.717523 10.246951 5.324109 9.167267 7.245688 7.245688 
+C 9.167267 5.324109 10.246951 2.717523 10.246951 0 
+C 10.246951 -2.717523 9.167267 -5.324109 7.245688 -7.245688 
+C 5.324109 -9.167267 2.717523 -10.246951 0 -10.246951 
+C -2.717523 -10.246951 -5.324109 -9.167267 -7.245688 -7.245688 
+C -9.167267 -5.324109 -10.246951 -2.717523 -10.246951 0 
+C -10.246951 2.717523 -9.167267 5.324109 -7.245688 7.245688 
+C -5.324109 9.167267 -2.717523 10.246951 0 10.246951 
+z
+" style="stroke: #ffffff; stroke-width: 2.5"/>
+    </defs>
+    <g clip-path="url(#pc3ed0772da)">
+     <use xlink:href="#m30288868fa" x="589.412946" y="89.532" style="fill: #c9191e; stroke: #ffffff; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: end; fill: #c9191e" x="589.412946" y="117.681945" transform="rotate(-0 589.412946 117.681945)">SpaceX FCC filing</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 14.5px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: end; fill: #5b6270" x="589.412946" y="134.470261" transform="rotate(-0 589.412946 134.470261)">≤ 10⁶ sats · Jan 2026</text>
+   </g>
+   <g id="PathCollection_5">
+    <defs>
+     <path id="mcb57ffe70b" d="M 0 10.246951 
+C 2.717523 10.246951 5.324109 9.167267 7.245688 7.245688 
+C 9.167267 5.324109 10.246951 2.717523 10.246951 0 
+C 10.246951 -2.717523 9.167267 -5.324109 7.245688 -7.245688 
+C 5.324109 -9.167267 2.717523 -10.246951 0 -10.246951 
+C -2.717523 -10.246951 -5.324109 -9.167267 -7.245688 -7.245688 
+C -9.167267 -5.324109 -10.246951 -2.717523 -10.246951 0 
+C -10.246951 2.717523 -9.167267 5.324109 -7.245688 7.245688 
+C -5.324109 9.167267 -2.717523 10.246951 0 10.246951 
+z
+" style="stroke: #ffffff; stroke-width: 2.5"/>
+    </defs>
+    <g clip-path="url(#pc3ed0772da)">
+     <use xlink:href="#mcb57ffe70b" x="209.02078" y="89.532" style="fill: #ff8300; stroke: #ffffff; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #ff8300" x="209.02078" y="117.681945" transform="rotate(-0 209.02078 117.681945)">Google Suncatcher</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 14.5px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #5b6270" x="209.02078" y="134.470261" transform="rotate(-0 209.02078 134.470261)">81-sat TPU cluster</text>
+   </g>
+   <g id="patch_3">
+    <path d="M 35.819127 173.202632 
+Q 310.49933 173.202632 585.179534 173.202632 
+" style="fill: none; stroke: #27348b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 41.819127 176.202632 
+L 35.819127 173.202632 
+L 41.819127 170.202632 
+" style="fill: none; stroke: #27348b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 579.179534 170.202632 
+L 585.179534 173.202632 
+L 579.179534 176.202632 
+" style="fill: none; stroke: #27348b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #27348b" x="310.5" y="165.916161" transform="rotate(-0 310.5 165.916161)">six orders of magnitude</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pc3ed0772da">
+   <rect x="3.6" y="3.6" width="613.8" height="185.432211"/>
+  </clipPath>
+ </defs>
+</svg>

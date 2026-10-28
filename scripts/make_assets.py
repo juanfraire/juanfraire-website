@@ -174,7 +174,7 @@ SOFTWARE_SHOTS = {
     "a-sabr": (CODE / "a-sabr/asabr/examples/inter-regional_routing/images/irr-cp.svg", (0, 140, 1600, 910), "figure"),  # without the title line
     "florasat": (CODE / "omnetpp-6.3.0/samples/florasat/images/screenshot.jpg", (330, 70, 1275, 661), "shot"),
     "espas": (CODE / "espas/docs/images/espas.png", None, "figure"),
-    "meteornet": (DRIVE / "tesis/postdoc-unige-2022-09-camilo/2024-10-paper-asms-latency-tradeoff/1571096826 paper.pdf",
+    "meteornet": (DRIVE / "unige/2024-10-paper-asms-latency-tradeoff/1571096826 paper.pdf",
                   (3, 29, 237, 300, 354), "figure"),   # Fig. 2 of the ASMS/SPSC 2025 paper, © 2025 IEEE
     "odc-brightness": (SITE / "scripts/shots/odc-brightness.jpg", None, "shot"),   # the explorer's Horizon view, sky only, 10 Oct 2026
 }

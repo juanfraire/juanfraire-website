@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 316 214">
+  <!-- a satellite on re-entry, plasma trailing behind, calm face, coffee in hand ("this is fine") -->
+  <path d="M232,170 C185,190 110,170 52,112 C82,124 92,112 84,94 C108,116 126,104 118,74 C142,104 164,102 166,82 C178,108 204,112 226,104 C246,122 248,150 232,170 Z" fill="#e8461b"/>
+  <path d="M226,160 C186,174 128,160 84,118 C106,124 114,116 110,104 C128,120 142,112 138,94 C154,114 170,112 172,98 C184,118 204,122 220,116 C234,128 236,146 226,160 Z" fill="#ff8c1a"/>
+  <path d="M218,150 C190,160 154,152 124,128 C140,130 146,124 144,116 C158,126 168,122 168,112 C178,126 194,130 208,126 C220,134 224,142 218,150 Z" fill="#ffd23f"/>
+  <g transform="translate(205,138) rotate(-16)">
+    <line x1="-58" y1="0" x2="-26" y2="0" stroke="#5b6270" stroke-width="4"/>
+    <line x1="26" y1="0" x2="44" y2="0" stroke="#5b6270" stroke-width="4"/>
+    <g>
+      <rect x="-118" y="-17" width="62" height="34" fill="#2f4bb0" stroke="#1b2a6b" stroke-width="2.5"/>
+      <path d="M-102,-17 V17 M-87,-17 V17 M-72,-17 V17 M-118,0 H-56" stroke="#8fa6ec" stroke-width="1.5"/>
+      <path d="M-118,-17 l10,-9 l8,7 l9,-8 l7,8 l10,-6 l6,8" fill="#ff8c1a" stroke="#e8461b" stroke-width="2"/>
+    </g>
+    <rect x="42" y="-17" width="62" height="34" fill="#2f4bb0" stroke="#1b2a6b" stroke-width="2.5"/>
+    <path d="M57,-17 V17 M72,-17 V17 M87,-17 V17 M42,0 H104" stroke="#8fa6ec" stroke-width="1.5"/>
+    <rect x="-28" y="-28" width="56" height="54" rx="5" fill="#e3a93c" stroke="#9a6a12" stroke-width="2.5"/>
+    <path d="M-20,-18 l8,5 l6,-6 l9,7 M4,18 l7,-5 l8,6" stroke="#b9821f" stroke-width="1.6" fill="none"/>
+    <path d="M-6,-28 L-12,-44 M-20,-46 Q-12,-36 -2,-46" stroke="#5b6270" stroke-width="3" fill="none"/>
+    <circle cx="-10" cy="-6" r="4" fill="#1d1d22"/><circle cx="-8.8" cy="-7.4" r="1.2" fill="#fff"/>
+    <circle cx="10" cy="-6" r="4" fill="#1d1d22"/><circle cx="11.2" cy="-7.4" r="1.2" fill="#fff"/>
+    <path d="M-12,6 Q0,17 12,6" stroke="#1d1d22" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <g transform="translate(24,26) rotate(16)">
+      <rect x="0" y="0" width="16" height="17" rx="2" fill="#fff" stroke="#44546A" stroke-width="2"/>
+      <path d="M16,4 q7,0 7,5 q0,5 -7,5" fill="none" stroke="#44546A" stroke-width="2"/>
+      <path d="M5,-4 q-3,-4 0,-8 M11,-4 q-3,-4 0,-8" stroke="#9aa3b2" stroke-width="1.6" fill="none"/>
+    </g>
+  </g>
+</svg>

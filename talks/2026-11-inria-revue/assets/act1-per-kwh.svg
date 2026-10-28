@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="257.588102pt" height="187.532531pt" viewBox="0 0 257.588102 187.532531" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-14T13:14:50.615677</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 187.532531 
+L 257.588102 187.532531 
+L 257.588102 0 
+L 0 0 
+L 0 187.532531 
+z
+" style="fill: none"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 12.542821 153.293813 
+L 253.598821 153.293813 
+L 253.598821 20.237812 
+L 12.542821 20.237812 
+L 12.542821 153.293813 
+z
+" style="fill: none"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 27.513499 153.293813 
+L 77.28197 153.293813 
+L 77.28197 100.690278 
+L 27.513499 100.690278 
+z
+" clip-path="url(#p29b17d3dee)" style="fill: #608b37"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 107.785227 153.293813 
+L 157.553698 153.293813 
+L 157.553698 72.686631 
+L 107.785227 72.686631 
+z
+" clip-path="url(#p29b17d3dee)" style="fill: #a60f79"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 188.056955 153.293813 
+L 237.825427 153.293813 
+L 237.825427 50.716919 
+L 188.056955 50.716919 
+z
+" clip-path="url(#p29b17d3dee)" style="fill: #c9191e"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 13px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #5b6270" transform="translate(34.967578 166.671781)">Earth</text>
+      <text style="font-size: 13px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #5b6270" transform="translate(3.6 181.228938)">solar + storage</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 13px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #5b6270" transform="translate(116.400166 166.671781)">Orbit</text>
+      <text style="font-size: 13px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #5b6270" transform="translate(105.90165 181.228938)">Starship</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 13px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #5b6270" transform="translate(196.671894 166.671781)">Orbit</text>
+      <text style="font-size: 13px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #5b6270" transform="translate(186.783769 181.228938)">Falcon 9</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="line2d_4">
+    <path d="M 23.499912 35.70944 
+L 36.343389 35.70944 
+" clip-path="url(#p29b17d3dee)" style="fill: none; stroke: #1d1d22; stroke-width: 2.6"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 12.542821 153.293813 
+L 253.598821 153.293813 
+" style="fill: none; stroke: #5b6270; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #1d1d22" x="52.397734" y="94.268452" transform="rotate(-0 52.397734 94.268452)">34</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #1d1d22" x="132.669463" y="66.264806" transform="rotate(-0 132.669463 66.264806)">52  ×1.5</text>
+   </g>
+   <g id="line2d_5">
+    <path d="M 102.968923 143.546687 
+L 162.370002 143.546687 
+" clip-path="url(#p29b17d3dee)" style="fill: none; stroke: #1d1d22; stroke-width: 2.6"/>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22" x="163.975437" y="147.409812" transform="rotate(-0 163.975437 147.409812)">6</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #1d1d22" x="212.941191" y="44.295094" transform="rotate(-0 212.941191 44.295094)">66  ×1.9</text>
+   </g>
+   <g id="line2d_6">
+    <path d="M 183.240651 141.690092 
+L 242.64173 141.690092 
+" clip-path="url(#p29b17d3dee)" style="fill: none; stroke: #1d1d22; stroke-width: 2.6"/>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22" x="244.247165" y="145.553217" transform="rotate(-0 244.247165 145.553217)">8</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #1d1d22" transform="translate(40.356975 33.109831)">no battery</text>
+    <text style="font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #1d1d22" transform="translate(40.356975 45.207487)">(dawn–dusk orbit)</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #5b6270" x="12.542821" y="14.237812" transform="rotate(-0 12.542821 14.237812)">gCO₂e per kWh</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p29b17d3dee">
+   <rect x="12.542821" y="20.237812" width="241.056" height="133.056"/>
+  </clipPath>
+ </defs>
+</svg>

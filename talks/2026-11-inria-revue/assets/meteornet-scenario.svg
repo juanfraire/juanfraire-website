@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1560 742.89844"
+   font-family="'Inria Sans', Helvetica, Arial, sans-serif"
+   version="1.1"
+   id="svg91"
+   sodipodi:docname="scenario.svg"
+   width="1560"
+   height="742.89844"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview91"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:current-layer="svg91" />
+  <defs
+     id="defs4">
+    <marker
+       id="aInk"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="7"
+       markerHeight="7"
+       orient="auto-start-reverse">
+      <path
+         d="M 0,0 10,5 0,10 Z"
+         fill="#44546a"
+         id="path1" />
+    </marker>
+    <marker
+       id="aBlue"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="7"
+       markerHeight="7"
+       orient="auto-start-reverse">
+      <path
+         d="M 0,0 10,5 0,10 Z"
+         fill="#27348b"
+         id="path2" />
+    </marker>
+    <marker
+       id="aMag"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="7"
+       markerHeight="7"
+       orient="auto-start-reverse">
+      <path
+         d="M 0,0 10,5 0,10 Z"
+         fill="#a60f79"
+         id="path3" />
+    </marker>
+    <marker
+       id="aGreen"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="7"
+       markerHeight="7"
+       orient="auto-start-reverse">
+      <path
+         d="M 0,0 10,5 0,10 Z"
+         fill="#608b37"
+         id="path4" />
+    </marker>
+  </defs>
+  <!-- zones -->
+  <rect
+     x="0"
+     y="0"
+     width="1560"
+     height="422.89844"
+     fill="#edf1fa"
+     id="rect4"
+     style="stroke-width:1.02822" />
+  <rect
+     x="0"
+     y="422.89844"
+     width="1560"
+     height="320"
+     fill="#f5f6f2"
+     id="rect5" />
+  <line
+     x1="0"
+     y1="422.89844"
+     x2="1560"
+     y2="422.89844"
+     stroke="#c9cedd"
+     stroke-width="2"
+     id="line5" />
+  <text
+     x="20"
+     y="412.89844"
+     font-size="15px"
+     fill="#8a90a0"
+     id="text5">LEO shell · ~550 km</text>
+  <text
+     x="20"
+     y="446.89844"
+     font-size="15px"
+     fill="#8a90a0"
+     id="text6">Ground segment</text>
+  <!-- ISL caption -->
+  <text
+     x="780"
+     y="29.350643"
+     text-anchor="middle"
+     font-size="20px"
+     fill="#44546a"
+     font-weight="700"
+     id="text7">ISL topology re-computed every Δt = 30 s · link delay follows orbital distance · live re-wiring, no restart</text>
+  <!-- coverage cone from st8 -->
+  <polygon
+     points="870,400 600,150 330,400 "
+     fill="#1067a3"
+     opacity="0.08"
+     id="polygon7"
+     transform="translate(0,22.898437)" />
+  <text
+     x="600"
+     y="402.89844"
+     text-anchor="middle"
+     font-size="15px"
+     fill="#8a90a0"
+     id="text8">visibility cone · coverage ≈ 420 s per pass</text>
+  <!-- ISL dashed lines -->
+  <line
+     x1="332"
+     y1="132.89844"
+     x2="508"
+     y2="132.89844"
+     stroke="#7c86a0"
+     stroke-width="2.5"
+     stroke-dasharray="8, 7"
+     id="line8" />
+  <line
+     x1="692"
+     y1="132.89844"
+     x2="868"
+     y2="132.89844"
+     stroke="#7c86a0"
+     stroke-width="2.5"
+     stroke-dasharray="8, 7"
+     id="line9" />
+  <line
+     x1="1052"
+     y1="132.89844"
+     x2="1228"
+     y2="132.89844"
+     stroke="#7c86a0"
+     stroke-width="2.5"
+     stroke-dasharray="8, 7"
+     id="line10" />
+  <!-- satellites -->
+  <g
+     transform="translate(240,132.89844)"
+     id="g15">
+    <line
+       x1="0"
+       y1="-22"
+       x2="0"
+       y2="-40"
+       stroke="#44546a"
+       stroke-width="2"
+       id="line11" />
+    <circle
+       cx="0"
+       cy="-44"
+       r="4"
+       fill="#44546a"
+       id="circle11" />
+    <line
+       x1="-42"
+       y1="0"
+       x2="-35"
+       y2="0"
+       stroke="#44546a"
+       stroke-width="3"
+       id="line12" />
+    <line
+       x1="35"
+       y1="0"
+       x2="42"
+       y2="0"
+       stroke="#44546a"
+       stroke-width="3"
+       id="line13" />
+    <rect
+       x="-92"
+       y="-14"
+       width="50"
+       height="28"
+       rx="2"
+       fill="#1067a3"
+       id="rect13" />
+    <rect
+       x="42"
+       y="-14"
+       width="50"
+       height="28"
+       rx="2"
+       fill="#1067a3"
+       id="rect14" />
+    <path
+       d="m -75,-14 v 28 m 17,-28 V 14 M 59,-14 v 28 m 17,-28 v 28"
+       stroke="#ffffff"
+       stroke-width="1.5"
+       opacity="0.7"
+       id="path14" />
+    <rect
+       x="-35"
+       y="-22"
+       width="70"
+       height="44"
+       rx="6"
+       fill="#27348b"
+       id="rect15" />
+    <text
+       y="-58"
+       text-anchor="middle"
+       font-size="17px"
+       fill="#5b6270"
+       font-weight="700"
+       id="text15">st7</text>
+  </g>
+  <g
+     transform="translate(600,132.89844)"
+     id="g19">
+    <line
+       x1="0"
+       y1="-22"
+       x2="0"
+       y2="-40"
+       stroke="#44546a"
+       stroke-width="2"
+       id="line15" />
+    <circle
+       cx="0"
+       cy="-44"
+       r="4"
+       fill="#44546a"
+       id="circle15" />
+    <line
+       x1="-42"
+       y1="0"
+       x2="-35"
+       y2="0"
+       stroke="#44546a"
+       stroke-width="3"
+       id="line16" />
+    <line
+       x1="35"
+       y1="0"
+       x2="42"
+       y2="0"
+       stroke="#44546a"
+       stroke-width="3"
+       id="line17" />
+    <rect
+       x="-92"
+       y="-14"
+       width="50"
+       height="28"
+       rx="2"
+       fill="#1067a3"
+       id="rect17" />
+    <rect
+       x="42"
+       y="-14"
+       width="50"
+       height="28"
+       rx="2"
+       fill="#1067a3"
+       id="rect18" />
+    <path
+       d="m -75,-14 v 28 m 17,-28 V 14 M 59,-14 v 28 m 17,-28 v 28"
+       stroke="#ffffff"
+       stroke-width="1.5"
+       opacity="0.7"
+       id="path18" />
+    <rect
+       x="-35"
+       y="-22"
+       width="70"
+       height="44"
+       rx="6"
+       fill="#27348b"
+       id="rect19" />
+    <text
+       y="-58"
+       text-anchor="middle"
+       font-size="17px"
+       fill="#5b6270"
+       font-weight="700"
+       id="text19">st8 · in view</text>
+  </g>
+  <g
+     transform="translate(960,132.89844)"
+     id="g23">
+    <line
+       x1="0"
+       y1="-22"
+       x2="0"
+       y2="-40"
+       stroke="#44546a"
+       stroke-width="2"
+       id="line19" />
+    <circle
+       cx="0"
+       cy="-44"
+       r="4"
+       fill="#44546a"
+       id="circle19" />
+    <line
+       x1="-42"
+       y1="0"
+       x2="-35"
+       y2="0"
+       stroke="#44546a"
+       stroke-width="3"
+       id="line20" />
+    <line
+       x1="35"
+       y1="0"
+       x2="42"
+       y2="0"
+       stroke="#44546a"
+       stroke-width="3"
+       id="line21" />
+    <rect
+       x="-92"
+       y="-14"
+       width="50"
+       height="28"
+       rx="2"
+       fill="#1067a3"
+       id="rect21" />
+    <rect
+       x="42"
+       y="-14"
+       width="50"
+       height="28"
+       rx="2"
+       fill="#1067a3"
+       id="rect22" />
+    <path
+       d="m -75,-14 v 28 m 17,-28 V 14 M 59,-14 v 28 m 17,-28 v 28"
+       stroke="#ffffff"
+       stroke-width="1.5"
+       opacity="0.7"
+       id="path22" />
+    <rect
+       x="-35"
+       y="-22"
+       width="70"
+       height="44"
+       rx="6"
+       fill="#27348b"
+       id="rect23" />
+    <text
+       y="-58"
+       text-anchor="middle"
+       font-size="17px"
+       fill="#5b6270"
+       font-weight="700"
+       id="text23">st9</text>
+  </g>
+  <g
+     transform="translate(1320,132.89844)"
+     id="g27">
+    <line
+       x1="0"
+       y1="-22"
+       x2="0"
+       y2="-40"
+       stroke="#44546a"
+       stroke-width="2"
+       id="line23" />
+    <circle
+       cx="0"
+       cy="-44"
+       r="4"
+       fill="#44546a"
+       id="circle23" />
+    <line
+       x1="-42"
+       y1="0"
+       x2="-35"
+       y2="0"
+       stroke="#44546a"
+       stroke-width="3"
+       id="line24" />
+    <line
+       x1="35"
+       y1="0"
+       x2="42"
+       y2="0"
+       stroke="#44546a"
+       stroke-width="3"
+       id="line25" />
+    <rect
+       x="-92"
+       y="-14"
+       width="50"
+       height="28"
+       rx="2"
+       fill="#1067a3"
+       id="rect25" />
+    <rect
+       x="42"
+       y="-14"
+       width="50"
+       height="28"
+       rx="2"
+       fill="#1067a3"
+       id="rect26" />
+    <path
+       d="m -75,-14 v 28 m 17,-28 V 14 M 59,-14 v 28 m 17,-28 v 28"
+       stroke="#ffffff"
+       stroke-width="1.5"
+       opacity="0.7"
+       id="path26" />
+    <rect
+       x="-35"
+       y="-22"
+       width="70"
+       height="44"
+       rx="6"
+       fill="#27348b"
+       id="rect27" />
+    <text
+       y="-58"
+       text-anchor="middle"
+       font-size="17px"
+       fill="#5b6270"
+       font-weight="700"
+       id="text27">st10</text>
+  </g>
+  <!-- connectors sat -> card -->
+  <line
+     x1="240"
+     y1="154.89844"
+     x2="240"
+     y2="192.89844"
+     stroke="#b8bfd0"
+     stroke-width="2"
+     stroke-dasharray="3, 3"
+     id="line27" />
+  <line
+     x1="600"
+     y1="154.89844"
+     x2="600"
+     y2="192.89844"
+     stroke="#b8bfd0"
+     stroke-width="2"
+     stroke-dasharray="3, 3"
+     id="line28" />
+  <line
+     x1="960"
+     y1="154.89844"
+     x2="960"
+     y2="192.89844"
+     stroke="#b8bfd0"
+     stroke-width="2"
+     stroke-dasharray="3, 3"
+     id="line29" />
+  <line
+     x1="1320"
+     y1="154.89844"
+     x2="1320"
+     y2="192.89844"
+     stroke="#b8bfd0"
+     stroke-width="2"
+     stroke-dasharray="3, 3"
+     id="line30" />
+  <!-- MEC card st7 (OFF) -->
+  <rect
+     x="145"
+     y="192.89844"
+     width="190"
+     height="138"
+     rx="10"
+     fill="#fafbfc"
+     stroke="#e3e5ea"
+     stroke-width="1.5"
+     id="rect30" />
+  <rect
+     x="145"
+     y="192.89844"
+     width="190"
+     height="7"
+     rx="3.5"
+     fill="#b9bfc9"
+     id="rect31" />
+  <text
+     x="159"
+     y="226.89844"
+     font-size="19px"
+     font-weight="700"
+     fill="#1d1d22"
+     id="text31">MEC · Docker</text>
+  <rect
+     x="275.19363"
+     y="208.89844"
+     width="54"
+     height="24"
+     rx="12"
+     fill="#9aa1ad"
+     id="rect32" />
+  <text
+     x="302.19363"
+     y="225.89844"
+     text-anchor="middle"
+     font-size="15px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text32">OFF</text>
+  <text
+     x="159"
+     y="254.89844"
+     font-size="14px"
+     fill="#5b6270"
+     id="text33">CPU</text>
+  <rect
+     x="201"
+     y="243.89844"
+     width="118"
+     height="13"
+     rx="6.5"
+     fill="#e9ebef"
+     id="rect33" />
+  <rect
+     x="201"
+     y="243.89844"
+     width="6"
+     height="13"
+     rx="3"
+     fill="#1067a3"
+     id="rect34" />
+  <text
+     x="159"
+     y="276.89844"
+     font-size="14px"
+     fill="#5b6270"
+     id="text34">RAM</text>
+  <rect
+     x="201"
+     y="265.89844"
+     width="118"
+     height="13"
+     rx="6.5"
+     fill="#e9ebef"
+     id="rect35" />
+  <rect
+     x="201"
+     y="265.89844"
+     width="6"
+     height="13"
+     rx="3"
+     fill="#1067a3"
+     id="rect36" />
+  <rect
+     x="157"
+     y="290.89844"
+     width="166"
+     height="30"
+     rx="15"
+     fill="#fdf3fa"
+     stroke="#a60f79"
+     stroke-width="1.5"
+     id="rect37" />
+  <text
+     x="240"
+     y="310.89844"
+     text-anchor="middle"
+     font-size="14.5px"
+     fill="#a60f79"
+     id="text37">local controller · Fuzzy/RL</text>
+  <!-- MEC card st8 (OFF, access/forwarding) -->
+  <rect
+     x="505"
+     y="192.89844"
+     width="190"
+     height="138"
+     rx="10"
+     fill="#fafbfc"
+     stroke="#e3e5ea"
+     stroke-width="1.5"
+     id="rect38" />
+  <rect
+     x="505"
+     y="192.89844"
+     width="190"
+     height="7"
+     rx="3.5"
+     fill="#b9bfc9"
+     id="rect39" />
+  <text
+     x="519"
+     y="226.89844"
+     font-size="19px"
+     font-weight="700"
+     fill="#1d1d22"
+     id="text39">MEC · Docker</text>
+  <rect
+     x="635.19366"
+     y="208.89844"
+     width="54"
+     height="24"
+     rx="12"
+     fill="#9aa1ad"
+     id="rect40" />
+  <text
+     x="662.19366"
+     y="225.89844"
+     text-anchor="middle"
+     font-size="15px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text40">OFF</text>
+  <text
+     x="519"
+     y="254.89844"
+     font-size="14px"
+     fill="#5b6270"
+     id="text41">CPU</text>
+  <rect
+     x="561"
+     y="243.89844"
+     width="118"
+     height="13"
+     rx="6.5"
+     fill="#e9ebef"
+     id="rect41" />
+  <rect
+     x="561"
+     y="243.89844"
+     width="6"
+     height="13"
+     rx="3"
+     fill="#1067a3"
+     id="rect42" />
+  <text
+     x="519"
+     y="276.89844"
+     font-size="14px"
+     fill="#5b6270"
+     id="text42">RAM</text>
+  <rect
+     x="561"
+     y="265.89844"
+     width="118"
+     height="13"
+     rx="6.5"
+     fill="#e9ebef"
+     id="rect43" />
+  <rect
+     x="561"
+     y="265.89844"
+     width="6"
+     height="13"
+     rx="3"
+     fill="#1067a3"
+     id="rect44" />
+  <rect
+     x="517"
+     y="290.89844"
+     width="166"
+     height="30"
+     rx="15"
+     fill="#fdf3fa"
+     stroke="#a60f79"
+     stroke-width="1.5"
+     id="rect45" />
+  <text
+     x="600"
+     y="310.89844"
+     text-anchor="middle"
+     font-size="14.5px"
+     fill="#a60f79"
+     id="text45">local controller · Fuzzy/RL</text>
+  <!-- MEC card st9 (ON, executing) -->
+  <rect
+     x="865"
+     y="192.89844"
+     width="190"
+     height="138"
+     rx="10"
+     fill="#ffffff"
+     stroke="#608b37"
+     stroke-width="2.5"
+     id="rect46" />
+  <rect
+     x="865"
+     y="192.89844"
+     width="190"
+     height="7"
+     rx="3.5"
+     fill="#608b37"
+     id="rect47" />
+  <text
+     x="879"
+     y="226.89844"
+     font-size="19px"
+     font-weight="700"
+     fill="#1d1d22"
+     id="text47">MEC · Docker</text>
+  <rect
+     x="995.19366"
+     y="208.89844"
+     width="54"
+     height="24"
+     rx="12"
+     fill="#608b37"
+     id="rect48" />
+  <text
+     x="1022.1937"
+     y="225.89844"
+     text-anchor="middle"
+     font-size="15px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text48">ON</text>
+  <text
+     x="879"
+     y="254.89844"
+     font-size="14px"
+     fill="#5b6270"
+     id="text49">CPU</text>
+  <rect
+     x="921"
+     y="243.89844"
+     width="118"
+     height="13"
+     rx="6.5"
+     fill="#e9ebef"
+     id="rect49" />
+  <rect
+     x="921"
+     y="243.89844"
+     width="82"
+     height="13"
+     rx="6.5"
+     fill="#1067a3"
+     id="rect50" />
+  <text
+     x="879"
+     y="276.89844"
+     font-size="14px"
+     fill="#5b6270"
+     id="text50">RAM</text>
+  <rect
+     x="921"
+     y="265.89844"
+     width="118"
+     height="13"
+     rx="6.5"
+     fill="#e9ebef"
+     id="rect51" />
+  <rect
+     x="921"
+     y="265.89844"
+     width="54"
+     height="13"
+     rx="6.5"
+     fill="#1067a3"
+     id="rect52" />
+  <rect
+     x="877"
+     y="290.89844"
+     width="166"
+     height="30"
+     rx="15"
+     fill="#fdf3fa"
+     stroke="#a60f79"
+     stroke-width="1.5"
+     id="rect53" />
+  <text
+     x="960"
+     y="310.89844"
+     text-anchor="middle"
+     font-size="14.5px"
+     fill="#a60f79"
+     id="text53">local controller · Fuzzy/RL</text>
+  <!-- MEC card st10 (OFF) -->
+  <rect
+     x="1225"
+     y="192.89844"
+     width="190"
+     height="138"
+     rx="10"
+     fill="#fafbfc"
+     stroke="#e3e5ea"
+     stroke-width="1.5"
+     id="rect54" />
+  <rect
+     x="1225"
+     y="192.89844"
+     width="190"
+     height="7"
+     rx="3.5"
+     fill="#b9bfc9"
+     id="rect55" />
+  <text
+     x="1239"
+     y="226.89844"
+     font-size="19px"
+     font-weight="700"
+     fill="#1d1d22"
+     id="text55">MEC · Docker</text>
+  <rect
+     x="1355.1936"
+     y="208.89844"
+     width="54"
+     height="24"
+     rx="12"
+     fill="#9aa1ad"
+     id="rect56" />
+  <text
+     x="1382.1936"
+     y="225.89844"
+     text-anchor="middle"
+     font-size="15px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text56">OFF</text>
+  <text
+     x="1239"
+     y="254.89844"
+     font-size="14px"
+     fill="#5b6270"
+     id="text57">CPU</text>
+  <rect
+     x="1281"
+     y="243.89844"
+     width="118"
+     height="13"
+     rx="6.5"
+     fill="#e9ebef"
+     id="rect57" />
+  <rect
+     x="1281"
+     y="243.89844"
+     width="6"
+     height="13"
+     rx="3"
+     fill="#1067a3"
+     id="rect58" />
+  <text
+     x="1239"
+     y="276.89844"
+     font-size="14px"
+     fill="#5b6270"
+     id="text58">RAM</text>
+  <rect
+     x="1281"
+     y="265.89844"
+     width="118"
+     height="13"
+     rx="6.5"
+     fill="#e9ebef"
+     id="rect59" />
+  <rect
+     x="1281"
+     y="265.89844"
+     width="6"
+     height="13"
+     rx="3"
+     fill="#1067a3"
+     id="rect60" />
+  <rect
+     x="1237"
+     y="290.89844"
+     width="166"
+     height="30"
+     rx="15"
+     fill="#fdf3fa"
+     stroke="#a60f79"
+     stroke-width="1.5"
+     id="rect61" />
+  <text
+     x="1320"
+     y="310.89844"
+     text-anchor="middle"
+     font-size="14.5px"
+     fill="#a60f79"
+     id="text61">local controller · Fuzzy/RL</text>
+  <!-- users & devices -->
+  <g
+     stroke="#44546a"
+     stroke-width="2"
+     fill="#ffffff"
+     id="g65"
+     transform="translate(0,22.898437)">
+    <rect
+       x="84"
+       y="505"
+       width="26"
+       height="46"
+       rx="5"
+       id="rect62" />
+    <rect
+       x="128"
+       y="522"
+       width="26"
+       height="46"
+       rx="5"
+       id="rect63" />
+    <rect
+       x="170"
+       y="505"
+       width="34"
+       height="50"
+       rx="5"
+       id="rect64" />
+    <rect
+       x="220"
+       y="532"
+       width="34"
+       height="26"
+       rx="4"
+       id="rect65" />
+    <line
+       x1="237"
+       y1="532"
+       x2="237"
+       y2="514"
+       id="line65" />
+  </g>
+  <circle
+     cx="237"
+     cy="533.89844"
+     r="3.5"
+     fill="#44546a"
+     id="circle65" />
+  <text
+     x="165"
+     y="624.89844"
+     text-anchor="middle"
+     font-size="19px"
+     font-weight="700"
+     fill="#1d1d22"
+     id="text65">Users &amp; IoT devices</text>
+  <text
+     x="165"
+     y="648.89844"
+     text-anchor="middle"
+     font-size="15px"
+     fill="#5b6270"
+     id="text66">AR · eHealth · HeavyComp</text>
+  <text
+     x="165"
+     y="670.89844"
+     text-anchor="middle"
+     font-size="15px"
+     fill="#5b6270"
+     id="text67">Poisson task arrivals</text>
+  <!-- ground station gateway -->
+  <ellipse
+     cx="197.13658"
+     cy="713.01599"
+     rx="42"
+     ry="17"
+     fill="#ffffff"
+     stroke="#44546a"
+     stroke-width="3"
+     transform="rotate(-25)"
+     id="ellipse67" />
+  <line
+     x1="480"
+     y1="562.89844"
+     x2="506"
+     y2="534.89844"
+     stroke="#44546a"
+     stroke-width="2"
+     id="line67" />
+  <circle
+     cx="508"
+     cy="532.89844"
+     r="4"
+     fill="#44546a"
+     id="circle67" />
+  <line
+     x1="480"
+     y1="574.89844"
+     x2="480"
+     y2="652.89844"
+     stroke="#44546a"
+     stroke-width="4"
+     id="line68" />
+  <rect
+     x="458"
+     y="652.89844"
+     width="44"
+     height="10"
+     rx="3"
+     fill="#44546a"
+     id="rect68" />
+  <text
+     x="480"
+     y="690.89844"
+     text-anchor="middle"
+     font-size="19px"
+     font-weight="700"
+     fill="#1d1d22"
+     id="text68">Ground station · gateway</text>
+  <text
+     x="480"
+     y="712.89844"
+     text-anchor="middle"
+     font-size="15px"
+     fill="#5b6270"
+     id="text69">task ingress &amp; result egress</text>
+  <!-- MOCC -->
+  <rect
+     x="900"
+     y="477.89844"
+     width="600"
+     height="235"
+     rx="12"
+     fill="#ffffff"
+     stroke="#44546a"
+     stroke-width="2"
+     id="rect69" />
+  <text
+     x="1200"
+     y="511.89844"
+     text-anchor="middle"
+     font-size="21px"
+     font-weight="700"
+     fill="#1d1d22"
+     id="text70">Mission Operations &amp; Control Center (ground)</text>
+  <rect
+     x="922"
+     y="530.89844"
+     width="272"
+     height="158"
+     rx="10"
+     fill="#edf1fa"
+     stroke="#27348b"
+     stroke-width="2"
+     id="rect70" />
+  <text
+     x="1058"
+     y="562.89844"
+     text-anchor="middle"
+     font-size="19px"
+     font-weight="700"
+     fill="#27348b"
+     id="text71">SDN controller</text>
+  <text
+     x="1058"
+     y="594.89844"
+     text-anchor="middle"
+     font-size="15.5px"
+     fill="#333333"
+     id="text72">ONOS · OpenFlow 1.3</text>
+  <text
+     x="1058"
+     y="618.89844"
+     text-anchor="middle"
+     font-size="15.5px"
+     fill="#333333"
+     id="text73">installs forwarding rules</text>
+  <text
+     x="1058"
+     y="642.89844"
+     text-anchor="middle"
+     font-size="15.5px"
+     fill="#333333"
+     id="text74">reacts to ISL re-wiring</text>
+  <rect
+     x="1206"
+     y="530.89844"
+     width="272"
+     height="158"
+     rx="10"
+     fill="#fbeeee"
+     stroke="#c9191e"
+     stroke-width="2"
+     id="rect74" />
+  <text
+     x="1342"
+     y="562.89844"
+     text-anchor="middle"
+     font-size="19px"
+     font-weight="700"
+     fill="#c9191e"
+     id="text75">MEC orchestrator</text>
+  <text
+     x="1342"
+     y="594.89844"
+     text-anchor="middle"
+     font-size="15.5px"
+     fill="#333333"
+     id="text76">trains activation policies</text>
+  <text
+     x="1342"
+     y="618.89844"
+     text-anchor="middle"
+     font-size="15.5px"
+     fill="#333333"
+     id="text77">(fuzzy rules · RL weights)</text>
+  <text
+     x="1342"
+     y="642.89844"
+     text-anchor="middle"
+     font-size="15.5px"
+     fill="#333333"
+     id="text78">distributes to local ctrls</text>
+  <!-- terrestrial backhaul -->
+  <!-- flow: 1 devices -> gateway -->
+  <line
+     x1="300"
+     y1="592.89844"
+     x2="430"
+     y2="592.89844"
+     stroke="#44546a"
+     stroke-width="2.5"
+     marker-end="url(#aInk)"
+     id="line79" />
+  <g
+     id="g91"
+     transform="translate(44.831133,20.907679)">
+    <circle
+       cx="313"
+       cy="570.89844"
+       r="13"
+       fill="#c9191e"
+       id="circle79" />
+    <text
+       x="313"
+       y="576.89844"
+       text-anchor="middle"
+       font-size="15px"
+       font-weight="700"
+       fill="#ffffff"
+       id="text80">1</text>
+  </g>
+  <text
+     x="357.39014"
+     y="620.26721"
+     text-anchor="middle"
+     font-size="14px"
+     fill="#5b6270"
+     id="text81">HTTP task requests</text>
+  <!-- flow: 2 gateway -> st8 -->
+  <line
+     x1="497"
+     y1="540.89844"
+     x2="588"
+     y2="270.89844"
+     stroke="#44546a"
+     stroke-width="2.5"
+     marker-end="url(#aInk)"
+     id="line81" />
+  <circle
+     cx="529.05286"
+     cy="447.80347"
+     r="13"
+     fill="#c9191e"
+     id="circle81" />
+  <text
+     x="529.05286"
+     y="452.97845"
+     text-anchor="middle"
+     font-size="15px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text82">2</text>
+  <text
+     x="551.48608"
+     y="451.75598"
+     font-size="15px"
+     fill="#5b6270"
+     id="text83">uplink via satellite in view</text>
+  <!-- flow: 3 offload over ISLs -->
+  <line
+     x1="700"
+     y1="150.89844"
+     x2="852"
+     y2="150.89844"
+     stroke="#608b37"
+     stroke-width="3"
+     marker-end="url(#aGreen)"
+     id="line83" />
+  <circle
+     cx="683"
+     cy="150.89844"
+     r="13"
+     fill="#c9191e"
+     id="circle83" />
+  <text
+     x="683"
+     y="156.89844"
+     text-anchor="middle"
+     font-size="15px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text84">3</text>
+  <text
+     x="776"
+     y="174.89844"
+     text-anchor="middle"
+     font-size="15px"
+     fill="#608b37"
+     id="text85">offload over ISLs</text>
+  <!-- flow: 4 execute -->
+  <circle
+     cx="1071"
+     cy="206.89844"
+     r="13"
+     fill="#c9191e"
+     id="circle85" />
+  <text
+     x="1071"
+     y="212.89844"
+     text-anchor="middle"
+     font-size="15px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text86">4</text>
+  <text
+     x="1090"
+     y="212.89844"
+     font-size="15px"
+     fill="#5b6270"
+     id="text87">runs in container</text>
+  <!-- flow: 5 result back -->
+  <path
+     d="m 930,337.89844 c -130,105 -290,185 -412,223"
+     fill="none"
+     stroke="#608b37"
+     stroke-width="2.5"
+     stroke-dasharray="7, 6"
+     marker-end="url(#aGreen)"
+     id="path87" />
+  <circle
+     cx="764.71539"
+     cy="447.80347"
+     r="13"
+     fill="#c9191e"
+     id="circle87" />
+  <text
+     x="764.71539"
+     y="452.82846"
+     text-anchor="middle"
+     font-size="15px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text88">5</text>
+  <text
+     x="788.6123"
+     y="452.28098"
+     font-size="15px"
+     fill="#608b37"
+     id="text89">result ≤ deadline (2.5 s)</text>
+  <!-- control: SDN flow rules -->
+  <path
+     d="m 1055,527.89844 c -15,-85 -55,-145 -87,-187"
+     fill="none"
+     stroke="#27348b"
+     stroke-width="2.5"
+     stroke-dasharray="6, 5"
+     marker-end="url(#aBlue)"
+     id="path89" />
+  <text
+     x="1074.9404"
+     y="457.9043"
+     font-size="15px"
+     fill="#27348b"
+     transform="rotate(-0.24688651)"
+     text-anchor="middle"
+     id="text90">flow rules</text>
+  <!-- control: policies / telemetry -->
+  <path
+     d="m 1345,527.89844 c 5,-75 -7,-135 -19,-189"
+     fill="none"
+     stroke="#a60f79"
+     stroke-width="2.5"
+     stroke-dasharray="6, 5"
+     marker-end="url(#aMag)"
+     marker-start="url(#aMag)"
+     id="path90" />
+  <text
+     x="1357.2642"
+     y="451.75598"
+     font-size="15px"
+     fill="#a60f79"
+     id="text91">policies ↓ · state ↑</text>
+</svg>
