@@ -50,7 +50,10 @@ canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block
 #app:not(.live) > :not(canvas) { visibility: hidden; }   /* until app.js has the data */
 #planet { opacity: 0; transition: opacity 1.4s ease; }
 #planet.ready { opacity: 1; }
-#globe { cursor: grab; touch-action: none; }
+/* Fingers turn and pinch the globe (app.js), never the page; only the trip list scrolls. */
+#app, #globe { touch-action: none; }
+#trip-list { touch-action: pan-y; }
+#globe { cursor: grab; }
 #globe.dragging { cursor: grabbing; }
 
 /* ---------- the card (top left): when, where, and the totals so far */

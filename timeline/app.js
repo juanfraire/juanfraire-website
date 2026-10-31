@@ -789,24 +789,94 @@
   function hideTip() { tooltip.hidden = true; }
 
   // ------------------------------------------------------------------ globe interaction
-  let drag = null;
+  // One finger (or the mouse) turns the globe; two fingers pinch to zoom and pan, about the point
+  // between them, and the wheel zooms about the cursor. The viewer drives the camera from the
+  // first move until "Follow the journey". A tap shows a place's details, as hovering does.
+  const pointers = new Map();          // pointerId -> [x, y], while down on the globe
+  let downAt = null;                   // where the first finger went down, until it moves
+  let gesture = null;                  // the view, and the fingers' midpoint and spread, at its start
+
+  // The view, zoomed to k, that puts the place under screen point `from` in view v0 under `to`, so
+  // the ground stays under the fingers. A few small turns about the centre get there (a degree of
+  // longitude is cos(latitude) of a degree on screen). Off the globe, it just turns by the move.
+  const probe = d3.geoOrthographic();
+  const look = v => probe.scale(R0 * v.k).translate(proj.translate()).rotate([-v.center[0], -v.center[1]]);
+  function moveView(v0, from, to, k) {
+    const [cx, cy] = proj.translate(), r = R0 * k, deg = 180 / Math.PI;
+    const turn = (v, dx, dy) => {
+      v.center[0] -= dx / (r * Math.max(0.2, Math.cos(v.center[1] / deg))) * deg;
+      v.center[1] = clamp(v.center[1] + dy / r * deg, -85, 85);
+    };
+    const v = { center: [...v0.center], k };
+    const geo = look(v0).invert(from);
+    if (!geo || !isFinite(geo[0]) || !isFinite(geo[1])) {
+      turn(v, to[0] - from[0], to[1] - from[1]);
+      return v;
+    }
+    const d = Math.hypot(to[0] - cx, to[1] - cy);       // a place can come no further than the rim
+    if (d > 0.95 * r) to = [cx + (to[0] - cx) * 0.95 * r / d, cy + (to[1] - cy) * 0.95 * r / d];
+    for (let i = 0; i < 4; i++) {
+      const p = look(v)(geo);
+      turn(v, to[0] - p[0], to[1] - p[1]);
+    }
+    return v;
+  }
+  function midSpread() {
+    const [a, b] = [...pointers.values()];
+    return b ? [[(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], Math.hypot(a[0] - b[0], a[1] - b[1])] : [a, 0];
+  }
+  function startGesture(mid, spread) {
+    if (!gesture) {                    // the viewer takes the camera
+      const v = manual || stateAt(tau);
+      manual = { center: [...v.center], k: v.k };
+      $('follow').hidden = false;
+      canvas.classList.add('dragging');
+      hideTip();
+    }
+    gesture = { mid, spread, view: { center: [...manual.center], k: manual.k } };
+  }
+
   canvas.addEventListener('pointerdown', ev => {
-    const st = stateAt(tau);
-    const v = manual || st;
-    manual = { center: [...v.center], k: v.k };
-    drag = { x: ev.clientX, y: ev.clientY, c: [...manual.center] };
-    canvas.setPointerCapture(ev.pointerId);
-    canvas.classList.add('dragging');
-    $('follow').hidden = false;
-    hideTip();
+    pointers.set(ev.pointerId, [ev.clientX, ev.clientY]);
+    try { canvas.setPointerCapture(ev.pointerId); } catch { /* a pointer the browser no longer tracks */ }
+    if (pointers.size === 1) downAt = [ev.clientX, ev.clientY];
+    else startGesture(...midSpread());
   });
   canvas.addEventListener('pointermove', ev => {
-    if (drag) {
-      const R = R0 * manual.k, deg = 180 / Math.PI;
-      manual.center = [drag.c[0] - (ev.clientX - drag.x) / R * deg,
-                       clamp(drag.c[1] + (ev.clientY - drag.y) / R * deg, -85, 85)];
+    if (pointers.has(ev.pointerId)) {
+      pointers.set(ev.pointerId, [ev.clientX, ev.clientY]);
+      if (!gesture) {                  // a tap until the finger moves a little
+        if (Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) < 6) return;
+        startGesture(downAt, 0);
+      }
+      const [mid, spread] = midSpread();
+      const k = gesture.spread && spread ? clamp(gesture.view.k * spread / gesture.spread, 0.8, 14) : gesture.view.k;
+      manual = moveView(gesture.view, gesture.mid, mid, k);
       return;
     }
+    if (ev.pointerType === 'mouse') showPlace(ev);
+  });
+  const lift = ev => {
+    if (!pointers.delete(ev.pointerId)) return;
+    if (pointers.size) { if (gesture) startGesture(...midSpread()); return; }   // the other finger carries on
+    if (!gesture && ev.type === 'pointerup' && ev.pointerType !== 'mouse') showPlace(ev);   // a tap
+    gesture = null;
+    canvas.classList.remove('dragging');
+  };
+  canvas.addEventListener('pointerup', lift);
+  canvas.addEventListener('pointercancel', lift);
+  canvas.addEventListener('pointerleave', ev => { if (ev.pointerType === 'mouse') hideTip(); });
+  canvas.addEventListener('wheel', ev => {
+    ev.preventDefault();
+    const v = manual || stateAt(tau), at = [ev.clientX, ev.clientY];
+    manual = moveView(v, at, at, clamp(v.k * Math.exp(-ev.deltaY * 0.0015), 0.8, 14));
+    $('follow').hidden = false;
+  }, { passive: false });
+  // Pinching anywhere else must not zoom the page (Safari on iOS, which asks through gesture events).
+  document.addEventListener('gesturestart', ev => ev.preventDefault());
+
+  // The details of the place under the cursor, or under a tap.
+  function showPlace(ev) {
     const r = canvas.getBoundingClientRect();
     const mx = ev.clientX - r.left, my = ev.clientY - r.top;
     let best = null, bd = 12;
@@ -818,17 +888,7 @@
     const isRes = resColor.has(best.id) ? '<br>I lived here' : '';
     showTip(ev, `<b>${escapeHtml(fullName(best))}</b><br>${best.days} ${best.days === 1 ? 'day' : 'days'} with photos · ` +
       `${fmtNum.format(best.photos)} photos<br>First visit: ${fmtShortY.format(date(best.first))}${isRes}`);
-  });
-  const endDrag = () => { drag = null; canvas.classList.remove('dragging'); };
-  canvas.addEventListener('pointerup', endDrag);
-  canvas.addEventListener('pointercancel', endDrag);
-  canvas.addEventListener('pointerleave', hideTip);
-  canvas.addEventListener('wheel', ev => {
-    ev.preventDefault();
-    const v = manual || stateAt(tau);
-    manual = { center: [...v.center], k: clamp(v.k * Math.exp(-ev.deltaY * 0.0015), 0.8, 14) };
-    $('follow').hidden = false;
-  }, { passive: false });
+  }
   $('follow').addEventListener('click', () => { manual = null; $('follow').hidden = true; });
 
   // ------------------------------------------------------------------ playback
