@@ -407,6 +407,13 @@ html.scene { scroll-behavior: smooth; }
 .posts.cards .post-preview picture { flex: 1; min-height: 0; }
 .posts.cards .post-preview img { height: 100%; aspect-ratio: auto; }
 .posts.cards .post-preview b { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+/* The frame on top holds pictures only: a link card that follows the post's own pictures, or has
+   none of its own, stays under the text as one line, or it would fill a frame with empty space. */
+.posts.cards .post > :is(.post-media, .post-video) ~ .post-preview,
+.posts.cards .post > .post-preview:not(:has(picture)) {
+  order: 0; aspect-ratio: auto; margin: 12px calc(-1 * var(--pad)) 0; border-top: 1px solid var(--line-soft);
+}
+.posts.cards .post > :is(.post-media, .post-video) ~ .post-preview picture { display: none; }
 .posts.cards .post-toggle { align-self: flex-start; }
 .posts.cards .post-foot { margin-top: auto; padding-top: 12px; }
 
