@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-14T13:14:50.586048</dc:date>
+    <dc:date>2026-11-01T18:52:11.152593</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -45,15 +45,16 @@ L 232.455875 68.742
 L 232.455875 38.25 
 L 68.871875 38.25 
 z
-" clip-path="url(#p13f042e569)" style="fill: #27348b"/>
+" clip-path="url(#p589ec28564)" style="fill: #27348b"/>
    </g>
    <g id="patch_4">
     <path d="M 232.455875 68.742 
 L 307.105475 68.742 
 L 307.105475 38.25 
 L 232.455875 38.25 
+L 232.455875 68.742 
 z
-" clip-path="url(#p13f042e569)" style="fill: #ff8300"/>
+" clip-path="url(#p589ec28564)" style="fill: none; opacity: 0"/>
    </g>
    <g id="patch_5">
     <path d="M 68.871875 124.182 
@@ -61,26 +62,27 @@ L 166.561475 124.182
 L 166.561475 93.69 
 L 68.871875 93.69 
 z
-" clip-path="url(#p13f042e569)" style="fill: #27348b"/>
+" clip-path="url(#p589ec28564)" style="fill: #27348b"/>
    </g>
    <g id="patch_6">
     <path d="M 166.561475 124.182 
 L 227.387075 124.182 
 L 227.387075 93.69 
 L 166.561475 93.69 
+L 166.561475 124.182 
 z
-" clip-path="url(#p13f042e569)" style="fill: #ff8300"/>
+" clip-path="url(#p589ec28564)" style="fill: none; opacity: 0"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
       <defs>
-       <path id="m3b85050d90" d="M 0 0 
+       <path id="m4f6ff346d1" d="M 0 0 
 L 0 3.5 
 " style="stroke: #5b6270; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m3b85050d90" x="68.871875" y="136.656" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
+       <use xlink:href="#m4f6ff346d1" x="68.871875" y="136.656" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
@@ -90,7 +92,7 @@ L 0 3.5
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#m3b85050d90" x="161.031875" y="136.656" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
+       <use xlink:href="#m4f6ff346d1" x="161.031875" y="136.656" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
@@ -100,7 +102,7 @@ L 0 3.5
     <g id="xtick_3">
      <g id="line2d_3">
       <g>
-       <use xlink:href="#m3b85050d90" x="253.191875" y="136.656" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
+       <use xlink:href="#m4f6ff346d1" x="253.191875" y="136.656" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
@@ -110,7 +112,7 @@ L 0 3.5
     <g id="xtick_4">
      <g id="line2d_4">
       <g>
-       <use xlink:href="#m3b85050d90" x="345.351875" y="136.656" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
+       <use xlink:href="#m4f6ff346d1" x="345.351875" y="136.656" style="fill: #5b6270; stroke: #5b6270; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_4">
@@ -144,32 +146,32 @@ L 354.567875 136.656
     <text style="font-weight: 700; font-size: 15px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="150.663875" y="57.635063" transform="rotate(-0 150.663875 57.635063)">36</text>
    </g>
    <g id="text_9">
-    <text style="font-weight: 700; font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #ffffff" transform="translate(255.846105 50.896391)">+16</text>
-    <text style="font-weight: 700; font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #ffffff" transform="translate(243.870519 62.994047)">(+46%)</text>
+    <text style="font-weight: 700; font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #ffffff; opacity: 0" transform="translate(255.846105 50.896391)">+16</text>
+    <text style="font-weight: 700; font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #ffffff; opacity: 0" transform="translate(243.870519 62.994047)">(+46%)</text>
    </g>
    <g id="text_10">
-    <text style="font-weight: 700; font-size: 16px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22" x="311.713475" y="57.911" transform="rotate(-0 311.713475 57.911)">52</text>
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22; opacity: 0" x="311.713475" y="57.911" transform="rotate(-0 311.713475 57.911)">52</text>
    </g>
    <g id="text_11">
     <text style="font-weight: 700; font-size: 15px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="117.716675" y="113.075063" transform="rotate(-0 117.716675 113.075063)">21</text>
    </g>
    <g id="text_12">
-    <text style="font-weight: 700; font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #ffffff" transform="translate(183.039705 106.336391)">+13</text>
-    <text style="font-weight: 700; font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #ffffff" transform="translate(171.064119 118.434047)">(+62%)</text>
+    <text style="font-weight: 700; font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #ffffff; opacity: 0" transform="translate(183.039705 106.336391)">+13</text>
+    <text style="font-weight: 700; font-size: 12.5px; font-family: 'Inria Sans', 'DejaVu Sans'; fill: #ffffff; opacity: 0" transform="translate(171.064119 118.434047)">(+62%)</text>
    </g>
    <g id="text_13">
-    <text style="font-weight: 700; font-size: 16px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22" x="231.995075" y="113.351" transform="rotate(-0 231.995075 113.351)">34</text>
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #1d1d22; opacity: 0" x="231.995075" y="113.351" transform="rotate(-0 231.995075 113.351)">34</text>
    </g>
    <g id="text_14">
     <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #27348b" x="68.871875" y="19.1232" transform="rotate(-0 68.871875 19.1232)">■ launch</text>
    </g>
    <g id="text_15">
-    <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #ff8300" x="133.383875" y="19.1232" transform="rotate(-0 133.383875 19.1232)">■ re-entry NOₓ (GWP₂₀ = 33)</text>
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Inria Sans', 'DejaVu Sans'; text-anchor: start; fill: #ff8300; opacity: 0" x="133.383875" y="19.1232" transform="rotate(-0 133.383875 19.1232)">■ re-entry NOₓ (GWP₂₀ = 33)</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p13f042e569">
+  <clipPath id="p589ec28564">
    <rect x="68.871875" y="3.6" width="285.696" height="133.056"/>
   </clipPath>
  </defs>
