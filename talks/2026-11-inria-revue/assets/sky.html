@@ -1642,6 +1642,7 @@ async function startEmbed(env, query = new URLSearchParams(location.search)) {
     if (!ready && stats && (!opt.poster || statsSeenAt > 0)) {
       ready = true;
       window.__skyReady = true;
+      try { if (window.parent !== window) window.parent.postMessage({ type: 'sky-ready' }, '*'); } catch { /* no parent */ }  // the deck reveals the iframe
     }
   }
 
