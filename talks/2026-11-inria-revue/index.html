@@ -18,7 +18,8 @@
    Two keys of the deck's own, kept from slide to slide: a turns the globes' slow auto-rotation on and off
    (sent as {type:'globe-opts', autoRotate}; a pressed inside a globe comes back as globe-autorotate),
    l a red pointer: while it is on, live pages let the mouse through to the deck, so the dot follows it
-   over them too (no dragging the globe until l again). */
+   over them too (no dragging the globe until l again). [ ] r go to the live globe ({type:'globe-key'});
+   h shows a card with every key. */
 (() => {
   const stepOf = s => s.querySelectorAll('[data-marpit-fragment][data-bespoke-marp-fragment="active"]').length;
   const post = (f, k) => { if (f.contentWindow) f.contentWindow.postMessage({ type: 'marp-step', step: k }, '*'); };
@@ -35,6 +36,7 @@
     b.querySelector('.big').textContent = `${fmtN(d.x)}×`;
     const lab = b.querySelector('.lab');
     if (!d.playing) lab.textContent = 'PAUSED';
+    else if (Math.abs(d.x - 1) < 1e-6) lab.textContent = 'REAL TIME';
     else lab.innerHTML = lab.innerHTML.replace(/= [\d.,]+ (MIN|S)\b/, '= ' + (d.x >= 60 ? `${fmtN(d.x / 60)} MIN` : `${fmtN(d.x)} S`));
   };
   let toastEl = null, toastT = 0;
@@ -68,9 +70,40 @@
     h.classList.toggle('laser', on);
     if (on) h.classList.add('laser-out');           // shown from the next mouse move, where the mouse is
   };
+  // h: one card with every key, the same on all slides
+  let helpEl = null;
+  const help = on => {
+    if (!helpEl) {
+      helpEl = document.createElement('div');
+      helpEl.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2147483646;pointer-events:none;display:none;'
+        + 'font:15px/1.5 Inter,Helvetica,Arial,sans-serif;color:rgba(233,238,246,.85);background:rgba(6,14,32,.9);'
+        + 'border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:16px 22px 14px;box-shadow:0 14px 44px rgba(0,0,0,.5)';
+      const row = (k, t) => `<tr><td style="padding:2px 16px 2px 0;color:#fff;font-weight:700;white-space:nowrap;text-align:right">${k}</td><td style="padding:2px 0">${t}</td></tr>`;
+      const head = t => `<tr><td colspan="2" style="padding:10px 0 4px;color:#f2b84b;font-weight:700;letter-spacing:1.5px;font-size:12px">${t}</td></tr>`;
+      helpEl.innerHTML = '<table style="border-collapse:collapse">'
+        + head('SLIDES')
+        + row('→ &nbsp;space &nbsp;PgDn', 'next') + row('← &nbsp;PgUp', 'back') + row('f &nbsp;·&nbsp; p', 'full screen · presenter view')
+        + row('l', 'red pointer (the mouse goes through the live pages)')
+        + row('h', 'this card')
+        + head('LIVE GLOBE')
+        + row('[ &nbsp;]', 'slower / faster, down to 1× (real time); the badge follows')
+        + row('a', 'slow turn round the Earth or satellite 48, kept across slides')
+        + row('r', 'back to the slide\'s own view')
+        + row('click it, then', 'drag to turn · scroll to zoom · space to pause · ← → one frame while paused')
+        + head('LIVE SKY')
+        + row('click it, then', 'space plays the night · r back to the start')
+        + '</table>';
+      document.body.appendChild(helpEl);
+    }
+    helpEl.style.display = on ? 'block' : 'none';
+  };
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
-    if (e.key === 'l' || e.key === 'L') laser(!laserOn);
+    if (e.key === 'h' || e.key === 'H' || e.key === '?') help(!helpEl || helpEl.style.display === 'none');
+    // the live globe's clock and view, from the deck too (no need to click into it first)
+    else if ('[]rR'.includes(e.key))
+      document.querySelectorAll('svg.bespoke-marp-active iframe[src]').forEach(f => f.contentWindow && f.contentWindow.postMessage({ type: 'globe-key', key: e.key }, '*'));
+    else if (e.key === 'l' || e.key === 'L') laser(!laserOn);
     else if (e.key === 'a' || e.key === 'A') {
       opts.autoRotate = !opts.autoRotate;
       const live = [...document.querySelectorAll('svg.bespoke-marp-active iframe[src]')];
@@ -96,6 +129,7 @@
     for (const s of document.querySelectorAll('svg.bespoke-marp-slide')) {
       const on = s.classList.contains('bespoke-marp-active'), k = on ? stepOf(s) : -1;
       const entering = on && !s.__on, changed = on && k !== s.__k;
+      if (entering && helpEl) help(false);
       s.__on = on; s.__k = k;
       const sec = s.querySelector('section'); if (sec) sec.toggleAttribute('data-on', on);  // starts .after/.grow
       for (const v of s.querySelectorAll('video')) {
@@ -126,27 +160,36 @@
   };
 
   /* MeteorNet, one task end to end (illustrative, not to scale). A ring of satellites passes over the
-     gateway; gold ones have their server on. Step 0: one task at a time, numbered as on the card.
-     Step 1: the ring at full speed, tasks from every device at once; a task waits at the gateway for a
-     satellite that stays in view long enough, and fails at its 2.5 s deadline (about 80% here, tuned
-     to the paper's result, MeditCom 2026 Fig. 3b). */
+     gateway; gold ones have their server on. A task goes up to whichever satellite is in view, over laser
+     links to a server that is on, and comes back down through whichever satellite is in view when the
+     result is ready. The visibility cone lights while a satellite is in it, with the gateway's link up.
+     Step 0: one numbered task, slowly, the ring drifting (a step lights up on the card as the task takes it).
+     Step 1: the ring at full speed and tasks from every device at once. A task waits, at the gateway or in
+     orbit, for a satellite in view, and fails at its 2.5 s deadline: about 75-80% here (cone +-4 deg, a
+     satellite in view 31% of the time), as in the paper's ring of 10 (MeditCom 2026 Fig. 2b, P_F ~ 0.80:
+     no satellite in view in time). */
   anims.mn = (() => {
-    const NS = 'http://www.w3.org/2000/svg', C = [600, 1438], RE = 910, RO = 1134, D = 26, CONE = 6, N = 4;
+    const NS = 'http://www.w3.org/2000/svg', C = [600, 1438], RE = 910, RO = 1134, D = 26, CONE = 4, N = 4;
     const pt = (r, a) => { a *= Math.PI / 180; return [C[0] + r * Math.sin(a), C[1] - r * Math.cos(a)]; };
     const G = pt(RE + 12, 0), DEV = [-10, -7.5, 7.5, 10].map(a => pt(RE + 11, a));
     const mk = (tag, at, parent) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); parent.appendChild(e); return e; };
     const lerp = (p, q, u) => [p[0] + (q[0] - p[0]) * u, p[1] + (q[1] - p[1]) * u];
-    const DUR = [{ gw: .9, up: .8, isl: .9, run: 1.4, back: .9, down: .8, dev: .9 },
-                 { gw: .5, up: .3, isl: .35, run: .4, back: .35, down: .3, dev: .5 }];
-    const W = [1.8, 5], DEADLINE = 2.5, RATE = 4;
+    // seconds per leg: step 0 slow enough to follow the numbers (~11 s end to end), step 1 at full speed
+    const DUR = [{ gw: 1.6, up: 1.4, isl: 1.6, run: 2.2, down: 1.4, dev: 1.4 },
+                 { gw: .4, up: .25, isl: .3, run: .4, down: .25, dev: .4 }];
+    const W = [.6, 5], DEADLINE = 2.5, RATE = 4;     // ring speed (deg/s), tasks per second at step 1
     let st = null;
     const ang = j => { let a = (st.phase + j * D) % (N * D); if (a < 0) a += N * D; return a - 40; };
     const S = j => pt(RO, ang(j));
     const isOn = j => j % 2 === 0;
     const inView = () => { for (let j = 0; j < N; j++) if (Math.abs(ang(j)) <= CONE) return j; return -1; };
-    const plan = (j, m) => {
-      const d = DUR[m], seq = isOn(j) ? ['up', 'run', 'down', 'dev'] : ['up', 'isl', 'run', 'back', 'down', 'dev'];
-      return { seq, need: seq.filter(x => x !== 'dev').reduce((a, x) => a + d[x], 0) };
+    const adj = (a, b) => Math.abs(Math.abs(ang(a) - ang(b)) - D) < 1e-6;   // laser link up (not across the gap)
+    // hops from a to b along the ring, one neighbour at a time; null if the way crosses the gap
+    const hops = (a, b) => {
+      const out = []; let x = a;
+      const dir = ang(b) > ang(a) ? 1 : -1;
+      while (x !== b && out.length < N) { const y = (x + dir + N) % N; if (!adj(x, y)) return null; out.push(y); x = y; }
+      return x === b ? out : null;
     };
     // the step a numbered task is on: its badge rides with the task, and the card's line for it lights up
     const step = (t, n) => {
@@ -166,7 +209,7 @@
         mk('circle', { r: 10, fill: '#0a1630', stroke: '#f2b84b', 'stroke-width': 1.6 }, b);
         nt = mk('text', { y: 4.3, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 700, fill: '#f2b84b' }, b);
       }
-      const t = { m, d, t0: st.t, seg: 'gw', ts: st.t, g, dot, ring, nt, j: -1, j2: -1, slot: m ? freeSlot() : -1, end: 0 };
+      const t = { m, d, t0: st.t, seg: 'gw', ts: st.t, g, dot, ring, nt, at: -1, path: [], slot: m ? freeSlot() : -1, end: 0 };
       st.tasks.push(t); step(t, 1);
     };
     const freeSlot = () => { const used = new Set(st.tasks.map(t => t.slot)); let i = 0; while (used.has(i)) i++; return i; };
@@ -174,29 +217,42 @@
     const pos = (t, u) => {
       switch (t.seg) {
         case 'gw': return lerp(DEV[t.d], t.slot >= 0 ? slotPos(t.slot) : G, u);
-        case 'wait': return slotPos(t.slot);
-        case 'up': return lerp(t.from, S(t.j), u);
-        case 'isl': return lerp(S(t.j), S(t.j2), u);
-        case 'run': return S(t.j2);
-        case 'back': return lerp(S(t.j2), S(t.j), u);
-        case 'down': return lerp(S(t.j), G, u);
+        case 'wait': return t.slot >= 0 ? slotPos(t.slot) : G;
+        case 'up': return lerp(t.from, S(t.at), u);
+        case 'isl': case 'back': return lerp(S(t.at), S(t.path[0]), u);
+        case 'run': case 'hold': return S(t.at);
+        case 'down': return lerp(S(t.at), G, u);
         case 'dev': return lerp(G, DEV[t.d], u);
       }
     };
-    const go = (t, j) => {
-      t.j = j; t.j2 = isOn(j) ? j : (j + 1) % N; t.p = plan(j, t.m); t.i = 0; t.seg = t.p.seq[0]; t.ts = st.t;
-      t.from = t.slot >= 0 ? slotPos(t.slot) : G; t.slot = -1;
-      t.ring.setAttribute('opacity', 0);
-      step(t, 2);
+    const go = (t, seg) => { t.seg = seg; t.ts = st.t; };
+    const left = t => DEADLINE - (st.t - t.t0);
+    const countdown = t => {               // the coral ring: the deadline running out while the task waits
+      t.ring.setAttribute('opacity', .9);
+      t.ring.setAttribute('stroke-dasharray', `${(56.5 * Math.max(0, left(t)) / DEADLINE).toFixed(1)} 60`);
     };
-    const tryGo = t => {
-      const j = inView(); if (j < 0) return false;
-      const p = plan(j, t.m), w = W[st.mode], left = (CONE - ang(j)) / w;
-      if (t.m === 1 && (left < p.need || st.t - t.t0 + p.need + DUR[1].dev > DEADLINE)) return false;
-      go(t, j); return true;
+    // at the gateway: up as soon as a satellite is in view (a step-1 task only while the shortest round trip still fits)
+    const tryUp = t => {
+      const j = inView(), d = DUR[t.m];
+      if (j < 0 || (t.m === 1 && left(t) < d.up + d.run + d.down + d.dev)) return false;
+      t.at = j; t.from = t.slot >= 0 ? slotPos(t.slot) : G; t.slot = -1;
+      t.ring.setAttribute('opacity', 0); go(t, 'up'); step(t, 2);
+      return true;
+    };
+    // result ready: down through the satellite in view, over laser links if it is another one
+    const tryDown = t => {
+      const k = inView(), d = DUR[t.m];
+      if (k < 0) return false;
+      const p = k === t.at ? [] : hops(t.at, k);
+      if (!p || (t.m === 1 && left(t) < p.length * d.isl + d.down + d.dev)) return false;
+      t.ring.setAttribute('opacity', 0); t.ring.setAttribute('r', 9); t.ring.setAttribute('stroke', '#ff8a72');
+      t.dot.setAttribute('fill', '#7fd3a0'); step(t, 5);
+      if (p.length) { t.path = p; go(t, 'back'); } else go(t, 'down');
+      return true;
     };
     const finish = (t, ok) => {
       t.seg = ok ? 'ok' : 'fail'; t.end = st.t; t.slot = -1;
+      if (ok) st.ok++; else st.fail++;
       t.dot.setAttribute('fill', ok ? '#7fd3a0' : '#ff8a72'); t.ring.setAttribute('opacity', 0);
       const p = ok ? DEV[t.d] : t.last;
       const mark = mk('text', { x: p[0] + 9, y: p[1] - 7, 'font-size': 16, 'font-weight': 800, fill: ok ? '#7fd3a0' : '#ff8a72' }, t.g.parentNode);
@@ -213,53 +269,63 @@
       for (let j = 0; j < N; j++) {
         const a = ang(j), p = S(j);
         st.sat[j].setAttribute('transform', `translate(${p[0].toFixed(1)},${p[1].toFixed(1)}) rotate(${a.toFixed(2)})`);
-        const q = S((j + 1) % N), adj = Math.abs(ang((j + 1) % N) - a - D) < 1e-6;   // neighbours, not the gap round the back
-        const l = st.link[j];
-        l.setAttribute('opacity', adj ? .5 : 0);
+        const q = S((j + 1) % N), l = st.link[j];
+        l.setAttribute('opacity', adj(j, (j + 1) % N) ? .5 : 0);    // neighbours, not the gap round the back
         l.setAttribute('x1', p[0]); l.setAttribute('y1', p[1]); l.setAttribute('x2', q[0]); l.setAttribute('y2', q[1]);
       }
+      // coverage: the cone lights and the gateway's link is up only while a satellite is in view
+      const v = inView();
+      st.view = v;
+      if (st.cone) st.cone.style.opacity = v >= 0 ? 1 : .3;
+      if (st.coneLab) st.coneLab.textContent = v >= 0 ? 'in view' : 'no satellite in view';
+      if (v >= 0) { const p = S(v); st.gl.setAttribute('x2', p[0]); st.gl.setAttribute('y2', p[1]); st.gl.setAttribute('opacity', .55); }
+      else st.gl.setAttribute('opacity', 0);
       // new tasks: step 0, one numbered task as each server-off satellite enters the cone; step 1, a steady stream
       if (st.mode === 0) {
         const off = [...Array(N).keys()].filter(j => !isOn(j)).map(ang);
         const busy = st.tasks.some(t => t.m === 0 && t.seg !== 'ok' && t.seg !== 'fail');
-        if (!busy && (st.t < .3 && !st.first ? (st.first = true) : off.some((a, i) => prevOff[i] < -7 && a >= -7))) spawn(0, 1);
+        if (!busy && (st.t < .3 && !st.first ? (st.first = true) : off.some((a, i) => prevOff[i] < -CONE && a >= -CONE))) spawn(0, 1);
       } else {
         while (st.next <= st.t) { spawn(1, Math.floor(Math.random() * 4)); st.next += -Math.log(1 - Math.random()) / RATE; }
       }
-      // move every task along its plan
+      // move every task along its legs
       for (const t of st.tasks) {
         if (t.seg === 'ok' || t.seg === 'fail') {
           const f = Math.max(0, 1 - (st.t - t.end) / (t.m === 0 ? 2.5 : .9));
           t.g.setAttribute('opacity', f); if (t.mark) t.mark.setAttribute('opacity', f);
           continue;
         }
-        const d = DUR[t.m], u = t.seg === 'wait' ? 0 : Math.min(1, (st.t - t.ts) / d[t.seg]);
-        if (t.seg === 'gw' && u >= 1) { if (!tryGo(t)) { if (t.slot < 0) t.slot = freeSlot(); t.seg = 'wait'; } }
-        else if (t.seg === 'wait') {
-          const left = DEADLINE - (st.t - t.t0);
-          t.ring.setAttribute('opacity', .9);
-          t.ring.setAttribute('stroke-dasharray', `${(56.5 * Math.max(0, left) / DEADLINE).toFixed(1)} 60`);
-          if (!tryGo(t) && left <= 0) finish(t, false);
-        } else if (u >= 1) {
-          const next = t.p.seq[++t.i];
-          if (!next) { finish(t, true); continue; }
-          if (t.m === 0) {
-            if (next === 'isl') step(t, 3);
-            if (next === 'run') step(t, 4);
-            if (next === 'back' || (next === 'down' && t.p.seq[t.i - 1] === 'run')) step(t, 5);
-          }
-          if (next === 'run') t.dot.setAttribute('fill', '#f2b84b');
-          if (next === 'back' || (next === 'down' && t.p.seq[t.i - 1] === 'run')) t.dot.setAttribute('fill', '#7fd3a0');
-          t.seg = next; t.ts = st.t;
+        const d = DUR[t.m], el = st.t - t.ts;
+        const u = d[t.seg === 'back' ? 'isl' : t.seg] ? Math.min(1, el / d[t.seg === 'back' ? 'isl' : t.seg]) : 0;
+        switch (t.seg) {
+          case 'gw': if (u >= 1 && !tryUp(t)) { if (t.slot < 0 && t.m === 1) t.slot = freeSlot(); go(t, 'wait'); } break;
+          case 'wait': if (!tryUp(t)) { if (t.m === 1) { countdown(t); if (left(t) < d.up + d.run + d.down + d.dev) finish(t, false); } } break;
+          case 'up':
+            if (u >= 1) {
+              if (isOn(t.at)) { go(t, 'run'); step(t, 4); t.dot.setAttribute('fill', '#f2b84b'); }
+              else { t.path = [(t.at + 1) % N]; go(t, 'isl'); step(t, 3); }
+            }
+            break;
+          case 'isl': if (u >= 1) { t.at = t.path[0]; go(t, 'run'); step(t, 4); t.dot.setAttribute('fill', '#f2b84b'); } break;
+          case 'run': if (u >= 1 && !tryDown(t)) go(t, 'hold'); break;
+          case 'hold':
+            if (!tryDown(t) && t.m === 1) { countdown(t); if (left(t) < d.down + d.dev) finish(t, false); }
+            break;
+          case 'back':
+            if (u >= 1) { t.at = t.path.shift(); if (t.path.length) go(t, 'back'); else go(t, 'down'); }
+            break;
+          case 'down': if (u >= 1) go(t, 'dev'); break;
+          case 'dev': if (u >= 1) finish(t, true); break;
         }
         if (t.seg === 'ok' || t.seg === 'fail') continue;
-        const p = pos(t, t.seg === 'wait' ? 0 : Math.min(1, (st.t - t.ts) / d[t.seg]));
+        const leg = d[t.seg === 'back' ? 'isl' : t.seg];
+        const p = pos(t, leg ? Math.min(1, (st.t - t.ts) / leg) : 0);
         t.last = p;
         if (t.seg === 'run') {   // the container at work: a ring fills round the satellite
-          const u = Math.min(1, (st.t - t.ts) / d.run);
+          const w = Math.min(1, (st.t - t.ts) / d.run);
           t.ring.setAttribute('r', 14); t.ring.setAttribute('stroke', '#7fd3a0'); t.ring.setAttribute('opacity', .95);
-          t.ring.setAttribute('stroke-dasharray', `${(88 * u).toFixed(1)} 90`);
-        } else if (t.ring.getAttribute('r') === '14') { t.ring.setAttribute('r', 9); t.ring.setAttribute('stroke', '#ff8a72'); t.ring.setAttribute('opacity', 0); }
+          t.ring.setAttribute('stroke-dasharray', `${(88 * w).toFixed(1)} 90`);
+        } else if (t.seg === 'hold' && t.ring.getAttribute('r') === '14') { t.ring.setAttribute('r', 9); t.ring.setAttribute('stroke', '#ff8a72'); t.ring.setAttribute('opacity', 0); }
         t.g.setAttribute('transform', `translate(${p[0].toFixed(1)},${p[1].toFixed(1)})`);
       }
       st.tasks = st.tasks.filter(t => {
@@ -272,6 +338,7 @@
     const build = el => {
       const live = el.querySelector('.live');
       live.innerHTML = '';
+      const gl = mk('line', { x1: G[0], y1: G[1] - 12, x2: G[0], y2: G[1], stroke: '#7cd4f5', 'stroke-width': 1.6, opacity: 0 }, live);
       const links = mk('g', {}, live), sats = mk('g', {}, live), lab = mk('g', {}, live), tok = mk('g', {}, live);
       const link = [...Array(N)].map(() => mk('line', { stroke: '#7cd4f5', 'stroke-width': 1.6, 'stroke-dasharray': '5 4', opacity: 0 }, links));
       const sat = [...Array(N)].map((_, j) => {
@@ -282,14 +349,16 @@
         mk('rect', { x: -7, y: -6, width: 14, height: 12, rx: 2, fill: on ? '#f2b84b' : '#cfd6e4' }, g);
         return g;
       });
-      return { links, sats, lab, tok, link, sat };
+      return { links, sats, lab, tok, link, sat, gl, cone: el.querySelector('.mn-cone'), coneLab: el.querySelector('.mn-cone-lab') };
     };
     return {
       on(el, k) {
         if (!el.__run) {
           el.__run = true;
-          st = Object.assign(build(el), { t: 0, phase: 7, w: W[0], mode: 0, tasks: [], first: false, last: performance.now(), next: 0,
+          // phase 10: satellite 1 (server off) at -4 deg, just in view, so the first task goes up at once
+          st = Object.assign(build(el), { t: 0, phase: 10, w: W[0], mode: 0, tasks: [], first: false, last: performance.now(), next: 0, ok: 0, fail: 0,
                                           legend: el.closest('section') && el.closest('section').querySelector('.mnsteps') });
+          el.__mn = () => st && { mode: st.mode, ok: st.ok, fail: st.fail, view: st.view, t: st.t };
           st.raf = requestAnimationFrame(frame);
         }
         const m = k > 0 ? 1 : 0;
@@ -297,10 +366,13 @@
           st.mode = m; st.next = st.t;
           for (const t of st.tasks) { t.g.remove(); if (t.mark) t.mark.remove(); }
           unstep();
-          st.tasks = []; st.first = m !== 0; if (m === 0) { st.t = 0; st.phase = 7; }
+          st.tasks = []; st.ok = st.fail = 0; st.first = m !== 0; if (m === 0) { st.t = 0; st.phase = 10; }
         }
       },
-      off(el) { el.__run = false; if (st) { cancelAnimationFrame(st.raf); unstep(); } st = null; el.querySelector('.live').innerHTML = ''; }
+      off(el) {
+        el.__run = false; if (st) { cancelAnimationFrame(st.raf); unstep(); if (st.cone) st.cone.style.opacity = ''; if (st.coneLab) st.coneLab.textContent = 'in view'; }
+        st = null; el.querySelector('.live').innerHTML = '';
+      }
     };
   })();
 
@@ -340,13 +412,18 @@
 <p class="lab">STARLINK'S FIRST SHELL · 550 KM · 53°</p>
 <p class="keys" style="margin-top:10px">Each satellite holds <b>4 laser links</b>: two in its own orbit, two to the next planes.</p>
 <p class="keys"><b>7.6 km/s</b>, one orbit in 95 min. Every <b>15 s</b>, the network re-plans which satellite serves each dish.</p>
+<p class="lab" style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,.13)">THE WHOLE FLEET · 2 NOV 2026</p>
+<div style="display:flex; gap:26px; margin-top:4px">
+<div><p class="big" style="font-size:28px">11,214</p><p class="lab">IN ORBIT</p></div>
+<div><p class="big" style="font-size:28px">10,022</p><p class="lab">OPERATIONAL</p></div>
+</div>
 </div>
 <div data-marpit-fragment><img class="plate" data-still src="assets/globe-starlink-odc.jpg" /><div class="glass at" style="left:56px; top:150px; width:330px; border-color:rgba(242,184,75,.6)">
 <p class="big gold">13,020</p>
 <p class="lab">DATA-CENTER SATELLITES · 550–2,000 KM</p>
 <p class="keys" style="margin-top:10px">Five shells along the <b>day–night line</b>, 4 laser terminals each. From here on, this is our network.</p>
 </div></div>
-<p class="footnote" style="right:420px; bottom:40px">Live. Starlink's first shell as filed with the FCC (72 planes × 22); Walker phasing and grid links modelled (SpaceX does not publish its link plan). 15&nbsp;s: Mohan et al., ACM WWW 2024. Fleet after the click: simulated. Earth imagery: NASA.</p>
+<p class="footnote" style="right:420px; bottom:40px">Live. Starlink's first shell as filed with the FCC (72 planes × 22); Walker phasing and grid links modelled (SpaceX does not publish its link plan). 15&nbsp;s: Mohan et al., ACM WWW 2024. Fleet counts: J. McDowell, planet4589.org. Fleet after the click: simulated. Earth imagery: NASA.</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-lang="en" data-theme="space-inria-stickers" lang="en" style="--lang:en;--theme:space-inria-stickers;" data-transition-back="{&quot;name&quot;:&quot;fade&quot;,&quot;duration&quot;:&quot;0.7s&quot;,&quot;builtinFallback&quot;:true}" data-transition="{&quot;name&quot;:&quot;fade&quot;,&quot;duration&quot;:&quot;0.7s&quot;,&quot;builtinFallback&quot;:true}"><img class="plate" src="assets/globe-starlink-odc.jpg" />
 <iframe class="plate" data-src="assets/globe.html?scene=predictable&amp;intro=1" data-poster="assets/globe-predictable.jpg"></iframe>
@@ -522,8 +599,8 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 
 <defs><linearGradient id="mn-cone" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#7cd4f5" stop-opacity=".26" /><stop offset="1" stop-color="#7cd4f5" stop-opacity=".04" /></linearGradient></defs>
 <path d="M -34.1 497.9 A 1134 1134 0 0 1 1298.2 544.4" fill="none" stroke="#7cd4f5" stroke-opacity=".38" stroke-width="1.3" stroke-dasharray="2 6" />
-<path d="M 600.0 516.0 L 481.5 310.2 A 1134 1134 0 0 1 718.5 310.2 Z" fill="url(#mn-cone)" />
-<text x="600" y="388" text-anchor="middle" font-size="13" fill="#9fb0c4" letter-spacing=".5">in view</text>
+<path class="mn-cone" d="M 600.0 516.0 L 520.9 306.8 A 1134 1134 0 0 1 679.1 306.8 Z" fill="url(#mn-cone)" style="transition:opacity .25s" />
+<text class="mn-cone-lab" x="600" y="388" text-anchor="middle" font-size="13" fill="#9fb0c4" letter-spacing=".5">in view</text>
 <g transform="translate(600.0,516.0)" fill="none" stroke="#e9eef6" stroke-width="2.4" stroke-linecap="round"><path d="M-12,-6 Q0,10 12,-6" /><line x1="0" y1="2" x2="0" y2="12" /><line x1="-7" y1="12" x2="7" y2="12" /></g>
 <g fill="none" stroke="#e9eef6" stroke-width="1.6"><rect x="-4" y="-6.5" width="8" height="13" rx="1.5" transform="translate(440.1,531.0) rotate(-10)" /><rect x="-4" y="-6.5" width="8" height="13" rx="1.5" transform="translate(479.8,524.9) rotate(-7.5)" /><rect x="-4" y="-6.5" width="8" height="13" rx="1.5" transform="translate(720.2,524.9) rotate(7.5)" /><rect x="-4" y="-6.5" width="8" height="13" rx="1.5" transform="translate(759.9,531.0) rotate(10)" /></g>
 <g font-size="13" fill="#9fb0c4" text-anchor="middle"><text x="600" y="554">gateway</text><text x="465" y="562">users</text><text x="735" y="562">users</text></g>
@@ -624,12 +701,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <p class="keys" style="margin:6px 0 0"><b>"Energy is free in space"</b>: eclipses need batteries, and batteries are launched mass.</p>
 </div>
 </div>
-<div data-marpit-fragment>
-<div class="glass at" style="left:700px; top:562px; width:434px; border-color:rgba(127,211,160,.6)">
-<p class="keys"><b style="color:var(--green)">Where orbit wins: data that shrinks.</b> Computing in orbit beats sending it all down once results are ≤ 50% of the raw data (Falcon 9), ≤ 70% (Starship).</p>
-</div>
-</div>
-<p class="footnote">Ohs et al., <i>Dirty Bits in Low-Earth Orbit</i>, ACM SIGENERGY EIR 2025 <a target="_blank" rel="noopener" class="hal" href="https://hal.science/hal-05411623">HAL</a> · five-year disposal rule: FCC 22-74, 2022 · data that shrinks: across one relay hop</p>
+<p class="footnote">Ohs et al., <i>Dirty Bits in Low-Earth Orbit</i>, ACM SIGENERGY EIR 2025 <a target="_blank" rel="noopener" class="hal" href="https://hal.science/hal-05411623">HAL</a> · five-year disposal rule: FCC 22-74, 2022</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-lang="en" data-theme="space-inria-stickers" lang="en" style="--lang:en;--theme:space-inria-stickers;" data-transition-back="{&quot;name&quot;:&quot;fade&quot;,&quot;duration&quot;:&quot;0.7s&quot;,&quot;builtinFallback&quot;:true}" data-transition="{&quot;name&quot;:&quot;fade&quot;,&quot;duration&quot;:&quot;0.7s&quot;,&quot;builtinFallback&quot;:true}">
 <p><video class="plate" data-once src="assets/s-exploded.mp4" poster="assets/s-exploded.jpg" muted playsinline preload="auto"></video></p>
@@ -801,7 +873,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
 </script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>[00:00–00:30]
 Good morning, and thank you, Oana, Maxime and Christelle, for the invitation. I am Juan Fraire, from the Agora team in Lyon. Behind me, thirteen thousand satellites are weaving themselves into one network. It is a simulation, a constellation of orbital data centres. I will follow one of its satellites, number 48, through its life.</p></div><div class="bespoke-marp-note" data-index="1" tabindex="0"><p>[00:30–01:00]
-[live] The network most of you know: Starlink's first shell, fifteen hundred satellites linked by lasers, here sixty times faster than real time. [point to the ringed satellite] Each one flies at seven and a half kilometres per second and circles the Earth in ninety-five minutes; every fifteen seconds, the network re-plans which satellite serves each dish. [click] Data-centre constellations, like the one behind the title, fly another way: along the line between day and night.</p></div><div class="bespoke-marp-note" data-index="2" tabindex="0"><p>[01:00–01:40]
+[live] The network most of you know: Starlink, with eleven thousand satellites in orbit today, ten thousand of them operational. This is its first shell, fifteen hundred satellites linked by lasers, here sixty times faster than real time. [point to the ringed satellite] Each one flies at seven and a half kilometres per second and circles the Earth in ninety-five minutes; every fifteen seconds, the network re-plans which satellite serves each dish. [click] Data-centre constellations, like the one behind the title, fly another way: along the line between day and night.</p></div><div class="bespoke-marp-note" data-index="2" tabindex="0"><p>[01:00–01:40]
 [the view dives to satellite 48] Here is satellite 48, still sixty times faster than real time. It carries four laser terminals: two hold its neighbours in the same orbit, two re-point to other planes. [point to the panel] Every link it will make is known in advance: with whom, when, for how long, at what rate. We write each one as a contact and route on that schedule; contact graph routing is where my own work started. The topology changes all the time, and predictably.</p></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>[01:40–02:10]
 And everything is scarce. [point to the counter] Satellite 48 has seven hundred to fifteen hundred and fifty satellites in range, and four terminals. A link lives for minutes. Energy runs short in eclipse, and every kilogram was paid at launch. [point to the equation] What a contact can carry is its duration times its rate, and that budget is what every scheduler shares out. Moving, predictable, scarce: keep these three words.</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>[02:10–02:55]
 First axis, AI for Space: if the orbits are predictable, what is left to learn? In ConstellAI, for ESA, with GMV, Thales Alenia Space and Saarland, we took routing. [point to the route] End-to-end delay has two parts. Propagation follows from the orbits, so we compute it: about forty milliseconds across the planet. Queueing follows from traffic and failures, so we learn it: with Q-routing, each node keeps the expected delay through each neighbour [point to the table] and corrects it after every packet. The white route is Dijkstra on propagation alone. [click] The learned route, in green, bends around busy nodes. In the study it beat Dijkstra by up to four milliseconds, and kept delivering when nodes failed.</p></div><div class="bespoke-marp-note" data-index="5" tabindex="0"><p>[02:55–03:20]
@@ -819,9 +891,7 @@ First, the carbon of getting there. Everyone expects the rocket to be the proble
 
 [click] The step nobody prices is coming back down. A deorbited satellite ablates, and part of it becomes nitrogen oxides in the upper atmosphere. At a twenty-year warming potential of 33, re-entry adds 46 to 62 percent on top of the launch. And the rules push fleets to burn: the FCC wants low-orbit satellites disposed of within five years. A graveyard orbit avoids the toll, and leaves a dead satellite behind for centuries.
 
-[click] Then, &quot;energy is free&quot;. The sun is, but eclipses need batteries. Orbital electricity comes out at 52 grams per kilowatt-hour on Starship and 66 on Falcon 9, against 34 for solar plus storage on the ground. [click] The panels alone are six to eight grams; almost the whole bill is the battery. That is why the filings love dawn-dusk orbits. Keep that escape route in mind; it comes back with its own price.
-
-[click] Orbit does win in one place: data that shrinks. If the results are at most half the raw data on Falcon 9, or 70 percent on Starship, computing up there beats sending everything down.</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>[09:00–09:35]
+[click] Then, &quot;energy is free&quot;. The sun is, but eclipses need batteries. Orbital electricity comes out at 52 grams per kilowatt-hour on Starship and 66 on Falcon 9, against 34 for solar plus storage on the ground. [click] The panels alone are six to eight grams; almost the whole bill is the battery. That is why the filings love dawn-dusk orbits. Keep that escape route in mind; it comes back with its own price.</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>[09:00–09:35]
 Second, the mass of staying alive. [the node opens] Here is satellite 48's node, opened up, every part to scale. Half of what we launch is radiator. A quarter is battery, a sixth is solar. [point to the rack] And the computer is this: five percent. The radiator alone weighs more than twelve times the GPU it cools. With no air or water to carry heat away, a coolant loop brings the heat out to those panels, which glow it into space as infrared light.</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>[09:35–10:20]
 Why so heavy? Every watt the chip dissipates must leave as radiation, and Stefan–Boltzmann sets the price: emissivity, area, and the fourth power of the panel's temperature, minus that of what it faces, cold space and a warm Earth. And the panel can never run hotter than the chip, about 80 degrees.
 
