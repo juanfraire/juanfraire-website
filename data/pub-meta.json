@@ -27,7 +27,16 @@
   "title": "CGR*: A* Search for Contact Graph Routing",
   "abstract": "Routing in space Delay-Tolerant Networks relies on Contact Graph Routing (CGR), standardized within the CCSDS Schedule-Aware Bundle Routing (SABR) framework. Existing SABR implementations use Dijkstra's algorithm, which ignores any information about the remaining cost to the destination and therefore explores many unnecessary states. We propose CGR*, an A*-based variant that exploits domain-specific heuristics to prune this search. Two heuristics are designed: h_Delay, an admissible heuristic suited to delay-dominated deep-space networks, and h_Geo, a greedy geographic heuristic for near-Earth networks, where contact availability rather than propagation delay drives arrival time. Experiments on realistic orbital scenarios show that h_Delay accelerates routing on deep-space networks by up to an order of magnitude with no loss of optimality, while h_Geo speeds up near-Earth routing at the cost of arrival times up to ∼2.5× the optimum — revealing cost-model design, rather than heuristic design alone, as the open challenge for A*-based routing in near-Earth scenarios. CGR* and its heuristics are released as part of the open-source A-SABR library.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05850044",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05850044 1.0"
+  ],
+  "hal": "hal-05850044"
  },
  "singla2026cmsisl": {
   "title": "Constellation Management for Inter-Satellite Link Scheduling in NB-IoT Non-Terrestrial Networks",
@@ -91,7 +100,16 @@
   "title": "Deploying QUIC in Challenged Networks: Profiling and Volume-Aware Congestion Control",
   "abstract": "As communication networks expand into environments characterized by extreme latency and frequent disruptions, reliable data delivery requires Store&Forward (SnF) architectures. While Delay-Tolerant Networking (DTN) has traditionally served as the de facto standard for these challenged networks, there is renewed interest in leveraging the IP suite, specifically the QUIC transport protocol. However, existing literature often evaluates QUIC strictly within Interplanetary Network (IPN) contexts, mixing the fundamental constraints of general challenged networks with the specific architectural issues of a heterogeneous “network of networks.” This paper isolates the generalized challenged network problem to evaluate QUIC's end-to-end transport viability. We identify that while QUIC's internal logic is inherently resilient to delay fluctuations when supported by IP-layer S&F, classic Congestion Control Algorithms (CCAs) critically fail due to unreliable signaling and extreme feedback delays. To address this, we propose a comprehensive deployment strategy that combines rigorous QUIC parameter profiling with a novel, volume-aware CCA. This approach bounds in-flight data to a path's routable volume of data rather than relying on classic congestion signals like loss or delay increase. We validate our strategy through a ns-3 simulation of a dynamic “data mule” topology. Results show that a properly configured volume-aware QUIC/IP stack effectively utilizes available bandwidth without exceeding the nodes' storage capabilities. These findings provide initial evidence that QUIC is a viable alternative to DTN for generalized challenged networks, while delimiting the regime—single-flow, scheduled-contact scenarios with known path volumes—in which the result currently holds.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05850016",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05850016 1.0"
+  ],
+  "hal": "hal-05850016"
  },
  "DBLP:journals/frcmn/AkarCFG26": {
   "title": "Direct-to-satellite internet of things (DtS-IoT): a tutorial review on architectures, protocols, and future directions",
@@ -196,7 +214,16 @@
   "title": "IR-CGR: Time-Aware Inter-Region Contact Graph Routing for Scalable Space DTNs",
   "abstract": "Regionalization techniques scale Contact Graph Routing (CGR) in space Delay-Tolerant Networks by partitioning the network into routing regions, but existing local-knowledge schemes treat inter-region routing as a time-static problem: the set of viable passageways (nodes bridging two regions) is fixed at plan-derivation time. In orbital environments where passageway availability changes continuously, a statically selected passageway may have no contact left to carry a bundle onward by its arrival time, causing delivery failures. We propose IR-CGR, an Inter-Region Contact Graph Routing algorithm that constructs a time-aware Inter-Region Contact Plan (IRCP) over passageway nodes and applies contact-graph Dijkstra hierarchically at both intra- and inter-region levels, with a sampling parameter Δt that trades IRCP size against temporal resolution. Evaluations on a synthetic scaling model and the realistic Lunar Ring Road scenario show that IR-CGR sustains 100% delivery ratio, matching full-knowledge CGR, on sparse-relay lunar configurations where the static-vent baseline collapses to 53–72%. On the largest synthetic networks, IR-CGR reduces per-bundle computational cost to 7–29% of the full-knowledge baseline at its default sampling interval (Δt = 3600 s). Delivery delay remains within ∼1.9× of the full-knowledge reference on most sparse-relay configurations, with larger penalties confined to dense synthetic networks and degenerate lunar partitions.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05850054",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05850054 1.0"
+  ],
+  "hal": "hal-05850054"
  },
  "DBLP:journals/tvt/YanFYZLHLMZKZCWX26": {
   "title": "Joint Contact Planning for Navigation and Communication in GNSS-Libration Point Systems",
@@ -230,7 +257,16 @@
   "title": "Lifespan-Aware Contact Plan Design for Interplanetary Free-Space Optical Networks",
   "abstract": "Free-space optical (FSO) communication promises to relieve the capacity bottleneck in radio-frequency deep-space networks, but its narrow beams demand precise pointing, acquisition, and tracking (PAT), which in turn requires that link opportunities be scheduled in advance through contact plan design (CPD). Existing CPD schedulers for optical interplanetary backhaul maximize throughput, while battery state-of-charge has been considered only for RF networks, yet none model the irreversible decay of radioisotope thermoelectric generator (RTG) power or its effect on long-term survivability. We extend the Laser Link Scheduler (LLS) with three resource-aware variants: energy-, battery-, and lifespan-aware, that fold RTG decay and optical-terminal consumption into per-node lifetime constraints, and evaluate the trade-off between capacity, fairness, and survivability across Mars-to-Earth constellations of increasing size. We define network lifetime as the point at which data-producing source nodes can no longer transmit, and find that the capacity-greedy LLS schedules 45 to 55% more data than the fairness baseline while consuming the lowest amount of energy. However, we find that survivability is governed by the hardware power margin, not by scheduling, and stays nearly identical across all schedulers at both end-of-life and beginning-of-life RTG power levels. These distinctions matter for mission operations, where expensive scientific payloads must balance data backhaul rate against mission lifetime.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05850064",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05850064 1.0"
+  ],
+  "hal": "hal-05850064"
  },
  "fraire2026meteornet": {
   "title": "MeteorNet: Continuous-Time Emulation Platform for Edge Intelligence in LEO Constellations",
@@ -251,7 +287,16 @@
   "title": "On the Distribution of DTN Reachability Information: A Quantitative Push-vs-Pull Analysis",
   "abstract": "As space networks scale from isolated point-to-point links to multi-operator, multi-hop infrastructures, nodes must discover how to reach each other's Bundle Protocol endpoints. Today, this Endpoint Identifier (EID) to Convergence-Layer Adapter (CLA) binding is pre-provisioned; it will not scale. Two Internet paradigms offer competing solutions: proactive flooding (à la BGP) that replicates every binding everywhere, and on-demand resolution (à la DNS) that queries an authority when needed. We build OMNeT++ models of both and evaluate them across 13 experiments on synthetic grids (up to 400 nodes, 500 EIDs) and three realistic scenarios (terrestrial disaster response, lunar Artemis, and Mars exploration) covering one-way delays from 5 ms to 12 min. The results reveal a sharp, delay-driven regime map: below ∼100 ms round-trip time, DNS delivers 9–141× lower overhead with sub-200 ms query latency; above ∼3 s, BGP's one-time convergence cost amortizes after a single query, making it the only viable option at Mars distances; and a contested crossover emerges at cislunar delays (∼1–3 s), where a hybrid strategy may be optimal. Under EID churn, BGP maintains 100% accuracy at all rates, while DNS degrades to 33% when the churn interval falls below the cache TTL. These findings give the first quantitative guidelines for choosing, or combining, push and pull EID resolution across the solar system.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05849983",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05849983 1.0"
+  ],
+  "hal": "hal-05849983"
  },
  "dolz2026onlinelearning": {
   "title": "Online Learning for Predictive Satellite Telemetry Analysis: Towards a Digital Twin for Constellation Management",
@@ -296,7 +341,8 @@
   "title": "Powering the Cloud Above the Clouds: Are Orbital Data Centers the First Real Customer for Space-Based Solar Power?",
   "abstract": "Orbital data centers (ODCs) and space-based solar power (SBSP) are converging on the same orbital shell. Most ODC proposals target dawn–dusk sun-synchronous orbit because it almost never enters Earth's shadow, so a compute node can run without a large battery. That orbit is crowded, and it is poorly placed for latency-sensitive AI inference. This article asks whether SBSP can let compute leave it: sunlit relays would beam power to ODCs in other orbits, and orbital compute would become the first real in-space customer for SBSP. We frame the pairing as a fractionated architecture, the Sun-Side Cloud, and test it with an orbital, optical, and carbon model whose uncertain inputs are all set in the relay's favor. Three results bound the idea. First, relays in the dawn–dusk plane shrink an inclined client's eclipse but cannot erase it: for part of every precession cycle the middle of Earth's shadow is hidden from them, so clients keep a residual battery. Second, reaching that shadow core takes links of several thousand kilometers, where a sun-sized receiver captures only a small part of the beam. Third, once relay mass scales with the power it delivers, beamed power beats an onboard battery on carbon only above roughly 10–20% end-to-end efficiency and with tens of clients per fleet. Today's technology falls an order of magnitude short, so near-term value must come from the orbit itself. We turn these thresholds, together with the cooling and computing bottlenecks that no orbit removes, into a research agenda.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "publisher_oa": true,
+  "hal": "hal-05849955 (embargo)"
  },
  "yan2026beidou": {
   "title": "Progressive Replacement Sequence Planning for Laser-Enhanced BeiDou Navigation Constellations",
@@ -341,7 +387,16 @@
   "title": "Security-Aware Route Selection in DTNs: Towards Optimal Key Provisioning",
   "abstract": "Bundle Protocol Security (BPSec) provides integrity and confidentiality for Delay-Tolerant Networks (DTNs) but deliberately leaves key management to the operator. In space networks, where intermittent contacts preclude interactive key exchange, the adopted security scheme—End-to-End, Hop-by-Hop, Edge-by-Edge, or Edge-to-Edge—determines which symmetric keys must be pre-provisioned for each route to remain usable. This paper introduces a security-aware route selection framework that couples routing feasibility with cryptographic provisioning: routes computed via Contact Graph Routing are translated into scheme-induced key scopes, and a mixed-integer linear program minimizes the active key scopes required to reach a target connectivity ratio. Results on a four-plane orbital scenario quantify the trade-off between key provisioning, cryptographic processing, and data-at-rest exposure: End-to-End minimizes exposure and processing at maximal key cost, Hop-by-Hop exhibits the opposite profile, while the edge-based schemes provide practical intermediate operating points, turning BPSec policy selection into a quantitative decision.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05850001",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05850001 1.0"
+  ],
+  "hal": "hal-05850001"
  },
  "DBLP:journals/ijscn/YangZFWBLY26": {
   "title": "Semicentralized Online Resource Allocation for Ensuring QoS in Deep Space DTN",
@@ -819,19 +874,20 @@
   "hal": "hal-04711316"
  },
  "DBLP:conf/icc/MadoeryFFYK24": {
-  "title": "A Novel Non- Terrestrial Networks Architecture: All Optical LEO Constellations with High-Altitude Ground Stations",
+  "title": "A Novel Non-Terrestrial Networks Architecture: All Optical LEO Constellations with High-Altitude Ground Stations",
   "abstract": "The emergence of low Earth orbit (LEO) satellite mega-constellations is dynamically transforming the space sector. While free-space optical (FSO) links efficiently facilitate inter-satellite data forwarding, they suffer from atmospheric/weather conditions in the space-to-ground link. This study delves into utilizing high-altitude platform stations (HAPS) as elevated relay stations strategically positioned above terrestrial ground stations. We introduce the concept of high-altitude ground stations (HAGS), an innovative approach to enabling the development of all optical LEO satellite constellations. The first contribution is an analysis of the HAGS-based network architecture where the LEO spacecraft only hosts FSO transceivers. Secondly, we execute an extensive simulation campaign to determine the gain of HAGS, including a new equivalency model with the traditional ground station approach. Finally, we examine the research challenges of implementing HAGS-based, all optical LEO mega-constellations.",
-  "abstract_from": "semanticscholar",
+  "abstract_from": "openalex",
   "open": {
-   "url": "https://arxiv.org/abs/2403.15659",
-   "label": "arXiv",
-   "from": "arxiv"
+   "url": "https://hal.science/hal-05850092",
+   "label": "HAL",
+   "from": "hal"
   },
   "publisher_oa": false,
   "arxiv": "2403.15659",
   "matched_by_title": [
    "arxiv 2403.15659 1.0"
-  ]
+  ],
+  "hal": "hal-05850092"
  },
  "DBLP:conf/icc/0002FHH024": {
   "title": "A Stability-First Approach to Running TCP Over Starlink",
@@ -898,7 +954,13 @@
   "title": "Constellation Autonomy: AI Solutions for Adaptable and Efficient Operations",
   "abstract": "The space industry is experiencing a boom in satellite constellation launches, with both institutional and industry missions involving numerous collaborative spacecraft. These constellations provide continuous global coverage and improved network capabilities for Positioning, Telecommunications, and Earth Observation. At the same time, the trend towards “New Space” involves deploying smaller, cost-effective satellites that are part of larger systems, increasing the complexity and variety of satellites in Low Earth Orbit (LEO), Medium Earth Orbit (MEO), and Geostationary Earth Orbit (GEO), as well as stratospheric platforms. As the number of satellites grows, managing these complex networks becomes more challenging, necessitating advanced computational methods and real-time replanning. Artificial Intelligence (AI) is emerging as a key tool to handle this complexity, offering new capabilities for optimizing and automating satellite network management. The European Space Operations Centre, along with GMV, Saarland University, Thales Alenia Space France, and other major operators, is exploring how AI can enhance constellation management. The work focuses on using Reinforcement Learning (RL) to optimize resource use and improve routing in large constellations. This approach aims to surpass traditional optimization methods, providing a scalable and flexible decision-making process crucial for managing dynamic and complex satellite networks.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05849941",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "hal": "hal-05849941"
  },
  "fernandeznino2024protocol": {
   "title": "Design and Implementation of the Protocol Stack of the Control Plane in Hybrid Inter-Satellite Link Terminals",
@@ -1067,7 +1129,13 @@
   "title": "Performance Assessment of LoRaWAN DtS-IoT Networks: Operation Modes and Server Placement",
   "abstract": "The number of devices and services implemented on the Internet of Things (IoT) has grown significantly in recent years, creating the need to extend its reach, especially in areas where terrestrial infrastructure is not viable. This is where satellite connectivity becomes important, as it would provide efficient and global connectivity for IoT implementations in remote areas. Consequently, the concept of Direct-To-Satellite IoT (DtS-IoT) networks has emerged, where low-power devices, LPWAN, can connect directly to low-earth orbit (LEO) satellites. These networks pose new challenges for research and development due to the long transmission distances and variable communication conditions. This work evaluates one of the LPWAN technologies most suitable for the DtS-IoT scenario: LoRa and LoRaWAN. LoRa refers to the physical communication layer, while Lo-RaWAN is the communication network between LoRa devices. The research focuses on a DtS-IoT environment where LEO satellites collect data from multiple end devices on the ground. The medium's behavior is examined, exploring various factors to improve communication efficiency. Additionally, the architecture of the LoRaWAN network is addressed, with a specific focus on the optimal location of the network server, a crucial element for authenticating the data collected from the end devices.",
   "abstract_from": "semanticscholar",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05850118",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "hal": "hal-05850118"
  },
  "DBLP:journals/cn/FraireHSOHWBRMSR24": {
   "title": "Quantitative analysis of segmented satellite network architectures: A maritime surveillance case study",
