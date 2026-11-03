@@ -1045,18 +1045,25 @@ None of this is mine alone: thanks to the teams in Saarland, Genoa, Nanjing and 
                           its slide; its own keys are sent too, so controllers follow a local operator
    The main and presenter windows of one browser both join; a short lease picks the one that applies
    what comes in (the other follows it through Marp's own sync). Pages ignore their own browser's messages.
-   The phone page (website/talks/remote/) speaks the same messages. */
+   The phone page (website/talks/remote/) speaks the same messages; its slide view is this deck in an iframe
+   with ?room=T&role=mirror: no link of its own (the phone page hands it every message as postMessage
+   {type:'room', msg}), nothing sent, live pages and clips as stills, and it follows the screen's reported slide. */
 (() => {
   const q = new URLSearchParams(location.search);
   const room = q.get('room');
   if (!room || !/^[\w-]{4,64}$/.test(room)) return;
   const view = q.get('view') || '';
   if (view === 'next' || view === 'overview') return;             // helper frames of the presenter view
-  const role = q.get('role') === 'screen' ? 'screen' : 'remote';
+  const role = ['screen', 'mirror'].includes(q.get('role')) ? q.get('role') : 'remote';
+  const mirror = role === 'mirror';
+  if (mirror) {                                                     // stills in place of live pages and clips
+    const still = el => { const src = el.getAttribute('data-poster') || el.getAttribute('poster'); if (!src) return el.remove(); const img = document.createElement('img'); img.className = el.className; img.src = src; el.replaceWith(img); };
+    document.querySelectorAll('iframe[data-src], video[poster]').forEach(still);
+  }
   const RELAY = 'wss://talk-remote.kifki.workers.dev/r/';
   const KEYS = new Set(['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', ' ', 'PageDown', 'PageUp', 'Home', 'End', '[', ']', 'r', 'R', 'a', 'A']);
   const store = { get: k => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
-  const myId = store.get('talk-remote-id') || (() => { const id = Math.random().toString(36).slice(2, 10); store.set('talk-remote-id', id); return id; })();
+  const myId = mirror ? 'mirror' : store.get('talk-remote-id') || (() => { const id = Math.random().toString(36).slice(2, 10); store.set('talk-remote-id', id); return id; })();
   const winId = Math.random().toString(36).slice(2, 8);
 
   // one window per browser applies incoming messages: a 2.5 s lease in localStorage, renewed every second
@@ -1066,8 +1073,8 @@ None of this is mine alone: thanks to the teams in Saarland, Genoa, Nanjing and 
     if (id === winId || Date.now() - Number(t) > 2500) { store.set(LEASE, `${winId}:${Date.now()}`); return true; }
     return false;
   };
-  lead(); setInterval(lead, 1000);
-  const leader = () => (store.get(LEASE) || '').startsWith(winId + ':');
+  if (!mirror) { lead(); setInterval(lead, 1000); }
+  const leader = () => mirror || (store.get(LEASE) || '').startsWith(winId + ':');
 
   // slide state: 0-based page and fragments shown, read from the deck's DOM
   const slides = () => [...document.querySelectorAll('svg[data-marpit-svg]')];
@@ -1079,7 +1086,7 @@ None of this is mine alone: thanks to the teams in Saarland, Genoa, Nanjing and 
   const same = (a, b) => a && b && a.page === b.page && a.step === b.step;
 
   let ws = null, backoff = 500, linked = false;
-  const send = o => { if (ws && ws.readyState === 1) ws.send(JSON.stringify({ ...o, from: myId })); };
+  const send = o => { if (!mirror && ws && ws.readyState === 1) ws.send(JSON.stringify({ ...o, from: myId })); };
   const sendState = () => { if (leader()) send({ type: 'state', ...stateOf(), role }); };
 
   const press = (key, code, shiftKey) => {
@@ -1105,6 +1112,8 @@ None of this is mine alone: thanks to the teams in Saarland, Genoa, Nanjing and 
     chip();
   };
   setInterval(check, 1000);
+  let follow = null;                                                // mirror: the screen's last state and when it first differed
+  setInterval(() => { if (mirror && follow && !same(follow, stateOf()) && Date.now() - follow.t > 1500) { goto(follow.page, follow.step); follow.t = Date.now(); } }, 300);
 
   // the chip: controllers only
   let chipEl = null;
@@ -1192,7 +1201,8 @@ None of this is mine alone: thanks to the teams in Saarland, Genoa, Nanjing and 
     else if (d.type === 'key') { if (leader() && KEYS.has(d.key)) press(d.key, d.code, d.shiftKey); }
     else if (d.type === 'goto') { if (leader() && Number.isInteger(d.page)) goto(d.page, d.step | 0); }
     else if (d.type === 'ptr') pointer(d.x, d.y);
-    else if (d.type === 'state') { if (d.role === 'screen' && d.from) { screens.set(d.from, { state: d, t: screens.get(d.from) && same(screens.get(d.from).state, d) ? screens.get(d.from).t : Date.now() }); chip(); } }
+    else if (d.type === 'gp') { if (leader()) document.querySelectorAll('svg.bespoke-marp-active iframe[src]').forEach(f => f.contentWindow && f.contentWindow.postMessage({ type: 'globe-pointer', phase: d.phase, x: d.x, y: d.y, dx: d.dx, dy: d.dy }, '*')); }
+    else if (d.type === 'state') { if (mirror && d.role === 'screen') follow = same(follow, d) ? follow : { page: d.page, step: d.step, t: Date.now() }; if (d.role === 'screen' && d.from) { screens.set(d.from, { state: d, t: screens.get(d.from) && same(screens.get(d.from).state, d) ? screens.get(d.from).t : Date.now() }); chip(); } }
   };
 
   const connect = () => {
@@ -1220,7 +1230,9 @@ None of this is mine alone: thanks to the teams in Saarland, Genoa, Nanjing and 
   };
   const awake = async () => { try { if (navigator.wakeLock) await navigator.wakeLock.request('screen'); } catch {} };
 
+  addEventListener('message', e => { if (mirror && e.source === parent && e.data && e.data.type === 'room') handle(e.data.msg); });
   addEventListener('load', () => {
+    if (mirror) return;
     connect();
     changed();
     new MutationObserver(changed).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['class', 'data-bespoke-marp-fragment'] });

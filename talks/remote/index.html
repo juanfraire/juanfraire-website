@@ -44,6 +44,10 @@
     #slide { width:100%; aspect-ratio:16 / 9; max-height:100%; border:1px solid var(--line); border-radius:6px; background:var(--raised); position:relative; touch-action:none; overflow:hidden; }
     #spot { position:absolute; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%; display:none; background:radial-gradient(circle,#fff 0 22%,var(--red) 46% 100%); box-shadow:0 0 8px 3px rgba(255,64,48,.85); pointer-events:none; }
     #pad button { height:56px; font-size:18px; margin-top:8px; }
+    #padMode { display:grid; grid-template-columns:1fr 2fr; gap:8px; } #padMode button { height:44px; font-size:15px; margin:0; } #padMode button.on { background:#13306a; border-color:#2a56a8; }
+    #slide.drag { border-color:#2a56a8; } #slide.drag #spot { background:none; box-shadow:none; border:2px solid var(--blue); width:28px; height:28px; margin:-14px 0 0 -14px; }
+    #mirror { display:none; flex-direction:column; padding:12px 16px 0; } #mirror.on { display:flex; }
+    #mirror iframe { width:100%; aspect-ratio:16 / 9; border:1px solid var(--line); border-radius:6px; background:#000; } #mirror .hint { color:var(--muted); font-size:12px; padding:6px 0 0; text-align:center; }
     #list { position:fixed; inset:0; background:rgba(7,11,22,.97); display:none; flex-direction:column; z-index:10; padding:12px 0 env(safe-area-inset-bottom); }
     #list.on { display:flex; }
     #list ol { flex:1; overflow-y:auto; margin:0; padding:0 16px; list-style:none; }
@@ -58,6 +62,7 @@
     <div id="link">no link</div>
     <div id="timer"><span id="clock" class="idle">00:00</span><span id="cue"></span><span id="title"></span></div>
   </header>
+  <div id="mirror"><div class="hint">the slide as the screen shows it (live pages and clips as stills)</div></div>
   <div id="script"><p class="empty">Loading the deck…</p></div>
   <div id="keys">
     <button data-key="["><b>[</b>slower</button>
@@ -67,12 +72,13 @@
     <button id="pointer">● point</button>
     <button id="slides">slides</button>
     <button id="reset">timer 0</button>
-    <button id="full">full</button>
+    <button id="view">slide</button>
   </div>
   <div id="nav"><button id="prev">◀ back</button><button id="next">next ▶</button></div>
 
   <div id="pad">
-    <div class="hint">touch and drag: the red dot follows on the screen</div>
+    <div id="padMode"><button data-mode="point" class="on">● point</button><button data-mode="drag">✥ turn the globe · tap picks</button></div>
+    <div class="hint" id="padHint">touch and drag: the red dot follows on the screen</div>
     <div id="area"><div id="slide"><div id="spot"></div></div></div>
     <button id="padClose">done</button>
   </div>
@@ -133,9 +139,13 @@
 
   // the link
   let ws = null, backoff = 500;
-  const send = o => { if (ws && ws.readyState === 1) ws.send(JSON.stringify({ ...o, from: myId })); };
+  // the slide view: the deck itself in an iframe as a mirror, handed every message that comes or goes
+  let mirrorWin = null;
+  const tell = m => { if (mirrorWin) mirrorWin.postMessage({ type: 'room', msg: m }, '*'); };
+  const send = o => { const m = { ...o, from: myId }; if (ws && ws.readyState === 1) ws.send(JSON.stringify(m)); tell(m); };
   const handle = d => {
     if (!d || d.from === myId) return;
+    tell(d);
     if (d.type === 'peers') { peers = d; if (!d.screens) fromScreen = false; }
     else if (d.type === 'state' && d.role === 'screen') { state = { page: d.page, step: d.step }; fromScreen = true; }
     else if (d.type === 'key' && !fromScreen) count(d.key);        // another controller, no screen yet: follow it
@@ -168,19 +178,46 @@
   $('#list ol').onclick = e => { const li = e.target.closest('li'); if (!li) return; const p = Number(li.dataset.i); send({ type: 'goto', page: p, step: 0 }); if (!fromScreen) state = { page: p, step: 0 }; $('#list').classList.remove('on'); show(); };
 
   // the pointer pad: a 16:9 area, the finger's place sent as slide coordinates, 30 times a second at most
+  // in "turn" mode the finger drags the live globe instead (dx, dy in slide units, whole motion kept), a tap picks
   const pad = $('#pad'), slide = $('#slide'), spot = $('#spot');
-  let ptrT = 0;
+  let ptrT = 0, mode = 'point', last = null, down = null, acc = { dx: 0, dy: 0 }, flushT = 0;
   const at = e => { const r = slide.getBoundingClientRect(), t = e.touches ? e.touches[0] : e; return { x: Math.max(0, Math.min(1, (t.clientX - r.left) / r.width)), y: Math.max(0, Math.min(1, (t.clientY - r.top) / r.height)) }; };
-  const move = e => { e.preventDefault(); const p = at(e); spot.style.display = 'block'; spot.style.left = p.x * 100 + '%'; spot.style.top = p.y * 100 + '%'; const now = Date.now(); if (now - ptrT >= 33) { ptrT = now; send({ type: 'ptr', x: p.x, y: p.y }); } };
-  const lift = () => { spot.style.display = 'none'; send({ type: 'ptr', x: null }); };
-  slide.addEventListener('touchstart', move, { passive: false }); slide.addEventListener('touchmove', move, { passive: false });
+  const flush = () => { flushT = 0; if (acc.dx || acc.dy) { send({ type: 'gp', phase: 'move', x: last.x, y: last.y, dx: acc.dx, dy: acc.dy }); acc = { dx: 0, dy: 0 }; } };
+  const move = e => {
+    e.preventDefault(); const p = at(e);
+    spot.style.display = 'block'; spot.style.left = p.x * 100 + '%'; spot.style.top = p.y * 100 + '%';
+    if (mode === 'point') { const now = Date.now(); if (now - ptrT >= 33) { ptrT = now; send({ type: 'ptr', x: p.x, y: p.y }); } }
+    else { if (last) { acc.dx += p.x - last.x; acc.dy += p.y - last.y; if (!flushT) flushT = setTimeout(flush, 33); } }
+    last = p;
+  };
+  const start = e => { down = { ...at(e), t: Date.now() }; last = null; move(e); };
+  const lift = () => {
+    spot.style.display = 'none';
+    if (mode === 'point') send({ type: 'ptr', x: null });
+    else { if (flushT) { clearTimeout(flushT); flush(); } if (down && last && Date.now() - down.t < 500 && Math.hypot(last.x - down.x, last.y - down.y) < 0.02) send({ type: 'gp', phase: 'tap', x: last.x, y: last.y }); else send({ type: 'gp', phase: 'up' }); }
+    down = null; last = null;
+  };
+  slide.addEventListener('touchstart', start, { passive: false }); slide.addEventListener('touchmove', move, { passive: false });
   slide.addEventListener('touchend', lift); slide.addEventListener('touchcancel', lift);
-  slide.addEventListener('mousedown', e => { move(e); slide.__down = true; }); slide.addEventListener('mousemove', e => { if (slide.__down) move(e); });
+  slide.addEventListener('mousedown', e => { start(e); slide.__down = true; }); slide.addEventListener('mousemove', e => { if (slide.__down) move(e); });
   addEventListener('mouseup', () => { if (slide.__down) { slide.__down = false; lift(); } });
+  document.querySelectorAll('#padMode button').forEach(b => b.onclick = () => {
+    mode = b.dataset.mode; document.querySelectorAll('#padMode button').forEach(x => x.classList.toggle('on', x === b)); slide.classList.toggle('drag', mode === 'drag');
+    $('#padHint').textContent = mode === 'point' ? 'touch and drag: the red dot follows on the screen' : 'drag turns the live globe on the screen; a tap picks a satellite, a tap on empty sky lets go';
+  });
   $('#pointer').onclick = () => pad.classList.add('on');
   $('#padClose').onclick = () => { lift(); pad.classList.remove('on'); };
 
-  $('#full').onclick = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); };
+  $('#view').onclick = () => {
+    const on = !document.body.classList.contains('slide');
+    document.body.classList.toggle('slide', on); $('#mirror').classList.toggle('on', on); $('#view').textContent = on ? 'script' : 'slide';
+    if (on && !mirrorWin) {
+      const f = document.createElement('iframe'); f.setAttribute('allow', 'autoplay');
+      f.src = `/talks/${deck}/?room=${room}&role=mirror#${state.page + 1}`;
+      f.onload = () => { mirrorWin = f.contentWindow; setTimeout(() => tell({ type: 'goto', page: state.page, step: state.step, from: 'phone-view' }), 400); };
+      $('#mirror').prepend(f);
+    }
+  };
   const awake = async () => { try { if (navigator.wakeLock) await navigator.wakeLock.request('screen'); } catch {} };
   document.addEventListener('visibilitychange', () => { if (!document.hidden) awake(); });
 
