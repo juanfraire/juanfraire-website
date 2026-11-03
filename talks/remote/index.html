@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="robots" content="noindex">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#070b16">
+  <title>Remote · Talks · Juan A. Fraire</title>
+  <!-- Phone remote for a deck of this site (talks/<slug>/), through the relay room of talks/_tools/remote (worker.js).
+       Open  /talks/remote/?deck=<slug>&room=<token>  on the phone, and the deck with ?room=<token>&role=screen
+       on the machine that shows it. Buttons send keys, the pad sends a pointer, the page shows the script of
+       the slide the screen reports, with the slide's timing cue next to a timer. Layout grid: 8 px; the bottom
+       row is two equal buttons; the small keys row is four equal buttons. -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    :root { --bg:#070b16; --raised:#0c1324; --ink:#e9edf5; --muted:#8d97ab; --line:rgba(255,255,255,.16); --red:#ff4936; --amber:#f2b84b; --green:#6fe3a1; --blue:#a9cdf7; }
+    * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html, body { height:100%; margin:0; background:var(--bg); color:var(--ink); font:17px/1.45 "Inria Sans", Inter, Helvetica, Arial, sans-serif; overscroll-behavior:none; touch-action:manipulation; }
+    body { display:flex; flex-direction:column; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+    header { display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center; padding:12px 16px 8px; border-bottom:1px solid var(--line); }
+    #where { font-size:22px; font-weight:700; }
+    #where small { font-size:14px; color:var(--muted); font-weight:400; margin-left:6px; }
+    #link { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; }
+    #link::before { content:""; width:9px; height:9px; border-radius:50%; background:var(--red); }
+    #link.on::before { background:var(--amber); } #link.ok::before { background:var(--green); }
+    #timer { grid-column:1 / -1; display:flex; justify-content:space-between; align-items:baseline; font-variant-numeric:tabular-nums; }
+    #clock { font-size:28px; font-weight:700; letter-spacing:1px; } #clock.over { color:var(--red); } #clock.idle { color:var(--muted); }
+    #cue { color:var(--amber); font-size:15px; } #title { color:var(--muted); font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:60vw; }
+    #script { flex:1; overflow-y:auto; padding:12px 16px; -webkit-overflow-scrolling:touch; }
+    #script p { margin:0 0 .8em; } #script .stage { color:var(--blue); font-style:italic; } #script .cuehead { display:none; }
+    #script .empty { color:var(--muted); }
+    #keys { display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; padding:8px 16px 0; }
+    #nav { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:8px 16px 16px; }
+    button { font:inherit; color:var(--ink); background:var(--raised); border:1px solid var(--line); border-radius:8px; padding:0; cursor:pointer; user-select:none; -webkit-user-select:none; }
+    button:active { background:#18233c; }
+    #keys button { height:44px; font-size:15px; } #keys button b { color:var(--amber); font-weight:700; margin-right:4px; }
+    #nav button { height:96px; font-size:24px; font-weight:700; } #next { background:#13306a; border-color:#2a56a8; }
+    #pad { position:fixed; inset:0; background:rgba(7,11,22,.97); display:none; flex-direction:column; z-index:10; padding:12px 16px env(safe-area-inset-bottom); }
+    #pad.on { display:flex; }
+    #pad .hint { color:var(--muted); font-size:14px; text-align:center; padding:8px 0; }
+    #area { flex:1; display:flex; align-items:center; justify-content:center; }
+    #slide { width:100%; aspect-ratio:16 / 9; max-height:100%; border:1px solid var(--line); border-radius:6px; background:var(--raised); position:relative; touch-action:none; overflow:hidden; }
+    #spot { position:absolute; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%; display:none; background:radial-gradient(circle,#fff 0 22%,var(--red) 46% 100%); box-shadow:0 0 8px 3px rgba(255,64,48,.85); pointer-events:none; }
+    #pad button { height:56px; font-size:18px; margin-top:8px; }
+    #list { position:fixed; inset:0; background:rgba(7,11,22,.97); display:none; flex-direction:column; z-index:10; padding:12px 0 env(safe-area-inset-bottom); }
+    #list.on { display:flex; }
+    #list ol { flex:1; overflow-y:auto; margin:0; padding:0 16px; list-style:none; }
+    #list li { padding:10px 8px; border-bottom:1px solid var(--line); display:flex; gap:12px; } #list li.cur { color:var(--amber); }
+    #list li span:first-child { color:var(--muted); width:28px; text-align:right; font-variant-numeric:tabular-nums; }
+    #list button { height:56px; font-size:18px; margin:8px 16px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div id="where">–<small></small></div>
+    <div id="link">no link</div>
+    <div id="timer"><span id="clock" class="idle">00:00</span><span id="cue"></span><span id="title"></span></div>
+  </header>
+  <div id="script"><p class="empty">Loading the deck…</p></div>
+  <div id="keys">
+    <button data-key="["><b>[</b>slower</button>
+    <button data-key="]"><b>]</b>faster</button>
+    <button data-key="a"><b>a</b>turn</button>
+    <button data-key="r"><b>r</b>reset</button>
+    <button id="pointer">● point</button>
+    <button id="slides">slides</button>
+    <button id="reset">timer 0</button>
+    <button id="full">full</button>
+  </div>
+  <div id="nav"><button id="prev">◀ back</button><button id="next">next ▶</button></div>
+
+  <div id="pad">
+    <div class="hint">touch and drag: the red dot follows on the screen</div>
+    <div id="area"><div id="slide"><div id="spot"></div></div></div>
+    <button id="padClose">done</button>
+  </div>
+  <div id="list"><ol></ol><button id="listClose">close</button></div>
+
+<script>
+(() => {
+  const q = new URLSearchParams(location.search), room = q.get('room'), deck = (q.get('deck') || '').replace(/[^\w-]/g, '');
+  const $ = s => document.querySelector(s);
+  if (!room || !/^[\w-]{4,64}$/.test(room) || !deck) { $('#script').innerHTML = '<p class="empty">Open this page as /talks/remote/?deck=&lt;slug&gt;&amp;room=&lt;token&gt;</p>'; return; }
+  const RELAY = 'wss://talk-remote.kifki.workers.dev/r/';
+  const myId = (() => { try { return localStorage.getItem('talk-remote-id') || (localStorage.setItem('talk-remote-id', Math.random().toString(36).slice(2, 10)), localStorage.getItem('talk-remote-id')); } catch { return 'phone' + Math.random().toString(36).slice(2, 6); } })();
+
+  // the deck: notes, titles, steps per slide, read from its published HTML
+  let notes = [], titles = [], steps = [], cues = [];
+  const load = async () => {
+    const html = await (await fetch(`/talks/${deck}/index.html`, { cache: 'no-cache' })).text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const sections = [...doc.querySelectorAll('svg[data-marpit-svg] section')];
+    titles = sections.map(s => { const h = s.querySelector('h1,h2,.kicker'); return h ? h.textContent.replace(/\s+/g, ' ').trim() : ''; });
+    steps = sections.map(s => s.querySelectorAll('[data-marpit-fragment]').length);
+    notes = sections.map((_, i) => { const n = doc.querySelector(`.bespoke-marp-note[data-index="${i}"]`); return n ? n.innerHTML : ''; });
+    cues = notes.map(n => { const m = n.replace(/<[^>]+>/g, '').match(/\[(\d\d:\d\d)\s*[–-]\s*(\d\d:\d\d)\]/); return m ? [m[1], m[2]] : null; });
+    document.title = (doc.querySelector('title') || {}).textContent || document.title;
+    $('#list ol').innerHTML = titles.map((t, i) => `<li data-i="${i}"><span>${i + 1}</span><span>${t || '(untitled)'}</span></li>`).join('');
+    show();
+  };
+  const secs = t => { const [m, s] = t.split(':').map(Number); return m * 60 + s; };
+
+  // the state shown: what the screen reports; until a screen speaks, what this page counts
+  let state = { page: 0, step: 0 }, fromScreen = false, linked = false, peers = { screens: 0, remotes: 0 };
+  const show = () => {
+    const n = titles.length || '?', p = state.page;
+    $('#where').innerHTML = `${p + 1}<small>/ ${n}${steps[p] ? ` · step ${state.step}/${steps[p]}` : ''}${fromScreen ? '' : ' · unconfirmed'}</small>`;
+    $('#title').textContent = titles[p] || '';
+    const c = cues[p]; $('#cue').textContent = c ? `${c[0]}–${c[1]}` : '';
+    const html = (notes[p] || '<p class="empty">(no script)</p>')
+      .replace(/\[(\d\d:\d\d\s*[–-]\s*\d\d:\d\d)\]/g, '<span class="cuehead">[$1]</span>')
+      .replace(/\[([^\]\n]{1,120})\]/g, '<span class="stage">[$1]</span>');
+    if ($('#script').dataset.page !== String(p)) { $('#script').innerHTML = html; $('#script').dataset.page = String(p); $('#script').scrollTop = 0; }
+    $('#list li.cur') && $('#list li.cur').classList.remove('cur'); const li = $(`#list li[data-i="${p}"]`); if (li) li.classList.add('cur');
+    $('#link').className = linked ? (peers.screens ? 'ok' : 'on') : '';
+    $('#link').textContent = !linked ? 'no link' : peers.screens ? `${peers.screens} screen${peers.screens > 1 ? 's' : ''}` : 'no screen';
+  };
+
+  // timer: starts with the first next, or a tap on the clock; red past the end of the slide's cue
+  let t0 = 0;
+  const clock = () => {
+    const el = $('#clock');
+    if (!t0) { el.textContent = '00:00'; el.className = 'idle'; return; }
+    const s = Math.floor((Date.now() - t0) / 1000);
+    el.textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+    const c = cues[state.page]; el.className = c && s > secs(c[1]) ? 'over' : '';
+  };
+  setInterval(clock, 500);
+  $('#clock').onclick = () => { t0 = t0 ? 0 : Date.now(); clock(); };
+  $('#reset').onclick = () => { t0 = Date.now(); clock(); };
+
+  // the link
+  let ws = null, backoff = 500;
+  const send = o => { if (ws && ws.readyState === 1) ws.send(JSON.stringify({ ...o, from: myId })); };
+  const handle = d => {
+    if (!d || d.from === myId) return;
+    if (d.type === 'peers') { peers = d; if (!d.screens) fromScreen = false; }
+    else if (d.type === 'state' && d.role === 'screen') { state = { page: d.page, step: d.step }; fromScreen = true; }
+    else if (d.type === 'key' && !fromScreen) count(d.key);        // another controller, no screen yet: follow it
+    show();
+  };
+  const connect = () => {
+    ws = new WebSocket(RELAY + room + '?role=remote');
+    ws.onopen = () => { backoff = 500; linked = true; show(); };
+    ws.onmessage = e => { if (e.data === 'pong') return; try { handle(JSON.parse(e.data)); } catch {} };
+    ws.onclose = () => { linked = false; show(); setTimeout(connect, backoff); backoff = Math.min(backoff * 2, 8000); };
+    ws.onerror = () => { try { ws.close(); } catch {} };
+  };
+  setInterval(() => { if (ws && ws.readyState === 1) ws.send('ping'); }, 20000);
+
+  // keys: sent as the keyboard would; this page's own count fills in until the screen reports
+  const count = key => {
+    const p = state.page, last = (titles.length || 1) - 1;
+    if (key === 'ArrowRight' || key === ' ' || key === 'PageDown') { if (state.step < (steps[p] || 0)) state.step++; else if (p < last) state = { page: p + 1, step: 0 }; }
+    else if (key === 'ArrowLeft' || key === 'PageUp') { if (state.step > 0) state.step--; else if (p > 0) state = { page: p - 1, step: 0 }; }
+  };
+  const key = k => { send({ type: 'key', key: k, code: '' }); if (!fromScreen) count(k); if (k === 'ArrowRight' && !t0) t0 = Date.now(); show(); if (navigator.vibrate) navigator.vibrate(8); };
+  $('#next').onclick = () => key('ArrowRight');
+  $('#prev').onclick = () => key('ArrowLeft');
+  document.querySelectorAll('#keys [data-key]').forEach(b => b.onclick = () => key(b.dataset.key));
+  document.addEventListener('keydown', e => { if (['ArrowRight', 'ArrowLeft', ' ', 'PageDown', 'PageUp', '[', ']', 'a', 'r'].includes(e.key)) { e.preventDefault(); key(e.key); } });
+
+  // the slide list: a tap sends the screens there
+  $('#slides').onclick = () => { $('#list').classList.add('on'); const li = $('#list li.cur'); if (li) li.scrollIntoView({ block: 'center' }); };
+  $('#listClose').onclick = () => $('#list').classList.remove('on');
+  $('#list ol').onclick = e => { const li = e.target.closest('li'); if (!li) return; const p = Number(li.dataset.i); send({ type: 'goto', page: p, step: 0 }); if (!fromScreen) state = { page: p, step: 0 }; $('#list').classList.remove('on'); show(); };
+
+  // the pointer pad: a 16:9 area, the finger's place sent as slide coordinates, 30 times a second at most
+  const pad = $('#pad'), slide = $('#slide'), spot = $('#spot');
+  let ptrT = 0;
+  const at = e => { const r = slide.getBoundingClientRect(), t = e.touches ? e.touches[0] : e; return { x: Math.max(0, Math.min(1, (t.clientX - r.left) / r.width)), y: Math.max(0, Math.min(1, (t.clientY - r.top) / r.height)) }; };
+  const move = e => { e.preventDefault(); const p = at(e); spot.style.display = 'block'; spot.style.left = p.x * 100 + '%'; spot.style.top = p.y * 100 + '%'; const now = Date.now(); if (now - ptrT >= 33) { ptrT = now; send({ type: 'ptr', x: p.x, y: p.y }); } };
+  const lift = () => { spot.style.display = 'none'; send({ type: 'ptr', x: null }); };
+  slide.addEventListener('touchstart', move, { passive: false }); slide.addEventListener('touchmove', move, { passive: false });
+  slide.addEventListener('touchend', lift); slide.addEventListener('touchcancel', lift);
+  slide.addEventListener('mousedown', e => { move(e); slide.__down = true; }); slide.addEventListener('mousemove', e => { if (slide.__down) move(e); });
+  addEventListener('mouseup', () => { if (slide.__down) { slide.__down = false; lift(); } });
+  $('#pointer').onclick = () => pad.classList.add('on');
+  $('#padClose').onclick = () => { lift(); pad.classList.remove('on'); };
+
+  $('#full').onclick = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); };
+  const awake = async () => { try { if (navigator.wakeLock) await navigator.wakeLock.request('screen'); } catch {} };
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) awake(); });
+
+  connect(); awake();
+  load().catch(() => { $('#script').innerHTML = '<p class="empty">Could not load the deck.</p>'; show(); });
+})();
+</script>
+</body>
+</html>
