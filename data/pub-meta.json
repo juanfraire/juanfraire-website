@@ -151,7 +151,28 @@
   "title": "ESC: An Emulation Framework for the Spatial Computing Continuum",
   "abstract": "The Computing Continuum (CC) is increasingly employed because it enhances Quality of Service (QoS). Likewise, the relevance of Space Computing is rising thanks to the reinforcement it provides to terrestrial infrastructures against catastrophes. Even if the expansion of the CC paradigm with new layers placed within satellites or further celestial bodies seems like a natural evolution, it certainly does not lack challenges. In fact, adding non-terrestrial layers to the CC could not only imply a significant increase in deployment costs but also make it harder to ensure certain QoS requirements. Therefore, to ensure the viability of mixed earth-space CC infrastructures, the development of new tools for evaluating these architectures a priori remains essential, given the enormous expenditure that an entire deployment on a real infrastructure would entail. To accomplish this goal, this paper presents ESC (Emulator for the Spatial Continuum): an emulation tool that enables the design and evaluation of software behavior in these mixed architectures while avoiding the costs associated with real deployments.",
   "abstract_from": "semanticscholar",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05849204",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "hal": "hal-05849204"
+ },
+ "fraire2026kilowatt": {
+  "title": "Every Kilowatt Shines: Orbital Data Centers After Dark",
+  "abstract": "Orbital data centers have been filed by the million, and every kilowatt they compute needs square meters of solar array and radiator. We model a compute node whose power sizes its surfaces and sets its attitude, and we turn a production renderer into a calibrated photometer to measure it. The renderer matches closed-form reflectance to 0.1%, and the model reproduces measured satellites to about 0.2 magnitudes. For SpaceX’s filed fleet of one million nodes, Sun-facing arrays hide their lit side from mid-latitude observers for half the year. On winter evenings, up to 31,000 nodes outshine the naked-eye limit for two hours after sunset and before dawn, and the equator sees about ten thousand all year. Power per node, attitude, surface finish, and altitude move these numbers by orders of magnitude. Brightness is a data-center design parameter, and we can engineer it before the fleets fly.",
+  "abstract_from": "manual",
+  "open": {
+   "url": "https://hal.science/hal-05849199",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05849199 1.0"
+  ],
+  "hal": "hal-05849199"
  },
  "coeugnet2026mswim": {
   "title": "Fast Analytical Tuning of Repetition-Based MAC for IoT in Sparse LEO Constellations",
@@ -350,13 +371,46 @@
   "title": "To Transmit or Not: Tiny On-Device Transformers for Uplink Prediction in Direct-to-Satellite IoT",
   "abstract": "Direct-to-Satellite IoT (DtS-IoT) promises to connect massive fleets of devices in regions where terrestrial infrastructure will never reach. Its weakest link, however, is the device itself: DtS-IoT nodes are inexpensive, energy-constrained, and effectively blind, since downlink feedback from sporadically passing Low-Earth Orbit (LEO) satellites is broadcast, slow, and costly, so in practice devices cannot expect their transmissions to be acknowledged. The satellite cannot micromanage its fleet: every transmission decision must be made on-device, based solely on local information, and every wasted uplink drains energy and fuels collisions. We argue that these decisions can be learned, provided the models are small enough to run on highly constrained hardware and to be updated over a scarce downlink. This paper presents a tiny encoder-only Transformer (14k parameters, 64 KB) that predicts, from the device's recent transmission context, whether an uplink will be received. To address the scarcity of DtS-IoT data, we generate synthetic datasets using the open-source FLoRaSat simulator and introduce an ML Sandbox module that embeds trained models directly into the simulation for closed-loop evaluation. Deployed in that closed loop, the model delivers 16.1% more unique packets than an unguided baseline while sending 41.6% fewer transmissions, and its operating frontier dominates a Bidirectional Long Short-Term Memory (Bi-LSTM) of comparable footprint, an analytical link-budget policy, and the blind repetition budget itself: spending the same energy without the model delivers 2.3× fewer packets. Both gains are the currency that matters for blind, battery-powered devices: more data through, less energy spent.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05820437",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05820437 1.0"
+  ],
+  "hal": "hal-05820437"
  },
  "choquenaira2026frugal": {
   "title": "Transmit Less, Deliver More: Frugal On-Device Intelligence for Energy- and Spectrum-Sustainable Direct-to-Satellite IoT",
   "abstract": "The terminals that make direct-to-satellite IoT affordable are cheap, battery-powered, and effectively blind. A device cannot hear whether a satellite is overhead, so it transmits the same packet many times and hopes. In a representative LoRa scenario, fewer than one in five of those transmissions is received, and each wasted frame drains a battery nobody will travel to replace while radiating interference into a band shared with everyone else. A terminal able to decline a transmission it expects to lose changes both budgets at once. In closed-loop simulation, a tiny on-device predictor delivers 16.1% more unique packets while emitting 41.6% fewer transmissions, halving the radio energy per delivered packet, returning two-fifths of the airtime to the band, and delivering 2.3 times more data than the blind policy at a matched energy budget.\n\nWe then ask what the intelligence itself costs. Scored on identical data, a classifier that sees no history at all lands within seed noise of a Transformer; every nonlinear model we tried falls inside the same narrow accuracy band, and their deployed sizes span five orders of magnitude. Accuracy stops discriminating long before cost does. We argue that inference energy and runtime footprint must be charged against the transmissions saved before any model is called necessary, and we give the resulting design rule for frugal intelligence in non-terrestrial networks.",
   "abstract_from": "manual",
-  "publisher_oa": false
+  "open": {
+   "url": "https://hal.science/hal-05800184",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05800184 1.0"
+  ],
+  "hal": "hal-05800184"
+ },
+ "fraire2026ungrounded": {
+  "title": "Ungrounded Computing in Low-Earth Orbit: A Sustainability Audit",
+  "abstract": "Orbital data centers are marketed as the sustainable answer to the energy, water, and land that terrestrial AI consumes. Constellations of computing satellites have been filed and demonstrators already fly, yet none of the filings we reviewed reports a lifecycle carbon assessment. This article runs the numbers the pitch leaves out. Using our lifecycle models, we audit the promises in three acts: the carbon of getting there (with launch and re-entry, orbital electricity is 1.5 to 2 times as carbon-intensive as terrestrial solar), the mass of staying alive (the radiator outweighs the GPU it cools three to twelve times over), and the price of never repairing (guaranteeing a sealed node’s survival adds 77–86% to its lifecycle carbon). Sustainability turns out to be a region of the design space, possibly an empty one, and we outline the research agenda needed to map it before these ungrounded ambitions leave the ground.",
+  "abstract_from": "manual",
+  "open": {
+   "url": "https://hal.science/hal-05849193",
+   "label": "HAL",
+   "from": "hal"
+  },
+  "publisher_oa": false,
+  "matched_by_title": [
+   "hal hal-05849193 1.0"
+  ],
+  "hal": "hal-05849193"
  },
  "DBLP:conf/wisee/JonckereMF25": {
   "title": "A-SABR: The Adaptive Library for Schedule-Aware Bundle Routing",
@@ -367,7 +421,8 @@
    "label": "HAL",
    "from": "openalex"
   },
-  "publisher_oa": false
+  "publisher_oa": false,
+  "hal": "hal-05301072"
  },
  "b2025adaptive": {
   "title": "Adaptive Orbital Direct-to-Device: Rethinking Satellite IoT Architecture",
@@ -659,6 +714,11 @@
   "title": "Performance Comparison of DTN-Inspired Approaches for Store-and-Forward NTNs",
   "abstract": "3GPP is actively exploring massive Machine-Type Communications (mMTC), one of the three core 5G services areas, to enable services for large amounts of Internet of Things (IoT) terminals that generate regular small-payload messages. Covering this type of applications involve dealing with high density of terminals, which also require resource efficiency for long battery lifes. Expanding global coverage to remote and underserved areas is a crucial step towards the mMTC vision due to the multitude of remote IoT use cases that are uncovered by existing infrastructure. To achieve this efficiently, one approach is to use satellites to provide global coverage, standardized as Non-Terrestrial Networks (NTN). In addition, advancements in Low-Power Wide-Area Network technologies, such as NB-IoT, play a crucial role in enabling efficient direct-to-satellite communications. Among NTN architectures, small and sparse networks of Low Earth Orbit satellites are a cost-effective alternative to large mega-constellations, but require the support of a Store-and-Forward (S&F) architecture and a regenerative payload approach on-board the satellites to overcome the link discontinuities. This need is recognized by 3GPP and is an active discussion topic in Release 19 known as S&F NTNs. Current solution proposals primarily focus on high-level architectural frameworks, leaving the concrete enabling technologies for S&F NTNs largely undefined. Delay/Disruption-Tolerant Networking is a well-established approach for challenged networks, but its integration into 3GPP systems presents challenges. In this work, we explore the options available to deploy an interoperable S&F solution, and evaluate them in a testbed featuring the payload twin of a S&F NTN mission and discuss the results and their conclusions on candidate technologies for enabling S&F NTNs.",
   "abstract_from": "manual",
+  "open": {
+   "url": "https://hdl.handle.net/2117/459336",
+   "label": "UPCommons",
+   "from": "openalex"
+  },
   "publisher_oa": false
  },
  "DBLP:conf/anrw/OhsSFH025": {
@@ -855,7 +915,8 @@
    "label": "HAL",
    "from": "openalex"
   },
-  "publisher_oa": false
+  "publisher_oa": false,
+  "hal": "hal-04603605"
  },
  "DBLP:conf/wf-iot/GerardFOC24": {
   "title": "DtS-IoT Resource Allocation Analysis Framework: Assessing DQ and RESS-IoT",
@@ -885,6 +946,11 @@
   "title": "Integrating Satellite and Network Operations for NB-IoT NTN Connectivity: In-Orbit Test Design of the Constellation Management System",
   "abstract": "With the technological advancements in software and hardware and the cost reduction of satellite launches, there has been a surge in future planned Low-Earth Orbit (LEO) constellations aimed at providing Internet of Things (IoT) services. Leveraging these constellations to extend terrestrial networks for global coverage has become a key focus, as evidenced by the standardization of Non-Terrestrial Networks (NTN) by 3GPP. However, managing operations in satellite-based NTN poses significant challenges due to the intersection of satellite operations and network management, especially in sparse constellations with intermittent connectivity. Another challenge is the need for satellite operations to adhere to standard-compliant procedures, such as those set by 3GPP standards. This ensures satellite services align with established industry practices, facilitating interoperability and compatibility with existing network infrastructures. A Constellation Management System (CMS) has been developed in response to these challenges. This system is an autonomous framework designed to seamlessly integrate satellite and network operations. The CMS integrates all the necessary agents, coordinating satellite and network operations in this heterogeneous scenario by providing business policy- and resource-aware task schedules. This facilitates the alignment of contact and task plans for satellites, ground station networks, and core networks, ultimately enabling the extension of existing terrestrial networks through satellite-based NTN. This work presents a plan to validate this novel approach through a dedicated CubeSat mission scheduled eventually for the end of 2024.",
   "abstract_from": "manual",
+  "open": {
+   "url": "https://dl.iafastro.directory/event/IAC-2024/paper/88005/",
+   "label": "UPCommons",
+   "from": "openalex"
+  },
   "publisher_oa": false
  },
  "singla2024integrating": {
@@ -1373,11 +1439,12 @@
   "abstract": "In this article, we introduce and design sparse constellations for direct-to-satellite Internet of Things (DtS-IoT). DtS-IoT does not require a ground infrastructure, because the devices are directly connected to low earth orbit satellites acting as orbiting gateways. The key idea of sparse constellations is to significantly reduce the number of in-orbit DtS-IoT satellites by a proper dimensioning of the delivery delay anyway present in resource-constrained IoT services and an optimal positioning of the orbiting gateways. First, we analyze long-range modulation (LoRa)/LoRaWAN and narrowband Internet of Things (NB-IoT) standards and derive realistic constraints on the maximum gap time between two consecutive passing-by satellites. Then, we introduce and optimize an algorithm to design quasi-optimal topologies for sparse IoT constellations. Finally, we apply our design to both global and regional coverage and we analyze the tradeoff between latency, number of orbit planes, and total number of satellites. Results show that sparse constellations can provide world-wide IoT coverage with only 12.5 and 22.5% of the satellites required by traditional dense constellations considering 3 and 2-h gaps. Also, we show that region-specific coverage of Africa and Europe can be achieved with only four and three satellites for LoRa/LoRaWAN and NB-IoT, respectively.",
   "abstract_from": "semanticscholar",
   "open": {
-   "url": "http://hdl.handle.net/11583/2968664",
-   "label": "PORTO@Iris (Politecnico di Torino)",
-   "from": "openalex"
+   "url": "https://hal.science/hal-03722737",
+   "label": "HAL",
+   "from": "hal"
   },
-  "publisher_oa": true
+  "publisher_oa": true,
+  "hal": "hal-03722737"
  },
  "DBLP:journals/access/AlvarezFHCP22": {
   "title": "Uplink Transmission Policies for LoRa-Based Direct-to-Satellite IoT",
@@ -1691,13 +1758,18 @@
  "DBLP:conf/wisee/RavertaDMFFD18": {
   "title": "A Markov Decision Process for Routing in Space DTNs with Uncertain Contact Plans",
   "abstract": "Delay Tolerant Networking (DTN) has been proposed to provide efficient and autonomous store-carry-and-forward data transport for space-terrestrial networks. Since these networks relay on scheduled contact plans, Contact Graph Routing (CGR) can be used to optimize routing and data delivery performance. However, scheduling uncertainties and faults induced by the harsh space environment can provoke different network connectivity than the one assumed in the provisioned contact plan. In this work, we develop a theoretical model based on a Markov Decision Process (MDP) to determine the Best Routing Under Failures (BRUF). Existing routing solutions are thus compared with the analytical bound obtained from implementing BRUF in PRISM. Results over random networks prove that state-of-the-art CGR is close to the theoretical delivery ratio and that supervised data replication is mandatory to further improve the performance under uncertain contact plans.",
-  "abstract_from": "semanticscholar",
+  "abstract_from": "openalex",
+  "open": {
+   "url": "http://hdl.handle.net/11086/563466",
+   "label": "Repositorio Digital de la UNC",
+   "from": "openalex"
+  },
   "publisher_oa": false
  },
  "DBLP:conf/date/CoelhoCZFV18": {
   "title": "A soft-error resilient route computation unit for 3D Networks-on-Chips",
-  "abstract": "Three-dimensional Networks-on-Chips (3D-NoCs) have emerged as an alternative to further enhance the performance, functionality, and packaging density of 2D-NoCs. However, the increasing complexity of NoC routers, the continuous miniaturization of silicon technology, the lower operating voltages, and the higher operating frequencies have made the NoC increasingly vulnerable to soft errors. In particular, transient faults occurring in the route computation unit (RCU) can provoke misrouting which may lead to severe effects such as deadlocks or packet loss, corrupting the operation of the entire chip. By combining a reliable fault detection circuit leveraging circuit-level double-sampling, with a cost-effective rerouting mechanism, we develop a full fault-tolerance solution that can efficiently detect and correct such fatal errors before the affected packets leave the router. To validate the proposed solution, we also introduce a novel method for simulation-based fault -injection based on the NoC's gate-level netlist. Experimental results obtained from a partially and vertically connected 3D-NoC indicate that our solution can provide a high level of reliability in the presence of errors, at the expense of an area and power overhead of 4.1% and 6.8% respectively.",
-  "abstract_from": "hal",
+  "abstract": "Three-dimensional Networks-on-Chips (3D-NoCs) have emerged as an alternative to further enhance the performance, functionality, and packaging density of 2D-NoCs. However, the increasing complexity of NoC routers, the continuous miniaturization of silicon technology, the lower operating voltages, and the higher operating frequencies have made the NoC increasingly vulnerable to soft errors. In particular, transient faults occurring in the route computation unit (RCU) can provoke misrouting which may lead to severe effects such as deadlocks or packet loss, corrupting the operation of the entire chip. By combining a reliable fault detection circuit leveraging circuit-level double-sampling, with a cost-effective rerouting mechanism, we develop a full fault-tolerance solution that can efficiently detect and correct such fatal errors before the affected packets leave the router. To validate the proposed solution, we also introduce a novel method for simulation-based fault-injection based on the NoC's gate-level netlist. Experimental results obtained from a partially and vertically connected 3D-NoC indicate that our solution can provide a high level of reliability in the presence of errors, at the expense of an area and power overhead of 4.1% and 6.8% respectively.",
+  "abstract_from": "openalex",
   "publisher_oa": false,
   "matched_by_title": [
    "hal hal-01806204 1.0"
@@ -1742,7 +1814,12 @@
  "DBLP:conf/wisee/MadoeryFRFB18": {
   "title": "Managing Routing Scalability in Space DTNs",
   "abstract": "Space networks, comprised of satellites, deep-space proves as well as the corresponding ground segment usually rely on scheduled contact plans, which are exploited by Delay-Tolerant Networks (DTN) routing algorithms to optimize data delivery. However, as space networks grow in size, the process of obtaining routes and forwarding traffic becomes both computationally expensive and challenging, thus limiting the overall scalability of the system. This problem becomes critical when routing is executed in resource-constrained on-board computers. While most of previous works have focused on optimizing data delivery performance, we propose two mechanisms to improve the computation effort and scalability of the routing procedure at the expense of an acceptable decrease in performance. Results from simulations of realistic satellite networks provide evidences on the trade-off in different cases.",
-  "abstract_from": "semanticscholar",
+  "abstract_from": "openalex",
+  "open": {
+   "url": "http://hdl.handle.net/11086/563468",
+   "label": "Repositorio Digital de la UNC",
+   "from": "openalex"
+  },
   "publisher_oa": false
  },
  "DBLP:conf/ssn/RavertaMFF18": {
@@ -1820,7 +1897,7 @@
  "DBLP:conf/icc/FraireFB17": {
   "title": "Benefits and challenges of cross-linked ring road satellite networks: A case study",
   "abstract": "Ring Road Networks (RRNs) have been introduced as a solution to transfer data between different ground stations by means of a world-wide message-ferry system built upon low Earth orbit (LEO) satellites. The objective of this work is to study the benefits and challenges of including Inter-Satellite Links (ISL) capabilities into RRNs. In this context, an appealing RRN case study is presented and evaluated through simulations based on Delay/Disruption-tolerant Network (DTN) protocols and algorithms. Results show that even though the overall delivery metrics improve with ISLs, network congestion impedes a more efficient utilization of the communication resources.",
-  "abstract_from": "hal",
+  "abstract_from": "openalex",
   "publisher_oa": false,
   "matched_by_title": [
    "hal hal-01513717 1.0"
@@ -1831,6 +1908,11 @@
   "title": "Contact Plan Design for Predictable Disruption-Tolerant Space Sensor Networks",
   "abstract": "This chapter discusses the benefits of exploiting space borne wireless sensor networks to enhance the functionality and performance of Earth-observation missions. It provides an overview of the evolution of traditional Internet communications towards disruption-tolerant schemes, and discusses the specific characteristics of these when implemented in space environments. Next, the chapter introduces the problem of resource limitations and the derived need for contact plan design (CPD) and also describes traffic-aware contact plan designs (TACPs) as an appealing CPD scheme for space sensor networks (SSNs). It evaluates and compares the performance of fair contact plan (FCP), route-aware contact plan (RACP) and TACP by applying them to the example sensor network with a single usable port per node. Finally, the chapter presents a case study and is used as a CPD benchmark to inform the discussion of the challenges of implementing efficient planning strategies in operative SSNs systems.",
   "abstract_from": "manual",
+  "open": {
+   "url": "http://hdl.handle.net/11336/166198",
+   "label": "CONICET Digital",
+   "from": "openalex"
+  },
   "publisher_oa": false
  },
  "fraire2017delayBook": {
@@ -1863,15 +1945,15 @@
  },
  "coelho2017robustness": {
   "title": "On the robustness of stochastic bayesian machines",
-  "abstract": "This work revisits the stochastic computing paradigm as a way to implement architectures dedicated to probabilistic inference. In general, it is assumed the operation over stochastic bit streams is robust with respect to radiation transient events effects. Moreover, it can be expected that leveraging the stochastic computing paradigm to implement probabilistic computations such as Bayesian inference implemented in hardware, could yield an increased resilience to radiation effects comparatively to deterministic procedures. However, the practical assessment of the robustness against radiation is mandatory before considering Stochastic Bayesian Machines (SBMs) in hazardous environments. Results of fault injection campaigns at RTL level provide the first evidences of the intrinsic robustness of SBMs with respect to SEUs and SETs.",
-  "abstract_from": "hal",
+  "abstract": "This paper revisits the stochastic computing paradigm as a way to implement architectures dedicated to probabilistic inference. In general, it is assumed the operation over stochastic bit streams is robust with respect to radiation transient events effects. Moreover, it can be expected that leveraging the stochastic computing paradigm to implement probabilistic computations such as Bayesian inference implemented in hardware could yield an increased resilience to radiation effects comparatively to deterministic procedures. However, the practical assessment of the robustness against radiation is mandatory before considering stochastic Bayesian machines (SBMs) in hazardous environments. Results of fault injection campaigns at register transfer level provide the first evidences of the intrinsic robustness of SBMs with respect to single event upsets and single event transients.",
+  "abstract_from": "openalex",
   "publisher_oa": false,
   "hal": "hal-01528649 (notice)"
  },
  "DBLP:conf/latw/SolinasCFZFV17": {
   "title": "Preliminary results of NETFI-2: An automatic method for fault injection on HDL-based designs",
   "abstract": "Fault injection is a well-known technique to evaluate the susceptibility of integrated circuits to the effects of radiation. In this work, an existing emulation-based methodology is extended, updated and improved under the name of NETFI-2. Preliminary results show that NETFI-2 provides accurate measurements while improving the execution time of the experiment by more than 300% compared with other simulation-based campaigns.",
-  "abstract_from": "hal",
+  "abstract_from": "openalex",
   "publisher_oa": false,
   "matched_by_title": [
    "hal hal-01477581 1.0"
@@ -1896,8 +1978,8 @@
  },
  "coelho2016evidences": {
   "title": "Evidences of Stochastic Bayesian Machines Robustness Against SEUs and SETs",
-  "abstract": "This work revisits the stochastic computation paradigm as a way to implement architectures dedicated to Bayesian computation. It is assumed that Stochastic Bayesian Machines (SMBs) are intrinsically tolerant to the effects of radiation. However, practical assessment is mandatory before considering SBMs in hazardous environments. Results of faultinjection campaigns performed at the RTL level provide the first evidences of SBMs robustness with respect to SEUs and SETs.",
-  "abstract_from": "hal",
+  "abstract": "This work revisits the stochastic computation paradigm as a way to implement architectures dedicated to Bayesian computation. It is assumed that Stochastic Bayesian Machines (SMBs) are intrinsically tolerant to the effects of radiation. However, practical assessment is mandatory before considering SBMs in hazardous environments. Results of fault-injection campaigns performed at the RTL level provide the first evidences of SBMs robustness with respect to SEUs and SETs.",
+  "abstract_from": "openalex",
   "publisher_oa": false,
   "matched_by_title": [
    "hal hal-01445895 1.0"
@@ -1909,12 +1991,17 @@
   "abstract": "Los protocolos de redes tradicionales fueron desarrollados para redes terrestres, caracterizadas por topologías altamente estáticas. En este escenario, los errores de enlace aleatorios han sido el cambio más demandante que una configuración de red podía enfrentar. Por otro lado, los protocolos de redes móviles se ocupan de topologías dinámicas pero asumen trayectorias desconocidas y muy alta conectividad. Ninguna de ambas se aplica al paradigma para las redes de constelaciones satelitales donde su naturaleza orbital describe topologías temporalmente variables pero altamente predecibles. Para estudiar este tipo de redes tolerantes a demoras, proponemos GLOrbit; una herramienta de análisis de topologías y redes de satélites, capaz de propagar nodos espaciales en el tiempo, en un ambiente visual 3D mientras registra la topología en diferentes formatos para estudios analíticos posteriores. Para esto implementamos el algoritmo de propagación SGP4, evaluadores de enlace entre nodos, y un motor gráfico de OpenGL. Esto permite obtener salidas precisas para graficar la red satelital y el análisis físico mientras se va ganando intuición visual para diferentes configuraciones orbitales. Se demuestran las capacidades de la herramienta con un primer trabajo de análisis con GLOrbit de tres topologías de orbitas bajas representativas. Escenarios lineales, transversales y diferentes escenarios de altitud son estudiados concluyendo que los lineales poseen una gran fortaleza en los enlaces inter-satelitales, mientras que los segundos en los contactos tierra-espacio. Finalmente, pero no por ello menos importante, debido a que los gráficos tradicionales representan redes estáticas, una novedosa estructura gráfica para topologías evolutivas temporalmente, es presentada como un resultado para el diseño topológico de redes tolerantes a demoras predecibles y sus estrategias de asignación de enlaces.",
   "abstract_from": "manual",
   "lang": "es",
-  "publisher_oa": false
+  "open": {
+   "url": "http://hdl.handle.net/11086/29324",
+   "label": "Repositorio Digital de la UNC",
+   "from": "openalex"
+  },
+  "publisher_oa": true
  },
  "DBLP:conf/wisee/FraireMFFV16": {
   "title": "Internetworking approaches towards along-track segmented satellite architectures",
   "abstract": "The Argentinian Space Agency (CONAE) has been pursuing the development of segmented satellite architectures as a novel strategy to reduce the cost and improve responsiveness of space access. Among the key enablers for these architectures, wireless communication is likely to be the most critical as it requires to operate on a highly dynamic, sparse and extreme environments. In this work, we analyze and derive the main specifications that a communication system for segmented architectures (CSSA) must support. In particular, we provide an abstract model to predict the access time to segmented systems to later propose a layered arrangement of the main specifications for the CSSA. Finally, we analyze by simulation a particular CSSA configuration in a simple yet representative scenario with an along-track flight formation.",
-  "abstract_from": "hal",
+  "abstract_from": "openalex",
   "publisher_oa": false,
   "matched_by_title": [
    "hal hal-01477218 1.0"

@@ -201,7 +201,9 @@ def overlap(title, abstract):
 def hal_records():
     fields = ("halId_s,uri_s,submitType_s,docType_s,doiId_s,arxivId_s,title_s,producedDateY_i,"
               "abstract_s,en_abstract_s,fileMain_s,openAccess_bool,authFullName_s,language_s,domain_s")
-    q = urllib.parse.urlencode({"q": "authLastName_s:Fraire", "fl": fields, "rows": 2000, "wt": "json"})
+    # by idHal too: a few records store the surname as "A. Fraire", which the surname query misses
+    q = urllib.parse.urlencode({"q": "authLastName_s:Fraire OR authIdHal_s:juan-andres-fraire",
+                                "fl": fields, "rows": 2000, "wt": "json"})
     docs = get("https://api.archives-ouvertes.fr/search/?" + q)["response"]["docs"]
     out = []
     for d in docs:
