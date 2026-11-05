@@ -10,9 +10,10 @@
   <title>Remote · Talks · Juan A. Fraire</title>
   <!-- Phone remote for a deck of this site (talks/<slug>/), through the relay room of talks/_tools/remote (worker.js).
        Open  /talks/remote/?deck=<slug>&room=<token>  on the phone, and the deck with ?room=<token>&role=screen
-       on the machine that shows it. Buttons send keys, the pad sends a pointer, the page shows the script of
-       the slide the screen reports, with the slide's timing cue next to a timer. Layout grid: 8 px; the bottom
-       row is two equal buttons; the small keys row is four equal buttons. -->
+       on the machine that shows it. The centre is a touch pad: Turn (default) drags the live globe on the screen and
+       a tap picks a satellite; Point moves the red dot. Buttons send keys; "script" opens the slide (the deck
+       itself, mirrored) and its script with the timing cue, which also sits in the header next to a timer.
+       Layout grid: 8 px; every row is a grid of equal buttons (2, 4, 3, 2). -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
     :root { --bg:#070b16; --raised:#0c1324; --ink:#e9edf5; --muted:#8d97ab; --line:rgba(255,255,255,.16); --red:#ff4936; --amber:#f2b84b; --green:#6fe3a1; --blue:#a9cdf7; }
@@ -29,6 +30,14 @@
     #clock { font-size:28px; font-weight:700; letter-spacing:1px; } #clock.over { color:var(--red); } #clock.idle { color:var(--muted); }
     #cue { color:var(--amber); font-size:15px; } #title { color:var(--muted); font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:60vw; }
     #script { flex:1; overflow-y:auto; padding:12px 16px; -webkit-overflow-scrolling:touch; }
+    #padMode { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:8px 16px 0; } #padMode button { height:64px; font-size:22px; font-weight:700; } #padMode button.on { background:#13306a; border-color:#2a56a8; }
+    #pad { flex:1; min-height:160px; margin:8px 16px 0; position:relative; touch-action:none; overflow:hidden; border:1px solid var(--line); border-radius:8px; background:var(--raised); }
+    #pad.drag { border-color:#2a56a8; } #pad .hint { position:absolute; left:0; right:0; bottom:8px; text-align:center; color:var(--muted); font-size:13px; pointer-events:none; padding:0 12px; }
+    #spot { position:absolute; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%; display:none; background:radial-gradient(circle,#fff 0 22%,var(--red) 46% 100%); box-shadow:0 0 8px 3px rgba(255,64,48,.85); pointer-events:none; }
+    #pad.drag #spot { background:none; box-shadow:none; border:2px solid var(--blue); width:28px; height:28px; margin:-14px 0 0 -14px; }
+    #keys2 { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; padding:8px 16px 0; } #keys2 button { height:44px; font-size:15px; }
+    #info { position:fixed; inset:0; background:var(--bg); display:none; flex-direction:column; z-index:10; padding:12px 0 env(safe-area-inset-bottom); } #info.on { display:flex; }
+    #info #infoClose { height:64px; font-size:22px; font-weight:700; margin:8px 16px 0; }
     #script p { margin:0 0 .8em; } #script .stage { color:var(--blue); font-style:italic; } #script .cuehead { display:none; }
     #script .empty { color:var(--muted); }
     #keys { display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; padding:8px 16px 0; }
@@ -37,20 +46,10 @@
     button:active { background:#18233c; }
     #keys button { height:44px; font-size:15px; } #keys button b { color:var(--amber); font-weight:700; margin-right:4px; }
     #nav button { height:96px; font-size:24px; font-weight:700; } #next { background:#13306a; border-color:#2a56a8; }
-    #pad { position:fixed; inset:0; background:rgba(7,11,22,.97); display:none; flex-direction:column; z-index:10; padding:12px 16px env(safe-area-inset-bottom); }
-    #pad.on { display:flex; }
-    #pad .hint { color:var(--muted); font-size:14px; text-align:center; padding:8px 0; }
-    #area { display:flex; align-items:center; justify-content:center; }
-    #slide { width:100%; aspect-ratio:16 / 9; max-height:100%; border:1px solid var(--line); border-radius:6px; background:var(--raised); position:relative; touch-action:none; overflow:hidden; }
-    #spot { position:absolute; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%; display:none; background:radial-gradient(circle,#fff 0 22%,var(--red) 46% 100%); box-shadow:0 0 8px 3px rgba(255,64,48,.85); pointer-events:none; }
-    #pad button { height:56px; font-size:18px; margin-top:8px; }
-    #padMode { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:8px; min-height:96px; } #padMode button { height:100%; font-size:24px; font-weight:700; margin:0; } #padMode button.on { background:#13306a; border-color:#2a56a8; }
-    #area { flex:none; } #pad #padClose { flex:1; min-height:96px; font-size:24px; font-weight:700; }
-    #slide.drag { border-color:#2a56a8; } #slide.drag #spot { background:none; box-shadow:none; border:2px solid var(--blue); width:28px; height:28px; margin:-14px 0 0 -14px; }
-    #mirror { display:none; flex-direction:column; padding:12px 16px 0; } #mirror.on { display:flex; }
+    #mirror { display:flex; flex-direction:column; padding:0 16px; }
     #mirror .box { position:relative; width:100%; aspect-ratio:16 / 9; overflow:hidden; border:1px solid var(--line); border-radius:6px; background:#000; }
     #mirror iframe { position:absolute; left:0; top:0; width:1280px; height:720px; border:0; transform-origin:0 0; pointer-events:none; } #mirror .hint { color:var(--muted); font-size:12px; padding:6px 0 0; text-align:center; }
-    #list { position:fixed; inset:0; background:rgba(7,11,22,.97); display:none; flex-direction:column; z-index:10; padding:12px 0 env(safe-area-inset-bottom); }
+    #list { position:fixed; inset:0; background:var(--bg); display:none; flex-direction:column; z-index:10; padding:12px 0 env(safe-area-inset-bottom); }
     #list.on { display:flex; }
     #list ol { flex:1; overflow-y:auto; margin:0; padding:0 16px; list-style:none; }
     #list li { padding:10px 8px; border-bottom:1px solid var(--line); display:flex; gap:12px; } #list li.cur { color:var(--amber); }
@@ -64,25 +63,21 @@
     <div id="link">no link</div>
     <div id="timer"><span id="clock" class="idle">00:00</span><span id="cue"></span><span id="title"></span></div>
   </header>
-  <div id="mirror"><div class="hint">the slide as the screen shows it (live pages and clips as stills)</div></div>
-  <div id="script"><p class="empty">Loading the deck…</p></div>
+  <div id="padMode"><button data-mode="drag" class="on">✥ Turn</button><button data-mode="point">● Point</button></div>
+  <div id="pad" class="drag"><div id="spot"></div><div class="hint" id="padHint">drag turns the live globe on the screen · a tap picks a satellite, a tap on empty sky lets go</div></div>
   <div id="keys">
     <button data-key="["><b>[</b>slower</button>
     <button data-key="]"><b>]</b>faster</button>
-    <button data-key="a"><b>a</b>turn</button>
+    <button data-key="a"><b>a</b>auto</button>
     <button data-key="r"><b>r</b>reset</button>
-    <button id="pointer">● point</button>
-    <button id="slides">list</button>
-    <button id="reset">timer 0</button>
-    <button id="view">slide</button>
   </div>
+  <div id="keys2"><button id="view">script</button><button id="slides">list</button><button id="reset">timer 0</button></div>
   <div id="nav"><button id="prev">◀ back</button><button id="next">next ▶</button></div>
 
-  <div id="pad">
-    <div id="padMode"><button data-mode="point" class="on">● Point</button><button data-mode="drag">✥ Turn</button></div>
-    <div class="hint" id="padHint">touch and drag: the red dot follows on the screen</div>
-    <div id="area"><div id="slide"><div id="spot"></div></div></div>
-    <button id="padClose">done</button>
+  <div id="info">
+    <div id="mirror"><div class="hint">the slide as the screen shows it (live pages and clips as stills)</div></div>
+    <div id="script"><p class="empty">Loading the deck…</p></div>
+    <button id="infoClose">close</button>
   </div>
   <div id="list"><ol></ol><button id="listClose">close</button></div>
 
@@ -181,15 +176,15 @@
 
   // the pointer pad: a 16:9 area, the finger's place sent as slide coordinates, 30 times a second at most
   // in "turn" mode the finger drags the live globe instead (dx, dy in slide units, whole motion kept), a tap picks
-  const pad = $('#pad'), slide = $('#slide'), spot = $('#spot');
-  let ptrT = 0, mode = 'point', last = null, down = null, acc = { dx: 0, dy: 0 }, flushT = 0;
+  const slide = $('#pad'), spot = $('#spot');
+  let ptrT = 0, mode = 'drag', last = null, down = null, acc = { dx: 0, dy: 0 }, flushT = 0;
   const at = e => { const r = slide.getBoundingClientRect(), t = e.touches ? e.touches[0] : e; return { x: Math.max(0, Math.min(1, (t.clientX - r.left) / r.width)), y: Math.max(0, Math.min(1, (t.clientY - r.top) / r.height)) }; };
   const flush = () => { flushT = 0; if (acc.dx || acc.dy) { send({ type: 'gp', phase: 'move', x: last.x, y: last.y, dx: acc.dx, dy: acc.dy }); acc = { dx: 0, dy: 0 }; } };
   const move = e => {
     e.preventDefault(); const p = at(e);
     spot.style.display = 'block'; spot.style.left = p.x * 100 + '%'; spot.style.top = p.y * 100 + '%';
     if (mode === 'point') { const now = Date.now(); if (now - ptrT >= 33) { ptrT = now; send({ type: 'ptr', x: p.x, y: p.y }); } }
-    else { if (last) { acc.dx += p.x - last.x; acc.dy += p.y - last.y; if (!flushT) flushT = setTimeout(flush, 33); } }
+    else { if (last) { const r = slide.getBoundingClientRect(); acc.dx += p.x - last.x; acc.dy += (p.y - last.y) * r.height / (r.width * 9 / 16); if (!flushT) flushT = setTimeout(flush, 33); } }
     last = p;
   };
   const start = e => { down = { ...at(e), t: Date.now() }; last = null; move(e); };
@@ -205,15 +200,14 @@
   addEventListener('mouseup', () => { if (slide.__down) { slide.__down = false; lift(); } });
   document.querySelectorAll('#padMode button').forEach(b => b.onclick = () => {
     mode = b.dataset.mode; document.querySelectorAll('#padMode button').forEach(x => x.classList.toggle('on', x === b)); slide.classList.toggle('drag', mode === 'drag');
-    $('#padHint').textContent = mode === 'point' ? 'touch and drag: the red dot follows on the screen' : 'drag turns the live globe on the screen; a tap picks a satellite, a tap on empty sky lets go';
+    $('#padHint').textContent = mode === 'point' ? 'touch and drag: the red dot follows on the screen' : 'drag turns the live globe on the screen · a tap picks a satellite, a tap on empty sky lets go';
   });
-  $('#pointer').onclick = () => pad.classList.add('on');
-  $('#padClose').onclick = () => { lift(); pad.classList.remove('on'); };
 
+  // script and slide: an overlay, the slide mirror loaded the first time it opens
+  $('#infoClose').onclick = () => $('#info').classList.remove('on');
   $('#view').onclick = () => {
-    const on = !document.body.classList.contains('slide');
-    document.body.classList.toggle('slide', on); $('#mirror').classList.toggle('on', on); $('#view').textContent = on ? 'script' : 'slide';
-    if (on && !mirrorWin) {
+    $('#info').classList.add('on');
+    if (!$('#mirror .box')) {
       const box = document.createElement('div'); box.className = 'box';
       const f = document.createElement('iframe'); f.setAttribute('scrolling', 'no');
       f.src = `/talks/${deck}/?room=${room}&role=mirror#${state.page + 1}`;
